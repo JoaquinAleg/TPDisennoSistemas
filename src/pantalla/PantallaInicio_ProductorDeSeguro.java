@@ -72,18 +72,18 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		contentPane.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{10, 0, 0, 10, 0, 0};
-		gbl_panel.rowHeights = new int[]{20, 327, 0, 20, 0};
+		gbl_panel.rowHeights = new int[]{20, 350, 0, 20, 0};
 		gbl_panel.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JTextPane txtpnElAsegurado = new JTextPane();
 		txtpnElAsegurado.setBackground(new Color(240, 240, 240));
-		txtpnElAsegurado.setFont(new Font("Tahoma", Font.PLAIN, 60));
+		txtpnElAsegurado.setFont(new Font("Tahoma", Font.PLAIN, 70));
 		txtpnElAsegurado.setText("Menú Principal");
 		GridBagConstraints gbc_txtpnElAsegurado = new GridBagConstraints();
 		gbc_txtpnElAsegurado.gridwidth = 2;
-		gbc_txtpnElAsegurado.insets = new Insets(0, 0, 5, 5);
+		gbc_txtpnElAsegurado.insets = new Insets(15, 15, 5, 5);
 		gbc_txtpnElAsegurado.fill = GridBagConstraints.BOTH;
 		gbc_txtpnElAsegurado.gridx = 1;
 		gbc_txtpnElAsegurado.gridy = 1;
@@ -99,14 +99,15 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel.add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{15, 0, 0, 0, 15, 0};
-		gbl_panel_1.rowHeights = new int[]{10, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowHeights = new int[]{10, 0, 140, 0};
+		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setIcon(new ImageIcon(PantallaInicio_ProductorDeSeguro.class.getResource("/imagenes/ProductorSeguro.png")));
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+		gbc_lblNewLabel_6.weightx = 0.3;
 		gbc_lblNewLabel_6.gridwidth = 3;
 		gbc_lblNewLabel_6.insets = new Insets(10, 0, 5, 5);
 		gbc_lblNewLabel_6.gridx = 1;
@@ -118,16 +119,14 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		GridBagConstraints gbc_lblNewLabel_5_1 = new GridBagConstraints();
 		gbc_lblNewLabel_5_1.gridwidth = 3;
-		gbc_lblNewLabel_5_1.anchor = GridBagConstraints.NORTH;
 		gbc_lblNewLabel_5_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_5_1.gridx = 1;
 		gbc_lblNewLabel_5_1.gridy = 1;
 		panel_1.add(lblNewLabel_5_1, gbc_lblNewLabel_5_1);
 		
 		JButton btnNewButton = new JButton("\r\nUsuario");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnNewButton.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,10 +134,38 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		});
 		btnNewButton.setIcon(new ImageIcon(PantallaInicio_ProductorDeSeguro.class.getResource("/imagenes/personita.png")));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.weightx = 0.33;
+		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
+		gbc_btnNewButton.insets = new Insets(15, 0, 0, 5);
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 2;
 		panel_1.add(btnNewButton, gbc_btnNewButton);
+		
+		JButton btnNewButton_2 = new JButton("Ajustes");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnNewButton_2.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_2.setIcon(new ImageIcon(PantallaInicio_ProductorDeSeguro.class.getResource("/imagenes/engranajesChicos.png")));
+		btnNewButton_2.setVerticalTextPosition(SwingConstants.BOTTOM);
+		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.weightx = 0.33;
+		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
+		gbc_btnNewButton_2.insets = new Insets(15, 0, 0, 5);
+		gbc_btnNewButton_2.gridx = 2;
+		gbc_btnNewButton_2.gridy = 2;
+		panel_1.add(btnNewButton_2, gbc_btnNewButton_2);
+		
+		JButton btnNewButton_1 = new JButton("Salir");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnNewButton_1.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_1.setIcon(new ImageIcon(PantallaInicio_ProductorDeSeguro.class.getResource("/imagenes/salir.png")));
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.weightx = 0.33;
+		gbc_btnNewButton_1.insets = new Insets(15, 0, 0, 5);
+		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
+		gbc_btnNewButton_1.gridx = 3;
+		gbc_btnNewButton_1.gridy = 2;
+		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -194,7 +221,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_2.add(btnDarDeAlta_2, gbc_btnDarDeAlta_2);
 		
 		JButton btnNewButton_1_1_1 = new JButton("Consultar Póliza");
-		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnNewButton_1_1_1 = new GridBagConstraints();
 		gbc_btnNewButton_1_1_1.gridwidth = 2;
 		gbc_btnNewButton_1_1_1.weighty = 0.25;
@@ -206,11 +233,11 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_2.add(btnNewButton_1_1_1, gbc_btnNewButton_1_1_1);
 		
 		JButton btnNewButton_1_1_2 = new JButton("Generar propuestas de Renovación");
-		btnNewButton_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnNewButton_1_1_2 = new GridBagConstraints();
 		gbc_btnNewButton_1_1_2.gridwidth = 2;
 		gbc_btnNewButton_1_1_2.weighty = 0.25;
-		gbc_btnNewButton_1_1_2.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_1_1_2.insets = new Insets(0, 0, 10, 5);
 		gbc_btnNewButton_1_1_2.weightx = 0.25;
 		gbc_btnNewButton_1_1_2.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton_1_1_2.gridx = 1;
@@ -253,7 +280,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_3.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JButton btnDarDeAlta = new JButton("Dar de alta Cliente\r\n");
-		btnDarDeAlta.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnDarDeAlta.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnDarDeAlta = new GridBagConstraints();
 		gbc_btnDarDeAlta.gridwidth = 2;
 		gbc_btnDarDeAlta.weighty = 0.33;
@@ -264,7 +291,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_3.add(btnDarDeAlta, gbc_btnDarDeAlta);
 		
 		JButton btnNewButton_1_1 = new JButton("Consultar Cliente");
-		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnNewButton_1_1 = new GridBagConstraints();
 		gbc_btnNewButton_1_1.gridwidth = 2;
 		gbc_btnNewButton_1_1.weighty = 0.25;
@@ -320,7 +347,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_4.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
 		JButton btnActualizarFactoresDe = new JButton("Actualizar factores de características");
-		btnActualizarFactoresDe.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnActualizarFactoresDe.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnActualizarFactoresDe = new GridBagConstraints();
 		gbc_btnActualizarFactoresDe.gridwidth = 2;
 		gbc_btnActualizarFactoresDe.weighty = 0.25;
