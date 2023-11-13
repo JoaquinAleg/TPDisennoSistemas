@@ -1,6 +1,5 @@
 package pantalla;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -19,8 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
+
 
 public class PantallaInicio_Gerente extends JFrame {
 

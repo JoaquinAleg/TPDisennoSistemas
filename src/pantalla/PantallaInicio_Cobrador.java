@@ -1,8 +1,6 @@
 package pantalla;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,9 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
+import javax.swing.ImageIcon;;
 
 public class PantallaInicio_Cobrador extends JFrame {
 
