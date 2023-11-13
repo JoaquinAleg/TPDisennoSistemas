@@ -211,6 +211,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 			}
 		});
 		GridBagConstraints gbc_btnDarDeAlta_2 = new GridBagConstraints();
+		gbc_btnDarDeAlta_2.ipady = 25;
 		gbc_btnDarDeAlta_2.gridwidth = 2;
 		gbc_btnDarDeAlta_2.weighty = 0.25;
 		gbc_btnDarDeAlta_2.weightx = 0.25;
@@ -254,9 +255,9 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel.add(panel_3, gbc_panel_3);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[]{15, 0, 0, 15, 0};
-		gbl_panel_3.rowHeights = new int[]{0, 15, 15, 15, 0};
+		gbl_panel_3.rowHeights = new int[]{0, 15, 15, 0, 15, 0};
 		gbl_panel_3.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_3.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_3.rowWeights = new double[]{1.0, 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
 		JLabel lblNewLabel_2 = new JLabel("\r\n");
@@ -282,8 +283,13 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_3.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JButton btnDarDeAlta = new JButton("Dar de alta Cliente\r\n");
+		btnDarDeAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnDarDeAlta.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnDarDeAlta = new GridBagConstraints();
+		gbc_btnDarDeAlta.ipady = 25;
 		gbc_btnDarDeAlta.gridwidth = 2;
 		gbc_btnDarDeAlta.weighty = 0.33;
 		gbc_btnDarDeAlta.fill = GridBagConstraints.BOTH;
@@ -295,6 +301,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		JButton btnNewButton_1_1 = new JButton("Consultar Cliente");
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnNewButton_1_1 = new GridBagConstraints();
+		gbc_btnNewButton_1_1.ipady = 25;
 		gbc_btnNewButton_1_1.gridwidth = 2;
 		gbc_btnNewButton_1_1.weighty = 0.25;
 		gbc_btnNewButton_1_1.fill = GridBagConstraints.BOTH;
@@ -303,6 +310,14 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		gbc_btnNewButton_1_1.gridy = 2;
 		panel_3.add(btnNewButton_1_1, gbc_btnNewButton_1_1);
 		
+		JLabel lblNewLabel_7 = new JLabel("asd");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_7.gridx = 2;
+		gbc_lblNewLabel_7.gridy = 3;
+		panel_3.add(lblNewLabel_7, gbc_lblNewLabel_7);
+		
 		JLabel lblNewLabel = new JLabel("");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
@@ -310,7 +325,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		gbc_lblNewLabel.weighty = 0.25;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel.gridx = 2;
-		gbc_lblNewLabel.gridy = 3;
+		gbc_lblNewLabel.gridy = 4;
 		panel_3.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JPanel panel_4 = new JPanel();
