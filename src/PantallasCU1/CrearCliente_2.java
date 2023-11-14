@@ -69,6 +69,7 @@ public class CrearCliente_2 extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
@@ -100,6 +101,7 @@ public class CrearCliente_2 extends JFrame {
 		lblNewLabel_5_1.setBorder(null);
 		panel_3.add(lblNewLabel_5_1);
 		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroCliente);
+		lblDatosDeLa_1.setBackground(SystemColor.inactiveCaptionBorder);
 		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();
@@ -111,6 +113,7 @@ public class CrearCliente_2 extends JFrame {
 		lblDatosDeLa_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
@@ -211,6 +214,7 @@ public class CrearCliente_2 extends JFrame {
 		panel_1.add(dateChooser, gbc_dateChooser);
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
 		gbc_panel_4.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_4.fill = GridBagConstraints.BOTH;
@@ -219,6 +223,7 @@ public class CrearCliente_2 extends JFrame {
 		panel.add(panel_4, gbc_panel_4);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
