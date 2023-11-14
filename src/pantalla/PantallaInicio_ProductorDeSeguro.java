@@ -49,8 +49,11 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setExtendedState(MAXIMIZED_BOTH);
 		setBounds(100, 100, 900, 700);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(253, 245, 230));
+		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
