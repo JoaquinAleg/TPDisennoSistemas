@@ -57,7 +57,7 @@ public class CrearCliente_1 extends JFrame {
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setExtendedState(MAXIMIZED_BOTH);
-		setBounds(100, 100, 900, 700);
+		setBounds(100, 100, 1256, 821);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(253, 245, 230));
 		contentPane.setForeground(new Color(0, 0, 0));
@@ -66,41 +66,42 @@ public class CrearCliente_1 extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{10, 0, 10, 0};
-		gbl_contentPane.rowHeights = new int[]{10, 0, 0, 10, 0};
+		gbl_contentPane.rowHeights = new int[]{10, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 1;
 		gbc_panel.gridy = 1;
 		contentPane.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
+		String numeroCliente = new String("numeroCliente");
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+		gbc_panel_3.fill = GridBagConstraints.BOTH;
+		gbc_panel_3.gridx = 0;
+		gbc_panel_3.gridy = 0;
+		panel.add(panel_3, gbc_panel_3);
 		
 		JLabel lblNewLabel_5_1 = new JLabel("Crear Póliza");
-		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel_5_1.setBorder(null);
-		GridBagConstraints gbc_lblNewLabel_5_1 = new GridBagConstraints();
-		gbc_lblNewLabel_5_1.anchor = GridBagConstraints.NORTH;
-		gbc_lblNewLabel_5_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNewLabel_5_1.insets = new Insets(50, 0, 50, 0);
-		gbc_lblNewLabel_5_1.gridx = 0;
-		gbc_lblNewLabel_5_1.gridy = 0;
-		panel.add(lblNewLabel_5_1, gbc_lblNewLabel_5_1);
+		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		String numeroCliente = new String("numeroCliente");
+		lblNewLabel_5_1.setBorder(null);
+		panel_3.add(lblNewLabel_5_1);
 		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroCliente);
-		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();
 		gbc_lblDatosDeLa_1.fill = GridBagConstraints.HORIZONTAL;
@@ -110,16 +111,17 @@ public class CrearCliente_1 extends JFrame {
 		lblDatosDeLa_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_1.gridx = 0;
 		gbc_panel_1.gridy = 2;
 		panel.add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel lblNewLabel = new JLabel("Provincia del Riesgo (*):");
@@ -323,7 +325,7 @@ public class CrearCliente_1 extends JFrame {
 		Siniestros.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_Siniestros = new GridBagConstraints();
 		gbc_Siniestros.anchor = GridBagConstraints.WEST;
-		gbc_Siniestros.insets = new Insets(20, 70, 0, 5);
+		gbc_Siniestros.insets = new Insets(20, 70, 5, 5);
 		gbc_Siniestros.gridx = 0;
 		gbc_Siniestros.gridy = 5;
 		panel_1.add(Siniestros, gbc_Siniestros);
@@ -336,6 +338,48 @@ public class CrearCliente_1 extends JFrame {
 		gbc_Box_Siniestros.gridx = 1;
 		gbc_Box_Siniestros.gridy = 5;
 		panel_1.add(Box_Siniestros, gbc_Box_Siniestros);
+		
+		JLabel lblNewLabel_2 = new JLabel("Campo obligatorio (*)");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_2.gridx = 3;
+		gbc_lblNewLabel_2.gridy = 6;
+		panel_1.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.anchor = GridBagConstraints.SOUTH;
+		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panel_2.gridx = 0;
+		gbc_panel_2.gridy = 3;
+		panel.add(panel_2, gbc_panel_2);
+		GridBagLayout gbl_panel_2 = new GridBagLayout();
+		gbl_panel_2.columnWidths = new int[]{89, 0, 89, 0};
+		gbl_panel_2.rowHeights = new int[]{23, 0};
+		gbl_panel_2.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_2.setLayout(gbl_panel_2);
+		
+		JButton Boton_Cancelar = new JButton("Cancelar");
+		Boton_Cancelar.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		GridBagConstraints gbc_Boton_Cancelar = new GridBagConstraints();
+		gbc_Boton_Cancelar.anchor = GridBagConstraints.WEST;
+		gbc_Boton_Cancelar.insets = new Insets(10, 70, 10, 5);
+		gbc_Boton_Cancelar.gridx = 0;
+		gbc_Boton_Cancelar.gridy = 0;
+		panel_2.add(Boton_Cancelar, gbc_Boton_Cancelar);
+		
+		JButton Boton_Continuar = new JButton("Continuar\r\n");
+		Boton_Continuar.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		GridBagConstraints gbc_Boton_Continuar = new GridBagConstraints();
+		gbc_Boton_Continuar.insets = new Insets(10, 0, 10, 70);
+		gbc_Boton_Continuar.anchor = GridBagConstraints.EAST;
+		gbc_Boton_Continuar.gridx = 2;
+		gbc_Boton_Continuar.gridy = 0;
+		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
 
 
 
