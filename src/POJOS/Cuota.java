@@ -16,6 +16,7 @@ public class Cuota {
 	@ManyToOne
 	@JoinColumn(name = "idNroRecibo", nullable = false, referencedColumnName = "idNroRecibo", 
 	foreignKey=@ForeignKey(name = "fk_ReciboCuota", value = ConstraintMode.CONSTRAINT))
+	private Recibo recibo;
 	@Column
 	private Date fechaPago;
 	@Column

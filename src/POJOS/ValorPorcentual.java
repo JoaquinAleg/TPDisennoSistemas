@@ -14,6 +14,7 @@ public class ValorPorcentual {
 	private float valorPorcentual;
 	@Column
 	private Date fechaAsignacion;
+	@Column
 	private Date fechaModificacion;
 	
 	public ValorPorcentual() {}
@@ -58,5 +59,7 @@ public class ValorPorcentual {
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
+
+	
 	
 }
