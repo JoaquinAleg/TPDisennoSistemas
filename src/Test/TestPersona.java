@@ -18,6 +18,6 @@ public class TestPersona {
 		
 		
 		List<Persona> personas = manager.createQuery("FROM Persona").getResultList();
-		System.out.println("Cantidad de Personas" + personas.size());
+		System.out.println("Cantidad de Personas " + personas.size());
 	}
 }

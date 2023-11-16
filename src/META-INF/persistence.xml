@@ -7,7 +7,7 @@
   <persistence-unit name="persistencia" transaction-type="RESOURCE_LOCAL">
 	
 	<class>
-		src.POJOS.persona
+		src.POJOS.Persona
 	</class>
     <properties>
 
