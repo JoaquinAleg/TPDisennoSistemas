@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class AjusteEmision {
 	@Id
 	@Column
-	private long idAjusteDescuento;
+	private long idAjusteEmision;
 	@OneToOne
 	@JoinColumn(name = "idValorPorcentual", nullable = false, referencedColumnName = "idValorPorcentual", 
 	foreignKey=@ForeignKey(name = "fk_valorEmision", value = ConstraintMode.CONSTRAINT))
@@ -18,17 +18,17 @@ public class AjusteEmision {
 
 	public AjusteEmision(long idAjusteDescuento, ValorPorcentual valorPorcentual, int ajusteEmision) {
 		super();
-		this.idAjusteDescuento = idAjusteDescuento;
+		this.idAjusteEmision = idAjusteDescuento;
 		ValorPorcentual = valorPorcentual;
 		this.ajusteEmision = ajusteEmision;
 	}
 
 	public long getIdAjusteDescuento() {
-		return idAjusteDescuento;
+		return idAjusteEmision;
 	}
 
 	public void setIdAjusteDescuento(long idAjusteDescuento) {
-		this.idAjusteDescuento = idAjusteDescuento;
+		this.idAjusteEmision = idAjusteDescuento;
 	}
 
 	public ValorPorcentual getValorPorcentual() {

@@ -7,17 +7,19 @@ public class Provincia {
 	@Id
 	@Column
 	private long idProvincia;
-	@Column
-	private int idPais;
+	@ManyToOne
+	@JoinColumn(name = "idPais", nullable = false, referencedColumnName = "idPais", 
+	foreignKey=@ForeignKey(name = "fk_Pais", value = ConstraintMode.CONSTRAINT))
+	private Pais pais;
 	@Column
 	private String nombreProvincia;
 
 	public Provincia() {}
 
-	public Provincia(long idProvincia, int idPais, String nombreProvincia) {
+	public Provincia(long idProvincia, Pais pais, String nombreProvincia) {
 		super();
 		this.idProvincia = idProvincia;
-		this.idPais = idPais;
+		this.pais = pais;
 		this.nombreProvincia = nombreProvincia;
 	}
 
@@ -29,12 +31,12 @@ public class Provincia {
 		this.idProvincia = idProvincia;
 	}
 
-	public int getIdPais() {
-		return idPais;
+	public Pais getPais() {
+		return pais;
 	}
 
-	public void setIdPais(int idPais) {
-		this.idPais = idPais;
+	public void setPais(Pais pais) {
+		this.pais = pais;
 	}
 
 	public String getNombreProvincia() {
@@ -44,5 +46,6 @@ public class Provincia {
 	public void setNombreProvincia(String nombreProvincia) {
 		this.nombreProvincia = nombreProvincia;
 	}
+
 	
 }

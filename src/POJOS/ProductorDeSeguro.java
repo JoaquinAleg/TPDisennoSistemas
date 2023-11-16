@@ -9,8 +9,10 @@ public class ProductorDeSeguro {
 	@Id
 	@Column
 	private long idProductorDeSeguro;
-	@Column
-	private long idEmpleado;
+	@OneToOne
+	@JoinColumn(name = "idEmpleado", nullable = false, referencedColumnName = "idEmpleado", 
+	foreignKey=@ForeignKey(name = "fk_EmpleadoProductor", value = ConstraintMode.CONSTRAINT))
+	private Empleado Empleado;
 	@Column
 	private Date fechaInicio;
 	@Column
@@ -18,10 +20,10 @@ public class ProductorDeSeguro {
 	
 	public ProductorDeSeguro() {}
 
-	public ProductorDeSeguro(long idProductorDeSeguro, long idEmpleado, Date fechaInicio, Date fechaFin) {
+	public ProductorDeSeguro(long idProductorDeSeguro, POJOS.Empleado empleado, Date fechaInicio, Date fechaFin) {
 		super();
 		this.idProductorDeSeguro = idProductorDeSeguro;
-		this.idEmpleado = idEmpleado;
+		Empleado = empleado;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 	}
@@ -34,12 +36,12 @@ public class ProductorDeSeguro {
 		this.idProductorDeSeguro = idProductorDeSeguro;
 	}
 
-	public long getIdEmpleado() {
-		return idEmpleado;
+	public Empleado getEmpleado() {
+		return Empleado;
 	}
 
-	public void setIdEmpleado(long idEmpleado) {
-		this.idEmpleado = idEmpleado;
+	public void setEmpleado(Empleado empleado) {
+		Empleado = empleado;
 	}
 
 	public Date getFechaInicio() {
@@ -57,5 +59,6 @@ public class ProductorDeSeguro {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
+
 	
 }

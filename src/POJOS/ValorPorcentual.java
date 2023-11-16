@@ -14,12 +14,12 @@ public class ValorPorcentual {
 	private float valorPorcentual;
 	@Column
 	private Date fechaAsignacion;
-	private List<Date> fechaModificacion;
+	private Date fechaModificacion;
 	
 	public ValorPorcentual() {}
 
 	public ValorPorcentual(long idValorPorcentual, float valorPorcentual, Date fechaAsignacion,
-			List<Date> fechaModificacion) {
+			Date fechaModificacion) {
 		super();
 		this.idValorPorcentual = idValorPorcentual;
 		this.valorPorcentual = valorPorcentual;
@@ -51,11 +51,11 @@ public class ValorPorcentual {
 		this.fechaAsignacion = fechaAsignacion;
 	}
 
-	public List<Date> getFechaModificacion() {
+	public Date getFechaModificacion() {
 		return fechaModificacion;
 	}
 
-	public void setFechaModificacion(List<Date> fechaModificacion) {
+	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
 	

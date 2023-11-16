@@ -9,22 +9,38 @@ public class Poliza {
 @Id
 @Column
 private long numeroPoliza;
-@Column
-private long idModelo;
-@Column
-private long idAjusteHijo;
-@Column
-private long idAjusteKilometro;
-@Column
-private long idAjusteSiniestro;
-@Column
-private long idAnioFabricacion;
-@Column
-private long idAjusteDescuento;
-@Column
-private long idAjusteEmision;
-@Column
-private long idModificacion;
+@OneToOne
+@JoinColumn(name = "idModelo", nullable = false, referencedColumnName = "idModelo", 
+foreignKey=@ForeignKey(name = "fk_ModeloPoliza", value = ConstraintMode.CONSTRAINT))
+private Modelo Modelo;
+@OneToOne
+@JoinColumn(name = "idAjusteHijo", nullable = false, referencedColumnName = "idAjusteHijo", 
+foreignKey=@ForeignKey(name = "fk_AjusteHijo", value = ConstraintMode.CONSTRAINT))
+private AjusteHijo AjusteHijo;
+@OneToOne
+@JoinColumn(name = "idAjusteKilometro", nullable = false, referencedColumnName = "idAjusteKilometro", 
+foreignKey=@ForeignKey(name = "fk_AjusteKilometro", value = ConstraintMode.CONSTRAINT))
+private AjusteKilometro AjusteKilometro;
+@OneToOne
+@JoinColumn(name = "idAjusteSiniestro", nullable = false, referencedColumnName = "idAjusteSiniestro", 
+foreignKey=@ForeignKey(name = "fk_AjusteSiniestro", value = ConstraintMode.CONSTRAINT))
+private AjusteSiniestro idAjusteSiniestro;
+@OneToOne
+@JoinColumn(name = "idAnioFabricacion", nullable = false, referencedColumnName = "idAnioFabricacion", 
+foreignKey=@ForeignKey(name = "fk_AnioFabricacion", value = ConstraintMode.CONSTRAINT))
+private fabricado AnioFabricacion;
+@OneToOne
+@JoinColumn(name = "idAjusteDescuento", nullable = false, referencedColumnName = "idAjusteDescuento", 
+foreignKey=@ForeignKey(name = "fk_AjusteDescuento", value = ConstraintMode.CONSTRAINT))
+private AjusteDescuento AjusteDescuento;
+@OneToOne
+@JoinColumn(name = "idAjusteEmision", nullable = false, referencedColumnName = "idAjusteEmision", 
+foreignKey=@ForeignKey(name = "fk_AjusteEmision", value = ConstraintMode.CONSTRAINT))
+private AjusteEmision AjusteEmision;
+@OneToOne
+@JoinColumn(name = "idModificacion", nullable = false, referencedColumnName = "idModificacion", 
+foreignKey=@ForeignKey(name = "fk_Modificacion", value = ConstraintMode.CONSTRAINT))
+private Modificacion Modificacion;
 @Column
 private float sumaAsegurada;
 @Column
@@ -59,31 +75,38 @@ private String nombreCliente;
 private String dniCliente;
 @Column
 private Date fechaCreacion;
-@Column
-private long idFormaPago;
-@Column
-private long idCobertura;
-@Column
-private long idMedida;
+@OneToOne
+@JoinColumn(name = "idFormaPago", nullable = false, referencedColumnName = "idFormaPago", 
+foreignKey=@ForeignKey(name = "fk_TipoFormaPago", value = ConstraintMode.CONSTRAINT))
+private TipoFormaPago FormaPago;
+@OneToOne
+@JoinColumn(name = "idCobertura", nullable = false, referencedColumnName = "idCobertura", 
+foreignKey=@ForeignKey(name = "fk_CoberturaPoliza", value = ConstraintMode.CONSTRAINT))
+private Cobertura Cobertura;
+@OneToOne
+@JoinColumn(name = "idMedida", nullable = false, referencedColumnName = "idMedida", 
+foreignKey=@ForeignKey(name = "fk_MedidaSeguridad", value = ConstraintMode.CONSTRAINT))
+private MedidaSeguridad Medida;
 
 public Poliza(){}
 
-public Poliza(long numeroPoliza, long idModelo, long idAjusteHijo, long idAjusteKilometro, long idAjusteSiniestro,
-		long idAnioFabricacion, long idAjusteDescuento, long idAjusteEmision, long idModificacion, float sumaAsegurada,
-		int kilometrosRealizadosAnio, int cantSiniestrosUA, Date fechaDeInicio, Date fechaDeFin, float premio,
-		float prima, float descuentos, Date ultimoDiaPago, float montoTotalAbonar, String chasis, String patente,
-		String estadoPoliza, String motor, String nombreCliente, String dniCliente, Date fechaCreacion, long idFormaPago,
-		long idCobertura, long idMedida) {
+public Poliza(long numeroPoliza, POJOS.Modelo modelo, POJOS.AjusteHijo ajusteHijo,
+		POJOS.AjusteKilometro ajusteKilometro, AjusteSiniestro idAjusteSiniestro, fabricado anioFabricacion,
+		POJOS.AjusteDescuento ajusteDescuento, POJOS.AjusteEmision ajusteEmision, POJOS.Modificacion modificacion,
+		float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA, Date fechaDeInicio, Date fechaDeFin,
+		float premio, float prima, float descuentos, Date ultimoDiaPago, float montoTotalAbonar, String chasis,
+		String patente, String estadoPoliza, String motor, String nombreCliente, String dniCliente, Date fechaCreacion,
+		TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida) {
 	super();
 	this.numeroPoliza = numeroPoliza;
-	this.idModelo = idModelo;
-	this.idAjusteHijo = idAjusteHijo;
-	this.idAjusteKilometro = idAjusteKilometro;
+	Modelo = modelo;
+	AjusteHijo = ajusteHijo;
+	AjusteKilometro = ajusteKilometro;
 	this.idAjusteSiniestro = idAjusteSiniestro;
-	this.idAnioFabricacion = idAnioFabricacion;
-	this.idAjusteDescuento = idAjusteDescuento;
-	this.idAjusteEmision = idAjusteEmision;
-	this.idModificacion = idModificacion;
+	AnioFabricacion = anioFabricacion;
+	AjusteDescuento = ajusteDescuento;
+	AjusteEmision = ajusteEmision;
+	Modificacion = modificacion;
 	this.sumaAsegurada = sumaAsegurada;
 	this.kilometrosRealizadosAnio = kilometrosRealizadosAnio;
 	this.cantSiniestrosUA = cantSiniestrosUA;
@@ -101,9 +124,9 @@ public Poliza(long numeroPoliza, long idModelo, long idAjusteHijo, long idAjuste
 	this.nombreCliente = nombreCliente;
 	this.dniCliente = dniCliente;
 	this.fechaCreacion = fechaCreacion;
-	this.idFormaPago = idFormaPago;
-	this.idCobertura = idCobertura;
-	this.idMedida = idMedida;
+	FormaPago = formaPago;
+	Cobertura = cobertura;
+	Medida = medida;
 }
 
 public long getNumeroPoliza() {
@@ -114,68 +137,68 @@ public void setNumeroPoliza(long numeroPoliza) {
 	this.numeroPoliza = numeroPoliza;
 }
 
-public long getIdModelo() {
-	return idModelo;
+public Modelo getModelo() {
+	return Modelo;
 }
 
-public void setIdModelo(long idModelo) {
-	this.idModelo = idModelo;
+public void setModelo(Modelo modelo) {
+	Modelo = modelo;
 }
 
-public long getIdAjusteHijo() {
-	return idAjusteHijo;
+public AjusteHijo getAjusteHijo() {
+	return AjusteHijo;
 }
 
-public void setIdAjusteHijo(long idAjusteHijo) {
-	this.idAjusteHijo = idAjusteHijo;
+public void setAjusteHijo(AjusteHijo ajusteHijo) {
+	AjusteHijo = ajusteHijo;
 }
 
-public long getIdAjusteKilometro() {
-	return idAjusteKilometro;
+public AjusteKilometro getAjusteKilometro() {
+	return AjusteKilometro;
 }
 
-public void setIdAjusteKilometro(long idAjusteKilometro) {
-	this.idAjusteKilometro = idAjusteKilometro;
+public void setAjusteKilometro(AjusteKilometro ajusteKilometro) {
+	AjusteKilometro = ajusteKilometro;
 }
 
-public long getIdAjusteSiniestro() {
+public AjusteSiniestro getIdAjusteSiniestro() {
 	return idAjusteSiniestro;
 }
 
-public void setIdAjusteSiniestro(long idAjusteSiniestro) {
+public void setIdAjusteSiniestro(AjusteSiniestro idAjusteSiniestro) {
 	this.idAjusteSiniestro = idAjusteSiniestro;
 }
 
-public long getIdAnioFabricacion() {
-	return idAnioFabricacion;
+public fabricado getAnioFabricacion() {
+	return AnioFabricacion;
 }
 
-public void setIdAnioFabricacion(long idAnioFabricacion) {
-	this.idAnioFabricacion = idAnioFabricacion;
+public void setAnioFabricacion(fabricado anioFabricacion) {
+	AnioFabricacion = anioFabricacion;
 }
 
-public long getIdAjusteDescuento() {
-	return idAjusteDescuento;
+public AjusteDescuento getAjusteDescuento() {
+	return AjusteDescuento;
 }
 
-public void setIdAjusteDescuento(long idAjusteDescuento) {
-	this.idAjusteDescuento = idAjusteDescuento;
+public void setAjusteDescuento(AjusteDescuento ajusteDescuento) {
+	AjusteDescuento = ajusteDescuento;
 }
 
-public long getIdAjusteEmision() {
-	return idAjusteEmision;
+public AjusteEmision getAjusteEmision() {
+	return AjusteEmision;
 }
 
-public void setIdAjusteEmision(long idAjusteEmision) {
-	this.idAjusteEmision = idAjusteEmision;
+public void setAjusteEmision(AjusteEmision ajusteEmision) {
+	AjusteEmision = ajusteEmision;
 }
 
-public long getIdModificacion() {
-	return idModificacion;
+public Modificacion getModificacion() {
+	return Modificacion;
 }
 
-public void setIdModificacion(long idModificacion) {
-	this.idModificacion = idModificacion;
+public void setModificacion(Modificacion modificacion) {
+	Modificacion = modificacion;
 }
 
 public float getSumaAsegurada() {
@@ -314,28 +337,29 @@ public void setFechaCreacion(Date fechaCreacion) {
 	this.fechaCreacion = fechaCreacion;
 }
 
-public long getIdFormaPago() {
-	return idFormaPago;
+public TipoFormaPago getFormaPago() {
+	return FormaPago;
 }
 
-public void setIdFormaPago(long idFormaPago) {
-	this.idFormaPago = idFormaPago;
+public void setFormaPago(TipoFormaPago formaPago) {
+	FormaPago = formaPago;
 }
 
-public long getIdCobertura() {
-	return idCobertura;
+public Cobertura getCobertura() {
+	return Cobertura;
 }
 
-public void setIdCobertura(long idCobertura) {
-	this.idCobertura = idCobertura;
+public void setCobertura(Cobertura cobertura) {
+	Cobertura = cobertura;
 }
 
-public long getIdMedida() {
-	return idMedida;
+public MedidaSeguridad getMedida() {
+	return Medida;
 }
 
-public void setIdMedida(long idMedida) {
-	this.idMedida = idMedida;
+public void setMedida(MedidaSeguridad medida) {
+	Medida = medida;
 }
+
 
 }
