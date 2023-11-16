@@ -11,8 +11,10 @@ public class Pais {
 	private long idPais;
 	@Column
 	private String nombrePais;
-	@OneToMany(mappedBy = "Provincia")
+	@OneToMany
 	private List<Provincia> provincias;
+	
+	
 	public Pais() {}
 
 	public Pais(long idPais, String nombrePais) {

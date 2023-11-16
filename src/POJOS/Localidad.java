@@ -7,8 +7,10 @@ public class Localidad {
 	@Id
 	@Column
 	private long idLocalidad;
-	@Column
-	private long idProvincia;
+	@ManyToOne
+	@JoinColumn(name = "idProvincia", nullable = false, referencedColumnName = "idProvincia", 
+	foreignKey=@ForeignKey(name = "fk_Provincia", value = ConstraintMode.CONSTRAINT))
+	private Provincia Provincia;
 	@Column
 	private int codigoPostal;
 	@Column
@@ -16,10 +18,10 @@ public class Localidad {
 	
 	public Localidad() {}
 
-	public Localidad(long idLocalidad, long idProvincia, int codigoPostal, String nombreLocalidad) {
+	public Localidad(long idLocalidad, POJOS.Provincia provincia, int codigoPostal, String nombreLocalidad) {
 		super();
 		this.idLocalidad = idLocalidad;
-		this.idProvincia = idProvincia;
+		Provincia = provincia;
 		this.codigoPostal = codigoPostal;
 		this.nombreLocalidad = nombreLocalidad;
 	}
@@ -32,12 +34,12 @@ public class Localidad {
 		this.idLocalidad = idLocalidad;
 	}
 
-	public long getIdProvincia() {
-		return idProvincia;
+	public Provincia getProvincia() {
+		return Provincia;
 	}
 
-	public void setIdProvincia(long idProvincia) {
-		this.idProvincia = idProvincia;
+	public void setProvincia(Provincia provincia) {
+		Provincia = provincia;
 	}
 
 	public int getCodigoPostal() {
@@ -55,5 +57,6 @@ public class Localidad {
 	public void setNombreLocalidad(String nombreLocalidad) {
 		this.nombreLocalidad = nombreLocalidad;
 	}
+
 	
 }

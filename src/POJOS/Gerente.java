@@ -9,7 +9,9 @@ public class Gerente {
 	@Id
 	@Column
 	private long idGerente;
-	@ManyToOne
+	@OneToOne
+	@JoinColumn(name = "idEmpleado", nullable = false, referencedColumnName = "idEmpleado", 
+	foreignKey=@ForeignKey(name = "fk_EmpleadoGerente", value = ConstraintMode.CONSTRAINT))
 	private Empleado empleado;
 	@Column
 	private Date fechaInicio;

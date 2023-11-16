@@ -13,7 +13,9 @@ public class Cliente {
 	private Date fechaRegistro;
 	@Column
 	private String profesion;
-	@OneToOne(optional = false)
+	@OneToOne
+	@JoinColumn(name = "cuit", nullable = false, referencedColumnName = "cuit", 
+			foreignKey=@ForeignKey(name = "fk_cuitCliente", value = ConstraintMode.CONSTRAINT))
 	private Persona persona;
 	@Column
 	private long idTipoEstadoCliente;

@@ -2,8 +2,11 @@ package POJOS;
 import java.util.Date;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -13,7 +16,9 @@ public class Cobrador {
 	@Id
 	@Column
 	private long idCobrador;
-	@OneToOne(optional = false)
+	@OneToOne
+	@JoinColumn(name = "idEmpleado", nullable = false, referencedColumnName = "idEmpleado", 
+	foreignKey=@ForeignKey(name = "fk_empleadoCobrador", value = ConstraintMode.CONSTRAINT))
 	private Empleado empleado;
 	@Column
 	private Date fechaInicio;

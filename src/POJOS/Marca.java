@@ -7,14 +7,16 @@ public class Marca {
 	@Id
 	@Column
 	private long idMarca;
-	@Column
-	private long valorPorcentual;
+	@OneToOne
+	@JoinColumn(name = "idValorPorcentual", nullable = false, referencedColumnName = "idValorPorcentual", 
+	foreignKey=@ForeignKey(name = "fk_ValorMarca", value = ConstraintMode.CONSTRAINT))
+	private ValorPorcentual valorPorcentual;
 	@Column
 	private String nombreMarca;
 	
 	public Marca() {}
 
-	public Marca(long idMarca, int valorPorcentual, String nombreMarca) {
+	public Marca(long idMarca, ValorPorcentual valorPorcentual, String nombreMarca) {
 		super();
 		this.idMarca = idMarca;
 		this.valorPorcentual = valorPorcentual;
@@ -29,11 +31,11 @@ public class Marca {
 		this.idMarca = idMarca;
 	}
 
-	public long getValorPorcentual() {
+	public ValorPorcentual getValorPorcentual() {
 		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(long valorPorcentual) {
+	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
 		this.valorPorcentual = valorPorcentual;
 	}
 
@@ -44,5 +46,6 @@ public class Marca {
 	public void setNombreMarca(String nombreMarca) {
 		this.nombreMarca = nombreMarca;
 	}
+
 	
 }

@@ -7,7 +7,9 @@ public class Domicilio {
 	@Id
 	@Column
 	private long idDomicilio;
-	@ManyToOne()
+	@ManyToOne
+	@JoinColumn(name = "idLocalidad", nullable = false, referencedColumnName = "idLocalidad", 
+	foreignKey=@ForeignKey(name = "fk_LocalidadDomicilio", value = ConstraintMode.CONSTRAINT))
 	private Localidad localidad;
 	@Column
 	private String calle;
