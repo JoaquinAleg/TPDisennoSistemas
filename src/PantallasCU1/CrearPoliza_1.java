@@ -1,7 +1,6 @@
 package PantallasCU1;
 
 
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,19 +15,21 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
-import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JDateChooser;
-;
 
 
-
-public class CrearCliente_2 extends JFrame {
+public class CrearPoliza_1 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField text_Motor;
+	private JTextField text_Patente;
+	private JTextField text_Chasis;
+	private JTextField text_Kilometros;
 
 	/**
 	 * Launch the application.
@@ -37,7 +38,7 @@ public class CrearCliente_2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CrearCliente_2 frame = new CrearCliente_2();
+					CrearPoliza_1 frame = new CrearPoliza_1();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,14 +50,14 @@ public class CrearCliente_2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearCliente_2() {
+	public CrearPoliza_1() {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setExtendedState(MAXIMIZED_BOTH);
 		setBounds(100, 100, 1256, 821);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(253, 245, 230));
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -64,8 +65,8 @@ public class CrearCliente_2 extends JFrame {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{10, 0, 10, 0};
 		gbl_contentPane.rowHeights = new int[]{10, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel panel = new JPanel();
@@ -78,9 +79,9 @@ public class CrearCliente_2 extends JFrame {
 		contentPane.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		String numeroCliente = new String("numeroCliente");
 		
@@ -88,7 +89,6 @@ public class CrearCliente_2 extends JFrame {
 		panel_3.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
-		gbc_panel_3.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_3.fill = GridBagConstraints.BOTH;
 		gbc_panel_3.gridx = 0;
 		gbc_panel_3.gridy = 0;
@@ -101,11 +101,9 @@ public class CrearCliente_2 extends JFrame {
 		lblNewLabel_5_1.setBorder(null);
 		panel_3.add(lblNewLabel_5_1);
 		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroCliente);
-		lblDatosDeLa_1.setBackground(SystemColor.inactiveCaptionBorder);
 		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();
-		gbc_lblDatosDeLa_1.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDatosDeLa_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblDatosDeLa_1.gridx = 0;
 		gbc_lblDatosDeLa_1.gridy = 1;
@@ -116,7 +114,6 @@ public class CrearCliente_2 extends JFrame {
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_1.gridx = 0;
 		gbc_panel_1.gridy = 2;
@@ -124,11 +121,11 @@ public class CrearCliente_2 extends JFrame {
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-		JLabel lblNewLabel = new JLabel("Guardado en garage:\r\n");
+		JLabel lblNewLabel = new JLabel("Provincia del Riesgo (*):");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -148,7 +145,7 @@ public class CrearCliente_2 extends JFrame {
 		gbc_ProvinciaRiesgo.gridy = 0;
 		panel_1.add(ProvinciaRiesgo, gbc_ProvinciaRiesgo);
 		
-		JLabel lblNewLabel_1 = new JLabel("Alarma:");
+		JLabel lblNewLabel_1 = new JLabel("Localidad del Riesgo (*):");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -167,7 +164,7 @@ public class CrearCliente_2 extends JFrame {
 		gbc_LocalidadRiesgo.gridy = 0;
 		panel_1.add(LocalidadRiesgo, gbc_LocalidadRiesgo);
 		
-		JLabel lblMarcaDelVehculo = new JLabel("Dispositivo de rastreo vehícular");
+		JLabel lblMarcaDelVehculo = new JLabel("Marca del vehículo(*):");
 		lblMarcaDelVehculo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMarcaDelVehculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblMarcaDelVehculo = new GridBagConstraints();
@@ -186,7 +183,7 @@ public class CrearCliente_2 extends JFrame {
 		gbc_MarcaVehiculo.gridy = 1;
 		panel_1.add(MarcaVehiculo, gbc_MarcaVehiculo);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Tuercas antirrobos en 4 ruedas:");
+		JLabel lblNewLabel_1_1 = new JLabel("Modelo del vehículo (*):");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel_1_1 = new GridBagConstraints();
@@ -205,32 +202,161 @@ public class CrearCliente_2 extends JFrame {
 		gbc_modeloVehiculo.gridy = 1;
 		panel_1.add(modeloVehiculo, gbc_modeloVehiculo);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
-		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
-		gbc_dateChooser.fill = GridBagConstraints.BOTH;
-		gbc_dateChooser.gridx = 2;
-		gbc_dateChooser.gridy = 2;
-		panel_1.add(dateChooser, gbc_dateChooser);
+		JLabel AñoVehiculo = new JLabel("Año del vehículo(*):");
+		AñoVehiculo.setHorizontalAlignment(SwingConstants.LEFT);
+		AñoVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_AñoVehiculo = new GridBagConstraints();
+		gbc_AñoVehiculo.anchor = GridBagConstraints.WEST;
+		gbc_AñoVehiculo.insets = new Insets(20, 70, 5, 5);
+		gbc_AñoVehiculo.gridx = 0;
+		gbc_AñoVehiculo.gridy = 2;
+		panel_1.add(AñoVehiculo, gbc_AñoVehiculo);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
-		gbc_panel_4.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_4.fill = GridBagConstraints.BOTH;
-		gbc_panel_4.gridx = 0;
-		gbc_panel_4.gridy = 3;
-		panel.add(panel_4, gbc_panel_4);
+		JComboBox MarcaVehiculo_1 = new JComboBox();
+		MarcaVehiculo_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_MarcaVehiculo_1 = new GridBagConstraints();
+		gbc_MarcaVehiculo_1.insets = new Insets(20, 0, 5, 30);
+		gbc_MarcaVehiculo_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_MarcaVehiculo_1.gridx = 1;
+		gbc_MarcaVehiculo_1.gridy = 2;
+		panel_1.add(MarcaVehiculo_1, gbc_MarcaVehiculo_1);
+		
+		JLabel SumaAs = new JLabel("Suma asegurada :        $");
+		SumaAs.setHorizontalAlignment(SwingConstants.LEFT);
+		SumaAs.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_SumaAs = new GridBagConstraints();
+		gbc_SumaAs.fill = GridBagConstraints.BOTH;
+		gbc_SumaAs.insets = new Insets(20, 20, 5, 5);
+		gbc_SumaAs.gridx = 2;
+		gbc_SumaAs.gridy = 2;
+		panel_1.add(SumaAs, gbc_SumaAs);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(20, 0, 5, 70);
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.gridx = 3;
+		gbc_textField.gridy = 2;
+		panel_1.add(textField, gbc_textField);
+		textField.setColumns(10);
+		
+		JLabel Motor = new JLabel("Motor(*) :");
+		Motor.setHorizontalAlignment(SwingConstants.LEFT);
+		Motor.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_Motor = new GridBagConstraints();
+		gbc_Motor.anchor = GridBagConstraints.WEST;
+		gbc_Motor.insets = new Insets(20, 70, 5, 5);
+		gbc_Motor.gridx = 0;
+		gbc_Motor.gridy = 3;
+		panel_1.add(Motor, gbc_Motor);
+		
+		text_Motor = new JTextField();
+		text_Motor.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		text_Motor.setColumns(10);
+		GridBagConstraints gbc_text_Motor = new GridBagConstraints();
+		gbc_text_Motor.insets = new Insets(20, 0, 5, 30);
+		gbc_text_Motor.fill = GridBagConstraints.HORIZONTAL;
+		gbc_text_Motor.gridx = 1;
+		gbc_text_Motor.gridy = 3;
+		panel_1.add(text_Motor, gbc_text_Motor);
+		
+		JLabel Chasis = new JLabel("Chasis(*):");
+		Chasis.setHorizontalAlignment(SwingConstants.LEFT);
+		Chasis.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_Chasis = new GridBagConstraints();
+		gbc_Chasis.insets = new Insets(20, 20, 5, 5);
+		gbc_Chasis.anchor = GridBagConstraints.WEST;
+		gbc_Chasis.gridx = 2;
+		gbc_Chasis.gridy = 3;
+		panel_1.add(Chasis, gbc_Chasis);
+		
+		text_Chasis = new JTextField();
+		text_Chasis.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		text_Chasis.setColumns(10);
+		GridBagConstraints gbc_text_Chasis = new GridBagConstraints();
+		gbc_text_Chasis.insets = new Insets(20, 0, 5, 70);
+		gbc_text_Chasis.fill = GridBagConstraints.HORIZONTAL;
+		gbc_text_Chasis.gridx = 3;
+		gbc_text_Chasis.gridy = 3;
+		panel_1.add(text_Chasis, gbc_text_Chasis);
+		
+		JLabel Patente = new JLabel("Patente del vehículo:");
+		Patente.setHorizontalAlignment(SwingConstants.LEFT);
+		Patente.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_Patente = new GridBagConstraints();
+		gbc_Patente.anchor = GridBagConstraints.WEST;
+		gbc_Patente.insets = new Insets(20, 70, 5, 5);
+		gbc_Patente.gridx = 0;
+		gbc_Patente.gridy = 4;
+		panel_1.add(Patente, gbc_Patente);
+		
+		text_Patente = new JTextField();
+		text_Patente.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		text_Patente.setColumns(10);
+		GridBagConstraints gbc_text_Patente = new GridBagConstraints();
+		gbc_text_Patente.insets = new Insets(20, 0, 5, 30);
+		gbc_text_Patente.fill = GridBagConstraints.HORIZONTAL;
+		gbc_text_Patente.gridx = 1;
+		gbc_text_Patente.gridy = 4;
+		panel_1.add(text_Patente, gbc_text_Patente);
+		
+		JLabel Kilometros = new JLabel("Kilómetros por año(*):");
+		Kilometros.setHorizontalAlignment(SwingConstants.LEFT);
+		Kilometros.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_Kilometros = new GridBagConstraints();
+		gbc_Kilometros.insets = new Insets(2, 20, 5, 5);
+		gbc_Kilometros.anchor = GridBagConstraints.WEST;
+		gbc_Kilometros.gridx = 2;
+		gbc_Kilometros.gridy = 4;
+		panel_1.add(Kilometros, gbc_Kilometros);
+		
+		text_Kilometros = new JTextField();
+		text_Kilometros.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		text_Kilometros.setColumns(10);
+		GridBagConstraints gbc_text_Kilometros = new GridBagConstraints();
+		gbc_text_Kilometros.insets = new Insets(20, 0, 5, 70);
+		gbc_text_Kilometros.fill = GridBagConstraints.HORIZONTAL;
+		gbc_text_Kilometros.gridx = 3;
+		gbc_text_Kilometros.gridy = 4;
+		panel_1.add(text_Kilometros, gbc_text_Kilometros);
+		
+		JLabel Siniestros = new JLabel("Siniestros en último año(*):");
+		Siniestros.setHorizontalAlignment(SwingConstants.LEFT);
+		Siniestros.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_Siniestros = new GridBagConstraints();
+		gbc_Siniestros.anchor = GridBagConstraints.WEST;
+		gbc_Siniestros.insets = new Insets(20, 70, 5, 5);
+		gbc_Siniestros.gridx = 0;
+		gbc_Siniestros.gridy = 5;
+		panel_1.add(Siniestros, gbc_Siniestros);
+		
+		JComboBox Box_Siniestros = new JComboBox();
+		Box_Siniestros.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_Box_Siniestros = new GridBagConstraints();
+		gbc_Box_Siniestros.insets = new Insets(20, 0, 5, 30);
+		gbc_Box_Siniestros.fill = GridBagConstraints.HORIZONTAL;
+		gbc_Box_Siniestros.gridx = 1;
+		gbc_Box_Siniestros.gridy = 5;
+		panel_1.add(Box_Siniestros, gbc_Box_Siniestros);
+		
+		JLabel lblNewLabel_2 = new JLabel("Campo obligatorio (*)");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_2.gridx = 3;
+		gbc_lblNewLabel_2.gridy = 6;
+		panel_1.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_2.anchor = GridBagConstraints.SOUTH;
 		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 4;
+		gbc_panel_2.gridy = 3;
 		panel.add(panel_2, gbc_panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[]{89, 0, 89, 0};

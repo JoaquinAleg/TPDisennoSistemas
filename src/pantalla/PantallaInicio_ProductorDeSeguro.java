@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 
 
 public class PantallaInicio_ProductorDeSeguro extends JFrame {
@@ -52,7 +53,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		this.setExtendedState(MAXIMIZED_BOTH);
 		setBounds(100, 100, 900, 700);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(253, 245, 230));
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -65,6 +66,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
@@ -80,7 +82,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		JTextPane txtpnElAsegurado = new JTextPane();
-		txtpnElAsegurado.setBackground(new Color(240, 240, 240));
+		txtpnElAsegurado.setBackground(SystemColor.inactiveCaptionBorder);
 		txtpnElAsegurado.setFont(new Font("Tahoma", Font.PLAIN, 70));
 		txtpnElAsegurado.setText("Menú Principal");
 		GridBagConstraints gbc_txtpnElAsegurado = new GridBagConstraints();
@@ -92,6 +94,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel.add(txtpnElAsegurado, gbc_txtpnElAsegurado);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
@@ -170,6 +173,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.insets = new Insets(0, 0, 5, 5);
@@ -248,6 +252,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_2.add(btnNewButton_1_1_2, gbc_btnNewButton_1_1_2);
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
 		gbc_panel_3.insets = new Insets(0, 0, 5, 5);
@@ -312,25 +317,8 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		gbc_btnNewButton_1_1.gridy = 2;
 		panel_3.add(btnNewButton_1_1, gbc_btnNewButton_1_1);
 		
-		JLabel lblNewLabel_7 = new JLabel("asd");
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 29));
-		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
-		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_7.gridx = 2;
-		gbc_lblNewLabel_7.gridy = 3;
-		panel_3.add(lblNewLabel_7, gbc_lblNewLabel_7);
-		
-		JLabel lblNewLabel = new JLabel("");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel.weightx = 0.25;
-		gbc_lblNewLabel.weighty = 0.25;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel.gridx = 2;
-		gbc_lblNewLabel.gridy = 4;
-		panel_3.add(lblNewLabel, gbc_lblNewLabel);
-		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
 		gbc_panel_4.insets = new Insets(0, 0, 5, 5);

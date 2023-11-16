@@ -13,7 +13,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.UIManager;;
+import javax.swing.UIManager;
+import java.awt.SystemColor;;
 
 public class PantallaLogIn extends JFrame {
 
@@ -48,7 +49,7 @@ public class PantallaLogIn extends JFrame {
 		setBounds(100, 100, 900, 700);
 		this.setExtendedState(MAXIMIZED_BOTH);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(253, 245, 230));
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -60,7 +61,7 @@ public class PantallaLogIn extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(UIManager.getColor("Button.background"));
+		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 10, 70, 10);
@@ -84,7 +85,7 @@ public class PantallaLogIn extends JFrame {
 		
 		txtUsuario = new JTextField();
 		txtUsuario.setForeground(new Color(192, 192, 192));
-		txtUsuario.setText("Usuario\r\n");
+		txtUsuario.setText("Correo");
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		GridBagConstraints gbc_txtUsuario = new GridBagConstraints();
 		gbc_txtUsuario.insets = new Insets(10, 10, 10, 10);
