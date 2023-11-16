@@ -14,20 +14,24 @@ public class Persona {
 	@Column(name = "apellido")
 	private String apellido;
 	@Column(name = "cuil")
-	private Integer cuil;
+	private int cuil;
 	@Column(name = "documento")
 	private String documento;
 	@Column(name = "fechaNacimiento")
 	private Date fechaNacimiento;
-	private Integer idDomicilio;
-	private Integer idTiposexo;
-	private Integer idTipoEstadoCivil;
-	private Integer idTipoDocumento;
+	@Column
+	private long idDomicilio;
+	@Column
+	private long idTiposexo;
+	@Column
+	private long idTipoEstadoCivil;
+	@Column
+	private long idTipoDocumento;
 	
 	public Persona() {
 	}
-	public Persona(long cuit, String nombre, String apellido, Integer cuil, String documento, Date fechaNacimiento,
-			Integer idDomicilio, Integer idTiposexo, Integer idTipoEstadoCivil, Integer idTipoDocumento) {
+	public Persona(long cuit, String nombre, String apellido, int cuil, String documento, Date fechaNacimiento,
+			long idDomicilio, long idTiposexo, long idTipoEstadoCivil, long idTipoDocumento) {
 		super();
 		this.cuit = cuit;
 		this.nombre = nombre;
@@ -58,7 +62,7 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public Integer getCuil() {
+	public int getCuil() {
 		return cuil;
 	}
 	public void setCuil(Integer cuil) {
@@ -76,28 +80,28 @@ public class Persona {
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	public Integer getIdDomicilio() {
+	public long getIdDomicilio() {
 		return idDomicilio;
 	}
-	public void setIdDomicilio(Integer idDomicilio) {
+	public void setIdDomicilio(long idDomicilio) {
 		this.idDomicilio = idDomicilio;
 	}
-	public Integer getIdTiposexo() {
+	public long getIdTiposexo() {
 		return idTiposexo;
 	}
-	public void setIdTiposexo(Integer idTiposexo) {
+	public void setIdTiposexo(long idTiposexo) {
 		this.idTiposexo = idTiposexo;
 	}
-	public Integer getIdTipoEstadoCivil() {
+	public long getIdTipoEstadoCivil() {
 		return idTipoEstadoCivil;
 	}
-	public void setIdTipoEstadoCivil(Integer idTipoEstadoCivil) {
+	public void setIdTipoEstadoCivil(long idTipoEstadoCivil) {
 		this.idTipoEstadoCivil = idTipoEstadoCivil;
 	}
-	public Integer getIdTipoDocumento() {
+	public long getIdTipoDocumento() {
 		return idTipoDocumento;
 	}
-	public void setIdTipoDocumento(Integer idTipoDocumento) {
+	public void setIdTipoDocumento(long idTipoDocumento) {
 		this.idTipoDocumento = idTipoDocumento;
 	}
 	

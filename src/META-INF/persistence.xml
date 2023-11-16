@@ -5,10 +5,39 @@
              version="3.0">
 
   <persistence-unit name="persistencia" transaction-type="RESOURCE_LOCAL">
-	
-	<class>
-		src.POJOS.Persona
-	</class>
+	<class>src.POJOS.AjusteDescuento</class>
+	<class>src.POJOS.AjusteEmision</class>
+	<class>src.POJOS.AjusteHijo</class>
+	<class>src.POJOS.AjusteKilometro</class>
+	<class>src.POJOS.AjusteSiniestro</class>
+	<class>src.POJOS.AnioFabricacion</class>
+	<class>src.POJOS.Cliente</class>
+	<class>src.POJOS.Cobertura</class>
+	<class>src.POJOS.Cobrador</class>
+	<class>src.POJOS.Cuota</class>
+	<class>src.POJOS.Domicilio</class>
+	<class>src.POJOS.Empleado</class>
+	<class>src.POJOS.fabricado</class>
+	<class>src.POJOS.Gerente</class>
+	<class>src.POJOS.Hijo</class>
+	<class>src.POJOS.Localidad</class>
+	<class>src.POJOS.Marca</class>
+	<class>src.POJOS.MedidaSeguridad</class>
+	<class>src.POJOS.Modelo</class>
+	<class>src.POJOS.Modificacion</class>
+	<class>src.POJOS.Pais</class>
+	<class>src.POJOS.Persona</class>
+	<class>src.POJOS.Poliza</class>
+	<class>src.POJOS.PolizaHijo</class>
+	<class>src.POJOS.ProductorDeSeguro</class>
+	<class>src.POJOS.Provincia</class>
+	<class>src.POJOS.Recibo</class>
+	<class>src.POJOS.TipoCondicionIVA</class>
+	<class>src.POJOS.TipoDocumento</class>
+	<class>src.POJOS.TipoEstadoCivil</class>
+	<class>src.POJOS.TipoFormaPago</class>
+	<class>src.POJOS.TipoSexo</class>
+	<class>src.POJOS.ValorPorcentual</class>
     <properties>
 
       <!-- JDBC URL Server:Port/DBName -->
