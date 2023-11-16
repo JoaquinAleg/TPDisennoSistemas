@@ -7,14 +7,14 @@ public class AjusteHijo {
 	@Id
 	@Column
 	private long idAjusteHijo;
-	@Column
-	private long ValorPocentual;
+	@ManyToOne(optional = false)
+	private ValorPorcentual ValorPocentual;
 	@Column
 	private int cantHijos;
 	
 	public AjusteHijo() {}
 
-	public AjusteHijo(long idAjusteHijo, long valorPocentual, int cantHijos) {
+	public AjusteHijo(long idAjusteHijo, ValorPorcentual valorPocentual, int cantHijos) {
 		super();
 		this.idAjusteHijo = idAjusteHijo;
 		ValorPocentual = valorPocentual;
@@ -29,11 +29,11 @@ public class AjusteHijo {
 		this.idAjusteHijo = idAjusteHijo;
 	}
 
-	public long getValorPocentual() {
+	public ValorPorcentual getValorPocentual() {
 		return ValorPocentual;
 	}
 
-	public void setValorPocentual(long valorPocentual) {
+	public void setValorPocentual(ValorPorcentual valorPocentual) {
 		ValorPocentual = valorPocentual;
 	}
 

@@ -5,33 +5,34 @@ import jakarta.persistence.*;
 @Table(name = "Fabricado")
 public class fabricado {
 	@Id
-	@Column
-	private long idAnioFabricacion;
-	@Column
-	private long idModelo;
+	@OneToOne
+	private AnioFabricacion AnioFabricacion;
+	@OneToOne
+	private Modelo Modelo;
 	
 	public fabricado() {}
 
-	public fabricado(long idAnioFabricacion, long idModelo) {
+	public fabricado(POJOS.AnioFabricacion anioFabricacion, POJOS.Modelo modelo) {
 		super();
-		this.idAnioFabricacion = idAnioFabricacion;
-		this.idModelo = idModelo;
+		AnioFabricacion = anioFabricacion;
+		Modelo = modelo;
 	}
 
-	public long getIdAnioFabricacion() {
-		return idAnioFabricacion;
+	public AnioFabricacion getAnioFabricacion() {
+		return AnioFabricacion;
 	}
 
-	public void setIdAnioFabricacion(long idAnioFabricacion) {
-		this.idAnioFabricacion = idAnioFabricacion;
+	public void setAnioFabricacion(AnioFabricacion anioFabricacion) {
+		AnioFabricacion = anioFabricacion;
 	}
 
-	public long getIdModelo() {
-		return idModelo;
+	public Modelo getModelo() {
+		return Modelo;
 	}
 
-	public void setIdModelo(long idModelo) {
-		this.idModelo = idModelo;
+	public void setModelo(Modelo modelo) {
+		Modelo = modelo;
 	}
+
 	
 }

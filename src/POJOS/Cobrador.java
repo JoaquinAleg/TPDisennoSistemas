@@ -1,7 +1,11 @@
 package POJOS;
 import java.util.Date;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Cobrador")
@@ -9,19 +13,19 @@ public class Cobrador {
 	@Id
 	@Column
 	private long idCobrador;
-	@Column
-	private long idEmpleado;
+	@OneToOne(optional = false)
+	private Empleado empleado;
 	@Column
 	private Date fechaInicio;
 	@Column
 	private Date fechaFin;
-	
+
 	public Cobrador() {}
 
-	public Cobrador(long idCobrador, long idEmpleado, Date fechaInicio, Date fechaFin) {
+	public Cobrador(long idCobrador, Empleado empleado, Date fechaInicio, Date fechaFin) {
 		super();
 		this.idCobrador = idCobrador;
-		this.idEmpleado = idEmpleado;
+		this.empleado = empleado;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 	}
@@ -34,12 +38,12 @@ public class Cobrador {
 		this.idCobrador = idCobrador;
 	}
 
-	public long getIdEmpleado() {
-		return idEmpleado;
+	public Empleado getEmpleado() {
+		return empleado;
 	}
 
-	public void setIdEmpleado(long idEmpleado) {
-		this.idEmpleado = idEmpleado;
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 	}
 
 	public Date getFechaInicio() {
@@ -57,5 +61,7 @@ public class Cobrador {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
+
 	
+
 }

@@ -9,8 +9,8 @@ public class Gerente {
 	@Id
 	@Column
 	private long idGerente;
-	@Column
-	private long idEmpleado;
+	@ManyToOne
+	private Empleado empleado;
 	@Column
 	private Date fechaInicio;
 	@Column
@@ -18,10 +18,10 @@ public class Gerente {
 	
 	public Gerente() {}
 
-	public Gerente(long idGerente, long idEmpleado, Date fechaInicio, Date fechaFin) {
+	public Gerente(long idGerente, Empleado empleado, Date fechaInicio, Date fechaFin) {
 		super();
 		this.idGerente = idGerente;
-		this.idEmpleado = idEmpleado;
+		this.empleado = empleado;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 	}
@@ -34,12 +34,12 @@ public class Gerente {
 		this.idGerente = idGerente;
 	}
 
-	public long getIdEmpleado() {
-		return idEmpleado;
+	public Empleado getEmpleado() {
+		return empleado;
 	}
 
-	public void setIdEmpleado(long idEmpleado) {
-		this.idEmpleado = idEmpleado;
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 	}
 
 	public Date getFechaInicio() {
@@ -57,5 +57,6 @@ public class Gerente {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
+	
 	
 }

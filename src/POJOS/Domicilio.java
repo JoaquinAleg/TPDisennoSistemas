@@ -7,8 +7,8 @@ public class Domicilio {
 	@Id
 	@Column
 	private long idDomicilio;
-	@Column
-	private long idLocalidad;
+	@ManyToOne()
+	private Localidad localidad;
 	@Column
 	private String calle;
 	@Column
@@ -20,10 +20,10 @@ public class Domicilio {
 
 	public Domicilio() {}
 
-	public Domicilio(long idDomicilio, long idLocalidad, String calle, int nroCalle, String dpto, int piso) {
+	public Domicilio(long idDomicilio, Localidad localidad, String calle, int nroCalle, String dpto, int piso) {
 		super();
 		this.idDomicilio = idDomicilio;
-		this.idLocalidad = idLocalidad;
+		this.localidad = localidad;
 		this.calle = calle;
 		this.nroCalle = nroCalle;
 		this.dpto = dpto;
@@ -38,12 +38,12 @@ public class Domicilio {
 		this.idDomicilio = idDomicilio;
 	}
 
-	public long getIdLocalidad() {
-		return idLocalidad;
+	public Localidad getLocalidad() {
+		return localidad;
 	}
 
-	public void setIdLocalidad(long idLocalidad) {
-		this.idLocalidad = idLocalidad;
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
 	}
 
 	public String getCalle() {
@@ -77,6 +77,6 @@ public class Domicilio {
 	public void setPiso(int piso) {
 		this.piso = piso;
 	}
-	
+
 	
 }

@@ -19,14 +19,11 @@ public class Persona {
 	private String documento;
 	@Column(name = "fechaNacimiento")
 	private Date fechaNacimiento;
-	@Column
-	private long idDomicilio;
-	@Column
-	private long idTiposexo;
-	@Column
-	private long idTipoEstadoCivil;
-	@Column
-	private long idTipoDocumento;
+	
+	private Domicilio idDomicilio;
+	private TipoSexo idTiposexo;
+	private TipoEstadoCivil idTipoEstadoCivil;
+	private TipoDocumento idTipoDocumento;
 	
 	public Persona() {
 	}

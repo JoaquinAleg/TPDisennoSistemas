@@ -9,8 +9,8 @@ public class Cuota {
 	@Id
 	@Column
 	private long idPago;
-	@Column
-	private long numeroPoliza;
+	@ManyToOne(optional = true)
+	private Poliza poliza;
 	@Column
 	private Date fechaPago;
 	@Column
@@ -24,11 +24,11 @@ public class Cuota {
 	
 	public Cuota() {}
 
-	public Cuota(long idPago, long numeroPoliza, Date fechaPago, int nroCuota, float montoCuota, float montoMora,
+	public Cuota(long idPago, Poliza poliza, Date fechaPago, int nroCuota, float montoCuota, float montoMora,
 			float bonificaciones) {
 		super();
 		this.idPago = idPago;
-		this.numeroPoliza = numeroPoliza;
+		this.poliza = poliza;
 		this.fechaPago = fechaPago;
 		this.nroCuota = nroCuota;
 		this.montoCuota = montoCuota;
@@ -44,12 +44,12 @@ public class Cuota {
 		this.idPago = idPago;
 	}
 
-	public long getNumeroPoliza() {
-		return numeroPoliza;
+	public Poliza getPoliza() {
+		return poliza;
 	}
 
-	public void setNumeroPoliza(long numeroPoliza) {
-		this.numeroPoliza = numeroPoliza;
+	public void setPoliza(Poliza poliza) {
+		this.poliza = poliza;
 	}
 
 	public Date getFechaPago() {
@@ -91,5 +91,7 @@ public class Cuota {
 	public void setBonificaciones(float bonificaciones) {
 		this.bonificaciones = bonificaciones;
 	}
+
+	
 	
 }

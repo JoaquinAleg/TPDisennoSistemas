@@ -7,14 +7,14 @@ public class AjusteDescuento {
 	@Id
 	@Column
 	private long idAjusteDescuento;
-	@Column
-	private long valorPorcentual;
+	@OneToOne(optional = false)
+	private ValorPorcentual valorPorcentual;
 	@Column
 	private float ajusteDescuento;
 	
 	public AjusteDescuento() {}
 
-	public AjusteDescuento(long idAjusteDescuento, int valorPorcentual, float ajusteDescuento) {
+	public AjusteDescuento(long idAjusteDescuento, ValorPorcentual valorPorcentual, float ajusteDescuento) {
 		super();
 		this.idAjusteDescuento = idAjusteDescuento;
 		this.valorPorcentual = valorPorcentual;
@@ -29,11 +29,11 @@ public class AjusteDescuento {
 		this.idAjusteDescuento = idAjusteDescuento;
 	}
 
-	public long getValorPorcentual() {
+	public ValorPorcentual getValorPorcentual() {
 		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(int valorPorcentual) {
+	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
 		this.valorPorcentual = valorPorcentual;
 	}
 

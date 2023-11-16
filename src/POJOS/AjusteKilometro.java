@@ -7,7 +7,7 @@ public class AjusteKilometro {
 	@Id
 	@Column
 	private long idAjusteKilometro;
-	@Column
+	@OneToOne(optional = false)
 	private long valorPorcentual;
 	@Column
 	private float escalaKM;

@@ -7,14 +7,14 @@ public class Cobertura {
 	@Id
 	@Column
 	private long idCobertura;
-	@Column
-	private long valorPorcentual;
+	@OneToOne(optional = false)
+	private ValorPorcentual valorPorcentual;
 	@Column
 	private String descripcion;
 	
 	public Cobertura() {}
 
-	public Cobertura(long idCobertura, long valorPorcentual, String descripcion) {
+	public Cobertura(long idCobertura, ValorPorcentual valorPorcentual, String descripcion) {
 		super();
 		this.idCobertura = idCobertura;
 		this.valorPorcentual = valorPorcentual;
@@ -29,11 +29,11 @@ public class Cobertura {
 		this.idCobertura = idCobertura;
 	}
 
-	public long getValorPorcentual() {
+	public ValorPorcentual getValorPorcentual() {
 		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(long valorPorcentual) {
+	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
 		this.valorPorcentual = valorPorcentual;
 	}
 
@@ -44,5 +44,7 @@ public class Cobertura {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	
 	
 }

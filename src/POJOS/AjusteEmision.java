@@ -7,14 +7,14 @@ public class AjusteEmision {
 	@Id
 	@Column
 	private long idAjusteDescuento;
-	@Column
-	private long ValorPorcentual;
+	@OneToOne(optional = false)
+	private ValorPorcentual ValorPorcentual;
 	@Column
 	private int ajusteEmision;
 	
 	public AjusteEmision() {}
 
-	public AjusteEmision(long idAjusteDescuento, long valorPorcentual, int ajusteEmision) {
+	public AjusteEmision(long idAjusteDescuento, ValorPorcentual valorPorcentual, int ajusteEmision) {
 		super();
 		this.idAjusteDescuento = idAjusteDescuento;
 		ValorPorcentual = valorPorcentual;
@@ -29,11 +29,11 @@ public class AjusteEmision {
 		this.idAjusteDescuento = idAjusteDescuento;
 	}
 
-	public long getValorPorcentual() {
+	public ValorPorcentual getValorPorcentual() {
 		return ValorPorcentual;
 	}
 
-	public void setValorPorcentual(long valorPorcentual) {
+	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
 		ValorPorcentual = valorPorcentual;
 	}
 

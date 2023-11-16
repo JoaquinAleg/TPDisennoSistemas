@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -9,7 +11,8 @@ public class Pais {
 	private long idPais;
 	@Column
 	private String nombrePais;
-	
+	@OneToMany(mappedBy = "Provincia")
+	private List<Provincia> provincias;
 	public Pais() {}
 
 	public Pais(long idPais, String nombrePais) {

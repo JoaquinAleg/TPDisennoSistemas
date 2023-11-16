@@ -7,14 +7,14 @@ public class AjusteSiniestro {
 	@Id
 	@Column
 	private long idAjusteSiniestro;
-	@Column
-	private long valorPorcentual;
+	@OneToOne(optional = false)
+	private ValorPorcentual valorPorcentual;
 	@Column
 	private int cantidadSiniestros;
 	
 	public AjusteSiniestro() {}
 
-	public AjusteSiniestro(long idAjusteSiniestro, long valorPorcentual, int cantidadSiniestros) {
+	public AjusteSiniestro(long idAjusteSiniestro, ValorPorcentual valorPorcentual, int cantidadSiniestros) {
 		super();
 		this.idAjusteSiniestro = idAjusteSiniestro;
 		this.valorPorcentual = valorPorcentual;
@@ -29,11 +29,11 @@ public class AjusteSiniestro {
 		this.idAjusteSiniestro = idAjusteSiniestro;
 	}
 
-	public long getValorPorcentual() {
+	public ValorPorcentual getValorPorcentual() {
 		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(long valorPorcentual) {
+	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
 		this.valorPorcentual = valorPorcentual;
 	}
 

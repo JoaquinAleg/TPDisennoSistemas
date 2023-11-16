@@ -13,8 +13,8 @@ public class Cliente {
 	private Date fechaRegistro;
 	@Column
 	private String profesion;
-	@Column
-	private long idCuit;
+	@OneToOne(optional = false)
+	private Persona persona;
 	@Column
 	private long idTipoEstadoCliente;
 	@Column
@@ -22,13 +22,13 @@ public class Cliente {
 	
 	public Cliente() {}
 
-	public Cliente(long idCliente, Date fechaRegistro, String profesion, long idCuit, long idTipoEstadoCliente,
+	public Cliente(long idCliente, Date fechaRegistro, String profesion, Persona persona, long idTipoEstadoCliente,
 			long idTipoCondicionIVA) {
 		super();
 		this.idCliente = idCliente;
 		this.fechaRegistro = fechaRegistro;
 		this.profesion = profesion;
-		this.idCuit = idCuit;
+		this.persona = persona;
 		this.idTipoEstadoCliente = idTipoEstadoCliente;
 		this.idTipoCondicionIVA = idTipoCondicionIVA;
 	}
@@ -57,12 +57,12 @@ public class Cliente {
 		this.profesion = profesion;
 	}
 
-	public long getIdCuit() {
-		return idCuit;
+	public Persona getPersona() {
+		return persona;
 	}
 
-	public void setIdCuit(long idCuit) {
-		this.idCuit = idCuit;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 
 	public long getIdTipoEstadoCliente() {
@@ -80,5 +80,7 @@ public class Cliente {
 	public void setIdTipoCondicionIVA(long idTipoCondicionIVA) {
 		this.idTipoCondicionIVA = idTipoCondicionIVA;
 	}
+
+	
 	
 }
