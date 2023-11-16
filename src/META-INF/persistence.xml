@@ -41,7 +41,7 @@
     <properties>
 
       <!-- JDBC URL Server:Port/DBName -->
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres?currentSchema=Main"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
 
       <!-- DB Driver -->
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

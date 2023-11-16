@@ -2,7 +2,7 @@ package POJOS;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Fabricado")
+@Table(name = "Fabricado", schema = "public")
 public class fabricado {
 	@Id
 	@OneToOne

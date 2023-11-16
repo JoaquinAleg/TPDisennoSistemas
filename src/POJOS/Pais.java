@@ -4,15 +4,13 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Pais")
+@Table(name = "Pais", schema = "public")
 public class Pais {
 	@Id
 	@Column
 	private long idPais;
 	@Column
 	private String nombrePais;
-	@OneToMany
-	private List<Provincia> provincias;
 	
 	
 	public Pais() {}

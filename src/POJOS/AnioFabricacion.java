@@ -1,10 +1,10 @@
 package POJOS;
-import java.util.Date;
+
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "anioFabricacion")
+@Table(name = "anioFabricacion", schema = "public")
 public class AnioFabricacion {
 	@Id
 	@Column

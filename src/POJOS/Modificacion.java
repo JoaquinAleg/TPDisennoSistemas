@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Modificacion")
+@Table(name = "Modificacion", schema = "public")
 public class Modificacion {
 	@Id
 	@Column

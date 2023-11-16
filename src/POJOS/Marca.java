@@ -2,7 +2,7 @@ package POJOS;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Marca")
+@Table(name = "Marca", schema = "public")
 public class Marca {
 	@Id
 	@Column

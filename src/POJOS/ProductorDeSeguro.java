@@ -4,7 +4,7 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "ProductorDeSeguro")
+@Table(name = "ProductorDeSeguro", schema = "public")
 public class ProductorDeSeguro {
 	@Id
 	@Column
