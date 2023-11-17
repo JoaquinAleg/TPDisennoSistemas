@@ -19,6 +19,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Dimension;
@@ -55,7 +58,7 @@ public class CrearPoliza_2 extends JFrame {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.setExtendedState(MAXIMIZED_BOTH);
+		this.setExtendedState(MAXIMIZED_BOTH);
 		setBounds(100, 100, 1256, 821);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
@@ -299,6 +302,19 @@ public class CrearPoliza_2 extends JFrame {
 		panel_1_1.add(MarcaVehiculo_1, gbc_MarcaVehiculo_1);
 		
 		JButton btnNewButton = new JButton("Añadir hijo");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {							
+					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes();
+					
+					try {
+						CPoliza.setVisible(true);
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
+					CrearPoliza_2.this.setVisible(false);
+					CrearPoliza_2.this.dispose();
+			}
+		});
 		btnNewButton.setBackground(SystemColor.controlHighlight);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -326,6 +342,19 @@ public class CrearPoliza_2 extends JFrame {
 		panel_2.setLayout(gbl_panel_2);
 		
 		JButton Boton_Cancelar = new JButton("Cancelar");
+		Boton_Cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
+				
+				try {
+					FuturaPantalla.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				CrearPoliza_2.this.setVisible(false);
+				CrearPoliza_2.this.dispose();
+			}
+		});
 		Boton_Cancelar.setBackground(SystemColor.controlHighlight);
 		Boton_Cancelar.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagConstraints gbc_Boton_Cancelar = new GridBagConstraints();
@@ -346,6 +375,19 @@ public class CrearPoliza_2 extends JFrame {
 		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
 		
 		JButton Boton_Continuar_2 = new JButton("Volver");
+		Boton_Continuar_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {							
+								CrearPoliza_1 CPoliza = new CrearPoliza_1();
+								
+								try {
+									CPoliza.setVisible(true);
+								} catch(Exception er) {
+									er.printStackTrace();
+								}
+								CrearPoliza_2.this.setVisible(false);
+								CrearPoliza_2.this.dispose();
+			}
+		});
 		Boton_Continuar_2.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		Boton_Continuar_2.setBackground(SystemColor.controlHighlight);
 		GridBagConstraints gbc_Boton_Continuar_2 = new GridBagConstraints();
@@ -353,6 +395,7 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_Boton_Continuar_2.gridx = 2;
 		gbc_Boton_Continuar_2.gridy = 0;
 		panel_2.add(Boton_Continuar_2, gbc_Boton_Continuar_2);
+
 
 
 

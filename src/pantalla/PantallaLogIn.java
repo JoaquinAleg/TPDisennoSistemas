@@ -106,6 +106,7 @@ public class PantallaLogIn extends JFrame {
 		txtContrasea.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Acceder");
+		btnNewButton.setBackground(SystemColor.controlHighlight);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(10, 10, 50, 10);

@@ -23,6 +23,8 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 ;
 
 
@@ -32,30 +34,12 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrearPoliza_HijosExistentes frame = new CrearPoliza_HijosExistentes();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public CrearPoliza_HijosExistentes() {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.setExtendedState(MAXIMIZED_BOTH);
+		this.setExtendedState(MAXIMIZED_BOTH);
 		setBounds(100, 100, 1256, 821);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
@@ -239,6 +223,19 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		panel_4.add(titulo, gbc_titulo);
 		
 		JButton Boton_Continuar_1 = new JButton("Ver Hijos");
+		Boton_Continuar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos();
+				
+				try {
+					FuturaPantalla.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				CrearPoliza_HijosExistentes.this.setVisible(false);
+				CrearPoliza_HijosExistentes.this.dispose();
+			}
+		});
 		Boton_Continuar_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		Boton_Continuar_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		Boton_Continuar_1.setBackground(SystemColor.controlHighlight);
@@ -352,6 +349,19 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		panel_2.setLayout(gbl_panel_2);
 		
 		JButton Boton_Cancelar = new JButton("Cancelar");
+		Boton_Cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
+				
+				try {
+					FuturaPantalla.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				CrearPoliza_HijosExistentes.this.setVisible(false);
+				CrearPoliza_HijosExistentes.this.dispose();
+			}
+		});
 		Boton_Cancelar.setBackground(SystemColor.controlHighlight);
 		Boton_Cancelar.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagConstraints gbc_Boton_Cancelar = new GridBagConstraints();
@@ -379,6 +389,19 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_Boton_Continuar_2.gridx = 2;
 		gbc_Boton_Continuar_2.gridy = 0;
 		panel_2.add(Boton_Continuar_2, gbc_Boton_Continuar_2);
+		Boton_Continuar_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {							
+								CrearPoliza_1 CPoliza = new CrearPoliza_1();
+								
+								try {
+									CPoliza.setVisible(true);
+								} catch(Exception er) {
+									er.printStackTrace();
+								}
+								CrearPoliza_HijosExistentes.this.setVisible(false);
+								CrearPoliza_HijosExistentes.this.dispose();
+			}
+		});
 
 
 

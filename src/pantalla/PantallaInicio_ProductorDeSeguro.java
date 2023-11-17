@@ -130,6 +130,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_1.add(lblNewLabel_5_1, gbc_lblNewLabel_5_1);
 		
 		JButton btnNewButton = new JButton("\r\nUsuario");
+		btnNewButton.setBackground(SystemColor.controlHighlight);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnNewButton.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewButton.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -147,6 +148,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_1.add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnNewButton_2 = new JButton("Ajustes");
+		btnNewButton_2.setBackground(SystemColor.controlHighlight);
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnNewButton_2.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_2.setIcon(new ImageIcon(PantallaInicio_ProductorDeSeguro.class.getResource("/imagenes/engranajesChicos.png")));
@@ -160,6 +162,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_1.add(btnNewButton_2, gbc_btnNewButton_2);
 		
 		JButton btnNewButton_1 = new JButton("Salir");
+		btnNewButton_1.setBackground(SystemColor.controlHighlight);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnNewButton_1.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewButton_1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -211,9 +214,19 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_2.add(lblNewLabel_3_1, gbc_lblNewLabel_3_1);
 		
 		JButton btnDarDeAlta_2 = new JButton("Dar de alta Póliza\r\n");
+		btnDarDeAlta_2.setBackground(SystemColor.controlHighlight);
 		btnDarDeAlta_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnDarDeAlta_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CrearPoliza_1 FuturaPantalla = new CrearPoliza_1();
+				
+				try {
+					FuturaPantalla.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				PantallaInicio_ProductorDeSeguro.this.setVisible(false);
+				PantallaInicio_ProductorDeSeguro.this.dispose();
 			}
 		});
 		GridBagConstraints gbc_btnDarDeAlta_2 = new GridBagConstraints();
@@ -228,6 +241,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_2.add(btnDarDeAlta_2, gbc_btnDarDeAlta_2);
 		
 		JButton btnNewButton_1_1_1 = new JButton("Consultar Póliza");
+		btnNewButton_1_1_1.setBackground(SystemColor.controlHighlight);
 		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnNewButton_1_1_1 = new GridBagConstraints();
 		gbc_btnNewButton_1_1_1.gridwidth = 2;
@@ -240,6 +254,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_2.add(btnNewButton_1_1_1, gbc_btnNewButton_1_1_1);
 		
 		JButton btnNewButton_1_1_2 = new JButton("Generar propuestas de Renovación");
+		btnNewButton_1_1_2.setBackground(SystemColor.controlHighlight);
 		btnNewButton_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnNewButton_1_1_2 = new GridBagConstraints();
 		gbc_btnNewButton_1_1_2.gridwidth = 2;
@@ -290,6 +305,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_3.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JButton btnDarDeAlta = new JButton("Dar de alta Cliente\r\n");
+		btnDarDeAlta.setBackground(SystemColor.controlHighlight);
 		btnDarDeAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -306,6 +322,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_3.add(btnDarDeAlta, gbc_btnDarDeAlta);
 		
 		JButton btnNewButton_1_1 = new JButton("Consultar Cliente");
+		btnNewButton_1_1.setBackground(SystemColor.controlHighlight);
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnNewButton_1_1 = new GridBagConstraints();
 		gbc_btnNewButton_1_1.ipady = 25;
@@ -356,6 +373,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		panel_4.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
 		JButton btnActualizarFactoresDe = new JButton("Actualizar factores de características");
+		btnActualizarFactoresDe.setBackground(SystemColor.controlHighlight);
 		btnActualizarFactoresDe.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnActualizarFactoresDe = new GridBagConstraints();
 		gbc_btnActualizarFactoresDe.gridwidth = 2;

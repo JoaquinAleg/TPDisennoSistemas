@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class CrearPoliza_1 extends JFrame {
@@ -54,7 +56,7 @@ public class CrearPoliza_1 extends JFrame {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.setExtendedState(MAXIMIZED_BOTH);
+		this.setExtendedState(MAXIMIZED_BOTH);
 		setBounds(100, 100, 1256, 821);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
@@ -136,6 +138,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JComboBox ProvinciaRiesgo = new JComboBox();
+		ProvinciaRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
 		ProvinciaRiesgo.setToolTipText("");
 		ProvinciaRiesgo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_ProvinciaRiesgo = new GridBagConstraints();
@@ -156,6 +159,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JComboBox LocalidadRiesgo = new JComboBox();
+		LocalidadRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
 		LocalidadRiesgo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_LocalidadRiesgo = new GridBagConstraints();
 		gbc_LocalidadRiesgo.insets = new Insets(50, 0, 5, 70);
@@ -175,6 +179,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
 		JComboBox MarcaVehiculo = new JComboBox();
+		MarcaVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
 		MarcaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_MarcaVehiculo = new GridBagConstraints();
 		gbc_MarcaVehiculo.fill = GridBagConstraints.HORIZONTAL;
@@ -194,6 +199,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
 		JComboBox modeloVehiculo = new JComboBox();
+		modeloVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
 		modeloVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_modeloVehiculo = new GridBagConstraints();
 		gbc_modeloVehiculo.insets = new Insets(20, 0, 5, 70);
@@ -213,6 +219,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(AñoVehiculo, gbc_AñoVehiculo);
 		
 		JComboBox MarcaVehiculo_1 = new JComboBox();
+		MarcaVehiculo_1.setBackground(SystemColor.inactiveCaptionBorder);
 		MarcaVehiculo_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_MarcaVehiculo_1 = new GridBagConstraints();
 		gbc_MarcaVehiculo_1.insets = new Insets(20, 0, 5, 30);
@@ -232,6 +239,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(SumaAs, gbc_SumaAs);
 		
 		textField = new JTextField();
+		textField.setBackground(SystemColor.inactiveCaptionBorder);
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(20, 0, 5, 70);
@@ -252,6 +260,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(Motor, gbc_Motor);
 		
 		text_Motor = new JTextField();
+		text_Motor.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Motor.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		text_Motor.setColumns(10);
 		GridBagConstraints gbc_text_Motor = new GridBagConstraints();
@@ -272,6 +281,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(Chasis, gbc_Chasis);
 		
 		text_Chasis = new JTextField();
+		text_Chasis.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Chasis.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		text_Chasis.setColumns(10);
 		GridBagConstraints gbc_text_Chasis = new GridBagConstraints();
@@ -292,6 +302,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(Patente, gbc_Patente);
 		
 		text_Patente = new JTextField();
+		text_Patente.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Patente.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		text_Patente.setColumns(10);
 		GridBagConstraints gbc_text_Patente = new GridBagConstraints();
@@ -312,6 +323,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(Kilometros, gbc_Kilometros);
 		
 		text_Kilometros = new JTextField();
+		text_Kilometros.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Kilometros.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		text_Kilometros.setColumns(10);
 		GridBagConstraints gbc_text_Kilometros = new GridBagConstraints();
@@ -332,6 +344,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(Siniestros, gbc_Siniestros);
 		
 		JComboBox Box_Siniestros = new JComboBox();
+		Box_Siniestros.setBackground(SystemColor.inactiveCaptionBorder);
 		Box_Siniestros.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_Box_Siniestros = new GridBagConstraints();
 		gbc_Box_Siniestros.insets = new Insets(20, 0, 5, 30);
@@ -349,39 +362,71 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_lblNewLabel_2.gridy = 6;
 		panel_1.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.anchor = GridBagConstraints.SOUTH;
-		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 3;
-		panel.add(panel_2, gbc_panel_2);
-		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{89, 0, 89, 0};
-		gbl_panel_2.rowHeights = new int[]{23, 0};
-		gbl_panel_2.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		panel_2.setLayout(gbl_panel_2);
+		JPanel panelInferior = new JPanel();
+		panelInferior.setBackground(SystemColor.inactiveCaptionBorder);
+		panelInferior.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		GridBagConstraints gbc_panelInferior = new GridBagConstraints();
+		gbc_panelInferior.anchor = GridBagConstraints.SOUTH;
+		gbc_panelInferior.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panelInferior.gridx = 0;
+		gbc_panelInferior.gridy = 3;
+		panel.add(panelInferior, gbc_panelInferior);
+		GridBagLayout gbl_panelInferior = new GridBagLayout();
+		gbl_panelInferior.columnWidths = new int[]{89, 0, 89, 0};
+		gbl_panelInferior.rowHeights = new int[]{23, 0};
+		gbl_panelInferior.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panelInferior.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panelInferior.setLayout(gbl_panelInferior);
 		
 		JButton Boton_Cancelar = new JButton("Cancelar");
+		Boton_Cancelar.setBackground(SystemColor.controlHighlight);
+		Boton_Cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
+				
+				try {
+					FuturaPantalla.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				CrearPoliza_1.this.setVisible(false);
+				CrearPoliza_1.this.dispose();
+			}
+		});
 		Boton_Cancelar.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagConstraints gbc_Boton_Cancelar = new GridBagConstraints();
 		gbc_Boton_Cancelar.anchor = GridBagConstraints.WEST;
 		gbc_Boton_Cancelar.insets = new Insets(10, 70, 10, 5);
 		gbc_Boton_Cancelar.gridx = 0;
 		gbc_Boton_Cancelar.gridy = 0;
-		panel_2.add(Boton_Cancelar, gbc_Boton_Cancelar);
+		panelInferior.add(Boton_Cancelar, gbc_Boton_Cancelar);
 		
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
+		Boton_Continuar.setBackground(SystemColor.controlHighlight);
+		Boton_Continuar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			// acá tendrían que poner un if(cantidadhijos) a ver si se tira CrearPoliza_2 [caso sin hijos] o CrearPoliza_HijosExistentes.
+						
+						CrearPoliza_2 CPoliza = new CrearPoliza_2();
+						
+						try {
+							CPoliza.setVisible(true);
+						} catch(Exception er) {
+							er.printStackTrace();
+						}
+						CrearPoliza_1.this.setVisible(false);
+						CrearPoliza_1.this.dispose();
+				
+			}
+		});
 		Boton_Continuar.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagConstraints gbc_Boton_Continuar = new GridBagConstraints();
 		gbc_Boton_Continuar.insets = new Insets(10, 0, 10, 70);
 		gbc_Boton_Continuar.anchor = GridBagConstraints.EAST;
 		gbc_Boton_Continuar.gridx = 2;
 		gbc_Boton_Continuar.gridy = 0;
-		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
+		panelInferior.add(Boton_Continuar, gbc_Boton_Continuar);
+
 
 
 
