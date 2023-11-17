@@ -16,7 +16,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;;
+import javax.swing.ImageIcon;
+import java.awt.SystemColor;;
 
 public class PantallaInicio_Cobrador extends JFrame {
 
@@ -49,6 +50,7 @@ public class PantallaInicio_Cobrador extends JFrame {
 		setBounds(100, 100, 900, 700);
 		this.setExtendedState(MAXIMIZED_BOTH);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -60,6 +62,7 @@ public class PantallaInicio_Cobrador extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
@@ -75,7 +78,7 @@ public class PantallaInicio_Cobrador extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		JTextPane txtpnElAsegurado = new JTextPane();
-		txtpnElAsegurado.setBackground(new Color(240, 240, 240));
+		txtpnElAsegurado.setBackground(SystemColor.inactiveCaptionBorder);
 		txtpnElAsegurado.setFont(new Font("Tahoma", Font.PLAIN, 70));
 		txtpnElAsegurado.setText("Menú Principal");
 		GridBagConstraints gbc_txtpnElAsegurado = new GridBagConstraints();
@@ -87,6 +90,7 @@ public class PantallaInicio_Cobrador extends JFrame {
 		panel.add(txtpnElAsegurado, gbc_txtpnElAsegurado);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
@@ -165,6 +169,7 @@ public class PantallaInicio_Cobrador extends JFrame {
 		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
 		gbc_panel_4.insets = new Insets(0, 0, 5, 5);
