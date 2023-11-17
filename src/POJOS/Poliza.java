@@ -41,6 +41,10 @@ private AjusteEmision AjusteEmision;
 @JoinColumn(name = "idModificacion", nullable = false, referencedColumnName = "idModificacion", 
 foreignKey=@ForeignKey(name = "fk_Modificacion", value = ConstraintMode.CONSTRAINT))
 private Modificacion Modificacion;
+@ManyToOne
+@JoinColumn(name = "idLocalidad", nullable = false, referencedColumnName = "idLocalidad", 
+foreignKey=@ForeignKey(name = "fk_LocalidadPoliza", value = ConstraintMode.CONSTRAINT))
+private Localidad localidad;
 @Column
 private float sumaAsegurada;
 @Column
@@ -90,13 +94,16 @@ private MedidaSeguridad Medida;
 
 public Poliza(){}
 
+
+
 public Poliza(long numeroPoliza, POJOS.Modelo modelo, POJOS.AjusteHijo ajusteHijo,
 		POJOS.AjusteKilometro ajusteKilometro, AjusteSiniestro idAjusteSiniestro, fabricado anioFabricacion,
 		POJOS.AjusteDescuento ajusteDescuento, POJOS.AjusteEmision ajusteEmision, POJOS.Modificacion modificacion,
-		float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA, Date fechaDeInicio, Date fechaDeFin,
-		float premio, float prima, float descuentos, Date ultimoDiaPago, float montoTotalAbonar, String chasis,
-		String patente, String estadoPoliza, String motor, String nombreCliente, String dniCliente, Date fechaCreacion,
-		TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida) {
+		Localidad localidad, float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA,
+		Date fechaDeInicio, Date fechaDeFin, float premio, float prima, float descuentos, Date ultimoDiaPago,
+		float montoTotalAbonar, String chasis, String patente, String estadoPoliza, String motor, String nombreCliente,
+		String dniCliente, Date fechaCreacion, TipoFormaPago formaPago, POJOS.Cobertura cobertura,
+		MedidaSeguridad medida) {
 	super();
 	this.numeroPoliza = numeroPoliza;
 	Modelo = modelo;
@@ -107,6 +114,7 @@ public Poliza(long numeroPoliza, POJOS.Modelo modelo, POJOS.AjusteHijo ajusteHij
 	AjusteDescuento = ajusteDescuento;
 	AjusteEmision = ajusteEmision;
 	Modificacion = modificacion;
+	this.localidad = localidad;
 	this.sumaAsegurada = sumaAsegurada;
 	this.kilometrosRealizadosAnio = kilometrosRealizadosAnio;
 	this.cantSiniestrosUA = cantSiniestrosUA;
@@ -128,6 +136,20 @@ public Poliza(long numeroPoliza, POJOS.Modelo modelo, POJOS.AjusteHijo ajusteHij
 	Cobertura = cobertura;
 	Medida = medida;
 }
+
+
+
+public Localidad getLocalidad() {
+	return localidad;
+}
+
+
+
+public void setLocalidad(Localidad localidad) {
+	this.localidad = localidad;
+}
+
+
 
 public long getNumeroPoliza() {
 	return numeroPoliza;
