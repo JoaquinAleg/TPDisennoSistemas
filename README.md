@@ -23,5 +23,5 @@ Errores con el diagrama de clases, base de datos y el Diagrama de secuencias del
   - Error con las cuotas, las mismas deben de crearse con MontoCuota y MontoMora, que deben de calcularse, y a su vez bonificaciones que son los descuentos, tambien con el numero de cuota.
   - Error con los premios y descuentos, los mismos tienen que venir hardcodeados desde la interface, como dijo el profe y que colgue en en hacer, 
 
-- Eror con la Base de datos:
+- Error con la Base de datos:
   - Falta fechaUltimoDiaPago.
