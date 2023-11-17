@@ -25,3 +25,7 @@ Errores con el diagrama de clases, base de datos y el Diagrama de secuencias del
 
 - Error con la Base de datos:
   - Falta fechaUltimoDiaPago.
+
+ Cosas a preguntar:
+   - Como se calcula el pago
+   - Como se calcula la mora
