@@ -8,9 +8,9 @@ public class DatosPolizaDTO {
 	private String apellido;
 	private String tipoDNI;
 	private int dni;
-	private int idLocalidadRiesgo;
-	private int idModeloVehiculo;
-	private int idAnioVehiculo;
+	private long idLocalidadRiesgo;
+	private long idModeloVehiculo;
+	private long idAnioVehiculo;
 	private String motor;
 	private String chasis;
 	private String patente;
@@ -23,15 +23,13 @@ public class DatosPolizaDTO {
 	private List<HijosDTO> hijos;
 	private String comienzoVigencia;
 	private String ultimoDiaPago;
-	private int idFormaPago;
-	private int idCobertura;
-	
-	
+	private long idFormaPago;
+	private long idCobertura;
 	public DatosPolizaDTO(int numeroCliente, String nombre, String apellido, String tipoDNI, int dni,
-			int idLocalidadRiesgo, int idModeloVehiculo, int idAnioVehiculo, String motor, String chasis,
+			long idLocalidadRiesgo, long idModeloVehiculo, long idAnioVehiculo, String motor, String chasis,
 			String patente, float kilometrosPorAnio, float sumaAsegurada, int siniestrosUltimoA,
 			boolean guardadoEnGarage, boolean tuercasAntiRobos, boolean dispositivoRastreo, List<HijosDTO> hijos,
-			String comienzoVigencia, String ultimoDiaPago, int idFormaPago, int idCobertura) {
+			String comienzoVigencia, String ultimoDiaPago, long idFormaPago, long idCobertura) {
 		super();
 		this.numeroCliente = numeroCliente;
 		this.nombre = nombre;
@@ -86,22 +84,22 @@ public class DatosPolizaDTO {
 	public void setDni(int dni) {
 		this.dni = dni;
 	}
-	public int getIdLocalidadRiesgo() {
+	public long getIdLocalidadRiesgo() {
 		return idLocalidadRiesgo;
 	}
-	public void setIdLocalidadRiesgo(int idLocalidadRiesgo) {
+	public void setIdLocalidadRiesgo(long idLocalidadRiesgo) {
 		this.idLocalidadRiesgo = idLocalidadRiesgo;
 	}
-	public int getIdModeloVehiculo() {
+	public long getIdModeloVehiculo() {
 		return idModeloVehiculo;
 	}
-	public void setIdModeloVehiculo(int idModeloVehiculo) {
+	public void setIdModeloVehiculo(long idModeloVehiculo) {
 		this.idModeloVehiculo = idModeloVehiculo;
 	}
-	public int getIdAnioVehiculo() {
+	public long getIdAnioVehiculo() {
 		return idAnioVehiculo;
 	}
-	public void setIdAnioVehiculo(int idAnioVehiculo) {
+	public void setIdAnioVehiculo(long idAnioVehiculo) {
 		this.idAnioVehiculo = idAnioVehiculo;
 	}
 	public String getMotor() {
@@ -176,18 +174,21 @@ public class DatosPolizaDTO {
 	public void setUltimoDiaPago(String ultimoDiaPago) {
 		this.ultimoDiaPago = ultimoDiaPago;
 	}
-	public int getIdFormaPago() {
+	public long getIdFormaPago() {
 		return idFormaPago;
 	}
-	public void setIdFormaPago(int idFormaPago) {
+	public void setIdFormaPago(long idFormaPago) {
 		this.idFormaPago = idFormaPago;
 	}
-	public int getIdCobertura() {
+	public long getIdCobertura() {
 		return idCobertura;
 	}
-	public void setIdCobertura(int idCobertura) {
+	public void setIdCobertura(long idCobertura) {
 		this.idCobertura = idCobertura;
 	}
+	
+	
+	
 	
 	
 }
