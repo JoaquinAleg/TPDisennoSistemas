@@ -14,7 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-import java.awt.SystemColor;;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;;
 
 public class PantallaLogIn extends JFrame {
 
@@ -106,6 +108,20 @@ public class PantallaLogIn extends JFrame {
 		txtContrasea.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Acceder");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
+					
+					try {
+						FuturaPantalla.setVisible(true);
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
+					PantallaLogIn.this.setVisible(false);
+					PantallaLogIn.this.dispose();
+			
+			}
+		});
 		btnNewButton.setBackground(SystemColor.controlHighlight);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();

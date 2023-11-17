@@ -67,7 +67,13 @@ public class GestorPoliza {
     public void darAltaPoliza(DatosPolizaDTO datosPolizaDTO) {
         validarDatos(datosPolizaDTO);
         Poliza poliza = new Poliza();
-        Localidad localidad = DAOlocalidad.getLocalidad(datosPolizaDTO.getIdLocalidadRiesgo());
+        Localidad localidad;
+		try {
+			localidad = DAOlocalidad.getLocalidad(datosPolizaDTO.getIdLocalidadRiesgo());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         poliza.setLocalidad(localidad);
         Modelo modelo = DAOmodelo.getModelo(datosPolizaDTO.getIdModeloVehiculo());
         poliza.setModelo(modelo);
@@ -158,7 +164,7 @@ public class GestorPoliza {
         AjusteEmision ajusteEmision = DAOajusteEmision.getAjusteEmision();
         poliza.setAjusteEmision(ajusteEmision;
         DAOpoliza.setPoliza(poliza);
-        
+    
     }
     
     private void validarDatos(DatosPolizaDTO dp){

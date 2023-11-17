@@ -365,6 +365,20 @@ public class CrearPoliza_2 extends JFrame {
 		panel_2.add(Boton_Cancelar, gbc_Boton_Cancelar);
 		
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
+		Boton_Continuar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+							
+					CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral();
+					
+					try {
+						CPoliza.setVisible(true);
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
+					CrearPoliza_2.this.setVisible(false);
+					CrearPoliza_2.this.dispose();
+			}
+		});
 		Boton_Continuar.setBackground(SystemColor.controlHighlight);
 		Boton_Continuar.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagConstraints gbc_Boton_Continuar = new GridBagConstraints();
