@@ -78,7 +78,7 @@ public class DatosPolizaDTO {
 	public void setPremio(Float premio) {
 		this.premio = premio;
 	}
-	public boolean isAlarma() {
+	public Boolean isAlarma() {
 		return alarma;
 	}
 	public void setAlarma(Boolean alarma) {
@@ -108,25 +108,25 @@ public class DatosPolizaDTO {
 	public void setTipoDNI(Long tipoDNI) {
 		this.tipoDNI = tipoDNI;
 	}
-	public int getDni() {
+	public Integer getDni() {
 		return dni;
 	}
 	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
-	public long getIdLocalidadRiesgo() {
+	public Long getIdLocalidadRiesgo() {
 		return idLocalidadRiesgo;
 	}
 	public void setIdLocalidadRiesgo(Long idLocalidadRiesgo) {
 		this.idLocalidadRiesgo = idLocalidadRiesgo;
 	}
-	public long getIdModeloVehiculo() {
+	public Long getIdModeloVehiculo() {
 		return idModeloVehiculo;
 	}
 	public void setIdModeloVehiculo(Long idModeloVehiculo) {
 		this.idModeloVehiculo = idModeloVehiculo;
 	}
-	public long getIdAnioVehiculo() {
+	public Long getIdAnioVehiculo() {
 		return idAnioVehiculo;
 	}
 	public void setIdAnioVehiculo(Long idAnioVehiculo) {
@@ -150,37 +150,37 @@ public class DatosPolizaDTO {
 	public void setPatente(String patente) {
 		this.patente = patente;
 	}
-	public float getKilometrosPorAnio() {
+	public Float getKilometrosPorAnio() {
 		return kilometrosPorAnio;
 	}
 	public void setKilometrosPorAnio(Float kilometrosPorAnio) {
 		this.kilometrosPorAnio = kilometrosPorAnio;
 	}
-	public float getSumaAsegurada() {
+	public Float getSumaAsegurada() {
 		return sumaAsegurada;
 	}
 	public void setSumaAsegurada(Float sumaAsegurada) {
 		this.sumaAsegurada = sumaAsegurada;
 	}
-	public int getSiniestrosUltimoA() {
+	public Fnt getSiniestrosUltimoA() {
 		return siniestrosUltimoA;
 	}
 	public void setSiniestrosUltimoA(Integer siniestrosUltimoA) {
 		this.siniestrosUltimoA = siniestrosUltimoA;
 	}
-	public boolean isGuardadoEnGarage() {
+	public Boolean isGuardadoEnGarage() {
 		return guardadoEnGarage;
 	}
 	public void setGuardadoEnGarage(Boolean guardadoEnGarage) {
 		this.guardadoEnGarage = guardadoEnGarage;
 	}
-	public boolean isTuercasAntiRobos() {
+	public Boolean isTuercasAntiRobos() {
 		return tuercasAntiRobos;
 	}
 	public void setTuercasAntiRobos(Boolean tuercasAntiRobos) {
 		this.tuercasAntiRobos = tuercasAntiRobos;
 	}
-	public boolean isDispositivoRastreo() {
+	public Boolean isDispositivoRastreo() {
 		return dispositivoRastreo;
 	}
 	public void setDispositivoRastreo(Boolean dispositivoRastreo) {
@@ -204,13 +204,13 @@ public class DatosPolizaDTO {
 	public void setUltimoDiaPago(String ultimoDiaPago) {
 		this.ultimoDiaPago = ultimoDiaPago;
 	}
-	public long getIdFormaPago() {
+	public Long getIdFormaPago() {
 		return idFormaPago;
 	}
 	public void setIdFormaPago(Long idFormaPago) {
 		this.idFormaPago = idFormaPago;
 	}
-	public long getIdCobertura() {
+	public Long getIdCobertura() {
 		return idCobertura;
 	}
 	public void setIdCobertura(Long idCobertura) {
