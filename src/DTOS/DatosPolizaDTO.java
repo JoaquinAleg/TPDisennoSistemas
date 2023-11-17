@@ -7,31 +7,32 @@ public class DatosPolizaDTO {
 	private String nombre;
 	private String apellido;
 	private Long tipoDNI;
-	private int dni;
-	private long idLocalidadRiesgo;
-	private long idModeloVehiculo;
-	private long idAnioVehiculo;
+	private Integer dni;
+	private Long idLocalidadRiesgo;
+	private Long idModeloVehiculo;
+	private Long idAnioVehiculo;
 	private String motor;
 	private String chasis;
 	private String patente;
-	private float kilometrosPorAnio;
-	private float sumaAsegurada;
-	private int siniestrosUltimoA;
-	private boolean guardadoEnGarage;
-	private boolean tuercasAntiRobos;
-	private boolean alarma;
-	private boolean dispositivoRastreo;
+	private Float kilometrosPorAnio;
+	private Float sumaAsegurada;
+	private Integer siniestrosUltimoA;
+	private Boolean guardadoEnGarage;
+	private Boolean tuercasAntiRobos;
+	private Boolean alarma;
+	private Boolean dispositivoRastreo;
 	private List<HijosDTO> hijos;
 	private String comienzoVigencia;
 	private String ultimoDiaPago;
-	private long idFormaPago;
-	private long idCobertura;
-	public DatosPolizaDTO(Long numeroCliente, String nombre, String apellido, Long tipoDNI, int dni,
-			long idLocalidadRiesgo, long idModeloVehiculo, long idAnioVehiculo, String motor, String chasis,
-			String patente, float kilometrosPorAnio, float sumaAsegurada, int siniestrosUltimoA,
-			boolean guardadoEnGarage, boolean tuercasAntiRobos, boolean alarma, boolean dispositivoRastreo, List<HijosDTO> hijos,
-			String comienzoVigencia, String ultimoDiaPago, long idFormaPago, long idCobertura) {
-		super();
+	private Long idFormaPago;
+	private Float prima, descuento, premio;
+	private Long idCobertura;
+	public DatosPolizaDTO(Long numeroCliente, String nombre, String apellido, Long tipoDNI, Integer dni,
+			Long idLocalidadRiesgo, Long idModeloVehiculo, Long idAnioVehiculo, String motor, String chasis,
+			String patente, Float kilometrosPorAnio, Float sumaAsegurada, Integer siniestrosUltimoA,
+			Boolean guardadoEnGarage, Boolean tuercasAntiRobos, Boolean alarma, Boolean dispositivoRastreo, List<HijosDTO> hijos,
+			String comienzoVigencia, String ultimoDiaPago, Long idFormaPago, Float prima, Float descuento
+			, Float premio, Long idCobertura) {
 		this.numeroCliente = numeroCliente;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -54,12 +55,33 @@ public class DatosPolizaDTO {
 		this.comienzoVigencia = comienzoVigencia;
 		this.ultimoDiaPago = ultimoDiaPago;
 		this.idFormaPago = idFormaPago;
+		this.premio=premio;
+		this.descuento=descuento;
+		this.prima=prima;
 		this.idCobertura = idCobertura;
+	}
+	public Float getPrima() {
+		return prima;
+	}
+	public void setPrima(Float prima) {
+		this.prima = prima;
+	}
+	public Float getDescuento() {
+		return descuento;
+	}
+	public void setDescuento(Float descuento) {
+		this.descuento = descuento;
+	}
+	public Float getPremio() {
+		return premio;
+	}
+	public void setPremio(Float premio) {
+		this.premio = premio;
 	}
 	public boolean isAlarma() {
 		return alarma;
 	}
-	public void setAlarma(boolean alarma) {
+	public void setAlarma(Boolean alarma) {
 		this.alarma = alarma;
 	}
 	public Long getNumeroCliente() {
@@ -89,25 +111,25 @@ public class DatosPolizaDTO {
 	public int getDni() {
 		return dni;
 	}
-	public void setDni(int dni) {
+	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 	public long getIdLocalidadRiesgo() {
 		return idLocalidadRiesgo;
 	}
-	public void setIdLocalidadRiesgo(long idLocalidadRiesgo) {
+	public void setIdLocalidadRiesgo(Long idLocalidadRiesgo) {
 		this.idLocalidadRiesgo = idLocalidadRiesgo;
 	}
 	public long getIdModeloVehiculo() {
 		return idModeloVehiculo;
 	}
-	public void setIdModeloVehiculo(long idModeloVehiculo) {
+	public void setIdModeloVehiculo(Long idModeloVehiculo) {
 		this.idModeloVehiculo = idModeloVehiculo;
 	}
 	public long getIdAnioVehiculo() {
 		return idAnioVehiculo;
 	}
-	public void setIdAnioVehiculo(long idAnioVehiculo) {
+	public void setIdAnioVehiculo(Long idAnioVehiculo) {
 		this.idAnioVehiculo = idAnioVehiculo;
 	}
 	public String getMotor() {
@@ -131,37 +153,37 @@ public class DatosPolizaDTO {
 	public float getKilometrosPorAnio() {
 		return kilometrosPorAnio;
 	}
-	public void setKilometrosPorAnio(float kilometrosPorAnio) {
+	public void setKilometrosPorAnio(Float kilometrosPorAnio) {
 		this.kilometrosPorAnio = kilometrosPorAnio;
 	}
 	public float getSumaAsegurada() {
 		return sumaAsegurada;
 	}
-	public void setSumaAsegurada(float sumaAsegurada) {
+	public void setSumaAsegurada(Float sumaAsegurada) {
 		this.sumaAsegurada = sumaAsegurada;
 	}
 	public int getSiniestrosUltimoA() {
 		return siniestrosUltimoA;
 	}
-	public void setSiniestrosUltimoA(int siniestrosUltimoA) {
+	public void setSiniestrosUltimoA(Integer siniestrosUltimoA) {
 		this.siniestrosUltimoA = siniestrosUltimoA;
 	}
 	public boolean isGuardadoEnGarage() {
 		return guardadoEnGarage;
 	}
-	public void setGuardadoEnGarage(boolean guardadoEnGarage) {
+	public void setGuardadoEnGarage(Boolean guardadoEnGarage) {
 		this.guardadoEnGarage = guardadoEnGarage;
 	}
 	public boolean isTuercasAntiRobos() {
 		return tuercasAntiRobos;
 	}
-	public void setTuercasAntiRobos(boolean tuercasAntiRobos) {
+	public void setTuercasAntiRobos(Boolean tuercasAntiRobos) {
 		this.tuercasAntiRobos = tuercasAntiRobos;
 	}
 	public boolean isDispositivoRastreo() {
 		return dispositivoRastreo;
 	}
-	public void setDispositivoRastreo(boolean dispositivoRastreo) {
+	public void setDispositivoRastreo(Boolean dispositivoRastreo) {
 		this.dispositivoRastreo = dispositivoRastreo;
 	}
 	public List<HijosDTO> getHijos() {
@@ -185,18 +207,14 @@ public class DatosPolizaDTO {
 	public long getIdFormaPago() {
 		return idFormaPago;
 	}
-	public void setIdFormaPago(long idFormaPago) {
+	public void setIdFormaPago(Long idFormaPago) {
 		this.idFormaPago = idFormaPago;
 	}
 	public long getIdCobertura() {
 		return idCobertura;
 	}
-	public void setIdCobertura(long idCobertura) {
+	public void setIdCobertura(Long idCobertura) {
 		this.idCobertura = idCobertura;
 	}
-	
-	
-	
-	
 	
 }
