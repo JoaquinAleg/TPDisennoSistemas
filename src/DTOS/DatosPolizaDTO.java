@@ -3,10 +3,10 @@ package DTOS;
 import java.util.List;
 
 public class DatosPolizaDTO {
-	private int numeroCliente;
+	private Long numeroCliente;
 	private String nombre;
 	private String apellido;
-	private String tipoDNI;
+	private Long tipoDNI;
 	private int dni;
 	private long idLocalidadRiesgo;
 	private long idModeloVehiculo;
@@ -19,16 +19,17 @@ public class DatosPolizaDTO {
 	private int siniestrosUltimoA;
 	private boolean guardadoEnGarage;
 	private boolean tuercasAntiRobos;
+	private boolean alarma;
 	private boolean dispositivoRastreo;
 	private List<HijosDTO> hijos;
 	private String comienzoVigencia;
 	private String ultimoDiaPago;
 	private long idFormaPago;
 	private long idCobertura;
-	public DatosPolizaDTO(int numeroCliente, String nombre, String apellido, String tipoDNI, int dni,
+	public DatosPolizaDTO(Long numeroCliente, String nombre, String apellido, Long tipoDNI, int dni,
 			long idLocalidadRiesgo, long idModeloVehiculo, long idAnioVehiculo, String motor, String chasis,
 			String patente, float kilometrosPorAnio, float sumaAsegurada, int siniestrosUltimoA,
-			boolean guardadoEnGarage, boolean tuercasAntiRobos, boolean dispositivoRastreo, List<HijosDTO> hijos,
+			boolean guardadoEnGarage, boolean tuercasAntiRobos, boolean alarma, boolean dispositivoRastreo, List<HijosDTO> hijos,
 			String comienzoVigencia, String ultimoDiaPago, long idFormaPago, long idCobertura) {
 		super();
 		this.numeroCliente = numeroCliente;
@@ -47,6 +48,7 @@ public class DatosPolizaDTO {
 		this.siniestrosUltimoA = siniestrosUltimoA;
 		this.guardadoEnGarage = guardadoEnGarage;
 		this.tuercasAntiRobos = tuercasAntiRobos;
+		this.alarma = alarma;
 		this.dispositivoRastreo = dispositivoRastreo;
 		this.hijos = hijos;
 		this.comienzoVigencia = comienzoVigencia;
@@ -54,10 +56,16 @@ public class DatosPolizaDTO {
 		this.idFormaPago = idFormaPago;
 		this.idCobertura = idCobertura;
 	}
-	public int getNumeroCliente() {
+	public boolean isAlarma() {
+		return alarma;
+	}
+	public void setAlarma(boolean alarma) {
+		this.alarma = alarma;
+	}
+	public Long getNumeroCliente() {
 		return numeroCliente;
 	}
-	public void setNumeroCliente(int numeroCliente) {
+	public void setNumeroCliente(Long numeroCliente) {
 		this.numeroCliente = numeroCliente;
 	}
 	public String getNombre() {
@@ -72,10 +80,10 @@ public class DatosPolizaDTO {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public String getTipoDNI() {
+	public Long getTipoDNI() {
 		return tipoDNI;
 	}
-	public void setTipoDNI(String tipoDNI) {
+	public void setTipoDNI(Long tipoDNI) {
 		this.tipoDNI = tipoDNI;
 	}
 	public int getDni() {
