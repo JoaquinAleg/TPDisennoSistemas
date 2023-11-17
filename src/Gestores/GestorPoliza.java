@@ -18,7 +18,7 @@ import POJOS.Cuota;
 import POJOS.TipoEstadoCliente;
 import POJOS.AjusteHijo;
 import POJOS.AjusteKilometro;
-import POJOS.AjusteUnidadAd;
+import POJOS.AjusteDescuento;
 import POJOS.AjusteEmision;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
