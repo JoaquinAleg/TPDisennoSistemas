@@ -20,6 +20,8 @@ public class Cuota {
 	@Column
 	private Date fechaPago;
 	@Column
+	private Date fechaUltimoPago;
+	@Column
 	private int nroCuota;
 	@Column
 	private float montoCuota;
@@ -30,10 +32,10 @@ public class Cuota {
 	
 	public Cuota() {}
 
-	public Cuota(long idPago, Poliza poliza, Date fechaPago, int nroCuota, float montoCuota, float montoMora,
+	public Cuota(Poliza poliza, Date fechaPago, Date fechaUltimaPago, int nroCuota, float montoCuota, float montoMora,
 			float bonificaciones) {
 		super();
-		this.idPago = idPago;
+		//this.idPago = idPago;
 		this.poliza = poliza;
 		this.fechaPago = fechaPago;
 		this.nroCuota = nroCuota;
@@ -42,13 +44,13 @@ public class Cuota {
 		this.bonificaciones = bonificaciones;
 	}
 
-	public long getIdPago() {
-		return idPago;
-	}
+	//public long getIdPago() {
+	//	return idPago;
+	//}
 
-	public void setIdPago(long idPago) {
-		this.idPago = idPago;
-	}
+	//public void setIdPago(long idPago) {
+	//	this.idPago = idPago;
+	//}
 
 	public Poliza getPoliza() {
 		return poliza;
@@ -72,6 +74,14 @@ public class Cuota {
 
 	public void setNroCuota(int nroCuota) {
 		this.nroCuota = nroCuota;
+	}
+	
+	public Date getFechaUltimaPago() {
+		return this.fechaUltimoPago;
+	}
+
+	public void setFechaUltimaPago(Date fechaUltimoPago) {
+		this.fechaUltimoPago = fechaUltimoPago;
 	}
 
 	public float getMontoCuota() {

@@ -1,5 +1,6 @@
 package Gestores;
 
+import CustomException.VerificationException;
 import POJOS.Empleado;
 import POJOS.Poliza;
 import POJOS.Localidad;
@@ -15,6 +16,10 @@ import POJOS.MedidaSeguridad;
 import POJOS.Cobertura;
 import POJOS.Cuota;
 import POJOS.TipoEstadoCliente;
+import POJOS.AjusteHijo;
+import POJOS.AjusteKilometro;
+import POJOS.AjusteUnidadAd;
+import POJOS.AjusteEmision;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DAOS.DAOlocalidad;
@@ -35,11 +40,12 @@ import DAOS.DAOajustePorKilometro;
 import DAOS.DAOajustePorUnidadAd;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import DAOS.DAOajustePorEmision;
 
-public class GestorPoliza 
+public class GestorPoliza {
 	
 	static Empleado empleado;
 	// Instancia única del gestor
@@ -64,7 +70,7 @@ public class GestorPoliza
         Localidad localidad = DAOlocalidad.getLocalidad(datosPolizaDTO.getIdLocalidadRiesgo());
         poliza.setLocalidad(localidad);
         Modelo modelo = DAOmodelo.getModelo(datosPolizaDTO.getIdModeloVehiculo());
-        poliza.setIdModelo(modelo);
+        poliza.setModelo(modelo);
         AnioFabricacion anio = DAOanioFabricacion.getAnioFabricacion(datosPolizaDTO.getIdAnioVehiculo());
         poliza.setAnioFabricacion(anio);
         poliza.setDatosVehiculo(datosPolizaDTO.getChasis(), datosPolizaDTO.getMotor(), datosPolizaDTO.getPatente(), datosPolizaDTO.getSumaAsegurada());
@@ -106,37 +112,153 @@ public class GestorPoliza
         //ERROR EN DIAGRAMA DE CLASES, FALTA LA CONDICION DEL CLIENTE
         //ERROR EN EL DIAGRAMA DE SECUENCIA, SE SETEA LAS CONDICIONES AL GESTOR DE CLIENTE Y DENTRO DE LA POLIZA
         if(polizasAsociadas == null) {
-        	poliza.setCondicionNomralCliente(cliente);
+        	GestorPoliza.setCondicionNomralCliente(cliente);
         }
         else {
         	List<Poliza> polizasVigentes = filtrarVigentes(polizasAsociadas);
         	if(polizasVigentes == null) {
-        		poliza.setCondicionNormalCliente(cliente);
+        		GestorPoliza.setCondicionNormalCliente(cliente);
         	}
         }
         //ERROR EN EL DIAGRAMA DE SECUENCIAS CON ESTA PARTE
         List<Cuota> cuotasImpagas = DAOcuota.getCuotasImpagas(datosPolizaDTO.getNumeroCliente());
         if(cuotasImpagas != null || datosPolizaDTO.getSiniestrosUltimoA() > 0) {
-        	poliza.setCondicionNormalCliente(cliente);
+        	GestorPoliza.setCondicionNormalCliente(cliente);
         }
         else {
         	TipoEstadoCliente tipoEstadoCliente = DAOtipoEstadoCliente.getTipoEstadoCliente(cliente.getIdTipoEstadoCliente());
         	if(tipoEstadoCliente.getDescripcion() == "ACTIVO") {
-        		poliza.setCondicionPlataCliente(cliente);
+        		GestorPoliza.setCondicionPlataCliente(cliente);
         	}
         }
         //ERROR EN EMISION DE POLIZA, ESTA ENVIANDO EL MENSAJE AL GESTOR DE CLIENTES
         //ERROR CON LAS CUOTAS, LAS MISMAS DEBEN DE CREARSE CON MONTO-CUOTA, MONTO-MORA Y BONIFICACIONES, ASI COMO TAMBIEN DEBEN DE RECIBIR LOS VALORES DE
-        //PREMIOS Y DESCUENTOS DESDE LA INTERFACE YA CALCULADOS COMO EL PROFE LO DIJO, POR LO TANTO EN EL datosPolizaDTO TIENEN QUE VENIR HARCODEADOS
+        //PREMIOS Y DESCUENTOS DESDE LA INTERFACE YA CALCULADOS COMO EL PROFE LO DIJO, POR LO TANTO EN EL datosPolizaDTO TIENEN QUE VENIR HARDCODEADOS
+        Float pago = calcularPago(datosPolizaDTO.getSumaAsegurada(), datosPolizaDTO.getPrima(), datosPoliza.getDescuentos());
+        Float mora = calcularMora(pago);
         if(tipoFormaPago.getDescripcion() == "SEMESTRAL") {
-        	Cuota cuota = new Cuota(datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago());
-        	
+        	//CUIDADO, EN LA BASE DE DATOS FALTA LA FECHA DE ULTIMO DIA DE PAGO
+        	Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), 1, pago, mora, datosPolizaDTO.getDescuentos());
+        	poliza.setCuota(cuota);
         }
+        if(tipoFormaPago.getDescripcion() == "MENSUAL") {
+        	//CUIDADO, EN LA BASE DE DATOS FALTA LA FECHA DE ULTIMO DIA DE PAGO
+        	for(int a=0; a < 6; a++) {
+        		Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), 1, pago/6, mora, datosPolizaDTO.getDescuentos());
+        		poliza.setCuota(cuota);
+        	}
+        }
+        
+        AjusteHijo ajusteHijo = DAOajusteHijo.buscarAjusteHijo(datosPolizaDTO.getHijos().size());
+        poliza.setAjusteHijo(ajusteHijo);
+        AjusteKilometro ajusteKilometro = DAOajusteKilometro.buscarAjusteKilometro(datosPolizaDTO.getKilometrosPorAnio();
+        poliza.setAjusteHijo(ajusteKilometro);
+        AjusteUnidadAd ajusteUnidadAd = DAOajusteUnidadAd.buscarAjusteUnidadAd(polizasAsociadas.size());
+        poliza.setAjusteUnidadAd(ajusteUnidadAd);
+        AjusteEmision ajusteEmision = DAOajusteEmision.getAjusteEmision();
+        poliza.setAjusteEmision(ajusteEmision;
+        DAOpoliza.setPoliza(poliza);
         
     }
     
-    private void validarDatos(DatosPolizaDTO datosPolizaDTO) {
-    	
+    private void validarDatos(DatosPolizaDTO dp){
+    	try{
+    		if(!(dp.getNumeroCliente() instanceof Long)){
+    			throw new VerificationException("NumeroCliente invalido");
+    		}
+    		if(!(dp.getNombre() instanceof String)){
+    			throw new VerificationException("NombreCliente invalido");
+    		}
+    		if(!(dp.getApellido() instanceof String)){
+    			throw new VerificationException("ApellidoCliente invalido");
+    		}
+    		if(!(dp.getTipoDNI() instanceof Long)){
+    			throw new VerificationException("TipoDNICliente invalido");
+    		}
+    		if(!(dp.getDni() instanceof Integer)){
+    			throw new VerificationException("DNICliente invalido");
+    		}
+    		if(!(dp.getIdLocalidadRiesgo() instanceof Long)){
+    			throw new VerificationException("LocalidadRiesgo invalido");
+    		}
+    		if(!(dp.getIdModeloVehiculo() instanceof Long)){
+    			throw new VerificationException("ModeloVehiculo invalido");
+    		}
+    		if(!(dp.getIdAnioVehiculo() instanceof Long)){
+    			throw new VerificationException("AnioVehiculoCliente invalido");
+    		}
+    		if(!(dp.getMotor() instanceof String)){
+    			throw new VerificationException("MotorVehiculoCliente invalido");
+    		}
+    		if(!(dp.getChasis() instanceof String)){
+    			throw new VerificationException("ChasisVehiculoCliente invalido");
+    		}
+    		if(!(dp.getPatente() instanceof String)){
+    			throw new VerificationException("PatenteVehiculoCliente invalido");
+    		}
+    		if(!(dp.getKilometrosPorAnio() instanceof Float)){
+    			throw new VerificationException("KilometrosPorAnioCliente invalido");
+    		}
+    		if(!(dp.getSumaAsegurada() instanceof Float)){
+    			throw new VerificationException("SumaAseguradaCliente invalido");
+    		}
+    		if(!(dp.getSiniestrosUltimoA() instanceof Integer)){
+    			throw new VerificationException("SiniestrosUltimoCliente invalido");
+    		}
+    		if(!(dp.isGuardadoEnGarage() instanceof Boolean)){
+    			throw new VerificationException("GuardadoEnGarageCliente invalido");
+    		}
+    		if(!(dp.isTuercasAntiRobos() instanceof Boolean)){
+    			throw new VerificationException("TuercaAntiRoboCliente invalido");
+    		}
+    		if(!(dp.isAlarma() instanceof Boolean)){
+    			throw new VerificationException("AlarmaCliente invalido");
+    		}
+    		if(!(dp.isDispositivoRastreo() instanceof Boolean)){
+    			throw new VerificationException("DispositivoRastreoCliente invalido");
+    		}
+    		if(!(dp.getComienzoVigencia() instanceof String)){
+    			throw new VerificationException("ComienzoVigenciaCliente invalido");
+    		}
+    		if(!(dp.getUltimoDiaPago() instanceof String)){
+    			throw new VerificationException("UltimoDiaPagoCliente invalido");
+    		}
+    		if(!(dp.getIdFormaPago() instanceof Long)){
+    			throw new VerificationException("FormaDePagoCliente invalido");
+    		}
+    		if(!(dp.getIdCobertura() instanceof Long)){
+    			throw new VerificationException("CoberturaCliente invalido");
+    		}
+    		List <HijosDTO> hijos = dp.getHijos();
+    		for(HijosDTO h : hijos){
+    			validarHijo(h);
+    		}
+    	}catch(Exception e){
+    		System.out.println(e.getMessage());
+    	}
+    }
+    private void validarHijo(HijosDTO h){
+    	try{
+    		if(!(h.getFechaNacimiento() instanceof Date)){
+    			throw new VerificationException("FechaDeNacimientoHijo invalido");
+    		}
+    		if(!(h.getEstadoCivil() instanceof String)){
+    			throw new VerificationException("EstadoCivilHijo invalido");
+    		}
+    		if(!(h.getSexo() instanceof String)){
+    			throw new VerificationException("SexoHijo invalido");
+    		}
+    	}catch(Exception e){
+    		System.out.println(e.getMessage());
+    	}
+    }
+    private Double calcularPago(Double sumaAsegurada, Double prima, Double descuentos) {
+    	Double pago;
+    	return pago;
+    }
+    private Double calcularMora(Double pago) {
+    	Double mora;
+    	return mora;
     }
     private List<Poliza> filtrarVigentes(List<Poliza> polizas) {
     	return polizas;

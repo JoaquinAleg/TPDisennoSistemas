@@ -162,7 +162,7 @@ public class DatosPolizaDTO {
 	public void setSumaAsegurada(Float sumaAsegurada) {
 		this.sumaAsegurada = sumaAsegurada;
 	}
-	public Fnt getSiniestrosUltimoA() {
+	public Integer getSiniestrosUltimoA() {
 		return siniestrosUltimoA;
 	}
 	public void setSiniestrosUltimoA(Integer siniestrosUltimoA) {
