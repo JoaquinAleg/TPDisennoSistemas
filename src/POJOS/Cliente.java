@@ -22,6 +22,7 @@ public class Cliente {
 	@Column
 	private long idTipoCondicionIVA;
 	
+	
 	public Cliente() {}
 
 	public Cliente(long idCliente, Date fechaRegistro, String profesion, Persona persona, long idTipoEstadoCliente,
