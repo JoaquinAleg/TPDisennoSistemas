@@ -34,10 +34,10 @@ import DAOS.DAOmedidaSeguridad;
 import DAOS.DAOcobertura;
 import DAOS.DAOpoliza;
 import DAOS.DAOcuota;
-import DAOS.DAOajustePorHijo;
-import DAOS.DAOajustePorSiniestro;
-import DAOS.DAOajustePorKilometro;
-import DAOS.DAOajustePorUnidadAd;
+import DAOS.DAOajusteHijo;
+import DAOS.DAOajusteSiniestro;
+import DAOS.DAOajusteKilometro;
+import DAOS.DAOajusteUnidadAd;
 
 import java.util.ArrayList;
 import java.util.Date;
