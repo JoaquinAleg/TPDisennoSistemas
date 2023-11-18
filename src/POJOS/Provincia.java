@@ -16,7 +16,7 @@ public class Provincia {
 	@Column
 	private String nombreProvincia;
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idLocalidad", nullable = true, referencedColumnName = "idLocalidad", 
+	@JoinColumn(name = "idProvincia", nullable = true, referencedColumnName = "idProvincia", 
 	foreignKey=@ForeignKey(name = "fk_LocalidadProvincia", value = ConstraintMode.CONSTRAINT))
 	private List<Localidad> localidades;
 

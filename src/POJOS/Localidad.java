@@ -17,8 +17,8 @@ public class Localidad {
 	private int codigoPostal;
 	@Column
 	private String nombreLocalidad;
-	@OneToMany
-	@JoinColumn(name = "idDomicilio", nullable = true, referencedColumnName = "idDomicilio", 
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idLocalidad", nullable = true, referencedColumnName = "idLocalidad", 
 	foreignKey=@ForeignKey(name = "fk_DomicilioLocalidad", value = ConstraintMode.CONSTRAINT))
 	private List<Domicilio> domicilios;
 	

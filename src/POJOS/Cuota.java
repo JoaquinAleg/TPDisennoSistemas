@@ -14,7 +14,7 @@ public class Cuota {
 	foreignKey=@ForeignKey(name = "fk_PolizaCuota", value = ConstraintMode.CONSTRAINT))
 	private Poliza poliza;
 	@ManyToOne
-	@JoinColumn(name = "idNroRecibo", nullable = false, referencedColumnName = "idNroRecibo", 
+	@JoinColumn(name = "NroRecibo", nullable = false, referencedColumnName = "idNroRecibo", 
 	foreignKey=@ForeignKey(name = "fk_ReciboCuota", value = ConstraintMode.CONSTRAINT))
 	private Recibo recibo;
 	@Column

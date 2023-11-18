@@ -15,7 +15,7 @@ public class Recibo {
 	@Column
 	private Date fechaRecibo;
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idPago", nullable = false, referencedColumnName = "idPago", 
+	@JoinColumn(name = "idNroRecibo", nullable = false, referencedColumnName = "idNroRecibo", 
 	foreignKey=@ForeignKey(name = "fk_Coutas", value = ConstraintMode.CONSTRAINT))
 	private List<Cuota> cuotas;
 	

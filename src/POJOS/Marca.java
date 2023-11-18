@@ -16,7 +16,7 @@ public class Marca {
 	@Column
 	private String nombreMarca;
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idModelo", nullable = true, referencedColumnName = "idModelo", 
+	@JoinColumn(name = "idMarca", nullable = true, referencedColumnName = "idMarca", 
 	foreignKey=@ForeignKey(name = "fk_MarcaModelo", value = ConstraintMode.CONSTRAINT))
 	private List<Modelo> modelos;
 	

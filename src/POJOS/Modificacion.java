@@ -33,7 +33,7 @@ public class Modificacion {
 	foreignKey=@ForeignKey(name = "fk_clienteModificacion", value = ConstraintMode.CONSTRAINT))
 	private Cliente Cliente;
 	@ManyToOne
-	@JoinColumn(name = "idTipoFormaPago", nullable = false, referencedColumnName = "idTipoFormaPago", 
+	@JoinColumn(name = "idFormaPago", nullable = false, referencedColumnName = "idFormaPago", 
 	foreignKey=@ForeignKey(name = "fk_tipoFormaPagoModificacion", value = ConstraintMode.CONSTRAINT))
 	private TipoFormaPago FormaPago;
 	@ManyToOne

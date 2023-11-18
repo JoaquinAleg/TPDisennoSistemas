@@ -30,12 +30,12 @@ public class Cliente {
 	@JoinColumn(name = "idTipoCondicionCliente", nullable = false, referencedColumnName = "idTipoCondicionCliente", 
 	foreignKey=@ForeignKey(name = "fk_TipoCondicionCliente", value = ConstraintMode.CONSTRAINT))
 	private TipoCondicionCliente condicionCliente;
-	@OneToMany
-	@JoinColumn(name="numeroPoliza", nullable = true, referencedColumnName="numeroPoliza", 
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="idCliente", nullable = true, referencedColumnName="idCliente", 
 	foreignKey=@ForeignKey(name="fk_polizacliente", value=ConstraintMode.CONSTRAINT))
 	private List<Poliza> polizas;
-	@OneToMany
-	@JoinColumn(name = "idModificacion", nullable = true, referencedColumnName = "idModificacion", 
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idCliente", nullable = true, referencedColumnName = "idCliente", 
 	foreignKey=@ForeignKey(name = "fk_ModificacionCliente", value = ConstraintMode.CONSTRAINT))
 	private List<Modificacion> modificaciones;
 	

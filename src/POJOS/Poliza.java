@@ -94,11 +94,11 @@ public class Poliza {
 	foreignKey=@ForeignKey(name = "fk_CoberturaPoliza", value = ConstraintMode.CONSTRAINT))
 	private Cobertura Cobertura;
 	@OneToOne
-	@JoinColumn(name = "idMedida", nullable = false, referencedColumnName = "idMedida", 
+	@JoinColumn(name = "numeroPoliza", nullable = false, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_MedidaSeguridad", value = ConstraintMode.CONSTRAINT))
 	private MedidaSeguridad Medida;
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idModificacion", nullable = true, referencedColumnName = "idModificacion", 
+	@JoinColumn(name = "numeroPoliza", nullable = true, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_ModificacionPoliza", value = ConstraintMode.CONSTRAINT))
 	private List<Modificacion> modificaciones;
 	
