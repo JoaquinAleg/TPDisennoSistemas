@@ -36,7 +36,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 	private JPanel contentPane;
 
 
-	public CrearPoliza_HijosExistentes() {
+	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -129,6 +129,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JComboBox <String> garage = new JComboBox();
 		garage.addItem("No");
 		garage.addItem("Si");
+		garage.setSelectedIndex(gar);
 		garage.setBackground(SystemColor.inactiveCaptionBorder);
 		garage.setToolTipText("");
 		garage.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -152,6 +153,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JComboBox alarma = new JComboBox();
 		alarma.addItem("No");
 		alarma.addItem("Si");
+		alarma.setSelectedIndex(alar);
 		alarma.setBackground(SystemColor.inactiveCaptionBorder);
 		alarma.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_alarma = new GridBagConstraints();
@@ -174,6 +176,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JComboBox rastreoVehicular = new JComboBox();
 		rastreoVehicular.addItem("No");
 		rastreoVehicular.addItem("Si");
+		rastreoVehicular.setSelectedIndex(rastreo);
 		rastreoVehicular.setBackground(SystemColor.inactiveCaptionBorder);
 		rastreoVehicular.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_rastreoVehicular = new GridBagConstraints();
@@ -196,6 +199,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JComboBox tuercas = new JComboBox();
 		tuercas.addItem("No");
 		tuercas.addItem("Si");
+		tuercas.setSelectedIndex(tue);
 		tuercas.setBackground(SystemColor.inactiveCaptionBorder);
 		tuercas.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_tuercas = new GridBagConstraints();
@@ -234,7 +238,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JButton Boton_Continuar_1 = new JButton("Ver Hijos");
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos();
+				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(tuercas.getSelectedIndex(), garage.getSelectedIndex(), alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex());
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -304,6 +308,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JComboBox sexo = new JComboBox();
 		sexo.addItem("Masculino");
 		sexo.addItem("Femenino");
+		sexo.setSelectedIndex(se);
 		sexo.setBackground(SystemColor.inactiveCaptionBorder);
 		sexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_sexo = new GridBagConstraints();
@@ -329,6 +334,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		estadoCivil.addItem("Viudo/a");
 		estadoCivil.addItem("Divorciado/a");
 		estadoCivil.addItem("Separado/a");
+		estadoCivil.setSelectedIndex(ec);
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_estadoCivil = new GridBagConstraints();

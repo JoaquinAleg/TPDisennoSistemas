@@ -321,7 +321,8 @@ public class CrearPoliza_2 extends JFrame {
 		JButton anadirHijo = new JButton("Añadir hijo");
 		anadirHijo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes();
+					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
+							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex());
 					
 					try {
 						CPoliza.setVisible(true);
