@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +15,10 @@ public class Marca {
 	private ValorPorcentual valorPorcentual;
 	@Column
 	private String nombreMarca;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idModelo", nullable = true, referencedColumnName = "idModelo", 
+	foreignKey=@ForeignKey(name = "fk_MarcaModelo", value = ConstraintMode.CONSTRAINT))
+	private List<Modelo> modelos;
 	
 	public Marca() {}
 

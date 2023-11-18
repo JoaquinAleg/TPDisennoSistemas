@@ -1,5 +1,6 @@
 package POJOS;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -29,12 +30,25 @@ public class Cliente {
 	@JoinColumn(name = "idTipoCondicionCliente", nullable = false, referencedColumnName = "idTipoCondicionCliente", 
 	foreignKey=@ForeignKey(name = "fk_TipoCondicionCliente", value = ConstraintMode.CONSTRAINT))
 	private TipoCondicionCliente condicionCliente;
+	@OneToMany
+	@JoinColumn(name="numeroPoliza", nullable = true, referencedColumnName="numeroPoliza", 
+	foreignKey=@ForeignKey(name="fk_polizacliente", value=ConstraintMode.CONSTRAINT))
+	private List<Poliza> polizas;
+	@OneToMany
+	@JoinColumn(name = "idModificacion", nullable = true, referencedColumnName = "idModificacion", 
+	foreignKey=@ForeignKey(name = "fk_ModificacionCliente", value = ConstraintMode.CONSTRAINT))
+	private List<Modificacion> modificaciones;
+	
 	
 	public Cliente() {}
 
 	
+	
+
+
 	public Cliente(long idCliente, Date fechaRegistro, String profesion, Persona persona,
-			TipoEstadoCliente estadoCliente, TipoCondicionIVA condicionIVA, TipoCondicionCliente condicionCliente) {
+			TipoEstadoCliente estadoCliente, TipoCondicionIVA condicionIVA, TipoCondicionCliente condicionCliente,
+			List<Poliza> polizas, List<Modificacion> modificaciones) {
 		super();
 		this.idCliente = idCliente;
 		this.fechaRegistro = fechaRegistro;
@@ -43,6 +57,21 @@ public class Cliente {
 		this.estadoCliente = estadoCliente;
 		CondicionIVA = condicionIVA;
 		this.condicionCliente = condicionCliente;
+		this.polizas = polizas;
+		this.modificaciones = modificaciones;
+	}
+
+
+
+
+
+	public List<Poliza> getPolizas() {
+		return polizas;
+	}
+
+
+	public void setPolizas(List<Poliza> polizas) {
+		this.polizas = polizas;
 	}
 
 
@@ -100,6 +129,14 @@ public class Cliente {
 
 	public void setCondicionCliente(TipoCondicionCliente condicionCliente) {
 		this.condicionCliente = condicionCliente;
+	}
+
+	public List<Modificacion> getModificaciones() {
+		return modificaciones;
+	}
+
+	public void setModificaciones(List<Modificacion> modificaciones) {
+		this.modificaciones = modificaciones;
 	}
 
 	

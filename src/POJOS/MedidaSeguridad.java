@@ -7,17 +7,19 @@ public class MedidaSeguridad {
 	@Id
 	@Column
 	private long idMedida;
-	@Column
-	private long ValorPorcentual;
+	@OneToOne
+	@JoinColumn(name = "idValorPorcentual", nullable = false, referencedColumnName = "idValorPorcentual", 
+	foreignKey=@ForeignKey(name = "fk_valorMedida", value = ConstraintMode.CONSTRAINT))
+	private ValorPorcentual valorPorcentual;
 	@Column
 	private String tipoMedidaSeguridad;
 	
 	public MedidaSeguridad() {}
 
-	public MedidaSeguridad(long idMedida, long valorPorcentual, String tipoMedidaSeguridad) {
+	public MedidaSeguridad(long idMedida, ValorPorcentual valorPorcentual, String tipoMedidaSeguridad) {
 		super();
 		this.idMedida = idMedida;
-		ValorPorcentual = valorPorcentual;
+		this.valorPorcentual = valorPorcentual;
 		this.tipoMedidaSeguridad = tipoMedidaSeguridad;
 	}
 
@@ -29,12 +31,12 @@ public class MedidaSeguridad {
 		this.idMedida = idMedida;
 	}
 
-	public long getValorPorcentual() {
-		return ValorPorcentual;
+	public ValorPorcentual getValorPorcentual() {
+		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(long valorPorcentual) {
-		ValorPorcentual = valorPorcentual;
+	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
+		this.valorPorcentual = valorPorcentual;
 	}
 
 	public String getTipoMedidaSeguridad() {
@@ -44,5 +46,6 @@ public class MedidaSeguridad {
 	public void setTipoMedidaSeguridad(String tipoMedidaSeguridad) {
 		this.tipoMedidaSeguridad = tipoMedidaSeguridad;
 	}
+
 	
 }

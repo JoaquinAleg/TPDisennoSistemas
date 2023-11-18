@@ -2,7 +2,6 @@ package DAOS;
 
 import java.util.List;
 
-import POJOS.AjusteEmision;
 import POJOS.AjusteHijo;
 import interfaces.ajustePorHijoDAO;
 import jakarta.persistence.EntityManager;

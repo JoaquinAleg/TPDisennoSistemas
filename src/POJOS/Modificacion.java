@@ -8,8 +8,10 @@ public class Modificacion {
 	@Id
 	@Column
 	private long idModificacion;
-	@Column
-	private long idModelo;
+	@ManyToOne
+	@JoinColumn(name = "idModelo", nullable = false, referencedColumnName = "idModelo", 
+	foreignKey=@ForeignKey(name = "fk_ModeloModificacion", value = ConstraintMode.CONSTRAINT))
+	private Modelo Modelo;
 	@Column
 	private int kilometrosRealizadosAnio;
 	@Column
@@ -26,23 +28,32 @@ public class Modificacion {
 	private Float valorAsegurado;
 	@Column
 	private Date fechaModificacion;
-	@Column
-	private long idCliente;
-	@Column
-	private long idFormaPago;
-	@Column
-	private long idCobertura;
-	@Column
-	private long idMedida;
+	@ManyToOne
+	@JoinColumn(name = "idCliente", nullable = false, referencedColumnName = "idCliente", 
+	foreignKey=@ForeignKey(name = "fk_clienteModificacion", value = ConstraintMode.CONSTRAINT))
+	private Cliente Cliente;
+	@ManyToOne
+	@JoinColumn(name = "idTipoFormaPago", nullable = false, referencedColumnName = "idTipoFormaPago", 
+	foreignKey=@ForeignKey(name = "fk_tipoFormaPagoModificacion", value = ConstraintMode.CONSTRAINT))
+	private TipoFormaPago FormaPago;
+	@ManyToOne
+	@JoinColumn(name = "idCobertura", nullable = false, referencedColumnName = "idCobertura", 
+	foreignKey=@ForeignKey(name = "fk_coberturaModificacion", value = ConstraintMode.CONSTRAINT))
+	private Cobertura Cobertura;
+	@ManyToOne
+	@JoinColumn(name = "idMedida", nullable = false, referencedColumnName = "idMedida", 
+	foreignKey=@ForeignKey(name = "fk_clienteModificacion", value = ConstraintMode.CONSTRAINT))
+	private MedidaSeguridad Medida;
 	
 	public Modificacion() {}
 
-	public Modificacion(long idModificacion, long idModelo, int kilometrosRealizadosAnio, int cantSiniestrosUA,
+	public Modificacion(long idModificacion, POJOS.Modelo modelo, int kilometrosRealizadosAnio, int cantSiniestrosUA,
 			String chasis, String patente, String motor, Date fehcaFabricacion, Float valorAsegurado,
-			Date fechaModificacion, long idCliente, long idFormaPago, long idCobertura, long idMedida) {
+			Date fechaModificacion, POJOS.Cliente cliente, TipoFormaPago formaPago, POJOS.Cobertura cobertura,
+			MedidaSeguridad medida) {
 		super();
 		this.idModificacion = idModificacion;
-		this.idModelo = idModelo;
+		Modelo = modelo;
 		this.kilometrosRealizadosAnio = kilometrosRealizadosAnio;
 		this.cantSiniestrosUA = cantSiniestrosUA;
 		this.chasis = chasis;
@@ -51,10 +62,10 @@ public class Modificacion {
 		this.fehcaFabricacion = fehcaFabricacion;
 		this.valorAsegurado = valorAsegurado;
 		this.fechaModificacion = fechaModificacion;
-		this.idCliente = idCliente;
-		this.idFormaPago = idFormaPago;
-		this.idCobertura = idCobertura;
-		this.idMedida = idMedida;
+		Cliente = cliente;
+		FormaPago = formaPago;
+		Cobertura = cobertura;
+		Medida = medida;
 	}
 
 	public long getIdModificacion() {
@@ -65,12 +76,12 @@ public class Modificacion {
 		this.idModificacion = idModificacion;
 	}
 
-	public long getIdModelo() {
-		return idModelo;
+	public Modelo getModelo() {
+		return Modelo;
 	}
 
-	public void setIdModelo(long idModelo) {
-		this.idModelo = idModelo;
+	public void setModelo(Modelo modelo) {
+		Modelo = modelo;
 	}
 
 	public int getKilometrosRealizadosAnio() {
@@ -137,36 +148,38 @@ public class Modificacion {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public long getIdCliente() {
-		return idCliente;
+	public Cliente getCliente() {
+		return Cliente;
 	}
 
-	public void setIdCliente(long idCliente) {
-		this.idCliente = idCliente;
+	public void setCliente(Cliente cliente) {
+		Cliente = cliente;
 	}
 
-	public long getIdFormaPago() {
-		return idFormaPago;
+	public TipoFormaPago getFormaPago() {
+		return FormaPago;
 	}
 
-	public void setIdFormaPago(long idFormaPago) {
-		this.idFormaPago = idFormaPago;
+	public void setFormaPago(TipoFormaPago formaPago) {
+		FormaPago = formaPago;
 	}
 
-	public long getIdCobertura() {
-		return idCobertura;
+	public Cobertura getCobertura() {
+		return Cobertura;
 	}
 
-	public void setIdCobertura(long idCobertura) {
-		this.idCobertura = idCobertura;
+	public void setCobertura(Cobertura cobertura) {
+		Cobertura = cobertura;
 	}
 
-	public long getIdMedida() {
-		return idMedida;
+	public MedidaSeguridad getMedida() {
+		return Medida;
 	}
 
-	public void setIdMedida(long idMedida) {
-		this.idMedida = idMedida;
+	public void setMedida(MedidaSeguridad medida) {
+		Medida = medida;
 	}
+
+	
 	
 }

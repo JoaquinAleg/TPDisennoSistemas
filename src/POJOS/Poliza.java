@@ -1,5 +1,6 @@
 package POJOS;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.*;
 @Entity
@@ -96,16 +97,22 @@ public class Poliza {
 	@JoinColumn(name = "idMedida", nullable = false, referencedColumnName = "idMedida", 
 	foreignKey=@ForeignKey(name = "fk_MedidaSeguridad", value = ConstraintMode.CONSTRAINT))
 	private MedidaSeguridad Medida;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idModificacion", nullable = true, referencedColumnName = "idModificacion", 
+	foreignKey=@ForeignKey(name = "fk_ModificacionPoliza", value = ConstraintMode.CONSTRAINT))
+	private List<Modificacion> modificaciones;
 	
 	public Poliza(){}
 
+	
 	public Poliza(long numeroPoliza, Modelo modelo, AjusteHijo ajusteHijo, AjusteKilometro ajusteKilometro,
 			AjusteSiniestro idAjusteSiniestro, AnioFabricacion anioFabricacion, AjusteDescuento ajusteDescuento,
 			AjusteEmision ajusteEmision, Modificacion modificacion, Localidad localidad, TipoDocumento tipoDocumento,
 			float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA, Date fechaDeInicio,
 			Date fechaDeFin, float premio, float prima, float descuentos, Date ultimoDiaPago, float montoTotalAbonar,
 			String chasis, String patente, String estadoPoliza, String motor, String nombreCliente, String dniCliente,
-			Date fechaCreacion, TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida) {
+			Date fechaCreacion, TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida,
+			List<Modificacion> modificaciones) {
 		super();
 		this.numeroPoliza = numeroPoliza;
 		this.modelo = modelo;
@@ -138,7 +145,9 @@ public class Poliza {
 		FormaPago = formaPago;
 		Cobertura = cobertura;
 		Medida = medida;
+		this.modificaciones = modificaciones;
 	}
+
 
 	public long getNumeroPoliza() {
 		return numeroPoliza;
@@ -386,6 +395,16 @@ public class Poliza {
 
 	public void setMedida(MedidaSeguridad medida) {
 		Medida = medida;
+	}
+
+
+	public List<Modificacion> getModificaciones() {
+		return modificaciones;
+	}
+
+
+	public void setModificaciones(List<Modificacion> modificaciones) {
+		this.modificaciones = modificaciones;
 	}
 
 	

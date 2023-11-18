@@ -39,7 +39,7 @@ public class DAOajusteSiniestro implements ajusteSiniestroDAO{
 	@Override
 	public List<AjusteSiniestro> getAll() {
 		EntityManager manager = HibernateUtil.getEntityManager();
-		List<AjusteSiniestro> all = manager.createQuery("From AjustePorKilometro").getResultList();
+		List<AjusteSiniestro> all = manager.createQuery("From AjustePorSiniestro").getResultList();
 		return all;
 	}
 
