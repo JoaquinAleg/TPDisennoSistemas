@@ -1,5 +1,6 @@
 package Gestores;
 
+import DAOS.DAOcliente;
 import POJOS.Cliente;
 import POJOS.Empleado;
 

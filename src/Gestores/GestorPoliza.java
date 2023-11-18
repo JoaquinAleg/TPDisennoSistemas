@@ -18,7 +18,7 @@ import POJOS.Cuota;
 import POJOS.TipoEstadoCliente;
 import POJOS.AjusteHijo;
 import POJOS.AjusteKilometro;
-import POJOS.AjusteUnidadAd;
+import POJOS.AjusteDescuento;
 import POJOS.AjusteEmision;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
@@ -34,16 +34,16 @@ import DAOS.DAOmedidaSeguridad;
 import DAOS.DAOcobertura;
 import DAOS.DAOpoliza;
 import DAOS.DAOcuota;
-import DAOS.DAOajustePorHijo;
-import DAOS.DAOajustePorSiniestro;
-import DAOS.DAOajustePorKilometro;
-import DAOS.DAOajustePorUnidadAd;
+import DAOS.DAOajusteHijo;
+import DAOS.DAOajusteSiniestro;
+import DAOS.DAOajusteKilometro;
+import DAOS.DAOajusteDescuento;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import DAOS.DAOajustePorEmision;
+import DAOS.DAOajusteEmision;
 
 public class GestorPoliza {
 	
@@ -67,7 +67,13 @@ public class GestorPoliza {
     public void darAltaPoliza(DatosPolizaDTO datosPolizaDTO) {
         validarDatos(datosPolizaDTO);
         Poliza poliza = new Poliza();
-        Localidad localidad = DAOlocalidad.getLocalidad(datosPolizaDTO.getIdLocalidadRiesgo());
+        Localidad localidad;
+		try {
+			localidad = DAOlocalidad.getLocalidad(datosPolizaDTO.getIdLocalidadRiesgo());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         poliza.setLocalidad(localidad);
         Modelo modelo = DAOmodelo.getModelo(datosPolizaDTO.getIdModeloVehiculo());
         poliza.setModelo(modelo);
@@ -158,7 +164,7 @@ public class GestorPoliza {
         AjusteEmision ajusteEmision = DAOajusteEmision.getAjusteEmision();
         poliza.setAjusteEmision(ajusteEmision;
         DAOpoliza.setPoliza(poliza);
-        
+    
     }
     
     private void validarDatos(DatosPolizaDTO dp){

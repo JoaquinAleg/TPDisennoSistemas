@@ -170,6 +170,13 @@ public class CrearPoliza_EditarHijo extends JFrame {
 		prueba.add(MarcaVehiculo_1_1_1, gbc_MarcaVehiculo_1_1_1);
 		
 		JButton btnNewButton_1_2 = new JButton("Confirmar");
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearPoliza_EditarHijo.this.setVisible(false);
+				CrearPoliza_EditarHijo.this.dispose();
+				
+			}
+		});
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		btnNewButton_1_2.setBackground(SystemColor.controlHighlight);
 		GridBagConstraints gbc_btnNewButton_1_2 = new GridBagConstraints();

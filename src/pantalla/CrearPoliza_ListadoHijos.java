@@ -61,7 +61,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_ListadoHijos() {
+	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

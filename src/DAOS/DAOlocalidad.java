@@ -8,31 +8,36 @@ public class DAOlocalidad implements localidadDAO {
 
 	@Override
 	public Localidad getLocalidad(long idLocalidad) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager manager = HibernateUtil.getEntityManager();
+		Localidad localidad = manager.getReference(Localidad.class, idLocalidad);
+		return localidad;
 	}
 
 	@Override
 	public void createLocalidad(Localidad localidad) {
-		// TODO Auto-generated method stub
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.persist(localidad);
 		
 	}
 
 	@Override
 	public void deleteLocalidad(Localidad localidad) {
-		// TODO Auto-generated method stub
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.remove(localidad);
 		
 	}
 
 	@Override
 	public void updateLocalidad(Localidad localidad) {
-		// TODO Auto-generated method stub
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.merge(localidad);
 		
 	}
 
 	@Override
 	public List<Localidad> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager manager = HibernateUtil.getEntityManager();
+		List<Localidad> all = manager.createQuery("From Localidad").getResultList();
+		return all;
 	}
 }

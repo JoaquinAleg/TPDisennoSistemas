@@ -44,13 +44,13 @@ public class Cuota {
 		this.bonificaciones = bonificaciones;
 	}
 
-	//public long getIdPago() {
-	//	return idPago;
-	//}
+	public long getIdPago() {
+		return idPago;
+	}
 
-	//public void setIdPago(long idPago) {
-	//	this.idPago = idPago;
-	//}
+	public void setIdPago(long idPago) {
+		this.idPago = idPago;
+	}
 
 	public Poliza getPoliza() {
 		return poliza;
