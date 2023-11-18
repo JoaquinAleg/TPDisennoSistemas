@@ -1,5 +1,6 @@
 package POJOS;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -17,24 +18,62 @@ public class Cliente {
 	@JoinColumn(name = "cuit", nullable = false, referencedColumnName = "cuit", 
 			foreignKey=@ForeignKey(name = "fk_cuitCliente", value = ConstraintMode.CONSTRAINT))
 	private Persona persona;
-	@Column
-	private long idTipoEstadoCliente;
-	@Column
-	private long idTipoCondicionIVA;
+	@ManyToOne
+	@JoinColumn(name = "idTipoEstadoCliente", nullable = false, referencedColumnName = "idTipoEstadoCliente", 
+	foreignKey=@ForeignKey(name = "fk_estadoCliente", value = ConstraintMode.CONSTRAINT))
+	private TipoEstadoCliente estadoCliente;
+	@ManyToOne
+	@JoinColumn(name = "idTipoCondicionIVA", nullable = false, referencedColumnName = "idTipoCondicionIVA", 
+	foreignKey=@ForeignKey(name = "fk_TipoCondicionIVA", value = ConstraintMode.CONSTRAINT))
+	private TipoCondicionIVA CondicionIVA;
+	@ManyToOne
+	@JoinColumn(name = "idTipoCondicionCliente", nullable = false, referencedColumnName = "idTipoCondicionCliente", 
+	foreignKey=@ForeignKey(name = "fk_TipoCondicionCliente", value = ConstraintMode.CONSTRAINT))
+	private TipoCondicionCliente condicionCliente;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="idCliente", nullable = true, referencedColumnName="idCliente", 
+	foreignKey=@ForeignKey(name="fk_polizacliente", value=ConstraintMode.CONSTRAINT))
+	private List<Poliza> polizas;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idCliente", nullable = true, referencedColumnName = "idCliente", 
+	foreignKey=@ForeignKey(name = "fk_ModificacionCliente", value = ConstraintMode.CONSTRAINT))
+	private List<Modificacion> modificaciones;
 	
 	
 	public Cliente() {}
 
-	public Cliente(long idCliente, Date fechaRegistro, String profesion, Persona persona, long idTipoEstadoCliente,
-			long idTipoCondicionIVA) {
+	
+	
+
+
+	public Cliente(long idCliente, Date fechaRegistro, String profesion, Persona persona,
+			TipoEstadoCliente estadoCliente, TipoCondicionIVA condicionIVA, TipoCondicionCliente condicionCliente,
+			List<Poliza> polizas, List<Modificacion> modificaciones) {
 		super();
 		this.idCliente = idCliente;
 		this.fechaRegistro = fechaRegistro;
 		this.profesion = profesion;
 		this.persona = persona;
-		this.idTipoEstadoCliente = idTipoEstadoCliente;
-		this.idTipoCondicionIVA = idTipoCondicionIVA;
+		this.estadoCliente = estadoCliente;
+		CondicionIVA = condicionIVA;
+		this.condicionCliente = condicionCliente;
+		this.polizas = polizas;
+		this.modificaciones = modificaciones;
 	}
+
+
+
+
+
+	public List<Poliza> getPolizas() {
+		return polizas;
+	}
+
+
+	public void setPolizas(List<Poliza> polizas) {
+		this.polizas = polizas;
+	}
+
 
 	public long getIdCliente() {
 		return idCliente;
@@ -68,20 +107,36 @@ public class Cliente {
 		this.persona = persona;
 	}
 
-	public long getIdTipoEstadoCliente() {
-		return idTipoEstadoCliente;
+	public TipoEstadoCliente getEstadoCliente() {
+		return estadoCliente;
 	}
 
-	public void setIdTipoEstadoCliente(long idTipoEstadoCliente) {
-		this.idTipoEstadoCliente = idTipoEstadoCliente;
+	public void setEstadoCliente(TipoEstadoCliente estadoCliente) {
+		this.estadoCliente = estadoCliente;
 	}
 
-	public long getIdTipoCondicionIVA() {
-		return idTipoCondicionIVA;
+	public TipoCondicionIVA getCondicionIVA() {
+		return CondicionIVA;
 	}
 
-	public void setIdTipoCondicionIVA(long idTipoCondicionIVA) {
-		this.idTipoCondicionIVA = idTipoCondicionIVA;
+	public void setCondicionIVA(TipoCondicionIVA condicionIVA) {
+		CondicionIVA = condicionIVA;
+	}
+
+	public TipoCondicionCliente getCondicionCliente() {
+		return condicionCliente;
+	}
+
+	public void setCondicionCliente(TipoCondicionCliente condicionCliente) {
+		this.condicionCliente = condicionCliente;
+	}
+
+	public List<Modificacion> getModificaciones() {
+		return modificaciones;
+	}
+
+	public void setModificaciones(List<Modificacion> modificaciones) {
+		this.modificaciones = modificaciones;
 	}
 
 	

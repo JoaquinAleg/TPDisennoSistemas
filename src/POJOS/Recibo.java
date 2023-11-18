@@ -1,5 +1,6 @@
 package POJOS;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -13,6 +14,10 @@ public class Recibo {
 	private String descripcion;
 	@Column
 	private Date fechaRecibo;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idNroRecibo", nullable = false, referencedColumnName = "idNroRecibo", 
+	foreignKey=@ForeignKey(name = "fk_Coutas", value = ConstraintMode.CONSTRAINT))
+	private List<Cuota> cuotas;
 	
 	public Recibo() {}
 

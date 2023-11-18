@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +17,10 @@ public class Localidad {
 	private int codigoPostal;
 	@Column
 	private String nombreLocalidad;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idLocalidad", nullable = true, referencedColumnName = "idLocalidad", 
+	foreignKey=@ForeignKey(name = "fk_DomicilioLocalidad", value = ConstraintMode.CONSTRAINT))
+	private List<Domicilio> domicilios;
 	
 	public Localidad() {}
 

@@ -11,6 +11,10 @@ public class Pais {
 	private long idPais;
 	@Column
 	private String nombrePais;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="idPais", nullable = true, referencedColumnName="idPais", 
+	foreignKey=@ForeignKey(name="fk_PaisProvincia", value=ConstraintMode.CONSTRAINT))
+	private List<Provincia> provincias;
 	
 	
 	public Pais() {}

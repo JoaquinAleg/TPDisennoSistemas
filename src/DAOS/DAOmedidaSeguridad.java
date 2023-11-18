@@ -2,7 +2,6 @@ package DAOS;
 
 import java.util.List;
 
-import POJOS.Localidad;
 import POJOS.MedidaSeguridad;
 import interfaces.medidaSeguridadDAO;
 import jakarta.persistence.EntityManager;

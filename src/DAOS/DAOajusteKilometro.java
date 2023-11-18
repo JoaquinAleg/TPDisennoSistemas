@@ -2,7 +2,6 @@ package DAOS;
 
 import java.util.List;
 
-import POJOS.AjusteHijo;
 import POJOS.AjusteKilometro;
 import interfaces.ajusteKilometroDAO;
 import jakarta.persistence.EntityManager;
