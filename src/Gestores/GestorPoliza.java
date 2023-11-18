@@ -37,13 +37,13 @@ import DAOS.DAOcuota;
 import DAOS.DAOajusteHijo;
 import DAOS.DAOajusteSiniestro;
 import DAOS.DAOajusteKilometro;
-import DAOS.DAOajusteUnidadAd;
+import DAOS.DAOajusteDescuento;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import DAOS.DAOajustePorEmision;
+import DAOS.DAOajusteEmision;
 
 public class GestorPoliza {
 	
