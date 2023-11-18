@@ -14,6 +14,7 @@ import java.awt.Insets;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -96,9 +97,9 @@ public class CrearPoliza_Cobertura extends JFrame {
 		contentPane.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		String numeroCliente = new String("numeroCliente");
 		
@@ -132,13 +133,28 @@ public class CrearPoliza_Cobertura extends JFrame {
 		panel.add(lblDatosDeLa_1, gbc_lblDatosDeLa_1);
 		lblDatosDeLa_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		
+		JLabel lblDatosDeLa_1_1 = new JLabel("Coberturas disponibles");
+		GridBagConstraints gbc_lblDatosDeLa_1_1 = new GridBagConstraints();
+		gbc_lblDatosDeLa_1_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblDatosDeLa_1_1.gridwidth = 4;
+		gbc_lblDatosDeLa_1_1.insets = new Insets(10, 20, 0, 20);
+		gbc_lblDatosDeLa_1_1.gridx = 0;
+		gbc_lblDatosDeLa_1_1.gridy = 2;
+		panel.add(lblDatosDeLa_1_1, gbc_lblDatosDeLa_1_1);
+		lblDatosDeLa_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDatosDeLa_1_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		lblDatosDeLa_1_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		lblDatosDeLa_1_1.setBackground(SystemColor.inactiveCaptionBorder);
+		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
+		panel_1.setBorder(new MatteBorder(0, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_1.gridwidth = 4;
-		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.insets = new Insets(0, 20, 10, 20);
 		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 2;
+		gbc_panel_1.gridy = 3;
 		panel.add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{234, 0};
@@ -157,12 +173,12 @@ public class CrearPoliza_Cobertura extends JFrame {
 		table.setToolTipText("");
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setForeground(Color.BLACK);
-		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		table.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		table.setFillsViewportHeight(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-		table.setBackground(Color.WHITE);
+		table.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_table = new GridBagConstraints();
-		gbc_table.fill = GridBagConstraints.BOTH;
+		gbc_table.fill = GridBagConstraints.HORIZONTAL;
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 0;
 		panel_1.add(table, gbc_table);
@@ -175,7 +191,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		GridBagConstraints gbc_lblFechaDeNacimiento_1_1 = new GridBagConstraints();
 		gbc_lblFechaDeNacimiento_1_1.insets = new Insets(0, 0, 20, 5);
 		gbc_lblFechaDeNacimiento_1_1.gridx = 0;
-		gbc_lblFechaDeNacimiento_1_1.gridy = 3;
+		gbc_lblFechaDeNacimiento_1_1.gridy = 4;
 		panel.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
 		
 		JDateChooser dateChooser_1_1 = new JDateChooser();
@@ -184,7 +200,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_dateChooser_1_1.insets = new Insets(0, 0, 20, 5);
 		gbc_dateChooser_1_1.fill = GridBagConstraints.BOTH;
 		gbc_dateChooser_1_1.gridx = 1;
-		gbc_dateChooser_1_1.gridy = 3;
+		gbc_dateChooser_1_1.gridy = 4;
 		panel.add(dateChooser_1_1, gbc_dateChooser_1_1);
 		
 		JLabel lblNewLabel = new JLabel("Formas de pago:");
@@ -193,7 +209,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 20, 5);
 		gbc_lblNewLabel.gridx = 2;
-		gbc_lblNewLabel.gridy = 3;
+		gbc_lblNewLabel.gridy = 4;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JComboBox LocalidadRiesgo_1_1_1 = new JComboBox();
@@ -203,7 +219,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_LocalidadRiesgo_1_1_1.insets = new Insets(0, 5, 20, 40);
 		gbc_LocalidadRiesgo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_LocalidadRiesgo_1_1_1.gridx = 3;
-		gbc_LocalidadRiesgo_1_1_1.gridy = 3;
+		gbc_LocalidadRiesgo_1_1_1.gridy = 4;
 		panel.add(LocalidadRiesgo_1_1_1, gbc_LocalidadRiesgo_1_1_1);
 		
 		JPanel panel_2 = new JPanel();
@@ -215,7 +231,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_panel_2.anchor = GridBagConstraints.SOUTH;
 		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 5;
+		gbc_panel_2.gridy = 6;
 		panel.add(panel_2, gbc_panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[]{89, 0, 0, 89, 0};
@@ -227,17 +243,22 @@ public class CrearPoliza_Cobertura extends JFrame {
 		JButton Boton_Cancelar = new JButton("Cancelar");
 		Boton_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
-				
-				try {
-					FuturaPantalla.setVisible(true);
-				} catch(Exception er) {
-					er.printStackTrace();
-				}
-				CrearPoliza_Cobertura.this.setVisible(false);
-				CrearPoliza_Cobertura.this.dispose();
-			}
-		});
+
+		             int result = JOptionPane.showConfirmDialog(null,"¿Desea cancelar la creación póliza?", "Cancelar",
+		                JOptionPane.YES_NO_OPTION,
+		                JOptionPane.WARNING_MESSAGE);
+		             if(result == JOptionPane.YES_OPTION){
+		 				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
+						
+						try {
+							FuturaPantalla.setVisible(true);
+						} catch(Exception er) {
+							er.printStackTrace();
+						}
+						CrearPoliza_Cobertura.this.setVisible(false);
+						CrearPoliza_Cobertura.this.dispose();
+					}
+		}});
 		Boton_Cancelar.setBackground(SystemColor.controlHighlight);
 		Boton_Cancelar.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagConstraints gbc_Boton_Cancelar = new GridBagConstraints();

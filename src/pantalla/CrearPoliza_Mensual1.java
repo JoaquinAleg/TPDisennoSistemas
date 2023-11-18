@@ -13,6 +13,7 @@ import java.awt.Insets;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
@@ -29,8 +30,6 @@ public class CrearPoliza_Mensual1 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField_1;
-	private JTextField textField;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
@@ -144,9 +143,9 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		PanelMedioInferior.add(panel_1_1, gbc_panel_1_1);
 		GridBagLayout gbl_panel_1_1 = new GridBagLayout();
 		gbl_panel_1_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel_1_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_1_1.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_panel_1_1.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_1_1.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1_1.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_1_1.setLayout(gbl_panel_1_1);
 		
 		JLabel lblMarca = new JLabel("Marca:");
@@ -281,7 +280,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		textField_4.setColumns(10);
 		textField_4.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-		gbc_textField_4.insets = new Insets(50, 10, 5, 5);
+		gbc_textField_4.insets = new Insets(30, 10, 5, 5);
 		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_4.gridx = 1;
 		gbc_textField_4.gridy = 2;
@@ -304,7 +303,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		textField_3.setColumns(10);
 		textField_3.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.insets = new Insets(50, 10, 5, 70);
+		gbc_textField_3.insets = new Insets(30, 10, 5, 70);
 		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_3.gridx = 3;
 		gbc_textField_3.gridy = 2;
@@ -333,16 +332,6 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		gbc_textField_5.gridy = 3;
 		PanelMedioInferior.add(textField_5, gbc_textField_5);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Último día de pago:");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_lblNewLabel_1_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1_1.insets = new Insets(20, 20, 5, 5);
-		gbc_lblNewLabel_1_1.gridx = 2;
-		gbc_lblNewLabel_1_1.gridy = 3;
-		PanelMedioInferior.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
-		
 		textField_2 = new JTextField();
 		textField_2.setText("xxxxxxxx");
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -361,7 +350,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		AñoVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_AñoVehiculo = new GridBagConstraints();
 		gbc_AñoVehiculo.anchor = GridBagConstraints.WEST;
-		gbc_AñoVehiculo.insets = new Insets(20, 70, 5, 5);
+		gbc_AñoVehiculo.insets = new Insets(20, 70, 20, 5);
 		gbc_AñoVehiculo.gridx = 0;
 		gbc_AñoVehiculo.gridy = 4;
 		PanelMedioInferior.add(AñoVehiculo, gbc_AñoVehiculo);
@@ -373,7 +362,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		textField_6.setColumns(10);
 		textField_6.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
-		gbc_textField_6.insets = new Insets(20, 10, 5, 5);
+		gbc_textField_6.insets = new Insets(20, 10, 20, 5);
 		gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_6.gridx = 1;
 		gbc_textField_6.gridy = 4;
@@ -387,44 +376,8 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		gbc_SumaAs.fill = GridBagConstraints.VERTICAL;
 		gbc_SumaAs.insets = new Insets(20, 20, 5, 5);
 		gbc_SumaAs.gridx = 2;
-		gbc_SumaAs.gridy = 4;
+		gbc_SumaAs.gridy = 3;
 		PanelMedioInferior.add(SumaAs, gbc_SumaAs);
-		
-		textField = new JTextField();
-		textField.setText("xxxxxxxx");
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(20, 10, 5, 70);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 3;
-		gbc_textField.gridy = 4;
-		PanelMedioInferior.add(textField, gbc_textField);
-		
-		JLabel Chasis = new JLabel("Monto total a abonar:");
-		Chasis.setHorizontalAlignment(SwingConstants.LEFT);
-		Chasis.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_Chasis = new GridBagConstraints();
-		gbc_Chasis.insets = new Insets(20, 20, 30, 5);
-		gbc_Chasis.anchor = GridBagConstraints.WEST;
-		gbc_Chasis.gridx = 2;
-		gbc_Chasis.gridy = 5;
-		PanelMedioInferior.add(Chasis, gbc_Chasis);
-		
-		textField_1 = new JTextField();
-		textField_1.setText("xxxxxxxx");
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(20, 10, 30, 70);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 3;
-		gbc_textField_1.gridy = 5;
-		PanelMedioInferior.add(textField_1, gbc_textField_1);
 		
 		JPanel panelInferior = new JPanel();
 		panelInferior.setBackground(SystemColor.inactiveCaptionBorder);
@@ -446,17 +399,22 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		Boton_Cancelar.setBackground(SystemColor.controlHighlight);
 		Boton_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
-				
-				try {
-					FuturaPantalla.setVisible(true);
-				} catch(Exception er) {
-					er.printStackTrace();
-				}
-				CrearPoliza_Mensual1.this.setVisible(false);
-				CrearPoliza_Mensual1.this.dispose();
-			}
-		});
+
+		             int result = JOptionPane.showConfirmDialog(null,"¿Desea cancelar la creación póliza?", "Cancelar",
+		                JOptionPane.YES_NO_OPTION,
+		                JOptionPane.WARNING_MESSAGE);
+		             if(result == JOptionPane.YES_OPTION){
+		 				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
+						
+						try {
+							FuturaPantalla.setVisible(true);
+						} catch(Exception er) {
+							er.printStackTrace();
+						}
+						CrearPoliza_Mensual1.this.setVisible(false);
+						CrearPoliza_Mensual1.this.dispose();
+					}
+		}});
 		Boton_Cancelar.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagConstraints gbc_Boton_Cancelar = new GridBagConstraints();
 		gbc_Boton_Cancelar.anchor = GridBagConstraints.WEST;
@@ -471,7 +429,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			// acá tendrían que poner un if(cantidadhijos) a ver si se tira CrearPoliza_2 [caso sin hijos] o CrearPoliza_HijosExistentes.
 						
-						CrearPoliza_2 CPoliza = new CrearPoliza_2();
+						CrearPoliza_Mensual2 CPoliza = new CrearPoliza_Mensual2();
 						
 						try {
 							CPoliza.setVisible(true);

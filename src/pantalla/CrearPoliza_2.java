@@ -14,6 +14,7 @@ import java.awt.Insets;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -360,19 +361,24 @@ public class CrearPoliza_2 extends JFrame {
 		panel_2.setLayout(gbl_panel_2);
 		
 		JButton Boton_Cancelar = new JButton("Cancelar");
-		Boton_Cancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
-				
-				try {
-					FuturaPantalla.setVisible(true);
-				} catch(Exception er) {
-					er.printStackTrace();
-				}
-				CrearPoliza_2.this.setVisible(false);
-				CrearPoliza_2.this.dispose();
-			}
-		});
+			Boton_Cancelar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+			             int result = JOptionPane.showConfirmDialog(null,"¿Desea cancelar la creación póliza?", "Cancelar",
+			                JOptionPane.YES_NO_OPTION,
+			                JOptionPane.WARNING_MESSAGE);
+			             if(result == JOptionPane.YES_OPTION){
+			 				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
+							
+							try {
+								FuturaPantalla.setVisible(true);
+							} catch(Exception er) {
+								er.printStackTrace();
+							}
+							CrearPoliza_2.this.setVisible(false);
+							CrearPoliza_2.this.dispose();
+						}
+			}});
 		Boton_Cancelar.setBackground(SystemColor.controlHighlight);
 		Boton_Cancelar.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagConstraints gbc_Boton_Cancelar = new GridBagConstraints();

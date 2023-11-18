@@ -447,17 +447,22 @@ public class CrearPoliza_Semestral extends JFrame {
 		Boton_Cancelar.setBackground(SystemColor.controlHighlight);
 		Boton_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
-				
-				try {
-					FuturaPantalla.setVisible(true);
-				} catch(Exception er) {
-					er.printStackTrace();
-				}
-				CrearPoliza_Semestral.this.setVisible(false);
-				CrearPoliza_Semestral.this.dispose();
-			}
-		});
+
+		             int result = JOptionPane.showConfirmDialog(null,"¿Desea cancelar la creación póliza?", "Cancelar",
+		                JOptionPane.YES_NO_OPTION,
+		                JOptionPane.WARNING_MESSAGE);
+		             if(result == JOptionPane.YES_OPTION){
+		 				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
+						
+						try {
+							FuturaPantalla.setVisible(true);
+						} catch(Exception er) {
+							er.printStackTrace();
+						}
+						CrearPoliza_Semestral.this.setVisible(false);
+						CrearPoliza_Semestral.this.dispose();
+					}
+		}});
 		Boton_Cancelar.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagConstraints gbc_Boton_Cancelar = new GridBagConstraints();
 		gbc_Boton_Cancelar.anchor = GridBagConstraints.WEST;
@@ -469,7 +474,7 @@ public class CrearPoliza_Semestral extends JFrame {
 		Boton_Continuar.setBackground(SystemColor.controlHighlight);
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null,"La póliza fue generada correctamente");
+				JOptionPane.showMessageDialog(null,"La póliza fue generada correctamente","Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
 				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
 				
 				try {
