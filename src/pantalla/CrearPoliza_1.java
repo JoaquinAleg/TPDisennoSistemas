@@ -137,6 +137,9 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
 		
+		//PROVINCIA--RIESGO/////////////////////////////////////////////////////////////////
+		//GestorPoliza.getInstance().getProvinciasDeRiesgo()
+		
 		JComboBox ProvinciaRiesgo = new JComboBox();
 		ProvinciaRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
 		ProvinciaRiesgo.setToolTipText("");

@@ -237,6 +237,7 @@ public class GestorPoliza {
     		System.out.println(e.getMessage());
     	}
     }
+    
     private void validarHijo(HijosDTO h){
     	try{
     		if(!(h.getFechaNacimiento() instanceof Date)){
@@ -252,14 +253,17 @@ public class GestorPoliza {
     		System.out.println(e.getMessage());
     	}
     }
+    
     private Double calcularPago(Double sumaAsegurada, Double prima, Double descuentos) {
     	Double pago;
     	return pago;
     }
+    
     private Double calcularMora(Double pago) {
     	Double mora;
     	return mora;
     }
+    
     private List<Poliza> filtrarVigentes(List<Poliza> polizas) {
     	return polizas;
     }
