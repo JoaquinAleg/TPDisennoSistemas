@@ -45,6 +45,11 @@ public class Poliza {
 	@JoinColumn(name = "idLocalidad", nullable = false, referencedColumnName = "idLocalidad", 
 	foreignKey=@ForeignKey(name = "fk_LocalidadPoliza", value = ConstraintMode.CONSTRAINT))
 	private Localidad localidad;
+	
+	@ManyToOne
+	@JoinColumn(name = "idTipoDocumento", nullable = false, referencedColumnName = "idTipoDocumento", 
+	foreignKey=@ForeignKey(name = "fk_tipoDocumentoPoliza", value = ConstraintMode.CONSTRAINT))
+	private TipoDocumento tipoDocumento;
 	@Column
 	private float sumaAsegurada;
 	@Column
@@ -96,11 +101,11 @@ public class Poliza {
 
 	public Poliza(long numeroPoliza, Modelo modelo, AjusteHijo ajusteHijo, AjusteKilometro ajusteKilometro,
 			AjusteSiniestro idAjusteSiniestro, AnioFabricacion anioFabricacion, AjusteDescuento ajusteDescuento,
-			AjusteEmision ajusteEmision, Modificacion modificacion, Localidad localidad, float sumaAsegurada,
-			int kilometrosRealizadosAnio, int cantSiniestrosUA, Date fechaDeInicio, Date fechaDeFin, float premio,
-			float prima, float descuentos, Date ultimoDiaPago, float montoTotalAbonar, String chasis, String patente,
-			String estadoPoliza, String motor, String nombreCliente, String dniCliente, Date fechaCreacion,
-			TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida) {
+			AjusteEmision ajusteEmision, Modificacion modificacion, Localidad localidad, TipoDocumento tipoDocumento,
+			float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA, Date fechaDeInicio,
+			Date fechaDeFin, float premio, float prima, float descuentos, Date ultimoDiaPago, float montoTotalAbonar,
+			String chasis, String patente, String estadoPoliza, String motor, String nombreCliente, String dniCliente,
+			Date fechaCreacion, TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida) {
 		super();
 		this.numeroPoliza = numeroPoliza;
 		this.modelo = modelo;
@@ -112,6 +117,7 @@ public class Poliza {
 		this.ajusteEmision = ajusteEmision;
 		this.modificacion = modificacion;
 		this.localidad = localidad;
+		this.tipoDocumento = tipoDocumento;
 		this.sumaAsegurada = sumaAsegurada;
 		this.kilometrosRealizadosAnio = kilometrosRealizadosAnio;
 		this.cantSiniestrosUA = cantSiniestrosUA;
@@ -212,6 +218,14 @@ public class Poliza {
 
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
+	}
+
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
 	public float getSumaAsegurada() {
@@ -375,7 +389,5 @@ public class Poliza {
 	}
 
 	
-
-
 
 }
