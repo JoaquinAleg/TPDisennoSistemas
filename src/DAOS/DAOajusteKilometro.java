@@ -2,39 +2,43 @@ package DAOS;
 
 import java.util.List;
 
+import POJOS.AjusteHijo;
 import POJOS.AjusteKilometro;
 import interfaces.ajusteKilometroDAO;
+import jakarta.persistence.EntityManager;
 
 public class DAOajusteKilometro implements ajusteKilometroDAO{
 
 	@Override
 	public AjusteKilometro getAjusteKilometro(long idAjusteKilometro) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager manager = HibernateUtil.getEntityManager();
+		AjusteKilometro ajusteKilometro = manager.getReference(AjusteKilometro.class, idAjusteKilometro);
+		return ajusteKilometro;
 	}
 
 	@Override
 	public void createAjusteKilometro(AjusteKilometro ajusteKilometro) {
-		// TODO Auto-generated method stub
-		
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.persist(ajusteKilometro);
 	}
 
 	@Override
 	public void deleteAjusteKilometro(AjusteKilometro ajusteKilometro) {
-		// TODO Auto-generated method stub
-		
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.remove(ajusteKilometro);
 	}
 
 	@Override
 	public void updateAjusteKilometro(AjusteKilometro ajusteKilometro) {
-		// TODO Auto-generated method stub
-		
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.merge(ajusteKilometro);
 	}
 
 	@Override
 	public List<AjusteKilometro> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager manager = HibernateUtil.getEntityManager();
+		List<AjusteKilometro> all = manager.createQuery("From AjustePorKilometro").getResultList();
+		return all;
 	}
 
 }

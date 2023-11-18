@@ -4,37 +4,42 @@ import java.util.List;
 
 import POJOS.AjusteDescuento;
 import interfaces.ajusteDescuentoDAO;
+import jakarta.persistence.EntityManager;
 
 public class DAOajusteDescuento implements ajusteDescuentoDAO {
 
 	@Override
 	public AjusteDescuento getAjusteDescuento(long idAjusteDescuento) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager manager = HibernateUtil.getEntityManager();
+		AjusteDescuento ajusteDescuento = manager.getReference(AjusteDescuento.class,idAjusteDescuento);
+		return ajusteDescuento;
 	}
 
 	@Override
 	public void createAjusteDescuento(AjusteDescuento ajusteDescuento) {
-		// TODO Auto-generated method stub
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.persist(ajusteDescuento);
 		
 	}
 
 	@Override
 	public void deleteAjusteDescuento(AjusteDescuento ajusteDescuento) {
-		// TODO Auto-generated method stub
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.remove(ajusteDescuento);
 		
 	}
 
 	@Override
 	public void updateAjusteDescuento(AjusteDescuento ajusteDescuento) {
-		// TODO Auto-generated method stub
-		
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.merge(ajusteDescuento);
 	}
 
 	@Override
 	public List<AjusteDescuento> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager manager = HibernateUtil.getEntityManager();
+		List<AjusteDescuento> all = manager.createQuery("From AjustePorDescuentoUnidadAd").getResultList();
+		return all;
 	}
 
 }

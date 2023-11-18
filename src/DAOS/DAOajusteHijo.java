@@ -2,39 +2,44 @@ package DAOS;
 
 import java.util.List;
 
+import POJOS.AjusteEmision;
 import POJOS.AjusteHijo;
 import interfaces.ajustePorHijoDAO;
+import jakarta.persistence.EntityManager;
 
 public class DAOajusteHijo implements ajustePorHijoDAO {
 
 	@Override
 	public AjusteHijo getAjusteHijo(long idAjusteHijo) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager manager = HibernateUtil.getEntityManager();
+		AjusteHijo ajusteHijo = manager.getReference(AjusteHijo.class, idAjusteHijo);
+		return ajusteHijo;
 	}
 
 	@Override
 	public void createAjusteHijo(AjusteHijo ajusteHijo) {
-		// TODO Auto-generated method stub
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.persist(ajusteHijo);
 		
 	}
 
 	@Override
 	public void deleteAjusteHijo(AjusteHijo ajusteHijo) {
-		// TODO Auto-generated method stub
-		
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.remove(ajusteHijo);
 	}
 
 	@Override
 	public void updateAjusteHijo(AjusteHijo ajusteHijo) {
-		// TODO Auto-generated method stub
-		
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.merge(ajusteHijo);
 	}
 
 	@Override
 	public List<AjusteHijo> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager manager = HibernateUtil.getEntityManager();
+		List<AjusteHijo> all = manager.createQuery("From AjustePorHijo").getResultList();
+		return all;
 	}
 
 }

@@ -2,39 +2,46 @@ package DAOS;
 
 import java.util.List;
 
+import POJOS.Cobertura;
 import POJOS.Cuota;
 import interfaces.cuotaDAO;
+import jakarta.persistence.EntityManager;
 
 public class DAOcuota implements cuotaDAO{
 
 	@Override
 	public Cuota getCuota(long idCuota) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager manager = HibernateUtil.getEntityManager();
+		Cuota cuota = manager.getReference(Cuota.class, idCuota);
+		return cuota;
 	}
 
 	@Override
 	public void createCuota(Cuota cuota) {
-		// TODO Auto-generated method stub
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.persist(cuota);
 		
 	}
 
 	@Override
 	public void deleteCuota(Cuota cuota) {
-		// TODO Auto-generated method stub
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.remove(cuota);
 		
 	}
 
 	@Override
 	public void updateCuota(Cuota cuota) {
-		// TODO Auto-generated method stub
+		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.merge(cuota);
 		
 	}
 
 	@Override
 	public List<Cuota> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager manager = HibernateUtil.getEntityManager();
+		List<Cuota> all = manager.createQuery("From Cuota").getResultList();
+		return all;
 	}
 
 }
