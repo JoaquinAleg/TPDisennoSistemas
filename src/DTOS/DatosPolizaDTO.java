@@ -216,5 +216,9 @@ public class DatosPolizaDTO {
 	public void setIdCobertura(Long idCobertura) {
 		this.idCobertura = idCobertura;
 	}
+	public String getListaMedidaSeguridad() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

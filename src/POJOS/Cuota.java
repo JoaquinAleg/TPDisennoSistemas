@@ -32,7 +32,7 @@ public class Cuota {
 	
 	public Cuota() {}
 
-	public Cuota(Poliza poliza, Date fechaPago, Date fechaUltimaPago, int nroCuota, float montoCuota, float montoMora,
+	public Cuota(Poliza poliza, Date fechaPago, Date fechaUltimoPago, int nroCuota, float montoCuota, float montoMora,
 			float bonificaciones) {
 		super();
 		//this.idPago = idPago;
@@ -42,6 +42,17 @@ public class Cuota {
 		this.montoCuota = montoCuota;
 		this.montoMora = montoMora;
 		this.bonificaciones = bonificaciones;
+		this.fechaUltimoPago = fechaUltimoPago;
+	}
+	
+	public Cuota(Poliza poliza, Date fechaPago, Date fechaUltimoPago, int nroCuota, float montoCuota) {
+		super();
+		//this.idPago = idPago;
+		this.poliza = poliza;
+		this.fechaPago = fechaPago;
+		this.nroCuota = nroCuota;
+		this.montoCuota = montoCuota;
+		this.fechaUltimoPago = fechaUltimoPago;
 	}
 
 	public long getIdPago() {

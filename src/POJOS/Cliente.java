@@ -1,5 +1,6 @@
 package POJOS;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -82,6 +83,21 @@ public class Cliente {
 
 	public void setIdTipoCondicionIVA(long idTipoCondicionIVA) {
 		this.idTipoCondicionIVA = idTipoCondicionIVA;
+	}
+
+	public List<Poliza> getPolizas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setCondicionNomral() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<Cuota> getCuotasImpagas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

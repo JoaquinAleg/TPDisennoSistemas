@@ -47,13 +47,46 @@ import DAOS.DAOajusteEmision;
 
 public class GestorPoliza {
 	
-	static Empleado empleado;
+	private Empleado empleado;
+	private DAOlocalidad daoLocalidad;
+	private DAOmodelo daoModelo;
+	private DAOanioFabricacion daoAnioFabricacion;
+	private DAOtipoDocumento daoTipoDocumento;
+	private DAOcliente daoCliente;
+	private DAOtipoFormaPago daoTipoFormaPago;
+	private DAOtipoEstadoCivil daoTipoEstadoCivil;
+	private DAOtipoSexo daoTipoSexo;
+	private DAOmedidaSeguridad daoMedidaSeguridad;
+	private DAOcobertura daoCobertura;
+	private DAOpoliza daoPoliza;
+	private DAOcuota daoCuota;
+	private DAOajusteHijo daoAjusteHijo;
+	private DAOajusteSiniestro daoAjusteSiniestro;
+	private DAOajusteKilometro daoAjusteKilometro;
+	private DAOajusteDescuento daoDescuento;
+
 	// Instancia única del gestor
     private static GestorPoliza instancia = null;
 
     // Constructor privado para evitar la creación de instancias desde fuera de la clase
     private GestorPoliza(Empleado empleado) {
-        GestorPoliza.empleado=empleado;
+        this.empleado = empleado;
+    	this.daoLocalidad = new DAOlocalidad();
+    	this.daoModelo = new DAOmodelo();
+    	this.daoAnioFabricacion = new DAOanioFabricacion();
+    	this.daoTipoDocumento = new DAOtipoDocumento();
+    	this.daoCliente = new DAOcliente();
+    	this.daoTipoFormaPago = new DAOtipoFormaPago();
+    	this.daoTipoEstadoCivil = new DAOtipoEstadoCivil();
+    	this.daoTipoSexo = new DAOtipoSexo();
+    	this.daoMedidaSeguridad = new DAOmedidaSeguridad();
+    	this.daoCobertura = new DAOcobertura();
+    	this.daoPoliza = new DAOpoliza();
+    	this.daoCuota = new DAOcuota();
+    	this.daoAjusteHijo = new DAOajusteHijo();
+    	this.daoAjusteSiniestro = new DAOajusteSiniestro();
+    	this.daoAjusteKilometro = new DAOajusteKilometro();
+    	this.daoDescuento = new DAOajusteDescuento();
     }
 
     // Método para obtener la instancia única del gestor
@@ -65,11 +98,13 @@ public class GestorPoliza {
     }
 
     public void darAltaPoliza(DatosPolizaDTO datosPolizaDTO) {
-        validarDatos(datosPolizaDTO);
+    	DAOlocalidad daoLocalidad;
+    	validarDatos(datosPolizaDTO);
+		
         Poliza poliza = new Poliza();
         Localidad localidad;
 		try {
-			localidad = DAOlocalidad.getLocalidad(datosPolizaDTO.getIdLocalidadRiesgo());
+			localidad = daoLocalidad.getLocalidad(datosPolizaDTO.getIdLocalidadRiesgo());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,9 +119,9 @@ public class GestorPoliza {
         poliza.setCliente(cliente);
         //PROBLEMA CON DNI EN EL DIAGRAMA, NO SE ASOCIA EL TIPO DE DNI DEL CLIENTE CON LA POLIZA, SOLAMNETE EL NUMERO
         TipoDocumento tipoDNI = DAOtipoDocumento.getTipoDocumento(datosPolizaDTO.getTipoDNI());
-        poliza.setDatosCliente(datosPolizaDTO.getNumeroCliente(), datosPolizaDTO.getNombre(), datosPolizaDTO.getApellido(), datosPolizaDTO.getIdTipoDocumento(), poliza.getNumeroDocumento());
+        poliza.setDatosCliente(datosPolizaDTO.getNumeroCliente(), datosPolizaDTO.getNombre(), datosPolizaDTO.getApellido(), tipoDNI, poliza.getNumeroDocumento());
         TipoFormaPago tipoFormaPago = DAOtipoFormaPago.getTipoFormaPago(datosPolizaDTO.getIdFormaPago());
-        poliza.setTipoFormaPago(tipoFormaPago);
+        poliza.setFormaPago(tipoFormaPago);
         poliza.setDatosPoliza(datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago());
         for(HijosDTO e : datosPolizaDTO.getHijos()) {
         	Hijo hijo = new Hijo();
@@ -96,61 +131,51 @@ public class GestorPoliza {
         	hijo.setTipoSexo(tipoSexo);
         	poliza.setHijo(hijo);
         }
-        //PROBLEMA EN DIAGRAMA DE SECUENCIA, mando como parametro un true al DAO XD
-        if(datosPolizaDTO.getGuardadoEnGaraje == true) {
-        	poliza.setMedidaSeguridad(DAOmedidaSeguridad.getMedidaSeguridad("GuardadoEnGarage"));
-        }
-        if(datosPolizaDTO.getTuercasAntiRobos == true) {
-        	poliza.setMedidaSeguridad(DAOmedidaSeguridad.getMedidaSeguridad("TuercasAntiRobos"));
-        }
-        if(datosPolizaDTO.getAlarma == true) {
-        	poliza.setMedidaSeguridad(DAOmedidaSeguridad.getMedidaSeguridad("Alarma"));
-        }
-        if(datosPolizaDTO.getDispositivoRastreo == true) {
-        	poliza.setMedidaSeguridad(DAOmedidaSeguridad.getMedidaSeguridad("DispositivoRastreo"));
+        
+        List<MedidaSeguridad> medidasSeguridad = DAOmedidaSeguridad.getAll();
+        for(MedidaSeguridad e : medidasSeguridad) {
+        	if(datosPolizaDTO.getListaMedidaSeguridad().contains(e.getIdMedida())) {
+            	poliza.setMedida(e);
+            }
+        
         }
         
-        poliza.setEstadoGenerado();
+        poliza.setEstadoPoliza("GENERADO");
         Cobertura cobertura = DAOcobertura.getCobertura(datosPolizaDTO.getIdCobertura());
         poliza.setCobertura(cobertura);
         
-        List<Poliza> polizasAsociadas = DAOpolizas.getPolizasAsociadas(datosPolizaDTO.getNumeroCliente());
-        //ERROR EN DIAGRAMA DE CLASES, FALTA LA CONDICION DEL CLIENTE
-        //ERROR EN EL DIAGRAMA DE SECUENCIA, SE SETEA LAS CONDICIONES AL GESTOR DE CLIENTE Y DENTRO DE LA POLIZA
+        List<Poliza> polizasAsociadas = cliente.getPolizas();
         if(polizasAsociadas == null) {
-        	GestorPoliza.setCondicionNomralCliente(cliente);
+        	cliente.setCondicionNomral();
         }
         else {
         	List<Poliza> polizasVigentes = filtrarVigentes(polizasAsociadas);
         	if(polizasVigentes == null) {
-        		GestorPoliza.setCondicionNormalCliente(cliente);
+        		cliente.setCondicionNomral();
         	}
         }
-        //ERROR EN EL DIAGRAMA DE SECUENCIAS CON ESTA PARTE
-        List<Cuota> cuotasImpagas = DAOcuota.getCuotasImpagas(datosPolizaDTO.getNumeroCliente());
+        
+        List<Cuota> cuotasImpagas = cliente.getCuotasImpagas();
         if(cuotasImpagas != null || datosPolizaDTO.getSiniestrosUltimoA() > 0) {
-        	GestorPoliza.setCondicionNormalCliente(cliente);
+        	cliente.setCondicionNomral();
         }
         else {
-        	TipoEstadoCliente tipoEstadoCliente = DAOtipoEstadoCliente.getTipoEstadoCliente(cliente.getIdTipoEstadoCliente());
+        	TipoEstadoCliente tipoEstadoCliente = cliente.getTipoEstadoCliente();
         	if(tipoEstadoCliente.getDescripcion() == "ACTIVO") {
-        		GestorPoliza.setCondicionPlataCliente(cliente);
+        		cliente.setCondicionNomral();
         	}
         }
-        //ERROR EN EMISION DE POLIZA, ESTA ENVIANDO EL MENSAJE AL GESTOR DE CLIENTES
-        //ERROR CON LAS CUOTAS, LAS MISMAS DEBEN DE CREARSE CON MONTO-CUOTA, MONTO-MORA Y BONIFICACIONES, ASI COMO TAMBIEN DEBEN DE RECIBIR LOS VALORES DE
-        //PREMIOS Y DESCUENTOS DESDE LA INTERFACE YA CALCULADOS COMO EL PROFE LO DIJO, POR LO TANTO EN EL datosPolizaDTO TIENEN QUE VENIR HARDCODEADOS
-        Float pago = calcularPago(datosPolizaDTO.getSumaAsegurada(), datosPolizaDTO.getPrima(), datosPoliza.getDescuentos());
-        Float mora = calcularMora(pago);
+        
+        Float pago = datosPolizaDTO.getPrima();
         if(tipoFormaPago.getDescripcion() == "SEMESTRAL") {
         	//CUIDADO, EN LA BASE DE DATOS FALTA LA FECHA DE ULTIMO DIA DE PAGO
-        	Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), 1, pago, mora, datosPolizaDTO.getDescuentos());
+        	Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), 1, pago);
         	poliza.setCuota(cuota);
         }
         if(tipoFormaPago.getDescripcion() == "MENSUAL") {
         	//CUIDADO, EN LA BASE DE DATOS FALTA LA FECHA DE ULTIMO DIA DE PAGO
         	for(int a=0; a < 6; a++) {
-        		Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), 1, pago/6, mora, datosPolizaDTO.getDescuentos());
+        		Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), a, pago/6);
         		poliza.setCuota(cuota);
         	}
         }

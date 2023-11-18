@@ -374,6 +374,11 @@ public class Poliza {
 		Medida = medida;
 	}
 
+	public void setCuota(Cuota cuota) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 
