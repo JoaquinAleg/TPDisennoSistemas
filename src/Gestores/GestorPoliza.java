@@ -3,7 +3,9 @@ package Gestores;
 import CustomException.VerificationException;
 import POJOS.Empleado;
 import POJOS.Poliza;
+import POJOS.Provincia;
 import POJOS.Localidad;
+import POJOS.Marca;
 import POJOS.Modelo;
 import POJOS.AnioFabricacion;
 import POJOS.TipoDocumento;
@@ -22,8 +24,11 @@ import POJOS.AjusteDescuento;
 import POJOS.AjusteEmision;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
+import DTOS.ListadoDTO;
 import DAOS.DAOlocalidad;
+import DAOS.DAOprovincia;
 import DAOS.DAOmodelo;
+import DAOS.DAOmarca;
 import DAOS.DAOanioFabricacion;
 import DAOS.DAOtipoDocumento;
 import DAOS.DAOcliente;
@@ -47,9 +52,11 @@ import DAOS.DAOajusteEmision;
 
 public class GestorPoliza {
 	
-	private Empleado empleado;
+	//private Empleado empleado;
 	private DAOlocalidad daoLocalidad;
+	private DAOprovincia daoProvincia;
 	private DAOmodelo daoModelo;
+	private DAOMarca daoMarca;
 	private DAOanioFabricacion daoAnioFabricacion;
 	private DAOtipoDocumento daoTipoDocumento;
 	private DAOcliente daoCliente;
@@ -70,10 +77,12 @@ public class GestorPoliza {
     private static GestorPoliza instancia = null;
 
     
-    private GestorPoliza(Empleado empleado) {
-        this.empleado = empleado;
+    private GestorPoliza() {
+        //this.empleado = empleado;
     	this.daoLocalidad = new DAOlocalidad();
+    	this.daoProvincia = new DAOprovincia();
     	this.daoModelo = new DAOmodelo();
+    	this.daoMarca = new DAOmarca();
     	this.daoAnioFabricacion = new DAOanioFabricacion();
     	this.daoTipoDocumento = new DAOtipoDocumento();
     	this.daoCliente = new DAOcliente();
@@ -92,9 +101,9 @@ public class GestorPoliza {
     }
 
     
-    public static GestorPoliza obtenerInstancia(Empleado empleado) {
+    public static GestorPoliza getInstance() {
         if (instancia == null) {
-            instancia = new GestorPoliza(empleado);
+            instancia = new GestorPoliza();
         }
         return instancia;
     }
@@ -288,4 +297,46 @@ public class GestorPoliza {
     private List<Poliza> filtrarVigentes(List<Poliza> polizas) {
     	return polizas;
     }
+
+
+	public List<ListadoDTO> getProvincias() {
+		List<Provincia> provincias = daoProvincia.getProvincias();
+		List<ListadoDTO> provinciasDTO;
+		for(Provincia e : provincias) {
+			ListadoDTO provinciaDTO = new ListadoDTO(e.getNombreProvincia(), e.getIdProvincia());
+			provinciasDTO.add(provinciaDTO);
+		}
+		return provinciasDTO;
+	}
+	
+	public List<ListadoDTO> getLocalidad() {
+		List<Localidad> localidades = daoLocalidad.getLocalidades();
+		List<ListadoDTO> localidadesDTO;
+		for(Localidad e : localidades) {
+			ListadoDTO localidadDTO = new ListadoDTO(e.getNombreLocalidad(), e.getIdLocalidad());
+			localidadesDTO.add(localidadDTO);
+		}
+		return localidadesDTO;
+	}
+	
+	public List<ListadoDTO> getMarca() {
+		List<Marca> marcas = daoMarca.getMarcas();
+		List<ListadoDTO> marcasDTO;
+		for(Marca e : marcas) {
+			ListadoDTO marcaDTO = new ListadoDTO(e.getNombreMarca(), e.getIdMarca());
+			marcasDTO.add(marcaDTO);
+		}
+		return marcasDTO;
+	}
+	
+	public List<ListadoDTO> getModelo() {
+		List<Modelo> modelos = daoModelo.getModelos();
+		List<ListadoDTO> modelosDTO;
+		for(Modelo e : modelos) {
+			ListadoDTO modeloDTO = new ListadoDTO(e.getNombreModelo(), e.getIdModelo());
+			modelosDTO.add(modeloDTO);
+		}
+		return modelosDTO;
+	}
 }
+

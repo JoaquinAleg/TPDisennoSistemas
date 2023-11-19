@@ -11,7 +11,7 @@ public class GestorCliente {
     private GestorCliente() {
     }
 
-    public static GestorCliente obtenerInstancia(Empleado empleado) {
+    public static GestorCliente getInstance() {
         if (instancia == null) {
             instancia = new GestorCliente();
         }

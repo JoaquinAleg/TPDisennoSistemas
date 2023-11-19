@@ -11,6 +11,13 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.LineBorder;
+
+import DTOS.ProvinciaDTO;
+import Gestores.GestorCliente;
+import Gestores.GestorPoliza;
+import POJOS.Empleado;
+import POJOS.Provincia;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -20,11 +27,16 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 
 public class CrearPoliza_1 extends JFrame {
-
+	
+	private GestorPoliza gestorPoliza;
+	private GestorCliente gestorCliente;
+	//private Empleado empleado;
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
@@ -40,7 +52,9 @@ public class CrearPoliza_1 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CrearPoliza_1 frame = new CrearPoliza_1();
+					//GestorPoliza gestorPoliza = GestorPoliza.getInstance();
+					//GestorCliente gestorCliente = GestorCliente.getInstance();
+					CrearPoliza_1 frame = new CrearPoliza_1(/*gestorPoliza, gestorCliente*/);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +66,12 @@ public class CrearPoliza_1 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_1() {
+	public CrearPoliza_1(/*GestorPoliza gestorP, GestorCliente gestorC*/) {
+		
+		//this.gestorPoliza = gestorP;
+		//this.gestorCliente = gestorC;
+		//this.empleado = empleado;
+		
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -137,10 +156,30 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
 		
-		//PROVINCIA--RIESGO/////////////////////////////////////////////////////////////////
-		//GestorPoliza.getInstance().getProvinciasDeRiesgo()
+		/*Explicion del metodo de funcionamiento
+		 * ListadoDTO es la clase que usaremos para listar los datos necesarios
+		 * esta clase guarda 2 cosas:
+		 * 	-	El nombre de lo que guardamos, por ejemplo si guardamos provincias, va a guardar los nombres de
+		 * 		las provincias
+		 * 	-	El id de lo que guardamos,en nuestro ejemplo el id de las provincias, que serviran para el DatosPolizaDTO
+		 * 
+		 * ahora bien en la linea:
+		 * 	List<ListadoDTO> provinciaDTO = this.gestorPoliza.getProvincias();
+		 * lo que hacemos es generar un listado invocando al metodo dentro del GestroPoliza, que traiga lo que queremos
+		 * en este caso un listado del tipo Listado de provincias.
+		 * 
+		 * Luego en la linea:
+		 * 	String[] provincias = (String[]) provinciasDTO.stream().map(p -> p.getNombre()).toArray();
+		 * creamos solamente un listado string para mostrar en el JComboBox
+		 * 
+		 * 
+		 */
 		
-		JComboBox ProvinciaRiesgo = new JComboBox();
+		//PROVINCIA--RIESGO/////////////////////////////////////////////////////////////////
+		//List<ListadoDTO> provinciaDTO = this.gestorPoliza.getProvincias();
+		//String[] provincias = (String[]) provinciasDTO.stream().map(p -> p.getNombre()).toArray();
+		String[] provincias = {"Santa Fe", "Cordoba", "Mendoza"};		
+		JComboBox<String> ProvinciaRiesgo = new JComboBox<>(provincias);
 		ProvinciaRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
 		ProvinciaRiesgo.setToolTipText("");
 		ProvinciaRiesgo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -161,7 +200,11 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JComboBox LocalidadRiesgo = new JComboBox();
+		//LOCALIDAD--RIESGO/////////////////////////////////////////////////////////////////
+		//List<ListadoDTO> localidadDTO = this.gestorPoliza.getLocalidades();
+		//String[] localidades = (String[]) localidadDTO.stream().map(p -> p.getNombre()).toArray();
+		String[] localidades = {"Santa Fe", "Esperanza", "Santo Tome", "Rafaela"};	
+		JComboBox<String> LocalidadRiesgo = new JComboBox<>(localidades);
 		LocalidadRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
 		LocalidadRiesgo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_LocalidadRiesgo = new GridBagConstraints();
@@ -181,7 +224,11 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_lblMarcaDelVehculo.gridy = 1;
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
-		JComboBox MarcaVehiculo = new JComboBox();
+		//MARCA///////////////////////////////////////////////////////////////////////////
+		//List<ListadoDTO> marcaDTO = this.gestorPoliza.getMarcas();
+		//String[] marcas = (String[]) marcaDTO.stream().map(p -> p.getNombre()).toArray();
+		String[] marcas = {"Renaul", "Fiat", "Ford", "Chevrolet"};	
+		JComboBox<String> MarcaVehiculo = new JComboBox<>(marcas);
 		MarcaVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
 		MarcaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_MarcaVehiculo = new GridBagConstraints();
@@ -201,7 +248,11 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_lblNewLabel_1_1.gridy = 1;
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
-		JComboBox modeloVehiculo = new JComboBox();
+		//MODELO///////////////////////////////////////////////////////////////////////////
+		//List<ListadoDTO> modeloDTO = this.gestorPoliza.getModelos();
+		//String[] modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
+		String[] modelos = {"Senic", "Megane", "Alaskan", "Fluence"};	
+		JComboBo<String> modeloVehiculo = new JComboBox<>(modelos);
 		modeloVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
 		modeloVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_modeloVehiculo = new GridBagConstraints();
