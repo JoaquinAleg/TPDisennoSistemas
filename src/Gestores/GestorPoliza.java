@@ -66,10 +66,10 @@ public class GestorPoliza {
 	private DAOajusteEmision daoAjusteEmision;
 	private DAOajusteDescuento daoAjusteDescuento;
 
-	// Instancia única del gestor
+	
     private static GestorPoliza instancia = null;
 
-    // Constructor privado para evitar la creación de instancias desde fuera de la clase
+    
     private GestorPoliza(Empleado empleado) {
         this.empleado = empleado;
     	this.daoLocalidad = new DAOlocalidad();
@@ -87,11 +87,11 @@ public class GestorPoliza {
     	this.daoAjusteHijo = new DAOajusteHijo();
     	this.daoAjusteSiniestro = new DAOajusteSiniestro();
     	this.daoAjusteKilometro = new DAOajusteKilometro();
-    	this.daoAjusteEmision= new DAOajusteKilometro();
+    	this.daoAjusteEmision= new DAOajusteEmision();
     	this.daoAjusteDescuento = new DAOajusteDescuento();
     }
 
-    // Método para obtener la instancia única del gestor
+    
     public static GestorPoliza obtenerInstancia(Empleado empleado) {
         if (instancia == null) {
             instancia = new GestorPoliza(empleado);
@@ -165,12 +165,12 @@ public class GestorPoliza {
         
         Float pago = datosPolizaDTO.getPrima();
         if(tipoFormaPago.getDescripcion() == "SEMESTRAL") {
-        	//CUIDADO, EN LA BASE DE DATOS FALTA LA FECHA DE ULTIMO DIA DE PAGO
+        	
         	Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), 1, pago);
         	poliza.setCuota(cuota);
         }
         if(tipoFormaPago.getDescripcion() == "MENSUAL") {
-        	//CUIDADO, EN LA BASE DE DATOS FALTA LA FECHA DE ULTIMO DIA DE PAGO
+        	
         	for(int a=0; a < 6; a++) {
         		Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), a, pago/6);
         		poliza.setCuota(cuota);
@@ -248,10 +248,10 @@ public class GestorPoliza {
     		if(!(dp.isDispositivoRastreo() instanceof Boolean)){
     			throw new VerificationException("DispositivoRastreoCliente invalido");
     		}
-    		if(!(dp.getComienzoVigencia() instanceof String)){
+    		if(!(dp.getComienzoVigencia() instanceof Date)){
     			throw new VerificationException("ComienzoVigenciaCliente invalido");
     		}
-    		if(!(dp.getUltimoDiaPago() instanceof String)){
+    		if(!(dp.getUltimoDiaPago() instanceof Date)){
     			throw new VerificationException("UltimoDiaPagoCliente invalido");
     		}
     		if(!(dp.getIdFormaPago() instanceof Long)){
