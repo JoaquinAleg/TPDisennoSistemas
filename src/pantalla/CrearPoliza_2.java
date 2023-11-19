@@ -325,7 +325,7 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_estadoCivil.gridy = 2;
 		panel_1_1.add(estadoCivil, gbc_estadoCivil);
 		
-		JButton anadirHijo = new JButton("Añadir hijo");
+		JButton anadirHijo = new JButton("Añadir hijo");//Cambiar los carteles
 		anadirHijo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()) < 6570) {
