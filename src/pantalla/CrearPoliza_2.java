@@ -14,6 +14,7 @@ import java.awt.Insets;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -22,6 +23,12 @@ import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.YearMonth;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.Calendar;
 
 import com.toedter.calendar.JCalendar;
@@ -321,9 +328,11 @@ public class CrearPoliza_2 extends JFrame {
 		JButton anadirHijo = new JButton("Añadir hijo");
 		anadirHijo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+					if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()) < 6570) {
+						JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
+					}else {
 					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
 							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex());
-					
 					try {
 						CPoliza.setVisible(true);
 					} catch(Exception er) {
@@ -332,6 +341,8 @@ public class CrearPoliza_2 extends JFrame {
 					CrearPoliza_2.this.setVisible(false);
 					CrearPoliza_2.this.dispose();
 			}
+			}
+			
 		});
 		anadirHijo.setBackground(SystemColor.controlHighlight);
 		anadirHijo.setFont(new Font("Tahoma", Font.PLAIN, 35));
@@ -384,8 +395,7 @@ public class CrearPoliza_2 extends JFrame {
 		
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-							
+			public void actionPerformed(ActionEvent e) {	
 					CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral();
 					
 					try {
