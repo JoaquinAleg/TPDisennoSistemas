@@ -63,7 +63,8 @@ public class GestorPoliza {
 	private DAOajusteHijo daoAjusteHijo;
 	private DAOajusteSiniestro daoAjusteSiniestro;
 	private DAOajusteKilometro daoAjusteKilometro;
-	private DAOajusteDescuento daoDescuento;
+	private DAOajusteEmision daoAjusteEmision;
+	private DAOajusteDescuento daoAjusteDescuento;
 
 	// Instancia única del gestor
     private static GestorPoliza instancia = null;
@@ -86,7 +87,8 @@ public class GestorPoliza {
     	this.daoAjusteHijo = new DAOajusteHijo();
     	this.daoAjusteSiniestro = new DAOajusteSiniestro();
     	this.daoAjusteKilometro = new DAOajusteKilometro();
-    	this.daoDescuento = new DAOajusteDescuento();
+    	this.daoAjusteEmision= new DAOajusteKilometro();
+    	this.daoAjusteDescuento = new DAOajusteDescuento();
     }
 
     // Método para obtener la instancia única del gestor
@@ -102,37 +104,32 @@ public class GestorPoliza {
     	validarDatos(datosPolizaDTO);
 		
         Poliza poliza = new Poliza();
-        Localidad localidad;
-		try {
-			localidad = daoLocalidad.getLocalidad(datosPolizaDTO.getIdLocalidadRiesgo());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        Localidad localidad = daoLocalidad.getLocalidad(datosPolizaDTO.getIdLocalidadRiesgo());
+		
         poliza.setLocalidad(localidad);
-        Modelo modelo = DAOmodelo.getModelo(datosPolizaDTO.getIdModeloVehiculo());
+        Modelo modelo = daoModelo.getModelo(datosPolizaDTO.getIdModeloVehiculo());
         poliza.setModelo(modelo);
-        AnioFabricacion anio = DAOanioFabricacion.getAnioFabricacion(datosPolizaDTO.getIdAnioVehiculo());
+        AnioFabricacion anio = daoAnioFabricacion.getAnioFabricacion(datosPolizaDTO.getIdAnioVehiculo());
         poliza.setAnioFabricacion(anio);
         poliza.setDatosVehiculo(datosPolizaDTO.getChasis(), datosPolizaDTO.getMotor(), datosPolizaDTO.getPatente(), datosPolizaDTO.getSumaAsegurada());
-        Cliente cliente = DAOcliente.getCliente(datosPolizaDTO.getNumeroCliente());
+        Cliente cliente = daoCliente.getCliente(datosPolizaDTO.getNumeroCliente());
         poliza.setCliente(cliente);
-        //PROBLEMA CON DNI EN EL DIAGRAMA, NO SE ASOCIA EL TIPO DE DNI DEL CLIENTE CON LA POLIZA, SOLAMNETE EL NUMERO
-        TipoDocumento tipoDNI = DAOtipoDocumento.getTipoDocumento(datosPolizaDTO.getTipoDNI());
+        
+        TipoDocumento tipoDNI = daoTipoDocumento.getTipoDocumento(datosPolizaDTO.getTipoDNI());
         poliza.setDatosCliente(datosPolizaDTO.getNumeroCliente(), datosPolizaDTO.getNombre(), datosPolizaDTO.getApellido(), tipoDNI, poliza.getNumeroDocumento());
-        TipoFormaPago tipoFormaPago = DAOtipoFormaPago.getTipoFormaPago(datosPolizaDTO.getIdFormaPago());
+        TipoFormaPago tipoFormaPago = daoTipoFormaPago.getTipoFormaPago(datosPolizaDTO.getIdFormaPago());
         poliza.setFormaPago(tipoFormaPago);
         poliza.setDatosPoliza(datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago());
         for(HijosDTO e : datosPolizaDTO.getHijos()) {
         	Hijo hijo = new Hijo();
-        	TipoEstadoCivil tipoEstadoCivil = DAOestadoCivil.getEstadoCivil(e.getEstadoCivil());
+        	TipoEstadoCivil tipoEstadoCivil = daoTipoEstadoCivil.getEstadoCivil(e.getEstadoCivil());
         	hijo.setEstadoCivil(tipoEstadoCivil);
         	TipoSexo tipoSexo = DAOtipoSexo.getTipoSexo(e.getSexo());
         	hijo.setTipoSexo(tipoSexo);
         	poliza.setHijo(hijo);
         }
         
-        List<MedidaSeguridad> medidasSeguridad = DAOmedidaSeguridad.getAll();
+        List<MedidaSeguridad> medidasSeguridad = daoMedidaSeguridad.getAll();
         for(MedidaSeguridad e : medidasSeguridad) {
         	if(datosPolizaDTO.getListaMedidaSeguridad().contains(e.getIdMedida())) {
             	poliza.setMedida(e);
@@ -141,7 +138,7 @@ public class GestorPoliza {
         }
         
         poliza.setEstadoPoliza("GENERADO");
-        Cobertura cobertura = DAOcobertura.getCobertura(datosPolizaDTO.getIdCobertura());
+        Cobertura cobertura = daoCobertura.getCobertura(datosPolizaDTO.getIdCobertura());
         poliza.setCobertura(cobertura);
         
         List<Poliza> polizasAsociadas = cliente.getPolizas();
@@ -180,16 +177,19 @@ public class GestorPoliza {
         	}
         }
         
-        AjusteHijo ajusteHijo = DAOajusteHijo.buscarAjusteHijo(datosPolizaDTO.getHijos().size());
+        AjusteHijo ajusteHijo = daoAjusteHijo.buscarAjusteHijo(datosPolizaDTO.getHijos().size());
         poliza.setAjusteHijo(ajusteHijo);
-        AjusteKilometro ajusteKilometro = DAOajusteKilometro.buscarAjusteKilometro(datosPolizaDTO.getKilometrosPorAnio();
+        
+        AjusteKilometro ajusteKilometro = daoAjusteKilometro.buscarAjusteKilometro(datosPolizaDTO.getKilometrosPorAnio());
         poliza.setAjusteHijo(ajusteKilometro);
-        AjusteUnidadAd ajusteUnidadAd = DAOajusteUnidadAd.buscarAjusteUnidadAd(polizasAsociadas.size());
+        
+        AjusteDescuento ajusteUnidadAd = daoAjusteDescuento.buscarAjusteUnidadAd(polizasAsociadas.size());
         poliza.setAjusteUnidadAd(ajusteUnidadAd);
-        AjusteEmision ajusteEmision = DAOajusteEmision.getAjusteEmision();
-        poliza.setAjusteEmision(ajusteEmision;
+        
+        AjusteEmision ajusteEmision = daoAjusteEmision.getAjusteEmision();
+        poliza.setAjusteEmision(ajusteEmision);
         DAOpoliza.setPoliza(poliza);
-    
+
     }
     
     private void validarDatos(DatosPolizaDTO dp){
@@ -283,16 +283,6 @@ public class GestorPoliza {
     	}catch(Exception e){
     		System.out.println(e.getMessage());
     	}
-    }
-    
-    private Double calcularPago(Double sumaAsegurada, Double prima, Double descuentos) {
-    	Double pago;
-    	return pago;
-    }
-    
-    private Double calcularMora(Double pago) {
-    	Double mora;
-    	return mora;
     }
     
     private List<Poliza> filtrarVigentes(List<Poliza> polizas) {
