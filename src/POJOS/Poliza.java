@@ -1,6 +1,5 @@
 package POJOS;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.time.ZoneId;
 
@@ -60,9 +59,9 @@ public class Poliza {
 	@Column
 	private int cantSiniestrosUA;
 	@Column
-	private Date fechaDeInicio;
+	private LocalDate fechaDeInicio;
 	@Column
-	private Date fechaDeFin;
+	private LocalDate fechaDeFin;
 	@Column
 	private float premio;
 	@Column
@@ -70,7 +69,7 @@ public class Poliza {
 	@Column
 	private float descuentos;
 	@Column
-	private Date ultimoDiaPago;
+	private LocalDate ultimoDiaPago;
 	@Column
 	private float montoTotalAbonar;
 	@Column
@@ -86,7 +85,7 @@ public class Poliza {
 	@Column
 	private String dniCliente;
 	@Column
-	private Date fechaCreacion;
+	private LocalDate fechaCreacion;
 	@OneToOne
 	@JoinColumn(name = "idFormaPago", nullable = false, referencedColumnName = "idFormaPago", 
 	foreignKey=@ForeignKey(name = "fk_TipoFormaPago", value = ConstraintMode.CONSTRAINT))
@@ -110,10 +109,10 @@ public class Poliza {
 	public Poliza(long numeroPoliza, Modelo modelo, AjusteHijo ajusteHijo, AjusteKilometro ajusteKilometro,
 			AjusteSiniestro idAjusteSiniestro, AnioFabricacion anioFabricacion, AjusteDescuento ajusteDescuento,
 			AjusteEmision ajusteEmision, Modificacion modificacion, Localidad localidad, TipoDocumento tipoDocumento,
-			float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA, Date fechaDeInicio,
-			Date fechaDeFin, float premio, float prima, float descuentos, Date ultimoDiaPago, float montoTotalAbonar,
+			float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA, LocalDate fechaDeInicio,
+			LocalDate fechaDeFin, float premio, float prima, float descuentos, LocalDate ultimoDiaPago, float montoTotalAbonar,
 			String chasis, String patente, String estadoPoliza, String motor, String nombreCliente, String dniCliente,
-			Date fechaCreacion, TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida,
+			LocalDate fechaCreacion, TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida,
 			List<Modificacion> modificaciones) {
 		super();
 		this.numeroPoliza = numeroPoliza;
@@ -273,19 +272,19 @@ public class Poliza {
 		this.cantSiniestrosUA = cantSiniestrosUA;
 	}
 
-	public Date getFechaDeInicio() {
+	public LocalDate getFechaDeInicio() {
 		return fechaDeInicio;
 	}
 
-	public void setFechaDeInicio(Date fechaDeInicio) {
+	public void setFechaDeInicio(LocalDate fechaDeInicio) {
 		this.fechaDeInicio = fechaDeInicio;
 	}
 
-	public Date getFechaDeFin() {
+	public LocalDate getFechaDeFin() {
 		return fechaDeFin;
 	}
 
-	public void setFechaDeFin(Date fechaDeFin) {
+	public void setFechaDeFin(LocalDate fechaDeFin) {
 		this.fechaDeFin = fechaDeFin;
 	}
 
@@ -313,11 +312,11 @@ public class Poliza {
 		this.descuentos = descuentos;
 	}
 
-	public Date getUltimoDiaPago() {
+	public LocalDate getUltimoDiaPago() {
 		return ultimoDiaPago;
 	}
 
-	public void setUltimoDiaPago(Date ultimoDiaPago) {
+	public void setUltimoDiaPago(LocalDate ultimoDiaPago) {
 		this.ultimoDiaPago = ultimoDiaPago;
 	}
 
@@ -377,11 +376,11 @@ public class Poliza {
 		this.dniCliente = dniCliente;
 	}
 
-	public Date getFechaCreacion() {
+	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public void setFechaCreacion(Date fechaCreacion) {
+	public void setFechaCreacion(LocalDate fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
@@ -419,9 +418,9 @@ public class Poliza {
 	}
 
 
-	public void setDatosPoliza(Date comienzoVigencia, Date ultimoDiaPago) {
+	public void setDatosPoliza(LocalDate comienzoVigencia, LocalDate ultimoDiaPago) {
 		LocalDate fechaActual = LocalDate.now();
-		this.fechaCreacion = java.util.Date.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		this.fechaCreacion = java.time.LocalDate.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		this.fechaDeInicio = comienzoVigencia;
 		this.ultimoDiaPago = ultimoDiaPago;
 	}

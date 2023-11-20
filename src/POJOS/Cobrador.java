@@ -1,5 +1,5 @@
 package POJOS;
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
@@ -21,13 +21,13 @@ public class Cobrador {
 	foreignKey=@ForeignKey(name = "fk_empleadoCobrador", value = ConstraintMode.CONSTRAINT))
 	private Empleado empleado;
 	@Column
-	private Date fechaInicio;
+	private LocalDate fechaInicio;
 	@Column
-	private Date fechaFin;
+	private LocalDate fechaFin;
 
 	public Cobrador() {}
 
-	public Cobrador(long idCobrador, Empleado empleado, Date fechaInicio, Date fechaFin) {
+	public Cobrador(long idCobrador, Empleado empleado, LocalDate fechaInicio, LocalDate fechaFin) {
 		super();
 		this.idCobrador = idCobrador;
 		this.empleado = empleado;
@@ -51,19 +51,19 @@ public class Cobrador {
 		this.empleado = empleado;
 	}
 
-	public Date getFechaInicio() {
+	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(Date fechaInicio) {
+	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public Date getFechaFin() {
+	public LocalDate getFechaFin() {
 		return fechaFin;
 	}
 
-	public void setFechaFin(Date fechaFin) {
+	public void setFechaFin(LocalDate fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 

@@ -1,5 +1,5 @@
 package POJOS;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -13,14 +13,14 @@ public class ValorPorcentual {
 	@Column
 	private float valorPorcentual;
 	@Column
-	private Date fechaAsignacion;
+	private LocalDate fechaAsignacion;
 	@Column
-	private Date fechaModificacion;
+	private LocalDate fechaModificacion;
 	
 	public ValorPorcentual() {}
 
-	public ValorPorcentual(long idValorPorcentual, float valorPorcentual, Date fechaAsignacion,
-			Date fechaModificacion) {
+	public ValorPorcentual(long idValorPorcentual, float valorPorcentual, LocalDate fechaAsignacion,
+			LocalDate fechaModificacion) {
 		super();
 		this.idValorPorcentual = idValorPorcentual;
 		this.valorPorcentual = valorPorcentual;
@@ -44,19 +44,19 @@ public class ValorPorcentual {
 		this.valorPorcentual = valorPorcentual;
 	}
 
-	public Date getFechaAsignacion() {
+	public LocalDate getFechaAsignacion() {
 		return fechaAsignacion;
 	}
 
-	public void setFechaAsignacion(Date fechaAsignacion) {
+	public void setFechaAsignacion(LocalDate fechaAsignacion) {
 		this.fechaAsignacion = fechaAsignacion;
 	}
 
-	public Date getFechaModificacion() {
+	public LocalDate getFechaModificacion() {
 		return fechaModificacion;
 	}
 
-	public void setFechaModificacion(Date fechaModificacion) {
+	public void setFechaModificacion(LocalDate fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
 

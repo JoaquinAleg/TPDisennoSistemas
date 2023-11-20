@@ -45,7 +45,7 @@ import DAOS.DAOajusteKilometro;
 import DAOS.DAOajusteDescuento;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.LocalDate;
 import java.util.List;
 
 import DAOS.DAOajusteEmision;
@@ -262,10 +262,10 @@ public class GestorPoliza {
     			throw new VerificationException("DispositivoRastreoCliente invalido");
     		}
     		*/
-    		if(!(dp.getComienzoVigencia() instanceof Date)){
+    		if(!(dp.getComienzoVigencia() instanceof LocalDate)){
     			throw new VerificationException("ComienzoVigenciaCliente invalido");
     		}
-    		if(!(dp.getUltimoDiaPago() instanceof Date)){
+    		if(!(dp.getUltimoDiaPago() instanceof LocalDate)){
     			throw new VerificationException("UltimoDiaPagoCliente invalido");
     		}
     		if(!(dp.getIdFormaPago() instanceof Long)){
@@ -286,7 +286,7 @@ public class GestorPoliza {
     
     private void validarHijo(HijosDTO h){
     	try{
-    		if(!(h.getFechaNacimiento() instanceof Date)){
+    		if(!(h.getFechaNacimiento() instanceof LocalDate)){
     			throw new VerificationException("FechaDeNacimientoHijo invalido");
     		}
     		if(!(h.getEstadoCivil() instanceof String)){

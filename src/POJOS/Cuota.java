@@ -1,5 +1,5 @@
 package POJOS;
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
@@ -18,9 +18,9 @@ public class Cuota {
 	foreignKey=@ForeignKey(name = "fk_ReciboCuota", value = ConstraintMode.CONSTRAINT))
 	private Recibo recibo;
 	@Column
-	private Date fechaPago;
+	private LocalDate fechaPago;
 	@Column
-	private Date fechaUltimoPago;
+	private LocalDate fechaUltimoPago;
 	@Column
 	private int nroCuota;
 	@Column
@@ -32,7 +32,7 @@ public class Cuota {
 	
 	public Cuota() {}
 
-	public Cuota(Poliza poliza, Date fechaPago, Date fechaUltimoPago, int nroCuota, float montoCuota, float montoMora,
+	public Cuota(Poliza poliza, LocalDate fechaPago, LocalDate fechaUltimoPago, int nroCuota, float montoCuota, float montoMora,
 			float bonificaciones) {
 		super();
 		//this.idPago = idPago;
@@ -45,7 +45,7 @@ public class Cuota {
 		this.fechaUltimoPago = fechaUltimoPago;
 	}
 	
-	public Cuota(Poliza poliza, Date fechaPago, Date fechaUltimoPago, int nroCuota, float montoCuota) {
+	public Cuota(Poliza poliza, LocalDate fechaPago, LocalDate fechaUltimoPago, int nroCuota, float montoCuota) {
 		super();
 		//this.idPago = idPago;
 		this.poliza = poliza;
@@ -71,11 +71,11 @@ public class Cuota {
 		this.poliza = poliza;
 	}
 
-	public Date getFechaPago() {
+	public LocalDate getFechaPago() {
 		return fechaPago;
 	}
 
-	public void setFechaPago(Date fechaPago) {
+	public void setFechaPago(LocalDate fechaPago) {
 		this.fechaPago = fechaPago;
 	}
 
@@ -87,11 +87,11 @@ public class Cuota {
 		this.nroCuota = nroCuota;
 	}
 	
-	public Date getFechaUltimaPago() {
+	public LocalDate getFechaUltimaPago() {
 		return this.fechaUltimoPago;
 	}
 
-	public void setFechaUltimaPago(Date fechaUltimoPago) {
+	public void setFechaUltimaPago(LocalDate fechaUltimoPago) {
 		this.fechaUltimoPago = fechaUltimoPago;
 	}
 
@@ -127,11 +127,11 @@ public class Cuota {
 		this.recibo = recibo;
 	}
 
-	public Date getFechaUltimoPago() {
+	public LocalDate getFechaUltimoPago() {
 		return fechaUltimoPago;
 	}
 
-	public void setFechaUltimoPago(Date fechaUltimoPago) {
+	public void setFechaUltimoPago(LocalDate fechaUltimoPago) {
 		this.fechaUltimoPago = fechaUltimoPago;
 	}
 

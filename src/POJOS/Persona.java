@@ -1,5 +1,5 @@
 package POJOS;
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
@@ -18,7 +18,7 @@ public class Persona {
 	@Column(name = "documento")
 	private String documento;
 	@Column(name = "fechaNacimiento")
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	@ManyToOne
 	@JoinColumn(name = "idDomicilio", nullable = false, referencedColumnName = "idDomicilio", 
 	foreignKey=@ForeignKey(name = "fk_DomicilioPersona", value = ConstraintMode.CONSTRAINT))
@@ -39,7 +39,7 @@ public class Persona {
 	public Persona() {
 	}
 
-	public Persona(long cuit, String nombre, String apellido, int cuil, String documento, Date fechaNacimiento,
+	public Persona(long cuit, String nombre, String apellido, int cuil, String documento, LocalDate fechaNacimiento,
 			Domicilio idDomicilio, TipoSexo idTiposexo, TipoEstadoCivil idTipoEstadoCivil,
 			TipoDocumento idTipoDocumento) {
 		super();
@@ -95,11 +95,11 @@ public class Persona {
 		this.documento = documento;
 	}
 
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 

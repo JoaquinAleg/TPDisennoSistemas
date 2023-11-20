@@ -1,6 +1,6 @@
 package DTOS;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import Gestores.GestorPoliza;
@@ -27,8 +27,8 @@ public class DatosPolizaDTO {
 	//ESTOS COMENTADOS EQUIVALEN A ESTO AHORA:
 	private List<Long> listaMedidaSeguridad;
 	private List<HijosDTO> hijos;
-	private Date comienzoVigencia;
-	private Date ultimoDiaPago;
+	private LocalDate comienzoVigencia;
+	private LocalDate ultimoDiaPago;
 	private Long idFormaPago;
 	private Float prima, descuento, premio;
 	private Long idCobertura;
@@ -43,7 +43,7 @@ public class DatosPolizaDTO {
 			Long idLocalidadRiesgo, Long idModeloVehiculo, Long idAnioVehiculo, String motor, String chasis,
 			String patente, Float kilometrosPorAnio, Float sumaAsegurada, Integer siniestrosUltimoA,
 			List<Long> listaMedidaSeguridad/*Boolean guardadoEnGarage, Boolean tuercasAntiRobos, Boolean alarma, Boolean dispositivoRastreo*/, List<HijosDTO> hijos,
-			Date comienzoVigencia, Date ultimoDiaPago, Long idFormaPago, Float prima, Float descuento
+			LocalDate comienzoVigencia, LocalDate ultimoDiaPago, Long idFormaPago, Float prima, Float descuento
 			, Float premio, Long idCobertura) {
 		this.numeroCliente = numeroCliente;
 		this.nombre = nombre;
@@ -221,16 +221,16 @@ public class DatosPolizaDTO {
 	public void setHijos(List<HijosDTO> hijos) {
 		this.hijos = hijos;
 	}
-	public Date getComienzoVigencia() {
+	public LocalDate getComienzoVigencia() {
 		return comienzoVigencia;
 	}
-	public void setComienzoVigencia(Date comienzoVigencia) {
+	public void setComienzoVigencia(LocalDate comienzoVigencia) {
 		this.comienzoVigencia = comienzoVigencia;
 	}
-	public Date getUltimoDiaPago() {
+	public LocalDate getUltimoDiaPago() {
 		return ultimoDiaPago;
 	}
-	public void setUltimoDiaPago(Date ultimoDiaPago) {
+	public void setUltimoDiaPago(LocalDate ultimoDiaPago) {
 		this.ultimoDiaPago = ultimoDiaPago;
 	}
 	public Long getIdFormaPago() {

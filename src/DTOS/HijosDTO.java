@@ -1,21 +1,21 @@
 package DTOS;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class HijosDTO {
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	private String estadoCivil;
 	private String sexo;
-	public HijosDTO(Date fechaNacimiento, String estadoCivil, String sexo) {
+	public HijosDTO(LocalDate fechaNacimiento, String estadoCivil, String sexo) {
 		super();
 		this.fechaNacimiento = fechaNacimiento;
 		this.estadoCivil = estadoCivil;
 		this.sexo = sexo;
 	}
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	public String getEstadoCivil() {

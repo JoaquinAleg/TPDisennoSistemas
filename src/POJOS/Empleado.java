@@ -1,5 +1,5 @@
 package POJOS;
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
@@ -14,13 +14,13 @@ public class Empleado {
 	@Column
 	private String email;
 	@Column
-	private Date trabajaDesde;
+	private LocalDate trabajaDesde;
 	@Column
 	private String nombreEmpleado;
 	
 	public Empleado() {}
 
-	public Empleado(long idEmpleado, String contrasena, String email, Date trabajaDesde, String nombreEmpleado) {
+	public Empleado(long idEmpleado, String contrasena, String email, LocalDate trabajaDesde, String nombreEmpleado) {
 		super();
 		this.idEmpleado = idEmpleado;
 		this.contrasena = contrasena;
@@ -53,11 +53,11 @@ public class Empleado {
 		this.email = email;
 	}
 
-	public Date getTrabajaDesde() {
+	public LocalDate getTrabajaDesde() {
 		return trabajaDesde;
 	}
 
-	public void setTrabajaDesde(Date trabajaDesde) {
+	public void setTrabajaDesde(LocalDate trabajaDesde) {
 		this.trabajaDesde = trabajaDesde;
 	}
 

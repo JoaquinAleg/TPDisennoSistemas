@@ -1,5 +1,5 @@
 package POJOS;
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
@@ -10,11 +10,11 @@ public class Hijo {
 	@Column
 	private long idHijo;
 	@Column
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	
 	public Hijo() {}
 
-	public Hijo(long idHijo, Date fechaNacimiento) {
+	public Hijo(long idHijo, LocalDate fechaNacimiento) {
 		super();
 		this.idHijo = idHijo;
 		this.fechaNacimiento = fechaNacimiento;
@@ -28,11 +28,11 @@ public class Hijo {
 		this.idHijo = idHijo;
 	}
 
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	

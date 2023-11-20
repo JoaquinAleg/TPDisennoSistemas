@@ -1,6 +1,6 @@
 package POJOS;
 import jakarta.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Modificacion", schema = "public")
@@ -21,11 +21,11 @@ public class Modificacion {
 	@Column
 	private String motor;
 	@Column
-	private Date fehcaFabricacion;
+	private LocalDate fehcaFabricacion;
 	@Column
 	private Float valorAsegurado;
 	@Column
-	private Date fechaModificacion;
+	private LocalDate fechaModificacion;
 	@Column
 	private long idCliente;
 	@Column
@@ -38,8 +38,8 @@ public class Modificacion {
 	public Modificacion() {}
 
 	public Modificacion(long idModificacion, long idModelo, int kilometrosRealizadosAnio, int cantSiniestrosUA,
-			String chasis, String patente, String motor, Date fehcaFabricacion, Float valorAsegurado,
-			Date fechaModificacion, long idCliente, long idFormaPago, long idCobertura, long idMedida) {
+			String chasis, String patente, String motor, LocalDate fehcaFabricacion, Float valorAsegurado,
+			LocalDate fechaModificacion, long idCliente, long idFormaPago, long idCobertura, long idMedida) {
 		super();
 		this.idModificacion = idModificacion;
 		this.idModelo = idModelo;
@@ -113,11 +113,11 @@ public class Modificacion {
 		this.motor = motor;
 	}
 
-	public Date getFehcaFabricacion() {
+	public LocalDate getFehcaFabricacion() {
 		return fehcaFabricacion;
 	}
 
-	public void setFehcaFabricacion(Date fehcaFabricacion) {
+	public void setFehcaFabricacion(LocalDate fehcaFabricacion) {
 		this.fehcaFabricacion = fehcaFabricacion;
 	}
 
@@ -129,11 +129,11 @@ public class Modificacion {
 		this.valorAsegurado = valorAsegurado;
 	}
 
-	public Date getFechaModificacion() {
+	public LocalDate getFechaModificacion() {
 		return fechaModificacion;
 	}
 
-	public void setFechaModificacion(Date fechaModificacion) {
+	public void setFechaModificacion(LocalDate fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
 
