@@ -319,7 +319,7 @@ public class GestorPoliza {
 	}
 	
 	public List<ListadoDTO> getLocalidades(long idProvincia) {
-		List<Localidad> localidades = daoLocalidad.getLocalidadPorProvincia(daoProvincia.getProvincia(idProvincia));
+		List<Localidad> localidades = daoLocalidad.getLocalidadPorProvincia(idProvincia);
 		List<ListadoDTO> localidadesDTO = new ArrayList<>();
 		ListadoDTO localidadDTO = new ListadoDTO(" ", null);
 		localidadesDTO.add(localidadDTO);
