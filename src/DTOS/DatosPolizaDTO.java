@@ -18,10 +18,12 @@ public class DatosPolizaDTO {
 	private Float kilometrosPorAnio;
 	private Float sumaAsegurada;
 	private Integer siniestrosUltimoA;
-	private Boolean guardadoEnGarage;
-	private Boolean tuercasAntiRobos;
-	private Boolean alarma;
-	private Boolean dispositivoRastreo;
+	//private Boolean guardadoEnGarage;
+	//private Boolean tuercasAntiRobos;
+	//private Boolean alarma;
+	//private Boolean dispositivoRastreo;
+	//ESTOS COMENTADOS EQUIVALEN A ESTO AHORA:
+	private List<Long> listaMedidaSeguridad;
 	private List<HijosDTO> hijos;
 	private Date comienzoVigencia;
 	private Date ultimoDiaPago;
@@ -36,7 +38,7 @@ public class DatosPolizaDTO {
 	public DatosPolizaDTO(Long numeroCliente, String nombre, String apellido, Long tipoDNI, Integer dni,
 			Long idLocalidadRiesgo, Long idModeloVehiculo, Long idAnioVehiculo, String motor, String chasis,
 			String patente, Float kilometrosPorAnio, Float sumaAsegurada, Integer siniestrosUltimoA,
-			Boolean guardadoEnGarage, Boolean tuercasAntiRobos, Boolean alarma, Boolean dispositivoRastreo, List<HijosDTO> hijos,
+			List<Long> listaMedidaSeguridad/*Boolean guardadoEnGarage, Boolean tuercasAntiRobos, Boolean alarma, Boolean dispositivoRastreo*/, List<HijosDTO> hijos,
 			Date comienzoVigencia, Date ultimoDiaPago, Long idFormaPago, Float prima, Float descuento
 			, Float premio, Long idCobertura) {
 		this.numeroCliente = numeroCliente;
@@ -53,10 +55,12 @@ public class DatosPolizaDTO {
 		this.kilometrosPorAnio = kilometrosPorAnio;
 		this.sumaAsegurada = sumaAsegurada;
 		this.siniestrosUltimoA = siniestrosUltimoA;
-		this.guardadoEnGarage = guardadoEnGarage;
-		this.tuercasAntiRobos = tuercasAntiRobos;
-		this.alarma = alarma;
-		this.dispositivoRastreo = dispositivoRastreo;
+		//this.guardadoEnGarage = guardadoEnGarage;
+		//this.tuercasAntiRobos = tuercasAntiRobos;
+		//this.alarma = alarma;
+		//this.dispositivoRastreo = dispositivoRastreo;
+		//ESTOS COMENTADOS EQUIVALEN A ESTO AHORA:
+		this.listaMedidaSeguridad = listaMedidaSeguridad;
 		this.hijos = hijos;
 		this.comienzoVigencia = comienzoVigencia;
 		this.ultimoDiaPago = ultimoDiaPago;
@@ -83,12 +87,6 @@ public class DatosPolizaDTO {
 	}
 	public void setPremio(Float premio) {
 		this.premio = premio;
-	}
-	public Boolean isAlarma() {
-		return alarma;
-	}
-	public void setAlarma(Boolean alarma) {
-		this.alarma = alarma;
 	}
 	public Long getNumeroCliente() {
 		return numeroCliente;
@@ -174,6 +172,7 @@ public class DatosPolizaDTO {
 	public void setSiniestrosUltimoA(Integer siniestrosUltimoA) {
 		this.siniestrosUltimoA = siniestrosUltimoA;
 	}
+	/*
 	public Boolean isGuardadoEnGarage() {
 		return guardadoEnGarage;
 	}
@@ -191,6 +190,20 @@ public class DatosPolizaDTO {
 	}
 	public void setDispositivoRastreo(Boolean dispositivoRastreo) {
 		this.dispositivoRastreo = dispositivoRastreo;
+	}
+	public Boolean isAlarma() {
+		return alarma;
+	}
+	public void setAlarma(Boolean alarma) {
+		this.alarma = alarma;
+	}
+	*/
+	//ESTOS COMENTADOS EQUIVALEN A ESTO AHORA:
+	public List<Long> getListaMedidaSeguridad() {
+		return this.listaMedidaSeguridad;
+	}
+	public void setListaMedidaSeguridad(List<Long> listaMedidaSeguridad) {
+		this.listaMedidaSeguridad = listaMedidaSeguridad;
 	}
 	public List<HijosDTO> getHijos() {
 		return hijos;
@@ -221,10 +234,6 @@ public class DatosPolizaDTO {
 	}
 	public void setIdCobertura(Long idCobertura) {
 		this.idCobertura = idCobertura;
-	}
-	public String getListaMedidaSeguridad() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }
