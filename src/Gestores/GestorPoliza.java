@@ -107,7 +107,7 @@ public class GestorPoliza {
         }
         return instancia;
     }
-    
+    /*
     public void darAltaPoliza(DatosPolizaDTO datosPolizaDTO) {
     	DAOlocalidad daoLocalidad;
     	validarDatos(datosPolizaDTO);
@@ -186,7 +186,8 @@ public class GestorPoliza {
         		poliza.setCuota(cuota);
         	}
         }
-        /*
+        
+        
         AjusteHijo ajusteHijo = daoAjusteHijo.buscarAjusteHijo(datosPolizaDTO.getHijos().size());
         poliza.setAjusteHijo(ajusteHijo);
         
@@ -198,11 +199,11 @@ public class GestorPoliza {
         
         AjusteEmision ajusteEmision = daoAjusteEmision.getAjusteEmision();
         poliza.setAjusteEmision(ajusteEmision);
-        */
+        
         daoPoliza.createPoliza(poliza);
 		
     }
-    
+    */
     private void validarDatos(DatosPolizaDTO dp){
     	try{
     		if(!(dp.getNumeroCliente() instanceof Long)){
@@ -247,6 +248,7 @@ public class GestorPoliza {
     		if(!(dp.getSiniestrosUltimoA() instanceof Integer)){
     			throw new VerificationException("SiniestrosUltimoCliente invalido");
     		}
+    		/*
     		if(!(dp.isGuardadoEnGarage() instanceof Boolean)){
     			throw new VerificationException("GuardadoEnGarageCliente invalido");
     		}
@@ -259,6 +261,7 @@ public class GestorPoliza {
     		if(!(dp.isDispositivoRastreo() instanceof Boolean)){
     			throw new VerificationException("DispositivoRastreoCliente invalido");
     		}
+    		*/
     		if(!(dp.getComienzoVigencia() instanceof Date)){
     			throw new VerificationException("ComienzoVigenciaCliente invalido");
     		}

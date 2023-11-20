@@ -6,9 +6,12 @@ import POJOS.Empleado;
 
 public class GestorCliente {
 	
+	private DAOcliente daoCliente;
+	
     private static GestorCliente instancia = null;
 
     private GestorCliente() {
+    	this.daoCliente = new DAOcliente();
     }
 
     public static GestorCliente getInstance() {
@@ -20,21 +23,9 @@ public class GestorCliente {
     
     public Cliente getCliente(long numeroCliente) {
     	
-    	Cliente cliente = DAOcliente.getInstance().getCliente(numeroCliente);
+    	Cliente cliente = daoCliente.getCliente(numeroCliente);
     	
     	return cliente;
-    }
-    
-    public void setCondicionNormal(long cliente) {
-    	DAOcliente.getInstance().getCliente(numeroCliente).setCondicionNormal();
-    }
-	
-    public void setCondicionPlata(long cliente) {
-    	DAOcliente.getInstance().getCliente(numeroCliente).setCondicionPlata();
-    }
-    
-    public void emisionDePoliza() {
-    	//Do something
     }
     
 }
