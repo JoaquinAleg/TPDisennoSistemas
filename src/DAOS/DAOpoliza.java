@@ -59,7 +59,7 @@ public class DAOpoliza implements polizaDAO{
 	public List<Poliza> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<Poliza> all = manager.createQuery("From AjustePorHijo").getResultList();
+			List<Poliza> all = manager.createQuery("From Poliza").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

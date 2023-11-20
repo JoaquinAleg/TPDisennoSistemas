@@ -45,7 +45,7 @@ public class DAOcobertura implements coberturaDAO {
 	public List<Cobertura> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<Cobertura> all = manager.createQuery("From AjustePorHijo").getResultList();
+			List<Cobertura> all = manager.createQuery("From Cobertura").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -60,7 +60,7 @@ public class DAOcuota implements cuotaDAO{
 	public List<Cuota> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<Cuota> all = manager.createQuery("From AjustePorHijo").getResultList();
+			List<Cuota> all = manager.createQuery("From Cuota").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

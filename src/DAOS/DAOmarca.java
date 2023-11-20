@@ -59,7 +59,7 @@ public class DAOmarca implements marcaDAO{
 	public List<Marca> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<Marca> all = manager.createQuery("From Localidad").getResultList();
+			List<Marca> all = manager.createQuery("From Marca").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

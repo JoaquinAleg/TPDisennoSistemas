@@ -59,7 +59,7 @@ public class DAOtipoSexo implements tipoSexoDAO {
 	public List<TipoSexo> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<TipoSexo> all = manager.createQuery("From AjustePorHijo").getResultList();
+			List<TipoSexo> all = manager.createQuery("From TipoSexo").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

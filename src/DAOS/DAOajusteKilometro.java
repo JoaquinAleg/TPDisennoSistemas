@@ -59,7 +59,7 @@ public class DAOajusteKilometro implements ajusteKilometroDAO{
 	public List<AjusteKilometro> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<AjusteKilometro> all = manager.createQuery("From AjustePorHijo").getResultList();
+			List<AjusteKilometro> all = manager.createQuery("From AjustePorKilometro").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

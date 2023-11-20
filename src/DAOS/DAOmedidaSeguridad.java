@@ -59,7 +59,7 @@ public class DAOmedidaSeguridad implements medidaSeguridadDAO {
 	public List<MedidaSeguridad> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<MedidaSeguridad> all = manager.createQuery("From AjustePorHijo").getResultList();
+			List<MedidaSeguridad> all = manager.createQuery("From MedidaSeguridad").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
