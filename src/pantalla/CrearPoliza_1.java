@@ -21,6 +21,7 @@ import POJOS.Provincia;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
@@ -40,7 +41,7 @@ public class CrearPoliza_1 extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField text_Asegurado;
 	private JTextField text_Motor;
 	private JTextField text_Patente;
 	private JTextField text_Chasis;
@@ -53,9 +54,9 @@ public class CrearPoliza_1 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//GestorPoliza gestorPoliza = GestorPoliza.getInstance();
-					//GestorCliente gestorCliente = GestorCliente.getInstance();
-					CrearPoliza_1 frame = new CrearPoliza_1(/*gestorPoliza, gestorCliente*/);
+					GestorPoliza gestorPoliza = GestorPoliza.getInstance();
+					GestorCliente gestorCliente = GestorCliente.getInstance();
+					CrearPoliza_1 frame = new CrearPoliza_1(gestorPoliza, gestorCliente);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,10 +68,10 @@ public class CrearPoliza_1 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_1(/*GestorPoliza gestorP, GestorCliente gestorC*/) {
+	public CrearPoliza_1(GestorPoliza gestorP, GestorCliente gestorC) {
 		
-		//this.gestorPoliza = gestorP;
-		//this.gestorCliente = gestorC;
+		this.gestorPoliza = gestorP;
+		this.gestorCliente = gestorC;
 		//this.empleado = empleado;
 		
 		setFont(new Font("Arial", Font.PLAIN, 12));
@@ -177,9 +178,9 @@ public class CrearPoliza_1 extends JFrame {
 		 */
 		
 		//PROVINCIA--RIESGO/////////////////////////////////////////////////////////////////
-		//List<ListadoDTO> provinciaDTO = this.gestorPoliza.getProvincias();
-		//String[] provincias = (String[]) provinciasDTO.stream().map(p -> p.getNombre()).toArray();
-		String[] provincias = {"Santa Fe", "Cordoba", "Mendoza"};		
+		List<ListadoDTO> provinciaDTO = this.gestorPoliza.getProvincias();
+		String[] provincias = (String[]) provinciaDTO.stream().map(p -> p.getNombre()).toArray();
+		//String[] provincias = {"Santa Fe", "Cordoba", "Mendoza"};		
 		JComboBox<String> ProvinciaRiesgo = new JComboBox<>(provincias);
 		ProvinciaRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
 		ProvinciaRiesgo.setToolTipText("");
@@ -202,9 +203,9 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		//LOCALIDAD--RIESGO/////////////////////////////////////////////////////////////////
-		//List<ListadoDTO> localidadDTO = this.gestorPoliza.getLocalidades();
-		//String[] localidades = (String[]) localidadDTO.stream().map(p -> p.getNombre()).toArray();
-		String[] localidades = {"Santa Fe", "Esperanza", "Santo Tome", "Rafaela"};	
+		List<ListadoDTO> localidadDTO = this.gestorPoliza.getLocalidades();
+		String[] localidades = (String[]) localidadDTO.stream().map(p -> p.getNombre()).toArray();
+		//String[] localidades = {"Santa Fe", "Esperanza", "Santo Tome", "Rafaela"};	
 		JComboBox<String> LocalidadRiesgo = new JComboBox<>(localidades);
 		LocalidadRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
 		LocalidadRiesgo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -226,9 +227,9 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
 		//MARCA///////////////////////////////////////////////////////////////////////////
-		//List<ListadoDTO> marcaDTO = this.gestorPoliza.getMarcas();
-		//String[] marcas = (String[]) marcaDTO.stream().map(p -> p.getNombre()).toArray();
-		String[] marcas = {"Renaul", "Fiat", "Ford", "Chevrolet"};	
+		List<ListadoDTO> marcaDTO = this.gestorPoliza.getMarcas();
+		String[] marcas = (String[]) marcaDTO.stream().map(p -> p.getNombre()).toArray();
+		//String[] marcas = {"Renaul", "Fiat", "Ford", "Chevrolet"};	
 		JComboBox<String> MarcaVehiculo = new JComboBox<>(marcas);
 		MarcaVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
 		MarcaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -250,9 +251,9 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
 		//MODELO///////////////////////////////////////////////////////////////////////////
-		//List<ListadoDTO> modeloDTO = this.gestorPoliza.getModelos();
-		//String[] modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
-		String[] modelos = {"Senic", "Megane", "Alaskan", "Fluence"};	
+		List<ListadoDTO> modeloDTO = this.gestorPoliza.getModelos();
+		String[] modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
+		//String[] modelos = {"Senic", "Megane", "Alaskan", "Fluence"};	
 		JComboBox<String> modeloVehiculo = new JComboBox<>(modelos);
 		modeloVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
 		modeloVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -274,9 +275,9 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(AñoVehiculo, gbc_AñoVehiculo);
 		
 		//ANIO--FABRICACION///////////////////////////////////////////////////////////////////////////
-		//List<ListadoDTO> anioDTO = this.gestorPoliza.getAnioFabricacion();
-		//String[] anios = (String[]) anioDTO.stream().map(p -> p.getNombre()).toArray();
-		String[] anios = {"2000", "2001", "2002", "2003"};
+		List<ListadoDTO> anioDTO = this.gestorPoliza.getAniosFabricacion();
+		String[] anios = (String[]) anioDTO.stream().map(p -> p.getNombre()).toArray();
+		//String[] anios = {"2000", "2001", "2002", "2003"};
 		JComboBox<String> MarcaVehiculo_1 = new JComboBox<>(anios);
 		MarcaVehiculo_1.setBackground(SystemColor.inactiveCaptionBorder);
 		MarcaVehiculo_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -297,16 +298,16 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_SumaAs.gridy = 2;
 		panel_1.add(SumaAs, gbc_SumaAs);
 		
-		textField = new JTextField();
-		textField.setBackground(SystemColor.inactiveCaptionBorder);
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(20, 0, 5, 70);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 3;
-		gbc_textField.gridy = 2;
-		panel_1.add(textField, gbc_textField);
-		textField.setColumns(10);
+		text_Asegurado = new JTextField();
+		text_Asegurado.setBackground(SystemColor.inactiveCaptionBorder);
+		text_Asegurado.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_text_Asegurado = new GridBagConstraints();
+		gbc_text_Asegurado.insets = new Insets(20, 0, 5, 70);
+		gbc_text_Asegurado.fill = GridBagConstraints.HORIZONTAL;
+		gbc_text_Asegurado.gridx = 3;
+		gbc_text_Asegurado.gridy = 2;
+		panel_1.add(text_Asegurado, gbc_text_Asegurado);
+		text_Asegurado.setColumns(10);
 		
 		JLabel Motor = new JLabel("Motor(*) :");
 		Motor.setHorizontalAlignment(SwingConstants.LEFT);
@@ -401,16 +402,16 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_Siniestros.gridx = 0;
 		gbc_Siniestros.gridy = 5;
 		panel_1.add(Siniestros, gbc_Siniestros);
-		
-		JComboBox Box_Siniestros = new JComboBox();
-		Box_Siniestros.setBackground(SystemColor.inactiveCaptionBorder);
-		Box_Siniestros.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		//CAMBIE DE JComboBox a JTextField, PORQUE SI TENGO MAS SINIESTROS DE LOS QUE APARECE EN LA LISTA?
+		JTextField text_Siniestros = new JTextField();
+		text_Siniestros.setBackground(SystemColor.inactiveCaptionBorder);
+		text_Siniestros.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_Box_Siniestros = new GridBagConstraints();
 		gbc_Box_Siniestros.insets = new Insets(20, 0, 5, 30);
 		gbc_Box_Siniestros.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Box_Siniestros.gridx = 1;
 		gbc_Box_Siniestros.gridy = 5;
-		panel_1.add(Box_Siniestros, gbc_Box_Siniestros);
+		panel_1.add(text_Siniestros, gbc_Box_Siniestros);
 		
 		JLabel lblNewLabel_2 = new JLabel("Campo obligatorio (*)");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -466,18 +467,47 @@ public class CrearPoliza_1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			// acá tendrían que poner un if(cantidadhijos) a ver si se tira CrearPoliza_2 [caso sin hijos] o CrearPoliza_HijosExistentes.
 						
-						DatosPolizaDTO datosPolizazDTO = new DatosPolizaDTO();
+						Boolean A = !ProvinciaRiesgo.getSelectedItem().equals(" ");
+						Boolean B = !LocalidadRiesgo.getSelectedItem().equals(" ");
+						Boolean C = !MarcaVehiculo.getSelectedItem().equals(" ");
+						Boolean D = !modeloVehiculo.getSelectedItem().equals(" ");
+						Boolean E = !MarcaVehiculo_1.getSelectedItem().equals(" ");
+						Boolean F = !(text_Asegurado.getText() == null);
+						Boolean G = !(text_Motor.getText() == null);
+						Boolean H = !(text_Chasis.getText() == null);
+						Boolean I = !(text_Kilometros.getText() == null);
+						Boolean J = !(text_Siniestros.getText() == null);
 						
-						CrearPoliza_2 CPoliza = new CrearPoliza_2();
 						
-						try {
-							CPoliza.setVisible(true);
-						} catch(Exception er) {
-							er.printStackTrace();
+						
+						if(A &&  B && C && D && E && F && G && H && I && J) {
+							DatosPolizaDTO datosPolizaDTO = new DatosPolizaDTO();
+							Long[] idProvincia = (Long[])provinciaDTO.stream().filter(a -> a.getNombre().equals(ProvinciaRiesgo.getSelectedItem())).map(b -> b.getId()).toArray();
+							datosPolizaDTO.setIdLocalidadRiesgo(idProvincia[0]);
+							Long[] idModeloVehiculo = (Long[])modeloDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray();
+							datosPolizaDTO.setIdModeloVehiculo(idModeloVehiculo[0]);
+							Long[] idAnioFabricacion = (Long[])anioDTO.stream().filter(a -> a.getNombre().equals(MarcaVehiculo_1.getSelectedItem())).map(b -> b.getId()).toArray();
+							datosPolizaDTO.setIdAnioVehiculo(idAnioFabricacion[0]);
+							datosPolizaDTO.setSumaAsegurada(Float.parseFloat(text_Asegurado.getText()));
+							datosPolizaDTO.setMotor(text_Asegurado.getText());
+							datosPolizaDTO.setChasis(text_Chasis.getText());
+							datosPolizaDTO.setKilometrosPorAnio(Float.parseFloat(text_Kilometros.getText()));
+							datosPolizaDTO.setSiniestrosUltimoA(Integer.parseInt(text_Siniestros.getText()));
+							
+							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente);
+						
+							try {
+								CPoliza.setVisible(true);
+							} catch(Exception er) {
+								er.printStackTrace();
+							}
+							CrearPoliza_1.this.setVisible(false);
+							CrearPoliza_1.this.dispose();
+							
 						}
-						CrearPoliza_1.this.setVisible(false);
-						CrearPoliza_1.this.dispose();
-				
+						else {
+							JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
+						}
 			}
 		});
 		Boton_Continuar.setFont(new Font("Tahoma", Font.PLAIN, 40));

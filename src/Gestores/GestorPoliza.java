@@ -42,6 +42,7 @@ import DAOS.DAOcuota;
 import DAOS.DAOajusteHijo;
 import DAOS.DAOajusteSiniestro;
 import DAOS.DAOajusteKilometro;
+import DAOS.DAOProvincia;
 import DAOS.DAOajusteDescuento;
 
 import java.util.ArrayList;
@@ -54,9 +55,9 @@ public class GestorPoliza {
 	
 	//private Empleado empleado;
 	private DAOlocalidad daoLocalidad;
-	private DAOprovincia daoProvincia;
+	private DAOProvincia daoProvincia;
 	private DAOmodelo daoModelo;
-	private DAOMarca daoMarca;
+	private DAOmarca daoMarca;
 	private DAOanioFabricacion daoAnioFabricacion;
 	private DAOtipoDocumento daoTipoDocumento;
 	private DAOcliente daoCliente;
@@ -300,50 +301,60 @@ public class GestorPoliza {
 
 
 	public List<ListadoDTO> getProvincias() {
-		List<Provincia> provincias = daoProvincia.getProvincias();
-		List<ListadoDTO> provinciasDTO;
+		List<Provincia> provincias = daoProvincia.getAll();
+		List<ListadoDTO> provinciasDTO = new ArrayList<>();
+		ListadoDTO provinciaDTO = new ListadoDTO(" ", null);
+		provinciasDTO.add(provinciaDTO);
 		for(Provincia e : provincias) {
-			ListadoDTO provinciaDTO = new ListadoDTO(e.getNombreProvincia(), e.getIdProvincia());
+			provinciaDTO = new ListadoDTO(e.getNombreProvincia(), e.getIdProvincia());
 			provinciasDTO.add(provinciaDTO);
 		}
 		return provinciasDTO;
 	}
 	
-	public List<ListadoDTO> getLocalidad(Provincia provincia) {
-		List<Localidad> localidades = provincia.getLocalidades();
-		List<ListadoDTO> localidadesDTO;
+	public List<ListadoDTO> getLocalidades() {
+		List<Localidad> localidades = daoLocalidad.getAll();
+		List<ListadoDTO> localidadesDTO = new ArrayList<>();
+		ListadoDTO localidadDTO = new ListadoDTO(" ", null);
+		localidadesDTO.add(localidadDTO);
 		for(Localidad e : localidades) {
-			ListadoDTO localidadDTO = new ListadoDTO(e.getNombreLocalidad(), e.getIdLocalidad());
+			localidadDTO = new ListadoDTO(e.getNombreLocalidad(), e.getIdLocalidad());
 			localidadesDTO.add(localidadDTO);
 		}
 		return localidadesDTO;
 	}
 	
-	public List<ListadoDTO> getMarca() {
-		List<Marca> marcas = daoMarca.getMarcas();
-		List<ListadoDTO> marcasDTO;
+	public List<ListadoDTO> getMarcas() {
+		List<Marca> marcas = daoMarca.getAll();
+		List<ListadoDTO> marcasDTO = new ArrayList<>();
+		ListadoDTO marcaDTO = new ListadoDTO(" ", null);
+		marcasDTO.add(marcaDTO);
 		for(Marca e : marcas) {
-			ListadoDTO marcaDTO = new ListadoDTO(e.getNombreMarca(), e.getIdMarca());
+			marcaDTO = new ListadoDTO(e.getNombreMarca(), e.getIdMarca());
 			marcasDTO.add(marcaDTO);
 		}
 		return marcasDTO;
 	}
 	
-	public List<ListadoDTO> getModelo() {
-		List<Modelo> modelos = daoModelo.getModelos();
-		List<ListadoDTO> modelosDTO;
+	public List<ListadoDTO> getModelos() {
+		List<Modelo> modelos = daoModelo.getAll();
+		List<ListadoDTO> modelosDTO = new ArrayList<>();
+		ListadoDTO modeloDTO = new ListadoDTO(" ", null);
+		modelosDTO.add(modeloDTO);
 		for(Modelo e : modelos) {
-			ListadoDTO modeloDTO = new ListadoDTO(e.getNombreModelo(), e.getIdModelo());
+			modeloDTO = new ListadoDTO(e.getNombreModelo(), e.getIdModelo());
 			modelosDTO.add(modeloDTO);
 		}
 		return modelosDTO;
 	}
 	
-	public List<ListadoDTO> getAnioFabricacion() {
-		List<AnioFabricacion> anios = daoAnioFabricacion.getAnioFabricacion();
-		List<ListadoDTO> aniosDTO;
+	public List<ListadoDTO> getAniosFabricacion() {
+		List<AnioFabricacion> anios = daoAnioFabricacion.getAll();
+		List<ListadoDTO> aniosDTO = new ArrayList<>();
+		ListadoDTO anioDTO = new ListadoDTO(" ", null);
+		aniosDTO.add(anioDTO);
 		for(AnioFabricacion e : anios) {
-			ListadoDTO anioDTO = new ListadoDTO(e.getAnioFabricacion().toString(), e.getIdAnioFabricacion());
+			anioDTO = new ListadoDTO(String.valueOf(e.getAnioFabricacion()), e.getIdAnioFabricacion());
 			aniosDTO.add(anioDTO);
 		}
 		return aniosDTO;
