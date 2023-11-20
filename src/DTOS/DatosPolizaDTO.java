@@ -28,6 +28,11 @@ public class DatosPolizaDTO {
 	private Long idFormaPago;
 	private Float prima, descuento, premio;
 	private Long idCobertura;
+	
+	public DatosPolizaDTO() {
+		
+	};
+	
 	public DatosPolizaDTO(Long numeroCliente, String nombre, String apellido, Long tipoDNI, Integer dni,
 			Long idLocalidadRiesgo, Long idModeloVehiculo, Long idAnioVehiculo, String motor, String chasis,
 			String patente, Float kilometrosPorAnio, Float sumaAsegurada, Integer siniestrosUltimoA,

@@ -309,8 +309,8 @@ public class GestorPoliza {
 		return provinciasDTO;
 	}
 	
-	public List<ListadoDTO> getLocalidad() {
-		List<Localidad> localidades = daoLocalidad.getLocalidades();
+	public List<ListadoDTO> getLocalidad(Provincia provincia) {
+		List<Localidad> localidades = provincia.getLocalidades();
 		List<ListadoDTO> localidadesDTO;
 		for(Localidad e : localidades) {
 			ListadoDTO localidadDTO = new ListadoDTO(e.getNombreLocalidad(), e.getIdLocalidad());
@@ -338,5 +338,17 @@ public class GestorPoliza {
 		}
 		return modelosDTO;
 	}
+	
+	public List<ListadoDTO> getAnioFabricacion() {
+		List<AnioFabricacion> anios = daoAnioFabricacion.getAnioFabricacion();
+		List<ListadoDTO> aniosDTO;
+		for(AnioFabricacion e : anios) {
+			ListadoDTO anioDTO = new ListadoDTO(e.getAnioFabricacion().toString(), e.getIdAnioFabricacion());
+			aniosDTO.add(anioDTO);
+		}
+		return aniosDTO;
+	}
+	
+	
 }
 

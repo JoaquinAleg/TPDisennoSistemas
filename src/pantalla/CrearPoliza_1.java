@@ -12,7 +12,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.LineBorder;
 
-import DTOS.ProvinciaDTO;
+import DTOS.DatosPolizaDTO;
+import DTOS.ListadoDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 import POJOS.Empleado;
@@ -252,7 +253,7 @@ public class CrearPoliza_1 extends JFrame {
 		//List<ListadoDTO> modeloDTO = this.gestorPoliza.getModelos();
 		//String[] modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
 		String[] modelos = {"Senic", "Megane", "Alaskan", "Fluence"};	
-		JComboBo<String> modeloVehiculo = new JComboBox<>(modelos);
+		JComboBox<String> modeloVehiculo = new JComboBox<>(modelos);
 		modeloVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
 		modeloVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_modeloVehiculo = new GridBagConstraints();
@@ -272,7 +273,11 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_AñoVehiculo.gridy = 2;
 		panel_1.add(AñoVehiculo, gbc_AñoVehiculo);
 		
-		JComboBox MarcaVehiculo_1 = new JComboBox();
+		//ANIO--FABRICACION///////////////////////////////////////////////////////////////////////////
+		//List<ListadoDTO> anioDTO = this.gestorPoliza.getAnioFabricacion();
+		//String[] anios = (String[]) anioDTO.stream().map(p -> p.getNombre()).toArray();
+		String[] anios = {"2000", "2001", "2002", "2003"};
+		JComboBox<String> MarcaVehiculo_1 = new JComboBox<>(anios);
 		MarcaVehiculo_1.setBackground(SystemColor.inactiveCaptionBorder);
 		MarcaVehiculo_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_MarcaVehiculo_1 = new GridBagConstraints();
@@ -460,6 +465,8 @@ public class CrearPoliza_1 extends JFrame {
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			// acá tendrían que poner un if(cantidadhijos) a ver si se tira CrearPoliza_2 [caso sin hijos] o CrearPoliza_HijosExistentes.
+						
+						DatosPolizaDTO datosPolizazDTO = new DatosPolizaDTO();
 						
 						CrearPoliza_2 CPoliza = new CrearPoliza_2();
 						
