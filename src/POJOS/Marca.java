@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,15 +15,35 @@ public class Marca {
 	private ValorPorcentual valorPorcentual;
 	@Column
 	private String nombreMarca;
-	
+	@OneToMany
+	@JoinColumn(name = "idMarca", nullable = true, referencedColumnName = "idMarca", 
+	foreignKey=@ForeignKey(name = "fk_ModelosMarca", value = ConstraintMode.CONSTRAINT))
+	private List<Modelo> modelos;
 	public Marca() {}
 
-	public Marca(long idMarca, ValorPorcentual valorPorcentual, String nombreMarca) {
+	
+
+	public Marca(long idMarca, ValorPorcentual valorPorcentual, String nombreMarca, List<Modelo> modelos) {
 		super();
 		this.idMarca = idMarca;
 		this.valorPorcentual = valorPorcentual;
 		this.nombreMarca = nombreMarca;
+		this.modelos = modelos;
 	}
+
+	
+
+	public List<Modelo> getModelos() {
+		return modelos;
+	}
+
+
+
+	public void setModelos(List<Modelo> modelos) {
+		this.modelos = modelos;
+	}
+
+
 
 	public long getIdMarca() {
 		return idMarca;
