@@ -46,6 +46,7 @@ public class CrearPoliza_1 extends JFrame {
 	private JTextField text_Patente;
 	private JTextField text_Chasis;
 	private JTextField text_Kilometros;
+	private JTextField text_Siniestros;
 
 	/**
 	 * Launch the application.
@@ -403,7 +404,7 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_Siniestros.gridy = 5;
 		panel_1.add(Siniestros, gbc_Siniestros);
 		//CAMBIE DE JComboBox a JTextField, PORQUE SI TENGO MAS SINIESTROS DE LOS QUE APARECE EN LA LISTA?
-		JTextField text_Siniestros = new JTextField();
+		text_Siniestros = new JTextField();
 		text_Siniestros.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Siniestros.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_Box_Siniestros = new GridBagConstraints();
@@ -477,23 +478,35 @@ public class CrearPoliza_1 extends JFrame {
 						Boolean H = !(text_Chasis.getText() == null);
 						Boolean I = !(text_Kilometros.getText() == null);
 						Boolean J = !(text_Siniestros.getText() == null);
+						Boolean K = !(text_Patente.getText() == null);
 						
 						
 						
-						if(A &&  B && C && D && E && F && G && H && I && J) {
+						if(A &&  B && C && D && E && F && G && H && I && J && K) {
 							DatosPolizaDTO datosPolizaDTO = new DatosPolizaDTO();
-							Long[] idProvincia = (Long[])provinciaDTO.stream().filter(a -> a.getNombre().equals(ProvinciaRiesgo.getSelectedItem())).map(b -> b.getId()).toArray();
+							Long[] idProvincia = provinciaDTO.stream().filter(a -> a.getNombre().equals(ProvinciaRiesgo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 							datosPolizaDTO.setIdLocalidadRiesgo(idProvincia[0]);
-							Long[] idModeloVehiculo = (Long[])modeloDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray();
+							Long[] idModeloVehiculo = modeloDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 							datosPolizaDTO.setIdModeloVehiculo(idModeloVehiculo[0]);
-							Long[] idAnioFabricacion = (Long[])anioDTO.stream().filter(a -> a.getNombre().equals(MarcaVehiculo_1.getSelectedItem())).map(b -> b.getId()).toArray();
+							Long[] idAnioFabricacion = anioDTO.stream().filter(a -> a.getNombre().equals(MarcaVehiculo_1.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 							datosPolizaDTO.setIdAnioVehiculo(idAnioFabricacion[0]);
 							datosPolizaDTO.setSumaAsegurada(Float.parseFloat(text_Asegurado.getText()));
-							datosPolizaDTO.setMotor(text_Asegurado.getText());
+							datosPolizaDTO.setMotor(text_Motor.getText());
 							datosPolizaDTO.setChasis(text_Chasis.getText());
+							datosPolizaDTO.setPatente(text_Patente.getText());
 							datosPolizaDTO.setKilometrosPorAnio(Float.parseFloat(text_Kilometros.getText()));
 							datosPolizaDTO.setSiniestrosUltimoA(Integer.parseInt(text_Siniestros.getText()));
 							
+							System.out.println(datosPolizaDTO.getApellido());
+							System.out.println(datosPolizaDTO.getNombre());
+							System.out.println(datosPolizaDTO.getChasis());
+							System.out.println(datosPolizaDTO.getMotor());
+							System.out.println(datosPolizaDTO.getPatente());
+							System.out.println(datosPolizaDTO.getIdAnioVehiculo());
+							System.out.println(datosPolizaDTO.getIdLocalidadRiesgo());
+							System.out.println(datosPolizaDTO.getSumaAsegurada());
+							System.out.println(datosPolizaDTO.getKilometrosPorAnio());
+							System.out.println(datosPolizaDTO.getIdModeloVehiculo());
 							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente);
 						
 							try {
