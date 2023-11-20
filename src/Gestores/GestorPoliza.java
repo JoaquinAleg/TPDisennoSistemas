@@ -364,7 +364,41 @@ public class GestorPoliza {
 		}
 		return aniosDTO;
 	}
+	public List<ListadoDTO> getMedidasSeguridad() {
+		List<MedidaSeguridad> medidasSeguridad = daoMedidaSeguridad.getAll();
+		List<ListadoDTO> medidasDTO = new ArrayList<>();
+		ListadoDTO medidaDTO = new ListadoDTO(" ", null);
+		medidasDTO.add(medidaDTO);
+		for(MedidaSeguridad e : medidasSeguridad) {
+			medidaDTO = new ListadoDTO(String.valueOf(e.getTipoMedidaSeguridad()), e.getIdMedida());
+			medidasDTO.add(medidaDTO);
+		}
+		return medidasDTO;
+	}
 	
+	public List<ListadoDTO> getSexos(){
+		List<TipoSexo> sexos = daoTipoSexo.getAll();
+		List<ListadoDTO> sexosDTO = new ArrayList<>();
+		ListadoDTO sexoDTO = new ListadoDTO(" ", null);
+		sexosDTO.add(sexoDTO);
+		for(TipoSexo e : sexos) {
+			sexoDTO = new ListadoDTO(String.valueOf(e.getDescripcion()), e.getIdTipoSexo());
+			sexosDTO.add(sexoDTO);
+		}
+		return sexosDTO;
+	}
+	
+	public List<ListadoDTO> getEstadoCiviles(){
+		List<TipoEstadoCivil> estadoCiviles = daoTipoEstadoCivil.getAll();
+		List<ListadoDTO> estadoCivilesDTO = new ArrayList<>();
+		ListadoDTO estadoCivilDTO = new ListadoDTO(" ", null);
+		estadoCivilesDTO.add(estadoCivilDTO);
+		for(TipoEstadoCivil e : estadoCiviles) {
+			estadoCivilDTO = new ListadoDTO(String.valueOf(e.getDescripcion()), e.getIdTipoEstadoCivil());
+			estadoCivilesDTO.add(estadoCivilDTO);
+		}
+		return estadoCivilesDTO;
+	}
 	
 }
 

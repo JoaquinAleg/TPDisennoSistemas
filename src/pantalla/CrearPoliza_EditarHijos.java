@@ -37,14 +37,12 @@ import java.awt.event.ActionEvent;
 
 
 
-public class CrearPoliza_EditarHijo extends JFrame {
+public class CrearPoliza_EditarHijos extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
-
 	 
-	public CrearPoliza_EditarHijo() {
+	public CrearPoliza_EditarHijos() {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -172,8 +170,8 @@ public class CrearPoliza_EditarHijo extends JFrame {
 		JButton btnNewButton_1_2 = new JButton("Confirmar");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_EditarHijo.this.setVisible(false);
-				CrearPoliza_EditarHijo.this.dispose();
+				CrearPoliza_EditarHijos.this.setVisible(false);
+				CrearPoliza_EditarHijos.this.dispose();
 				
 			}
 		});
