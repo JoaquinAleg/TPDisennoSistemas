@@ -8,7 +8,7 @@ public class Marca {
 	@Column
 	private long idMarca;
 	@OneToOne
-	@JoinColumn(name = "idValorPorcentual", nullable = false, referencedColumnName = "idValorPorcentual", 
+	@JoinColumn(name = "idValorPorcentual", nullable = true, referencedColumnName = "idValorPorcentual", 
 	foreignKey=@ForeignKey(name = "fk_ValorMarca", value = ConstraintMode.CONSTRAINT))
 	private ValorPorcentual valorPorcentual;
 	@Column

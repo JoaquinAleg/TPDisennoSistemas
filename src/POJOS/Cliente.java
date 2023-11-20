@@ -1,5 +1,5 @@
 package POJOS;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -11,7 +11,7 @@ public class Cliente {
 	@Column
 	private long idCliente;
 	@Column
-	private Date fechaRegistro;
+	private LocalDate fechaRegistro;
 	@Column
 	private String profesion;
 	@OneToOne
@@ -26,7 +26,7 @@ public class Cliente {
 	
 	public Cliente() {}
 
-	public Cliente(long idCliente, Date fechaRegistro, String profesion, Persona persona, long idTipoEstadoCliente,
+	public Cliente(long idCliente, LocalDate fechaRegistro, String profesion, Persona persona, long idTipoEstadoCliente,
 			long idTipoCondicionIVA) {
 		super();
 		this.idCliente = idCliente;
@@ -45,11 +45,11 @@ public class Cliente {
 		this.idCliente = idCliente;
 	}
 
-	public Date getFechaRegistro() {
+	public LocalDate getFechaRegistro() {
 		return fechaRegistro;
 	}
 
-	public void setFechaRegistro(Date fechaRegistro) {
+	public void setFechaRegistro(LocalDate fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
 
