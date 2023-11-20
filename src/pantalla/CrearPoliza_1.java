@@ -494,7 +494,7 @@ public class CrearPoliza_1 extends JFrame {
 							datosPolizaDTO.setKilometrosPorAnio(Float.parseFloat(text_Kilometros.getText()));
 							datosPolizaDTO.setSiniestrosUltimoA(Integer.parseInt(text_Siniestros.getText()));
 							
-							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente);
+							CrearPoliza_2 CPoliza = new CrearPoliza_2(/*datosPolizaDTO, gestorPoliza, gestorCliente*/);
 						
 							try {
 								CPoliza.setVisible(true);

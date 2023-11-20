@@ -1,6 +1,8 @@
 package POJOS;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.time.ZoneId;
 
 import jakarta.persistence.*;
 @Entity
@@ -407,6 +409,31 @@ public class Poliza {
 		Medida = medida;
 	}
 
-	
+
+	public void setDatosVehiculo(String chasis, String motor, String patente, Float sumaAsegurada) {
+		this.chasis = chasis;
+		this.motor = motor;
+		this.patente = patente;
+		this.sumaAsegurada = sumaAsegurada;
+		
+	}
+
+
+	public void setDatosPoliza(Date comienzoVigencia, Date ultimoDiaPago) {
+		LocalDate fechaActual = LocalDate.now();
+		this.fechaCreacion = java.util.Date.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		this.fechaDeInicio = comienzoVigencia;
+		this.ultimoDiaPago = ultimoDiaPago;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+

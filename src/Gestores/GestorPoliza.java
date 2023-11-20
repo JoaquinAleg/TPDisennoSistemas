@@ -26,7 +26,7 @@ import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
 import DAOS.DAOlocalidad;
-import DAOS.DAOprovincia;
+import DAOS.DAOProvincia;
 import DAOS.DAOmodelo;
 import DAOS.DAOmarca;
 import DAOS.DAOanioFabricacion;
@@ -42,7 +42,6 @@ import DAOS.DAOcuota;
 import DAOS.DAOajusteHijo;
 import DAOS.DAOajusteSiniestro;
 import DAOS.DAOajusteKilometro;
-import DAOS.DAOProvincia;
 import DAOS.DAOajusteDescuento;
 
 import java.util.ArrayList;
@@ -81,7 +80,7 @@ public class GestorPoliza {
     private GestorPoliza() {
         //this.empleado = empleado;
     	this.daoLocalidad = new DAOlocalidad();
-    	this.daoProvincia = new DAOprovincia();
+    	this.daoProvincia = new DAOProvincia();
     	this.daoModelo = new DAOmodelo();
     	this.daoMarca = new DAOmarca();
     	this.daoAnioFabricacion = new DAOanioFabricacion();
@@ -108,7 +107,7 @@ public class GestorPoliza {
         }
         return instancia;
     }
-
+    
     public void darAltaPoliza(DatosPolizaDTO datosPolizaDTO) {
     	DAOlocalidad daoLocalidad;
     	validarDatos(datosPolizaDTO);
@@ -124,6 +123,7 @@ public class GestorPoliza {
         poliza.setDatosVehiculo(datosPolizaDTO.getChasis(), datosPolizaDTO.getMotor(), datosPolizaDTO.getPatente(), datosPolizaDTO.getSumaAsegurada());
         Cliente cliente = daoCliente.getCliente(datosPolizaDTO.getNumeroCliente());
         poliza.setCliente(cliente);
+        cliente.createPoliza(this);
         
         TipoDocumento tipoDNI = daoTipoDocumento.getTipoDocumento(datosPolizaDTO.getTipoDNI());
         poliza.setDatosCliente(datosPolizaDTO.getNumeroCliente(), datosPolizaDTO.getNombre(), datosPolizaDTO.getApellido(), tipoDNI, poliza.getNumeroDocumento());
@@ -132,9 +132,9 @@ public class GestorPoliza {
         poliza.setDatosPoliza(datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago());
         for(HijosDTO e : datosPolizaDTO.getHijos()) {
         	Hijo hijo = new Hijo();
-        	TipoEstadoCivil tipoEstadoCivil = daoTipoEstadoCivil.getEstadoCivil(e.getEstadoCivil());
+        	TipoEstadoCivil tipoEstadoCivil = daoTipoEstadoCivil.getTipoEstadoCivil(Long.parseLong(e.getEstadoCivil()));
         	hijo.setEstadoCivil(tipoEstadoCivil);
-        	TipoSexo tipoSexo = DAOtipoSexo.getTipoSexo(e.getSexo());
+        	TipoSexo tipoSexo = daoTipoSexo.getTipoSexo(Long.parseLong(e.getSexo()));
         	hijo.setTipoSexo(tipoSexo);
         	poliza.setHijo(hijo);
         }
@@ -186,7 +186,7 @@ public class GestorPoliza {
         		poliza.setCuota(cuota);
         	}
         }
-        
+        /*
         AjusteHijo ajusteHijo = daoAjusteHijo.buscarAjusteHijo(datosPolizaDTO.getHijos().size());
         poliza.setAjusteHijo(ajusteHijo);
         
@@ -198,8 +198,9 @@ public class GestorPoliza {
         
         AjusteEmision ajusteEmision = daoAjusteEmision.getAjusteEmision();
         poliza.setAjusteEmision(ajusteEmision);
-        DAOpoliza.setPoliza(poliza);
-
+        */
+        daoPoliza.createPoliza(poliza);
+		
     }
     
     private void validarDatos(DatosPolizaDTO dp){
@@ -279,6 +280,7 @@ public class GestorPoliza {
     	}
     }
     
+    
     private void validarHijo(HijosDTO h){
     	try{
     		if(!(h.getFechaNacimiento() instanceof Date)){
@@ -296,7 +298,7 @@ public class GestorPoliza {
     }
     
     private List<Poliza> filtrarVigentes(List<Poliza> polizas) {
-    	return polizas;
+    	return polizas.stream().filter(a -> a.getEstadoPoliza().equals("VIJENTE")).toList();
     }
 
 
