@@ -1,17 +1,17 @@
 package DAOS;
+
 import java.util.List;
 
-import POJOS.*;
-import interfaces.localidadDAO;
-import jakarta.persistence.*;
-public class DAOlocalidad implements localidadDAO {
+import POJOS.Provincia;
+import interfaces.provinciaDAO;
+import jakarta.persistence.EntityManager;
 
-	@Override
-	public Localidad getLocalidad(long idLocalidad) {
+public class DAOProvincia implements provinciaDAO{
+	public Provincia getProvincia(long idProvincia) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			Localidad localidad = manager.getReference(Localidad.class, idLocalidad);
-			return localidad;
+			Provincia provincia = manager.getReference(Provincia.class, idProvincia);
+			return provincia;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -20,46 +20,43 @@ public class DAOlocalidad implements localidadDAO {
 	}
 
 	@Override
-	public void createLocalidad(Localidad localidad) {
+	public void createProvincia(Provincia provincia) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			manager.persist(localidad);
+			manager.persist(provincia);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
-	public void deleteLocalidad(Localidad localidad) {
+	public void deleteProvincia(Provincia provincia) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			manager.remove(localidad);
+			manager.remove(provincia);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
-	public void updateLocalidad(Localidad localidad) {
+	public void updateProvincia(Provincia provincia) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			manager.merge(localidad);
+			manager.merge(provincia);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
-	public List<Localidad> getAll() {
+	public List<Provincia> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<Localidad> all = manager.createQuery("From Localidad").getResultList();
+			List<Provincia> all = manager.createQuery("From AjustePorHijo").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

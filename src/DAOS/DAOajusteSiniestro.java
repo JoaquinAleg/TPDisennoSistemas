@@ -2,39 +2,73 @@ package DAOS;
 
 import java.util.List;
 
+import POJOS.AjusteKilometro;
 import POJOS.AjusteSiniestro;
 import interfaces.ajusteSiniestroDAO;
+import jakarta.persistence.EntityManager;
 
 public class DAOajusteSiniestro implements ajusteSiniestroDAO{
 
 	@Override
 	public AjusteSiniestro getAjusteSiniestro(long idAjusteSiniestro) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			AjusteSiniestro ajuste = manager.getReference(AjusteSiniestro.class, idAjusteSiniestro);
+			return ajuste;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public void createAjusteSiniestro(AjusteSiniestro ajusteSiniestro) {
-		// TODO Auto-generated method stub
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.persist(ajusteSiniestro);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void deleteAjusteSiniestro(AjusteSiniestro ajusteSiniestro) {
-		// TODO Auto-generated method stub
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.remove(ajusteSiniestro);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void updateAjusteSiniestro(AjusteSiniestro ajusteSiniestro) {
-		// TODO Auto-generated method stub
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.merge(ajusteSiniestro);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public List<AjusteSiniestro> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			List<AjusteSiniestro> all = manager.createQuery("From AjustePorHijo").getResultList();
+			return all;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

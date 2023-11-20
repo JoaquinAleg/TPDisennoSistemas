@@ -2,39 +2,71 @@ package DAOS;
 
 import java.util.List;
 
+import POJOS.Cobertura;
 import POJOS.Cuota;
 import interfaces.cuotaDAO;
+import jakarta.persistence.EntityManager;
 
 public class DAOcuota implements cuotaDAO{
 
 	@Override
 	public Cuota getCuota(long idCuota) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			Cuota Cuota = manager.getReference(Cuota.class, idCuota);
+			return Cuota;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public void createCuota(Cuota cuota) {
-		// TODO Auto-generated method stub
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.persist(cuota);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void deleteCuota(Cuota cuota) {
-		// TODO Auto-generated method stub
-		
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.remove(cuota);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void updateCuota(Cuota cuota) {
-		// TODO Auto-generated method stub
-		
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.merge(cuota);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public List<Cuota> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			List<Cuota> all = manager.createQuery("From AjustePorHijo").getResultList();
+			return all;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

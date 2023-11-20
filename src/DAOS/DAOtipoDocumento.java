@@ -10,36 +10,63 @@ public class DAOtipoDocumento implements tipoDocumentoDAO {
 
 	@Override
 	public TipoDocumento getTipoDocumento(long idTipoDocumento) {
-		EntityManager manager = HibernateUtil.getEntityManager();		
-		TipoDocumento tipoDocumento = manager.getReference(TipoDocumento.class, idTipoDocumento);
-		return tipoDocumento;
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();		
+			TipoDocumento tipoDocumento = manager.getReference(TipoDocumento.class, idTipoDocumento);
+			return tipoDocumento;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public void createTipoDocumento(TipoDocumento tipoDocumento) {
-		EntityManager manager = HibernateUtil.getEntityManager();
-		manager.persist(tipoDocumento);
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.persist(tipoDocumento);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void deleteTipoDocumento(TipoDocumento tipoDocumento) {
-		EntityManager manager = HibernateUtil.getEntityManager();
-		manager.remove(tipoDocumento);
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.remove(tipoDocumento);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void updateTipoDocumento(TipoDocumento tipoDocumento) {
-		EntityManager manager = HibernateUtil.getEntityManager();
-		manager.merge(tipoDocumento);
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.merge(tipoDocumento);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public List<TipoDocumento> getAll() {
-		EntityManager manager = HibernateUtil.getEntityManager();
-		List<TipoDocumento> all = manager.createQuery("From TipoDocumento").getResultList();
-		return all;
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			List<TipoDocumento> all = manager.createQuery("From TipoDocumento").getResultList();
+			return all;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
