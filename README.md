@@ -1,31 +1,16 @@
 # TPDisennoSistemas
 
-Errores con el diagrama de clases, base de datos y el Diagrama de secuencias del CU01
-- Errores con el diagrama de clases
-  - Falta la Condicion del Cliente
-    Soluciones:
-      - Enumerado
-      - Clase Condicion
-  - Falta de coneccion entre clase Poliza y tipoDNI
+Metodos Faltantes:
+  -  setCliente(Cliente) en Poliza
+  -  setCuota(Cuota) en Poliza
+  -  setPoliza(Poliza) en Cliente
+  -  getTipoEstadoCliente() en Cliente
+  -  setEstadoCivli(TipoEstadoCivil) en Hijo
+  -  setTipoSexo(TipoSexo) en Hijo
 
-- Errores con el diagrama de secuencia del CU01:
-  - Problema con DAO mediaSeguridad, al cual en vez de mandarle el tipo de medida, le mando un true
-  - Seteo el estado cliente a la poliza, cuando en realidad debe de ir al gestor de cliente
-      Soluciones:
-        - Aplicar cliente.setEstado(), lo cual no se como se representa en el diagrama de secuencia
-        - Aplicar GestorPoliaza.getInstance.seEstado() al gestor
-  - Problema con la parte que le sigue al Alt de polizasAsociadas
-      Solucion:
-        - el getCuotasImpagas() va al DAOCuotas
-        - el getIncidentesUltimoAnio() es lo que tenemos como campo en PolizaDTO
-        - el clienteActivo() va dirigido al DAOTipoEstadoCliente
-  - Problema con el emision de poliza, que es dirigido al gesorCliente, cuando deve de ir dirigido a poliza
-  - Error con las cuotas, las mismas deben de crearse con MontoCuota y MontoMora, que deben de calcularse, y a su vez bonificaciones que son los descuentos, tambien con el numero de cuota.
-  - Error con los premios y descuentos, los mismos tienen que venir hardcodeados desde la interface, como dijo el profe y que colgue en en hacer, 
+Lo que Falta de la clase GestorPoliza
+  - Definir bien como hacer con los Ajustes, ya que no se que valor porcentual agregar,
+    si no se cual es cual, ya que no tienen descripcion.
 
-- Error con la Base de datos:
-  - Falta fechaUltimoDiaPago.
-
- Cosas a preguntar:
-   - Como se calcula el pago
-   - Como se calcula la mora
+Problemas con la base de datos, el hibernate no se porque no quiere andar en pantalla
+  CrearPoliza_1
