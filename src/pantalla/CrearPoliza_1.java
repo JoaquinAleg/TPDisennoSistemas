@@ -47,6 +47,7 @@ public class CrearPoliza_1 extends JFrame {
 	private JTextField text_Chasis;
 	private JTextField text_Kilometros;
 	private JComboBox<String> text_Siniestros;
+	private String ProvinciaSeleccionada;
 	private Long numeroCliente;
 
 	/**
@@ -187,7 +188,7 @@ public class CrearPoliza_1 extends JFrame {
 		JComboBox<String> ProvinciaRiesgo = new JComboBox<>(provincias);
 		ProvinciaRiesgo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ProvinciaSeleccionada = (String)ProvinciaRiesgo.getSelectedItem();
 			}
 		});
 		ProvinciaRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -211,15 +212,12 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		//LOCALIDAD--RIESGO/////////////////////////////////////////////////////////////////
-		Long[] idProvincia = provinciaDTO.stream().filter(a -> a.getNombre().equals(ProvinciaRiesgo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+		Long[] idProvincia = provinciaDTO.stream().filter(a -> a.getNombre().equals(ProvinciaSeleccionada)).map(b -> b.getId()).toArray(Long[]::new);
 		
 		List<ListadoDTO> localidadDTO = this.gestorPoliza.getLocalidades((long)idProvincia[0]);
 		String[] localidades = localidadDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		//String[] localidades = {"Santa Fe", "Esperanza", "Santo Tome", "Rafaela"};	
 		JComboBox<String> LocalidadRiesgo = new JComboBox<>();
-		if(!ProvinciaRiesgo.getSelectedItem().equals(" ")) {
-			LocalidadRiesgo.add(localidades);
-		}
 		LocalidadRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
 		LocalidadRiesgo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_LocalidadRiesgo = new GridBagConstraints();
