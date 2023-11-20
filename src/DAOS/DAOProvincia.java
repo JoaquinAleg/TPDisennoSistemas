@@ -56,7 +56,7 @@ public class DAOProvincia implements provinciaDAO{
 	public List<Provincia> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<Provincia> all = manager.createQuery("From AjustePorHijo").getResultList();
+			List<Provincia> all = manager.createQuery("From Provincia").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
