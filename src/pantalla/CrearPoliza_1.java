@@ -22,6 +22,7 @@ import POJOS.Provincia;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
@@ -50,12 +51,20 @@ public class CrearPoliza_1 extends JFrame {
 	private String ProvinciaSeleccionada;
 	private Long[] idProvincia;
 	private String[] localidades = {" "};
+	private JComboBox<String> LocalidadRiesgo = new JComboBox<>(localidades);
 	private List<ListadoDTO> localidadesDTO;
 	private String ModeloSeleccionado;
 	private Long[] idMarcaVehiculo;
 	private String[] modelos = {" "};
 	private List<ListadoDTO> modelosDTO;
+	private JComboBox<String> modeloVehiculo = new JComboBox<>(modelos);
+	private String[] anios = {" "};
+	private Long[] idModeloVehiculo;
+	private List<ListadoDTO> anioDTO;
+	private JComboBox<String> MarcaVehiculo_1 = new JComboBox<>(anios);
 	private Long numeroCliente;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -154,7 +163,7 @@ public class CrearPoliza_1 extends JFrame {
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
@@ -201,6 +210,8 @@ public class CrearPoliza_1 extends JFrame {
 				List<ListadoDTO> localidadDTO = gestorPoliza.getLocalidades(idProvincia[0]);
 				System.out.println(localidadDTO.get(0).getNombre());
 				localidades = localidadDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(localidades);
+				LocalidadRiesgo.setModel(nuevoModelo);
 			}
 		});
 		ProvinciaRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -225,7 +236,7 @@ public class CrearPoliza_1 extends JFrame {
 		
 		//LOCALIDAD--RIESGO/////////////////////////////////////////////////////////////////
 		//String[] localidades = {"Santa Fe", "Esperanza", "Santo Tome", "Rafaela"};	
-		JComboBox<String> LocalidadRiesgo = new JComboBox<>(localidades);
+		//LocalidadRiesgo = new JComboBox<>(localidades);
 		LocalidadRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
 		LocalidadRiesgo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_LocalidadRiesgo = new GridBagConstraints();
@@ -253,8 +264,10 @@ public class CrearPoliza_1 extends JFrame {
 		MarcaVehiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				idMarcaVehiculo = marcaDTO.stream().filter(a -> a.getNombre().equals(MarcaVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-				List<ListadoDTO> modelosDTO = gestorPoliza.getModelos(idMarcaVehiculo);
+				List<ListadoDTO> modelosDTO = gestorPoliza.getModelos(idMarcaVehiculo[0]);
 				modelos = modelosDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(modelos);
+				modeloVehiculo.setModel(nuevoModelo);
 			}
 		});
 		MarcaVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -275,10 +288,18 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_lblNewLabel_1_1.gridx = 2;
 		gbc_lblNewLabel_1_1.gridy = 1;
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
+		modeloVehiculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				idModeloVehiculo = anioDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+				anioDTO = gestorPoliza.getAniosFabricacion(idModeloVehiculo);
+				anios = anioDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(anios);
+				MarcaVehiculo_1.setModel(nuevoModelo);
+			}
+		});
 		
 		//MODELO///////////////////////////////////////////////////////////////////////////
 		//String[] modelos = {"Senic", "Megane", "Alaskan", "Fluence"};	
-		JComboBox<String> modeloVehiculo = new JComboBox<>(modelos);
 		modeloVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
 		modeloVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_modeloVehiculo = new GridBagConstraints();
@@ -299,8 +320,6 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(AñoVehiculo, gbc_AñoVehiculo);
 		
 		//ANIO--FABRICACION///////////////////////////////////////////////////////////////////////////
-		List<ListadoDTO> anioDTO = this.gestorPoliza.getAniosFabricacion();
-		String[] anios = anioDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		//String[] anios = {"2000", "2001", "2002", "2003"};
 		JComboBox<String> MarcaVehiculo_1 = new JComboBox<>(anios);
 		MarcaVehiculo_1.setBackground(SystemColor.inactiveCaptionBorder);

@@ -319,7 +319,8 @@ public class GestorPoliza {
 	}
 	
 	public List<ListadoDTO> getLocalidades(long idProvincia) {
-		List<Localidad> localidades = daoLocalidad.getLocalidadPorProvincia(idProvincia);
+		Provincia provincia = daoProvincia.getProvincia(idProvincia);
+		List<Localidad> localidades = provincia.getLocalidades();
 		List<ListadoDTO> localidadesDTO = new ArrayList<>();
 		ListadoDTO localidadDTO = new ListadoDTO(" ", null);
 		localidadesDTO.add(localidadDTO);
@@ -342,8 +343,9 @@ public class GestorPoliza {
 		return marcasDTO;
 	}
 	
-	public List<ListadoDTO> getModelos() {
-		List<Modelo> modelos = daoModelo.getAll();
+	public List<ListadoDTO> getModelos(long idMarca) {
+		Marca marca = daoMarca.getMarca(idMarca);
+		List<Modelo> modelos = marca.getModelos();
 		List<ListadoDTO> modelosDTO = new ArrayList<>();
 		ListadoDTO modeloDTO = new ListadoDTO(" ", null);
 		modelosDTO.add(modeloDTO);
@@ -354,8 +356,9 @@ public class GestorPoliza {
 		return modelosDTO;
 	}
 	
-	public List<ListadoDTO> getAniosFabricacion() {
-		List<AnioFabricacion> anios = daoAnioFabricacion.getAll();
+	public List<ListadoDTO> getAniosFabricacion(long idModeloVehiculo) {
+		Modelo modelo = daoModelo.getModelo(idModeloVehiculo);
+		List<AnioFabricacion> anios = modelo.getAniosFabricacion();
 		List<ListadoDTO> aniosDTO = new ArrayList<>();
 		ListadoDTO anioDTO = new ListadoDTO(" ", null);
 		aniosDTO.add(anioDTO);
