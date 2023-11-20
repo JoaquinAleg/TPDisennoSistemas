@@ -326,8 +326,8 @@ public class CrearPoliza_2 extends JFrame {
 		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> sexo = new JComboBox(modelos);
 //		JComboBox <String> sexo = new JComboBox();
-		sexo.addItem("Masculino");
-		sexo.addItem("Femenino");
+//		sexo.addItem("Masculino");
+//		sexo.addItem("Femenino");
 		sexo.setBackground(SystemColor.inactiveCaptionBorder);
 		sexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_sexo = new GridBagConstraints();
@@ -337,10 +337,6 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_sexo.gridy = 0;
 		panel_1_1.add(sexo, gbc_sexo);
 		
-		
-//		modeloDTO = this.gestorPoliza.getEstadoCiviles();
-//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-//		JComboBox <String> estadoCivil = new JComboBox(modelos);
 		JLabel lblEstadoCivil = new JLabel("Estado Civil:");
 		lblEstadoCivil.setHorizontalAlignment(SwingConstants.LEFT);
 		lblEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -351,12 +347,15 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblEstadoCivil.gridy = 2;
 		panel_1_1.add(lblEstadoCivil, gbc_lblEstadoCivil);
 		
-		JComboBox <String> estadoCivil = new JComboBox();
-		estadoCivil.addItem("Soltero/a");
-		estadoCivil.addItem("Casado/a");
-		estadoCivil.addItem("Viudo/a");
-		estadoCivil.addItem("Divorciado/a");
-		estadoCivil.addItem("Separado/a");
+		modeloDTO = this.gestorPoliza.getEstadoCiviles();
+		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> estadoCivil = new JComboBox(modelos);
+//		JComboBox <String> estadoCivil = new JComboBox();
+//		estadoCivil.addItem("Soltero/a");
+//		estadoCivil.addItem("Casado/a");
+//		estadoCivil.addItem("Viudo/a");
+//		estadoCivil.addItem("Divorciado/a");
+//		estadoCivil.addItem("Separado/a");
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_estadoCivil = new GridBagConstraints();
@@ -460,7 +459,7 @@ public class CrearPoliza_2 extends JFrame {
 		JButton Boton_Continuar_2 = new JButton("Volver");
 		Boton_Continuar_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {							
-								CrearPoliza_1 CPoliza = new CrearPoliza_1();
+								CrearPoliza_1 CPoliza = new CrearPoliza_1(gestorPoliza,gestorCliente);
 								
 								try {
 									CPoliza.setVisible(true);
