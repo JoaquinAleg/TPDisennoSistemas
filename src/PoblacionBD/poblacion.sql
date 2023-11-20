@@ -265,3 +265,7 @@ INSERT INTO public.aniofabricacion (idaniofabricacion, aniofabricacion) VALUES
   (42, 2021),
   (43, 2022),
   (44, 2023);
+  
+insert into TipoEstadoCivil(idtipoestadocivil, descripcion)values(1,'Soltero/a'),(2,'Casado/a'),(3,'Viudo/a'),(4,'Divorciado/a'),(5,'Separado/a');
+
+insert into TipoSexo(idtiposexo, descripcion)values(1,'Femenino'),(2,'Masculino');
