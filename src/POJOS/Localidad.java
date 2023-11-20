@@ -18,7 +18,7 @@ public class Localidad {
 	
 	public Localidad() {}
 
-	public Localidad(long idLocalidad, POJOS.Provincia provincia, int codigoPostal, String nombreLocalidad) {
+	public Localidad(long idLocalidad, Provincia provincia, int codigoPostal, String nombreLocalidad) {
 		super();
 		this.idLocalidad = idLocalidad;
 		Provincia = provincia;

@@ -4,12 +4,14 @@ import jakarta.persistence.Persistence;
 
 import java.util.List;
 
+import DAOS.DAOlocalidad;
 import DAOS.HibernateUtil;
 import POJOS.Persona;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 public class TestPersona {
+	private static DAOlocalidad daoLocalidad;
 	
 	public static void main(String[] args) {
 		EntityManager manager = null;
@@ -17,9 +19,7 @@ public class TestPersona {
 		factory = Persistence.createEntityManagerFactory("persistencia");
 		manager = factory.createEntityManager();
 		
-		List<Persona> personas = manager.createQuery("FROM Persona").getResultList();
 		
 		
-		System.out.println("Cantidad de Personas " + personas.size());
 	}
 }

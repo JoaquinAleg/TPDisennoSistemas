@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,15 +15,38 @@ public class Provincia {
 	private Pais pais;
 	@Column
 	private String nombreProvincia;
-
+	@OneToMany
+	@JoinColumn(name = "idProvincia", nullable = true, referencedColumnName = "idProvincia")
+	private List<Localidad> localidades;
 	public Provincia() {}
 
-	public Provincia(long idProvincia, Pais pais, String nombreProvincia) {
+	
+
+
+
+	public Provincia(long idProvincia, Pais pais, String nombreProvincia, List<Localidad> localidades) {
 		super();
 		this.idProvincia = idProvincia;
 		this.pais = pais;
 		this.nombreProvincia = nombreProvincia;
+		this.localidades = localidades;
 	}
+
+
+
+
+
+	public List<Localidad> getLocalidades() {
+		return localidades;
+	}
+
+
+
+	public void setLocalidades(List<Localidad> localidades) {
+		this.localidades = localidades;
+	}
+
+
 
 	public long getIdProvincia() {
 		return idProvincia;

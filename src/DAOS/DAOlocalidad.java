@@ -59,6 +59,7 @@ public class DAOlocalidad implements localidadDAO {
 	public List<Localidad> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			@SuppressWarnings("unchecked")
 			List<Localidad> all = manager.createQuery("From Localidad").getResultList();
 			return all;
 		} catch (Exception e) {
@@ -69,10 +70,10 @@ public class DAOlocalidad implements localidadDAO {
 	}
 
 	@Override
-	public List<Localidad> getLocalidadPorProvincia(long Provincia) {
+	public List<Localidad> getLocalidadPorProvincia(long provincia) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<Localidad> localidades = manager.createQuery("From Localidad where idProvincia= " + Provincia).getResultList();
+			List<Localidad> localidades = manager.createQuery("From Localidad as L WHERE L.idProvincia = 1").getResultList();
 			return localidades;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
