@@ -18,88 +18,122 @@ public class Cliente {
 	@JoinColumn(name = "cuit", nullable = false, referencedColumnName = "cuit", 
 			foreignKey=@ForeignKey(name = "fk_cuitCliente", value = ConstraintMode.CONSTRAINT))
 	private Persona persona;
-	@Column
-	private long idTipoEstadoCliente;
-	@Column
-	private long idTipoCondicionIVA;
+	@ManyToOne
+	@JoinColumn(name = "idTipoEstadoCliente", nullable = false, referencedColumnName = "idTipoEstadoCliente", 
+	foreignKey=@ForeignKey(name = "fk_estadoCliente", value = ConstraintMode.CONSTRAINT))
+	private TipoEstadoCliente TipoEstadoCliente;
+	@ManyToOne
+	@JoinColumn(name = "idTipoCondicionIVA", nullable = false, referencedColumnName = "idTipoCondicionIVA", 
+	foreignKey=@ForeignKey(name = "fk_condicionIVA", value = ConstraintMode.CONSTRAINT))
+	private TipoCondicionIVA TipoCondicionIVA;
+	@OneToMany
+	@JoinColumn(name = "idCliente", nullable = false, referencedColumnName = "idCliente", 
+	foreignKey=@ForeignKey(name = "fk_clientePoliza", value = ConstraintMode.CONSTRAINT))
+	private List<Poliza> polizas;
 	
 	
 	public Cliente() {}
 
-	public Cliente(long idCliente, LocalDate fechaRegistro, String profesion, Persona persona, long idTipoEstadoCliente,
-			long idTipoCondicionIVA) {
+
+
+
+	public Cliente(long idCliente, LocalDate fechaRegistro, String profesion, Persona persona,
+			POJOS.TipoEstadoCliente tipoEstadoCliente, POJOS.TipoCondicionIVA tipoCondicionIVA, List<Poliza> polizas) {
 		super();
 		this.idCliente = idCliente;
 		this.fechaRegistro = fechaRegistro;
 		this.profesion = profesion;
 		this.persona = persona;
-		this.idTipoEstadoCliente = idTipoEstadoCliente;
-		this.idTipoCondicionIVA = idTipoCondicionIVA;
+		TipoEstadoCliente = tipoEstadoCliente;
+		TipoCondicionIVA = tipoCondicionIVA;
+		this.polizas = polizas;
 	}
+
+
+
+
+	public List<Poliza> getPolizas() {
+		return polizas;
+	}
+
+
+
+
+	public void setPolizas(List<Poliza> polizas) {
+		this.polizas = polizas;
+	}
+
+	
+	public String getDocumento(){
+		String documento = this.persona.getDocumento(); 
+		return documento;
+	}
+	public long getTipoDocumento(){
+		long tipoDocumento = this.persona.getIdTipoDocumento().getIdTipoDocumento(); 
+		return tipoDocumento;
+	}
+
 
 	public long getIdCliente() {
 		return idCliente;
 	}
 
+
 	public void setIdCliente(long idCliente) {
 		this.idCliente = idCliente;
 	}
+
 
 	public LocalDate getFechaRegistro() {
 		return fechaRegistro;
 	}
 
+
 	public void setFechaRegistro(LocalDate fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
+
 
 	public String getProfesion() {
 		return profesion;
 	}
 
+
 	public void setProfesion(String profesion) {
 		this.profesion = profesion;
 	}
+
 
 	public Persona getPersona() {
 		return persona;
 	}
 
+
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
 
-	public long getIdTipoEstadoCliente() {
-		return idTipoEstadoCliente;
+
+	public TipoEstadoCliente getTipoEstadoCliente() {
+		return TipoEstadoCliente;
 	}
 
-	public void setIdTipoEstadoCliente(long idTipoEstadoCliente) {
-		this.idTipoEstadoCliente = idTipoEstadoCliente;
+
+	public void setTipoEstadoCliente(TipoEstadoCliente tipoEstadoCliente) {
+		TipoEstadoCliente = tipoEstadoCliente;
 	}
 
-	public long getIdTipoCondicionIVA() {
-		return idTipoCondicionIVA;
+
+	public TipoCondicionIVA getTipoCondicionIVA() {
+		return TipoCondicionIVA;
 	}
 
-	public void setIdTipoCondicionIVA(long idTipoCondicionIVA) {
-		this.idTipoCondicionIVA = idTipoCondicionIVA;
+
+	public void setTipoCondicionIVA(TipoCondicionIVA tipoCondicionIVA) {
+		TipoCondicionIVA = tipoCondicionIVA;
 	}
 
-	public List<Poliza> getPolizas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void setCondicionNomral() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public List<Cuota> getCuotasImpagas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	
 	
 }

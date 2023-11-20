@@ -47,11 +47,14 @@ public class Poliza {
 	@JoinColumn(name = "idLocalidad", nullable = false, referencedColumnName = "idLocalidad", 
 	foreignKey=@ForeignKey(name = "fk_LocalidadPoliza", value = ConstraintMode.CONSTRAINT))
 	private Localidad localidad;
-	
 	@ManyToOne
 	@JoinColumn(name = "idTipoDocumento", nullable = false, referencedColumnName = "idTipoDocumento", 
 	foreignKey=@ForeignKey(name = "fk_tipoDocumentoPoliza", value = ConstraintMode.CONSTRAINT))
 	private TipoDocumento tipoDocumento;
+	@ManyToOne
+	@JoinColumn(name = "idCliente", nullable = false, referencedColumnName = "idCliente", 
+	foreignKey=@ForeignKey(name = "fk_polizaCliente", value = ConstraintMode.CONSTRAINT))
+	private Cliente cliente;
 	@Column
 	private float sumaAsegurada;
 	@Column
@@ -86,6 +89,10 @@ public class Poliza {
 	private String dniCliente;
 	@Column
 	private LocalDate fechaCreacion;
+	@OneToMany
+	@JoinColumn(name = "numeroPoliza", nullable = false, referencedColumnName = "numeroPoliza", 
+	foreignKey=@ForeignKey(name = "fk_polizaCuota", value = ConstraintMode.CONSTRAINT))
+	private List<Cuota> cutoas;
 	@OneToOne
 	@JoinColumn(name = "idFormaPago", nullable = false, referencedColumnName = "idFormaPago", 
 	foreignKey=@ForeignKey(name = "fk_TipoFormaPago", value = ConstraintMode.CONSTRAINT))
