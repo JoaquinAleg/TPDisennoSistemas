@@ -149,6 +149,16 @@ public class Poliza {
 	}
 
 
+	public List<Modificacion> getModificaciones() {
+		return modificaciones;
+	}
+
+
+	public void setModificaciones(List<Modificacion> modificaciones) {
+		this.modificaciones = modificaciones;
+	}
+
+
 	public long getNumeroPoliza() {
 		return numeroPoliza;
 	}

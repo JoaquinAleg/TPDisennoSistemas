@@ -252,7 +252,7 @@ public class CrearPoliza_1 extends JFrame {
 		//List<ListadoDTO> modeloDTO = this.gestorPoliza.getModelos();
 		//String[] modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
 		String[] modelos = {"Senic", "Megane", "Alaskan", "Fluence"};	
-		JComboBo<String> modeloVehiculo = new JComboBox<>(modelos);
+		JComboBox<String> modeloVehiculo = new JComboBox<>(modelos);
 		modeloVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
 		modeloVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_modeloVehiculo = new GridBagConstraints();

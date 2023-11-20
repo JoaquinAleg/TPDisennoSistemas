@@ -10,37 +10,64 @@ public class DAOmodelo implements modeloDAO{
 
 	@Override
 	public Modelo getModelo(long idModelo) {
-		EntityManager manager = HibernateUtil.getEntityManager();		
-		Modelo modelo = manager.getReference(Modelo.class, idModelo);
-		return modelo;
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();		
+			Modelo modelo = manager.getReference(Modelo.class, idModelo);
+			return modelo;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public void createModelo(Modelo modelo) {
-		EntityManager manager = HibernateUtil.getEntityManager();
-		manager.persist(modelo);
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.persist(modelo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void deleteModelo(Modelo modelo) {
-		EntityManager manager = HibernateUtil.getEntityManager();
-		manager.remove(modelo);
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.remove(modelo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void updateModelo(Modelo modelo) {
 		// TODO Auto-generated method stub
-		EntityManager manager = HibernateUtil.getEntityManager();
-		manager.merge(modelo);
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.merge(modelo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public List<Modelo> getAll() {
-		EntityManager manager = HibernateUtil.getEntityManager();
-		List<Modelo> all = manager.createQuery("From Modelo").getResultList();
-		return all;
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			List<Modelo> all = manager.createQuery("From Modelo").getResultList();
+			return all;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

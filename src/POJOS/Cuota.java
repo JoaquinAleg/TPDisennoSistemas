@@ -119,6 +119,22 @@ public class Cuota {
 		this.bonificaciones = bonificaciones;
 	}
 
+	public Recibo getRecibo() {
+		return recibo;
+	}
+
+	public void setRecibo(Recibo recibo) {
+		this.recibo = recibo;
+	}
+
+	public Date getFechaUltimoPago() {
+		return fechaUltimoPago;
+	}
+
+	public void setFechaUltimoPago(Date fechaUltimoPago) {
+		this.fechaUltimoPago = fechaUltimoPago;
+	}
+
 	
 	
 }

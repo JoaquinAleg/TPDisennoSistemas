@@ -1,17 +1,20 @@
 package DAOS;
+
 import java.util.List;
 
-import POJOS.*;
-import interfaces.localidadDAO;
-import jakarta.persistence.*;
-public class DAOlocalidad implements localidadDAO {
+import POJOS.Localidad;
+import POJOS.Marca;
+import interfaces.marcaDAO;
+import jakarta.persistence.EntityManager;
+
+public class DAOmarca implements marcaDAO{
 
 	@Override
-	public Localidad getLocalidad(long idLocalidad) {
+	public Marca getMarca(long idMarca) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			Localidad localidad = manager.getReference(Localidad.class, idLocalidad);
-			return localidad;
+			Marca Marca = manager.getReference(Marca.class, idMarca);
+			return Marca;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -20,46 +23,43 @@ public class DAOlocalidad implements localidadDAO {
 	}
 
 	@Override
-	public void createLocalidad(Localidad localidad) {
+	public void createMarca(Marca marca) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			manager.persist(localidad);
+			manager.persist(marca);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
-	public void deleteLocalidad(Localidad localidad) {
+	public void deleteMarca(Marca marca) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			manager.remove(localidad);
+			manager.remove(marca);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
-	public void updateLocalidad(Localidad localidad) {
+	public void updateMarca(Marca marca) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			manager.merge(localidad);
+			manager.merge(marca);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
-	public List<Localidad> getAll() {
+	public List<Marca> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<Localidad> all = manager.createQuery("From Localidad").getResultList();
+			List<Marca> all = manager.createQuery("From Localidad").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -67,4 +67,5 @@ public class DAOlocalidad implements localidadDAO {
 			return null;
 		}
 	}
+
 }

@@ -2,39 +2,71 @@ package DAOS;
 
 import java.util.List;
 
+import POJOS.AjusteEmision;
 import POJOS.AjusteHijo;
 import interfaces.ajustePorHijoDAO;
+import jakarta.persistence.EntityManager;
 
 public class DAOajusteHijo implements ajustePorHijoDAO {
 
 	@Override
 	public AjusteHijo getAjusteHijo(long idAjusteHijo) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			AjusteHijo ajuste = manager.getReference(AjusteHijo.class, idAjusteHijo);
+			return ajuste;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public void createAjusteHijo(AjusteHijo ajusteHijo) {
-		// TODO Auto-generated method stub
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.persist(ajusteHijo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void deleteAjusteHijo(AjusteHijo ajusteHijo) {
-		// TODO Auto-generated method stub
-		
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.remove(ajusteHijo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void updateAjusteHijo(AjusteHijo ajusteHijo) {
-		// TODO Auto-generated method stub
-		
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.merge(ajusteHijo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public List<AjusteHijo> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			List<AjusteHijo> all = manager.createQuery("From AjustePorHijo").getResultList();
+			return all;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
