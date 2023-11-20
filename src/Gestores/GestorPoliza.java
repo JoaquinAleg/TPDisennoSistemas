@@ -22,6 +22,7 @@ import POJOS.AjusteHijo;
 import POJOS.AjusteKilometro;
 import POJOS.AjusteDescuento;
 import POJOS.AjusteEmision;
+import DTOS.ClienteDTO;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;

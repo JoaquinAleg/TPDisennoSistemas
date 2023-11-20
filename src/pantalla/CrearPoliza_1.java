@@ -47,6 +47,7 @@ public class CrearPoliza_1 extends JFrame {
 	private JTextField text_Chasis;
 	private JTextField text_Kilometros;
 	private JTextField text_Siniestros;
+	private Long numeroCliente;
 
 	/**
 	 * Launch the application.
@@ -107,7 +108,8 @@ public class CrearPoliza_1 extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		String numeroCliente = new String("numeroCliente");
+		String numeroCliente = new String("01-00000001");
+		this.numeroCliente = 0100000001L;
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(SystemColor.inactiveCaptionBorder);
