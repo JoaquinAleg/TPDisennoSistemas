@@ -3,6 +3,8 @@ package DTOS;
 import java.util.Date;
 import java.util.List;
 
+import Gestores.GestorPoliza;
+
 public class DatosPolizaDTO {
 	private Long numeroCliente;
 	private String nombre;
@@ -30,6 +32,8 @@ public class DatosPolizaDTO {
 	private Long idFormaPago;
 	private Float prima, descuento, premio;
 	private Long idCobertura;
+	
+    private static DatosPolizaDTO instancia = null;
 	
 	public DatosPolizaDTO() {
 		
@@ -70,6 +74,12 @@ public class DatosPolizaDTO {
 		this.prima=prima;
 		this.idCobertura = idCobertura;
 	}
+    public static DatosPolizaDTO getInstance() {
+        if (instancia == null) {
+            instancia = new DatosPolizaDTO();
+        }
+        return instancia;
+    }
 	public Float getPrima() {
 		return prima;
 	}

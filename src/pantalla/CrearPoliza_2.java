@@ -30,9 +30,16 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.Calendar;
+import java.util.List;
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
+
+import DTOS.DatosPolizaDTO;
+import DTOS.ListadoDTO;
+import Gestores.GestorCliente;
+import Gestores.GestorPoliza;
+
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
 ;
@@ -44,8 +51,12 @@ public class CrearPoliza_2 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	//List<ListadoDTO> modeloDTO = this.gestorPoliza.getModelos();
-	//String[] modelos;
+	List<ListadoDTO> modeloDTO;
+	private GestorPoliza gestorPoliza;
+	String[] modelos;
+	private DatosPolizaDTO datosPolizaDTO;
+	private GestorCliente gestorCliente;
+	
 	
 	/**
 	 * Launch the application.
@@ -54,7 +65,10 @@ public class CrearPoliza_2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CrearPoliza_2 frame = new CrearPoliza_2();
+					GestorPoliza gestorPoliza = GestorPoliza.getInstance();
+					GestorCliente gestorCliente = GestorCliente.getInstance();
+					DatosPolizaDTO datosPolizaDTO = DatosPolizaDTO.getInstance();
+					CrearPoliza_2 frame = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,7 +80,10 @@ public class CrearPoliza_2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_2() {
+	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
+		this.datosPolizaDTO=datosPolizaDTO;
+		this.gestorPoliza = gestorPoliza;
+		this.gestorCliente = gestorCliente;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -157,9 +174,9 @@ public class CrearPoliza_2 extends JFrame {
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
 		
 
-		//modeloDTO = this.gestorPoliza.getGarages();
-		//modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
-		//JComboBox <String> garage = new JComboBox(modelos);
+//		modeloDTO = this.gestorPoliza.getMedidasSeguridad();
+//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+//		JComboBox <String> garage = new JComboBox(modelos);
 		JComboBox <String> garage = new JComboBox();
 		garage.addItem("No");
 		garage.addItem("Si");
@@ -183,9 +200,9 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		//modeloDTO = this.gestorPoliza.getAlarmas();
-		//modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
-		//JComboBox <String> alarma = new JComboBox(modelos);
+//		modeloDTO = this.gestorPoliza.getAlarmas();
+//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+//		JComboBox <String> alarma = new JComboBox(modelos);
 		JComboBox <String> alarma = new JComboBox();
 		alarma.addItem("No");
 		alarma.addItem("Si");
@@ -208,9 +225,9 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblMarcaDelVehculo.gridy = 1;
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
-		//modeloDTO = this.gestorPoliza.getRastreoVehicular();
-		//modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
-		//JComboBox <String> rastreoVehicular = new JComboBox(modelos);
+//		modeloDTO = this.gestorPoliza.getRastreoVehicular();
+//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+//		JComboBox <String> rastreoVehicular = new JComboBox(modelos);
 		JComboBox <String> rastreoVehicular = new JComboBox();
 		rastreoVehicular.addItem("No");
 		rastreoVehicular.addItem("Si");
@@ -233,9 +250,9 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblNewLabel_1_1.gridy = 1;
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
-		//modeloDTO = this.gestorPoliza.getTuercas();
-		//modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
-		//JComboBox <String> tuercas = new JComboBox(modelos);
+//		modeloDTO = this.gestorPoliza.getTuercas();
+//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+//		JComboBox <String> tuercas = new JComboBox(modelos);
 		JComboBox <String> tuercas = new JComboBox();
 		tuercas.addItem("No");
 		tuercas.addItem("Si");
@@ -305,10 +322,10 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblNewLabel_1_2.gridy = 0;
 		panel_1_1.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 		
-		//modeloDTO = this.gestorPoliza.getSexos();
-		//modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
-		//JComboBox <String> sexo = new JComboBox(modelos);
-		JComboBox <String> sexo = new JComboBox();
+		modeloDTO = this.gestorPoliza.getSexos();
+		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> sexo = new JComboBox(modelos);
+//		JComboBox <String> sexo = new JComboBox();
 		sexo.addItem("Masculino");
 		sexo.addItem("Femenino");
 		sexo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -321,9 +338,9 @@ public class CrearPoliza_2 extends JFrame {
 		panel_1_1.add(sexo, gbc_sexo);
 		
 		
-		//modeloDTO = this.gestorPoliza.getEstadoCiviles();
-		//modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
-		//JComboBox <String> estadoCivil = new JComboBox(modelos);
+//		modeloDTO = this.gestorPoliza.getEstadoCiviles();
+//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+//		JComboBox <String> estadoCivil = new JComboBox(modelos);
 		JLabel lblEstadoCivil = new JLabel("Estado Civil:");
 		lblEstadoCivil.setHorizontalAlignment(SwingConstants.LEFT);
 		lblEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
