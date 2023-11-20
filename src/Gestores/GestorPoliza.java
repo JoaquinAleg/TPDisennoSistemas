@@ -45,7 +45,7 @@ import DAOS.DAOajusteKilometro;
 import DAOS.DAOajusteDescuento;
 
 import java.util.ArrayList;
-import java.util.LocalDate;
+import java.time.LocalDate;
 import java.util.List;
 
 import DAOS.DAOajusteEmision;
