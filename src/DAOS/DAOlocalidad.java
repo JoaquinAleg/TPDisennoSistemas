@@ -67,4 +67,17 @@ public class DAOlocalidad implements localidadDAO {
 			return null;
 		}
 	}
+
+	@Override
+	public List<Localidad> getLocalidadPorProvincia(long idProvincia) {
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			List<Localidad> localidades = manager.createQuery("From Localidad where idLocalidad = " + idProvincia).getResultList();
+			return localidades;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

@@ -90,9 +90,9 @@ public class Poliza {
 	@Column
 	private LocalDate fechaCreacion;
 	@OneToMany
-	@JoinColumn(name = "numeroPoliza", nullable = false, referencedColumnName = "numeroPoliza", 
+	@JoinColumn(name = "NroPoliza", nullable = false, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_polizaCuota", value = ConstraintMode.CONSTRAINT))
-	private List<Cuota> cutoas;
+	private List<Cuota> cuotas;
 	@OneToOne
 	@JoinColumn(name = "idFormaPago", nullable = false, referencedColumnName = "idFormaPago", 
 	foreignKey=@ForeignKey(name = "fk_TipoFormaPago", value = ConstraintMode.CONSTRAINT))
@@ -113,13 +113,17 @@ public class Poliza {
 	public Poliza(){}
 
 	
+	
+
+
 	public Poliza(long numeroPoliza, Modelo modelo, AjusteHijo ajusteHijo, AjusteKilometro ajusteKilometro,
 			AjusteSiniestro idAjusteSiniestro, AnioFabricacion anioFabricacion, AjusteDescuento ajusteDescuento,
 			AjusteEmision ajusteEmision, Modificacion modificacion, Localidad localidad, TipoDocumento tipoDocumento,
-			float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA, LocalDate fechaDeInicio,
-			LocalDate fechaDeFin, float premio, float prima, float descuentos, LocalDate ultimoDiaPago, float montoTotalAbonar,
-			String chasis, String patente, String estadoPoliza, String motor, String nombreCliente, String dniCliente,
-			LocalDate fechaCreacion, TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida,
+			Cliente cliente, float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA,
+			LocalDate fechaDeInicio, LocalDate fechaDeFin, float premio, float prima, float descuentos,
+			LocalDate ultimoDiaPago, float montoTotalAbonar, String chasis, String patente, String estadoPoliza,
+			String motor, String nombreCliente, String dniCliente, LocalDate fechaCreacion, List<Cuota> cuotas,
+			TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida,
 			List<Modificacion> modificaciones) {
 		super();
 		this.numeroPoliza = numeroPoliza;
@@ -133,6 +137,7 @@ public class Poliza {
 		this.modificacion = modificacion;
 		this.localidad = localidad;
 		this.tipoDocumento = tipoDocumento;
+		this.cliente = cliente;
 		this.sumaAsegurada = sumaAsegurada;
 		this.kilometrosRealizadosAnio = kilometrosRealizadosAnio;
 		this.cantSiniestrosUA = cantSiniestrosUA;
@@ -150,11 +155,47 @@ public class Poliza {
 		this.nombreCliente = nombreCliente;
 		this.dniCliente = dniCliente;
 		this.fechaCreacion = fechaCreacion;
+		this.cuotas = cuotas;
 		FormaPago = formaPago;
 		Cobertura = cobertura;
 		Medida = medida;
 		this.modificaciones = modificaciones;
 	}
+
+
+
+
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+
+
+
+
+	public List<Cuota> getCuotas() {
+		return cuotas;
+	}
+
+
+
+
+
+	public void setCuotas(List<Cuota> cuotas) {
+		this.cuotas = cuotas;
+	}
+
+
+
 
 
 	public List<Modificacion> getModificaciones() {

@@ -27,7 +27,7 @@ public class Cliente {
 	foreignKey=@ForeignKey(name = "fk_condicionIVA", value = ConstraintMode.CONSTRAINT))
 	private TipoCondicionIVA TipoCondicionIVA;
 	@OneToMany
-	@JoinColumn(name = "idCliente", nullable = false, referencedColumnName = "idCliente", 
+	@JoinColumn(name = "Cliente", nullable = false, referencedColumnName = "idCliente", 
 	foreignKey=@ForeignKey(name = "fk_clientePoliza", value = ConstraintMode.CONSTRAINT))
 	private List<Poliza> polizas;
 	
