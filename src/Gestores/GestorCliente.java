@@ -39,7 +39,7 @@ public class GestorCliente {
 		//ClienteDTO clienteDTO = new ClienteDTO(" ", null);
 		//clientesDTO.add(clienteDTO);
 		for(Cliente e : clientes) {
-			ClienteDTO clienteDTO = new ClienteDTO(e.getIdCliente(), e.getPersona().getNombre(), e.getPersona().getApellido(), e.getPersona().getNumeroDocumento(), e.getPersona().getIdTipoDocumento().getIdTipoDocumento());
+			ClienteDTO clienteDTO = new ClienteDTO(e.getIdCliente(), e.getPersona().getNombre(), e.getPersona().getApellido(), e.getDocumento(), e.getTipoDocumento());
 			clientesDTO.add(clienteDTO);
 		}
 		return clientesDTO;
