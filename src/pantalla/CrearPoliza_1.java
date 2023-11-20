@@ -179,7 +179,7 @@ public class CrearPoliza_1 extends JFrame {
 		
 		//PROVINCIA--RIESGO/////////////////////////////////////////////////////////////////
 		List<ListadoDTO> provinciaDTO = this.gestorPoliza.getProvincias();
-		String[] provincias = (String[]) provinciaDTO.stream().map(p -> p.getNombre()).toArray();
+		String[] provincias = provinciaDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		//String[] provincias = {"Santa Fe", "Cordoba", "Mendoza"};		
 		JComboBox<String> ProvinciaRiesgo = new JComboBox<>(provincias);
 		ProvinciaRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -204,7 +204,7 @@ public class CrearPoliza_1 extends JFrame {
 		
 		//LOCALIDAD--RIESGO/////////////////////////////////////////////////////////////////
 		List<ListadoDTO> localidadDTO = this.gestorPoliza.getLocalidades();
-		String[] localidades = (String[]) localidadDTO.stream().map(p -> p.getNombre()).toArray();
+		String[] localidades = localidadDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		//String[] localidades = {"Santa Fe", "Esperanza", "Santo Tome", "Rafaela"};	
 		JComboBox<String> LocalidadRiesgo = new JComboBox<>(localidades);
 		LocalidadRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -228,7 +228,7 @@ public class CrearPoliza_1 extends JFrame {
 		
 		//MARCA///////////////////////////////////////////////////////////////////////////
 		List<ListadoDTO> marcaDTO = this.gestorPoliza.getMarcas();
-		String[] marcas = (String[]) marcaDTO.stream().map(p -> p.getNombre()).toArray();
+		String[] marcas = marcaDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		//String[] marcas = {"Renaul", "Fiat", "Ford", "Chevrolet"};	
 		JComboBox<String> MarcaVehiculo = new JComboBox<>(marcas);
 		MarcaVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -252,7 +252,7 @@ public class CrearPoliza_1 extends JFrame {
 		
 		//MODELO///////////////////////////////////////////////////////////////////////////
 		List<ListadoDTO> modeloDTO = this.gestorPoliza.getModelos();
-		String[] modelos = (String[]) modeloDTO.stream().map(p -> p.getNombre()).toArray();
+		String[] modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		//String[] modelos = {"Senic", "Megane", "Alaskan", "Fluence"};	
 		JComboBox<String> modeloVehiculo = new JComboBox<>(modelos);
 		modeloVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -276,7 +276,7 @@ public class CrearPoliza_1 extends JFrame {
 		
 		//ANIO--FABRICACION///////////////////////////////////////////////////////////////////////////
 		List<ListadoDTO> anioDTO = this.gestorPoliza.getAniosFabricacion();
-		String[] anios = (String[]) anioDTO.stream().map(p -> p.getNombre()).toArray();
+		String[] anios = anioDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		//String[] anios = {"2000", "2001", "2002", "2003"};
 		JComboBox<String> MarcaVehiculo_1 = new JComboBox<>(anios);
 		MarcaVehiculo_1.setBackground(SystemColor.inactiveCaptionBorder);
