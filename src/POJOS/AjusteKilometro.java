@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,16 +9,16 @@ public class AjusteKilometro {
 	@Id
 	@Column
 	private long idAjusteKilometro;
-	@OneToOne
-	@JoinColumn(name = "idValorPorcentual", nullable = false, referencedColumnName = "idValorPorcentual", 
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idAjusteKilometro", nullable = true, referencedColumnName = "idAjusteKilometro", 
 	foreignKey=@ForeignKey(name = "fk_valorKilometro", value = ConstraintMode.CONSTRAINT))
-	private ValorPorcentual valorPorcentual;
+	private List<ValorPorcentual> valorPorcentual;
 	@Column
 	private float escalaKM;
 	
 	public AjusteKilometro() {}
 
-	public AjusteKilometro(long idAjusteKilometro, ValorPorcentual valorPorcentual, float escalaKM) {
+	public AjusteKilometro(long idAjusteKilometro, List<ValorPorcentual> valorPorcentual, float escalaKM) {
 		super();
 		this.idAjusteKilometro = idAjusteKilometro;
 		this.valorPorcentual = valorPorcentual;
@@ -31,11 +33,11 @@ public class AjusteKilometro {
 		this.idAjusteKilometro = idAjusteKilometro;
 	}
 
-	public ValorPorcentual getValorPorcentual() {
+	public List<ValorPorcentual> getValorPorcentual() {
 		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
+	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
 		this.valorPorcentual = valorPorcentual;
 	}
 
@@ -47,5 +49,6 @@ public class AjusteKilometro {
 		this.escalaKM = escalaKM;
 	}
 
+	
 	
 }

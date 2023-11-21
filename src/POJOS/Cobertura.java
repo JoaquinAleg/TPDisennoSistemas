@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,16 +9,16 @@ public class Cobertura {
 	@Id
 	@Column
 	private long idCobertura;
-	@OneToOne
-	@JoinColumn(name = "idValorPorcentual", nullable = false, referencedColumnName = "idValorPorcentual", 
-	foreignKey=@ForeignKey(name = "fk_valorCobertura", value = ConstraintMode.CONSTRAINT))
-	private ValorPorcentual valorPorcentual;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idCobertura", nullable = true, referencedColumnName = "idCobertura", 
+	foreignKey=@ForeignKey(name = "fk_valorC", value = ConstraintMode.CONSTRAINT))
+	private List<ValorPorcentual> valorPorcentual;
 	@Column
 	private String descripcion;
 	
 	public Cobertura() {}
 
-	public Cobertura(long idCobertura, ValorPorcentual valorPorcentual, String descripcion) {
+	public Cobertura(long idCobertura, List<ValorPorcentual> valorPorcentual, String descripcion) {
 		super();
 		this.idCobertura = idCobertura;
 		this.valorPorcentual = valorPorcentual;
@@ -31,11 +33,11 @@ public class Cobertura {
 		this.idCobertura = idCobertura;
 	}
 
-	public ValorPorcentual getValorPorcentual() {
+	public List<ValorPorcentual> getValorPorcentual() {
 		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
+	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
 		this.valorPorcentual = valorPorcentual;
 	}
 

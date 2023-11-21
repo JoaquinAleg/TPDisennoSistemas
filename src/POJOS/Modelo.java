@@ -9,15 +9,13 @@ public class Modelo {
 	@Id
 	@Column
 	private long idModelo;
-	@ManyToOne
-	@JoinColumn(name = "idMarca", nullable = false, referencedColumnName = "idMarca", 
-	foreignKey=@ForeignKey(name = "fk_ReciboCuota", value = ConstraintMode.CONSTRAINT))
-	private Marca Marca;
-	@Column
-	private long valorPorcentual;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idModelo", nullable = true, referencedColumnName = "idModelo", 
+	foreignKey=@ForeignKey(name = "fk_valorMd", value = ConstraintMode.CONSTRAINT))
+	private List<ValorPorcentual> valorPorcentual;
 	@Column
 	private String nombreModelo;
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idModelo", nullable = false, referencedColumnName = "idModelo", 
 	foreignKey=@ForeignKey(name = "fk_	", value = ConstraintMode.CONSTRAINT))
 	private List<fabricado> anioFabricacion;
@@ -25,54 +23,15 @@ public class Modelo {
 	
 	public Modelo() {}
 
-	
 
-	
-
-
-	public Modelo(long idModelo, POJOS.Marca marca, long valorPorcentual, String nombreModelo,
+	public Modelo(long idModelo, List<ValorPorcentual> valorPorcentual, String nombreModelo,
 			List<fabricado> anioFabricacion) {
 		super();
 		this.idModelo = idModelo;
-		Marca = marca;
 		this.valorPorcentual = valorPorcentual;
 		this.nombreModelo = nombreModelo;
 		this.anioFabricacion = anioFabricacion;
 	}
-
-
-
-
-
-
-	public List<fabricado> getAnioFabricacion() {
-		return anioFabricacion;
-	}
-
-
-
-
-
-
-	public void setAnioFabricacion(List<fabricado> anioFabricacion) {
-		this.anioFabricacion = anioFabricacion;
-	}
-
-
-
-
-
-
-	public Marca getMarca() {
-		return Marca;
-	}
-
-
-
-	public void setMarca(Marca marca) {
-		Marca = marca;
-	}
-
 
 
 	public long getIdModelo() {
@@ -80,27 +39,45 @@ public class Modelo {
 	}
 
 
-
 	public void setIdModelo(long idModelo) {
 		this.idModelo = idModelo;
 	}
 
 
-	public long getValorPorcentual() {
+	public List<ValorPorcentual> getValorPorcentual() {
 		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(long valorPorcentual) {
+
+	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
 		this.valorPorcentual = valorPorcentual;
 	}
+
 
 	public String getNombreModelo() {
 		return nombreModelo;
 	}
 
+
 	public void setNombreModelo(String nombreModelo) {
 		this.nombreModelo = nombreModelo;
 	}
+
+
+	public List<fabricado> getAnioFabricacion() {
+		return anioFabricacion;
+	}
+
+
+	public void setAnioFabricacion(List<fabricado> anioFabricacion) {
+		this.anioFabricacion = anioFabricacion;
+	}
+
+	
+
+	
+
+
 	
 	
 }

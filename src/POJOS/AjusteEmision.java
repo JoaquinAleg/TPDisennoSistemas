@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,37 +9,39 @@ public class AjusteEmision {
 	@Id
 	@Column
 	private long idAjusteEmision;
-	@OneToOne
-	@JoinColumn(name = "idValorPorcentual", nullable = false, referencedColumnName = "idValorPorcentual", 
-	foreignKey=@ForeignKey(name = "fk_valorEmision", value = ConstraintMode.CONSTRAINT))
-	private ValorPorcentual ValorPorcentual;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idAjusteEmision", nullable = true, referencedColumnName = "idAjusteEmision", 
+	foreignKey=@ForeignKey(name = "fk_valorEm", value = ConstraintMode.CONSTRAINT))
+	private List<ValorPorcentual> valorPorcentual;
 	@Column
 	private int ajusteEmision;
 	
 	public AjusteEmision() {}
 
-	public AjusteEmision(long idAjusteDescuento, ValorPorcentual valorPorcentual, int ajusteEmision) {
+	public AjusteEmision(long idAjusteEmision, List<POJOS.ValorPorcentual> valorPorcentual, int ajusteEmision) {
 		super();
-		this.idAjusteEmision = idAjusteDescuento;
-		ValorPorcentual = valorPorcentual;
+		this.idAjusteEmision = idAjusteEmision;
+		this.valorPorcentual = valorPorcentual;
 		this.ajusteEmision = ajusteEmision;
 	}
 
-	public long getIdAjusteDescuento() {
+	public long getIdAjusteEmision() {
 		return idAjusteEmision;
 	}
 
-	public void setIdAjusteDescuento(long idAjusteDescuento) {
-		this.idAjusteEmision = idAjusteDescuento;
+	public void setIdAjusteEmision(long idAjusteEmision) {
+		this.idAjusteEmision = idAjusteEmision;
 	}
 
-	public ValorPorcentual getValorPorcentual() {
-		return ValorPorcentual;
+	public List<ValorPorcentual> getValorPorcentual() {
+		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
-		ValorPorcentual = valorPorcentual;
+	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
+		this.valorPorcentual = valorPorcentual;
 	}
+
+
 
 	public int getAjusteEmision() {
 		return ajusteEmision;
@@ -46,5 +50,6 @@ public class AjusteEmision {
 	public void setAjusteEmision(int ajusteEmision) {
 		this.ajusteEmision = ajusteEmision;
 	}
+
 	
 }

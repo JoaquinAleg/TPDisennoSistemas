@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -15,16 +17,38 @@ public class Localidad {
 	private int codigoPostal;
 	@Column
 	private String nombreLocalidad;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idLocalidad", nullable = true, referencedColumnName = "idLocalidad", 
+	foreignKey=@ForeignKey(name = "fk_valorL", value = ConstraintMode.CONSTRAINT))
+	private List<ValorPorcentual> valorPorcentual;
 	
 	public Localidad() {}
 
-	public Localidad(long idLocalidad, Provincia provincia, int codigoPostal, String nombreLocalidad) {
+	
+
+	public Localidad(long idLocalidad, POJOS.Provincia provincia, int codigoPostal, String nombreLocalidad,
+			List<ValorPorcentual> valorPorcentual) {
 		super();
 		this.idLocalidad = idLocalidad;
 		Provincia = provincia;
 		this.codigoPostal = codigoPostal;
 		this.nombreLocalidad = nombreLocalidad;
+		this.valorPorcentual = valorPorcentual;
 	}
+
+
+
+	public List<ValorPorcentual> getValorPorcentual() {
+		return valorPorcentual;
+	}
+
+
+
+	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
+		this.valorPorcentual = valorPorcentual;
+	}
+
+
 
 	public long getIdLocalidad() {
 		return idLocalidad;

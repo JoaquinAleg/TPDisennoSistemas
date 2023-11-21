@@ -2,10 +2,9 @@ package DAOS;
 
 import java.util.List;
 
-import POJOS.AjusteKilometro;
 import POJOS.AjusteSiniestro;
 import interfaces.ajusteSiniestroDAO;
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.*;
 
 public class DAOajusteSiniestro implements ajusteSiniestroDAO{
 
@@ -62,7 +61,7 @@ public class DAOajusteSiniestro implements ajusteSiniestroDAO{
 	public List<AjusteSiniestro> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<AjusteSiniestro> all = manager.createQuery("From AjustePorSiniestro").getResultList();
+			List<AjusteSiniestro> all = manager.createQuery("From AjustePorSiniestros").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

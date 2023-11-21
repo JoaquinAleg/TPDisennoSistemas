@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,21 +9,23 @@ public class AjusteSiniestro {
 	@Id
 	@Column
 	private long idAjusteSiniestro;
-	@ManyToOne
-	@JoinColumn(name = "idValorPorcentual", nullable = false, referencedColumnName = "idValorPorcentual", 
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idAjusteSiniestro", nullable = true, referencedColumnName = "idAjusteSiniestro", 
 	foreignKey=@ForeignKey(name = "fk_valorSiniestro", value = ConstraintMode.CONSTRAINT))
-	private ValorPorcentual valorPorcentual;
+	private List<ValorPorcentual> valorPorcentual;
 	@Column
 	private int cantidadSiniestros;
 	
 	public AjusteSiniestro() {}
 
-	public AjusteSiniestro(long idAjusteSiniestro, ValorPorcentual valorPorcentual, int cantidadSiniestros) {
+	
+	public AjusteSiniestro(long idAjusteSiniestro, List<ValorPorcentual> valorPorcentual, int cantidadSiniestros) {
 		super();
 		this.idAjusteSiniestro = idAjusteSiniestro;
 		this.valorPorcentual = valorPorcentual;
 		this.cantidadSiniestros = cantidadSiniestros;
 	}
+
 
 	public long getIdAjusteSiniestro() {
 		return idAjusteSiniestro;
@@ -31,13 +35,16 @@ public class AjusteSiniestro {
 		this.idAjusteSiniestro = idAjusteSiniestro;
 	}
 
-	public ValorPorcentual getValorPorcentual() {
+	
+	public List<ValorPorcentual> getValorPorcentual() {
 		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
+
+	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
 		this.valorPorcentual = valorPorcentual;
 	}
+
 
 	public int getCantidadSiniestros() {
 		return cantidadSiniestros;

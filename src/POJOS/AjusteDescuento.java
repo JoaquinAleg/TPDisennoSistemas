@@ -1,4 +1,6 @@
 package POJOS;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,16 +9,16 @@ public class AjusteDescuento {
 	@Id
 	@Column
 	private long idAjusteDescuento;
-	@OneToOne
-	@JoinColumn(name = "idValorPorcentual", nullable = false, referencedColumnName = "idValorPorcentual", 
-	foreignKey=@ForeignKey(name = "fk_valorDescuento", value = ConstraintMode.CONSTRAINT))
-	private ValorPorcentual valorPorcentual;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idAjusteDescuento", nullable = true, referencedColumnName = "idAjusteDescuento", 
+	foreignKey=@ForeignKey(name = "fk_valorDesc", value = ConstraintMode.CONSTRAINT))
+	private List<ValorPorcentual> valorPorcentual;
 	@Column
 	private float ajusteDescuento;
 	
 	public AjusteDescuento() {}
 
-	public AjusteDescuento(long idAjusteDescuento, ValorPorcentual valorPorcentual, float ajusteDescuento) {
+	public AjusteDescuento(long idAjusteDescuento, List<ValorPorcentual> valorPorcentual, float ajusteDescuento) {
 		super();
 		this.idAjusteDescuento = idAjusteDescuento;
 		this.valorPorcentual = valorPorcentual;
@@ -31,11 +33,11 @@ public class AjusteDescuento {
 		this.idAjusteDescuento = idAjusteDescuento;
 	}
 
-	public ValorPorcentual getValorPorcentual() {
+	public List<ValorPorcentual> getValorPorcentual() {
 		return valorPorcentual;
 	}
 
-	public void setValorPorcentual(ValorPorcentual valorPorcentual) {
+	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
 		this.valorPorcentual = valorPorcentual;
 	}
 
@@ -46,5 +48,7 @@ public class AjusteDescuento {
 	public void setAjusteDescuento(float ajusteDescuento) {
 		this.ajusteDescuento = ajusteDescuento;
 	}
+
+	
 	
 }

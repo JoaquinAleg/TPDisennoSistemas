@@ -89,7 +89,7 @@ public class Poliza {
 	private String dniCliente;
 	@Column
 	private LocalDate fechaCreacion;
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "NroPoliza", nullable = false, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_polizaCuota", value = ConstraintMode.CONSTRAINT))
 	private List<Cuota> cuotas;

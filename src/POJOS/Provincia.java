@@ -15,23 +15,42 @@ public class Provincia {
 	private Pais pais;
 	@Column
 	private String nombreProvincia;
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idProvincia", nullable = true, referencedColumnName = "idProvincia")
 	private List<Localidad> localidades;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idProvincia", nullable = true, referencedColumnName = "idProvincia", 
+	foreignKey=@ForeignKey(name = "fk_valorP", value = ConstraintMode.CONSTRAINT))
+	private List<ValorPorcentual> valorPorcentual;
 	public Provincia() {}
 
 	
 
 
-
-	public Provincia(long idProvincia, Pais pais, String nombreProvincia, List<Localidad> localidades) {
+	public Provincia(long idProvincia, Pais pais, String nombreProvincia, List<Localidad> localidades,
+			List<ValorPorcentual> valorPorcentual) {
 		super();
 		this.idProvincia = idProvincia;
 		this.pais = pais;
 		this.nombreProvincia = nombreProvincia;
 		this.localidades = localidades;
+		this.valorPorcentual = valorPorcentual;
 	}
 
+
+
+
+
+	public List<ValorPorcentual> getValorPorcentual() {
+		return valorPorcentual;
+	}
+
+
+
+
+	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
+		this.valorPorcentual = valorPorcentual;
+	}
 
 
 
