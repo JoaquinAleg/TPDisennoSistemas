@@ -62,8 +62,6 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		this.gestorPoliza = gestorPoliza;
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.setExtendedState(MAXIMIZED_BOTH);
 		setBounds(100, 100, 1000, 320);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
@@ -202,6 +200,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 				h.setEstadoCivil(estadoCivil);
 				CrearPoliza_EditarHijos.this.setVisible(false);
 				CrearPoliza_EditarHijos.this.dispose();
+				
 			}
 		});
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.PLAIN, 35));

@@ -139,7 +139,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		
 		//--------EMPIEZA------------------------------------------------
 			for(HijosDTO hijo : hijos){
-				if(cantidadHijos == 1) {scrollPane.getViewport().setPreferredSize(new Dimension(1000, 250));}
+				if(cantidadHijos == 1) {scrollPane.getViewport().setPreferredSize(new Dimension(1000, 225));}
 			final HijosDTO h = hijo;
 			JPanel prueba = new JPanel();
 			prueba.setBorder(new MatteBorder(2, 0, 0, 0, (Color) new Color(0, 0, 0)));
@@ -234,7 +234,6 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 					} catch(Exception er) {
 						er.printStackTrace();
 					}
-	
 				}
 			});
 			btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
