@@ -32,6 +32,9 @@ import java.awt.Component;
 import java.awt.Container;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 ;
 
@@ -42,7 +45,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	 
-	public CrearPoliza_EditarHijos() {
+	public CrearPoliza_EditarHijos(LocalDate nacimiento, String sexo, String estadoCivil) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -118,14 +121,16 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		gbc_lblFechaDeNacimiento_1_1.gridy = 0;
 		prueba.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
 		
-		JDateChooser dateChooser_1_1 = new JDateChooser();
-		dateChooser_1_1.setBackground(SystemColor.inactiveCaptionBorder);
+		//Agregar de la base de datos...
+		JDateChooser birth = new JDateChooser();
+		birth.setDate(Date.from(nacimiento.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+		birth.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_dateChooser_1_1 = new GridBagConstraints();
 		gbc_dateChooser_1_1.fill = GridBagConstraints.BOTH;
 		gbc_dateChooser_1_1.insets = new Insets(30, 5, 5, 30);
 		gbc_dateChooser_1_1.gridx = 1;
 		gbc_dateChooser_1_1.gridy = 0;
-		prueba.add(dateChooser_1_1, gbc_dateChooser_1_1);
+		prueba.add(birth, gbc_dateChooser_1_1);
 		
 		JLabel lblNewLabel_1_2_1_1 = new JLabel("Sexo:");
 		lblNewLabel_1_2_1_1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -137,15 +142,16 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		gbc_lblNewLabel_1_2_1_1.gridy = 0;
 		prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
 		
-		JComboBox LocalidadRiesgo_1_1_1 = new JComboBox();
-		LocalidadRiesgo_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		LocalidadRiesgo_1_1_1.setBackground(SystemColor.inactiveCaptionBorder);
+		JComboBox TipoSexo = new JComboBox();
+		TipoSexo.setSelectedItem(sexo);
+		TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_LocalidadRiesgo_1_1_1 = new GridBagConstraints();
 		gbc_LocalidadRiesgo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_LocalidadRiesgo_1_1_1.insets = new Insets(30, 0, 5, 40);
 		gbc_LocalidadRiesgo_1_1_1.gridx = 4;
 		gbc_LocalidadRiesgo_1_1_1.gridy = 0;
-		prueba.add(LocalidadRiesgo_1_1_1, gbc_LocalidadRiesgo_1_1_1);
+		prueba.add(TipoSexo, gbc_LocalidadRiesgo_1_1_1);
 		
 		JLabel lblEstadoCivil_1_1 = new JLabel("Estado Civil:");
 		lblEstadoCivil_1_1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -157,15 +163,16 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		gbc_lblEstadoCivil_1_1.gridy = 2;
 		prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 		
-		JComboBox MarcaVehiculo_1_1_1 = new JComboBox();
-		MarcaVehiculo_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		MarcaVehiculo_1_1_1.setBackground(SystemColor.inactiveCaptionBorder);
+		JComboBox TipoEstadoCivil = new JComboBox();
+		TipoEstadoCivil.setSelectedItem(estadoCivil);
+		TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_MarcaVehiculo_1_1_1 = new GridBagConstraints();
 		gbc_MarcaVehiculo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_MarcaVehiculo_1_1_1.insets = new Insets(20, 0, 40, 30);
 		gbc_MarcaVehiculo_1_1_1.gridx = 1;
 		gbc_MarcaVehiculo_1_1_1.gridy = 2;
-		prueba.add(MarcaVehiculo_1_1_1, gbc_MarcaVehiculo_1_1_1);
+		prueba.add(TipoEstadoCivil, gbc_MarcaVehiculo_1_1_1);
 		
 		JButton btnNewButton_1_2 = new JButton("Confirmar");
 		btnNewButton_1_2.addActionListener(new ActionListener() {

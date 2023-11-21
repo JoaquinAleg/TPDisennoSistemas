@@ -12,6 +12,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.LineBorder;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -53,18 +55,6 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrearPoliza_ListadoHijos frame = new CrearPoliza_ListadoHijos(0,0,0,0,0);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -131,13 +121,15 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		panel.add(contenedorDeScrollpane , gbc_panel_1);
 		 
 		JPanel ContenedorDeInfo = new JPanel();
-		ContenedorDeInfo.setLayout(new BoxLayout(ContenedorDeInfo, BoxLayout.Y_AXIS));
-		JScrollPane scrollPane = new JScrollPane(ContenedorDeInfo);
-		contenedorDeScrollpane.add(scrollPane);
-		contenedorDeScrollpane.setVisible(true);
+        ContenedorDeInfo.setLayout(new BoxLayout(ContenedorDeInfo, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(ContenedorDeInfo);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setViewportView(ContenedorDeInfo);
+        contenedorDeScrollpane.add(scrollPane, BorderLayout.CENTER);
+        ContenedorDeInfo.setSize(new Dimension(900, 1000));
+        contenedorDeScrollpane.setVisible(true);
 		
 		//--------EMPIEZA------------------------------------------------
-//		scrollPane.setViewportView(ContenedorDeInfo);
 		for(HijosDTO hijo : hijos) {
 		final HijosDTO h = hijo;
 		JPanel prueba = new JPanel();
@@ -161,6 +153,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		prueba.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
 		
 		JDateChooser nacimiento = new JDateChooser();
+		nacimiento.setEnabled(false);
 		nacimiento.setDate(Date.from(h.getFechaNacimiento().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 		nacimiento.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_dateChooser_1_1 = new GridBagConstraints();
@@ -181,6 +174,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
 		
 		JComboBox TipoSexo = new JComboBox();
+		TipoSexo.setEnabled(false);
 		TipoSexo.setSelectedItem(h.getSexo());
 		TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -202,6 +196,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 		
 		JComboBox TipoEstadoCivil = new JComboBox();
+		TipoEstadoCivil.setEnabled(false);
 		TipoEstadoCivil.setSelectedItem(h.getEstadoCivil());
 		TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
@@ -215,7 +210,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		JButton btnNewButton_1_1_1 = new JButton("Editar");
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos();
+				CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(h.getFechaNacimiento(), h.getSexo(), h.getEstadoCivil());
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -243,9 +238,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		prueba.add(btnNewButton_1_2, gbc_btnNewButton_1_2);
 		
 		ContenedorDeInfo.add(prueba);
-		//Box.revalidate();
-		//Box.repaint();
-
+		contentPane.revalidate();
 }
 		
 	
