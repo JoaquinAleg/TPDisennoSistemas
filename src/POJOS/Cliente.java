@@ -31,6 +31,10 @@ public class Cliente {
 	@JoinColumn(name = "idCliente", nullable = true, referencedColumnName = "idCliente", 
 	foreignKey=@ForeignKey(name = "fk_clientePoliza", value = ConstraintMode.CONSTRAINT))
 	private List<Poliza> polizas;
+	@ManyToOne
+	@JoinColumn(name = "idTipoCondicionCliente", nullable = true, referencedColumnName = "idTipoCondicionCliente", 
+	foreignKey=@ForeignKey(name = "fk_condicionCliente", value = ConstraintMode.CONSTRAINT))
+	private TipoCondicionCliente condicionCliente;
 	
 	
 	public Cliente() {}
