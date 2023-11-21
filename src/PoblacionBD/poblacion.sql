@@ -1,40 +1,9 @@
-INSERT INTO public.valorporcentual (idvalorporcentual, fechaasignacion, fechamodificacion, valorporcentual) VALUES
-  (1, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05),
-  (2, '2023-02-01 12:00:00', '2023-02-01 12:00:00', 0.08),
-  (3, '2023-03-01 12:00:00', '2023-03-01 12:00:00', 0.07),
-  (4, '2023-04-01 12:00:00', '2023-04-01 12:00:00', 0.06),
-  (5, '2023-05-01 12:00:00', '2023-05-01 12:00:00', 0.09);
-
-INSERT INTO public.Marca (idmarca, idvalorporcentual, nombreMarca) VALUES
-  (1, 1, 'Toyota'),
-  (2, 1, 'Ford'),
-  (3, 1, 'Honda'),
-  (4, 1, 'Chevrolet'),
-  (5, 1, 'Volkswagen'),
-  (6, 1, 'Nissan'),
-  (7, 1, 'BMW'),
-  (8, 1, 'Mercedes-Benz'),
-  (9, 1, 'Audi'),
-  (10, 1, 'Hyundai');
-
-
-  INSERT INTO public.valorporcentual (idvalorporcentual, fechaasignacion, fechamodificacion, valorporcentual) VALUES
-  (1, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05),
-  (2, '2023-02-01 12:00:00', '2023-02-01 12:00:00', 0.08),
-  (3, '2023-03-01 12:00:00', '2023-03-01 12:00:00', 0.07),
-  (4, '2023-04-01 12:00:00', '2023-04-01 12:00:00', 0.06),
-  (5, '2023-05-01 12:00:00', '2023-05-01 12:00:00', 0.09);
-
-INSERT INTO public.Marca (idmarca, idvalorporcentual, nombreMarca) VALUES
-  (1, 1, 'Toyota'),
-  (2, 2, 'Ford'),
-  (3, 3, 'Honda'),
-  (4, 4, 'Chevrolet'),
-  (5, 5, 'Volkswagen');
-
-  //PROBLEMA CON LA BASE DE DATOS, POR ALGUNA RAZON NO ME DEJA INGRESAR PARA UNA MARCA EL MISMO ID PORCENTUAL
-
-
+INSERT INTO public.Marca (idmarca, nombreMarca) VALUES
+  (1, 'Toyota'),
+  (2, 'Ford'),
+  (3, 'Honda'),
+  (4, 'Chevrolet'),
+  (5, 'Volkswagen');
 
 INSERT INTO public.Pais (idpais, nombrePais) VALUES
   (1, 'Argentina');
@@ -183,41 +152,41 @@ INSERT INTO public.localidad (idlocalidad, codigopostal, nombrelocalidad, idprov
 
 
 -- Insertando datos en la tabla ModeloVehiculo para algunas marcas de vehículos
-INSERT INTO public.modelovehiculo (idmodelo, idmarca, nombremodelo, valorporcentual) VALUES
+INSERT INTO public.modelovehiculo (idmodelo, idmarca, nombremodelo) VALUES
   -- Toyota
-  (1, 1, 'Corolla', 1),
-  (2, 1, 'Camry', 2),
-  (3, 1, 'Rav4', 1),
-  (4, 1, 'Hilux', 3),
-  (5, 1, 'Prius', 1),
+  (1, 1, 'Corolla'),
+  (2, 1, 'Camry'),
+  (3, 1, 'Rav4'),
+  (4, 1, 'Hilux'),
+  (5, 1, 'Prius'),
 
   -- Ford
-  (6, 2, 'F-150', 2),
-  (7, 2, 'Escape', 4),
-  (8, 2, 'Mustang', 4),
-  (9, 2, 'Explorer', 4),
-  (10, 2, 'Focus', 2),
+  (6, 2, 'F-150'),
+  (7, 2, 'Escape'),
+  (8, 2, 'Mustang'),
+  (9, 2, 'Explorer'),
+  (10, 2, 'Focus'),
 
   -- Honda
-  (11, 3, 'Civic', 5),
-  (12, 3, 'Accord', 4),
-  (13, 3, 'CR-V', 5),
-  (14, 3, 'Pilot', 5),
-  (15, 3, 'Fit', 1),
+  (11, 3, 'Civic'),
+  (12, 3, 'Accord'),
+  (13, 3, 'CR-V'),
+  (14, 3, 'Pilot'),
+  (15, 3, 'Fit'),
 
   -- Chevrolet
-  (16, 4, 'Silverado', 3),
-  (17, 4, 'Equinox', 2),
-  (18, 4, 'Malibu', 3),
-  (19, 4, 'Traverse', 2),
-  (20, 4, 'Camaro', 4),
+  (16, 4, 'Silverado'),
+  (17, 4, 'Equinox'),
+  (18, 4, 'Malibu'),
+  (19, 4, 'Traverse'),
+  (20, 4, 'Camaro'),
 
   -- Volkswagen
-  (21, 5, 'Golf', 2),
-  (22, 5, 'Jetta', 2),
-  (23, 5, 'Tiguan', 3),
-  (24, 5, 'Atlas', 4),
-  (25, 5, 'Passat', 5);
+  (21, 5, 'Golf'),
+  (22, 5, 'Jetta'),
+  (23, 5, 'Tiguan'),
+  (24, 5, 'Atlas'),
+  (25, 5, 'Passat');
 
 -- Insertando datos en la tabla AnioFabricacion para años desde 1980
 INSERT INTO public.aniofabricacion (idaniofabricacion, aniofabricacion) VALUES
@@ -265,7 +234,84 @@ INSERT INTO public.aniofabricacion (idaniofabricacion, aniofabricacion) VALUES
   (42, 2021),
   (43, 2022),
   (44, 2023);
-  
-insert into TipoEstadoCivil(idtipoestadocivil, descripcion)values(1,'Soltero/a'),(2,'Casado/a'),(3,'Viudo/a'),(4,'Divorciado/a'),(5,'Separado/a');
 
-insert into TipoSexo(idtiposexo, descripcion)values(1,'Femenino'),(2,'Masculino');
+-- Asociaciones para Toyota
+INSERT INTO public.fabricado (idaniofabricacion, idmodelo) VALUES
+  (1, 1), (2, 1), (3, 1), (4, 1), (5, 1),
+  (6, 2), (7, 2), (8, 2), (9, 2), (10, 2),
+  (11, 3), (12, 3), (13, 3), (14, 3), (15, 3),
+  (16, 4), (17, 4), (18, 4), (19, 4), (20, 4),
+  (21, 5), (22, 5), (23, 5), (24, 5), (25, 5);
+
+-- Asociaciones para Ford
+INSERT INTO public.fabricado (idaniofabricacion, idmodelo) VALUES
+  (6, 6), (7, 6), (8, 6), (9, 6), (10, 6),
+  (11, 7), (12, 7), (13, 7), (14, 7), (15, 7),
+  (16, 8), (17, 8), (18, 8), (19, 8), (20, 8),
+  (21, 9), (22, 9), (23, 9), (24, 9), (25, 9),
+  (26, 10), (27, 10), (28, 10), (29, 10), (30, 10);
+
+-- Asociaciones para Honda
+INSERT INTO public.fabricado (idaniofabricacion, idmodelo) VALUES
+  (11, 11), (12, 11), (13, 11), (14, 11), (15, 11),
+  (16, 12), (17, 12), (18, 12), (19, 12), (20, 12),
+  (21, 13), (22, 13), (23, 13), (24, 13), (25, 13),
+  (26, 14), (27, 14), (28, 14), (29, 14), (30, 14),
+  (31, 15), (32, 15), (33, 15), (34, 15), (35, 15);
+
+-- Asociaciones para Chevrolet
+INSERT INTO public.fabricado (idaniofabricacion, idmodelo) VALUES
+  (16, 16), (17, 16), (18, 16), (19, 16), (20, 16),
+  (21, 17), (22, 17), (23, 17), (24, 17), (25, 17),
+  (26, 18), (27, 18), (28, 18), (29, 18), (30, 18),
+  (31, 19), (32, 19), (33, 19), (34, 19), (35, 19),
+  (36, 20), (37, 20), (38, 20), (39, 20), (40, 20);
+
+-- Asociaciones para Volkswagen
+INSERT INTO public.fabricado (idaniofabricacion, idmodelo) VALUES
+  (21, 21), (22, 21), (23, 21), (24, 21), (25, 21),
+  (26, 22), (27, 22), (28, 22), (29, 22), (30, 22),
+  (31, 23), (32, 23), (33, 23), (34, 23), (35, 23),
+  (36, 24), (37, 24), (38, 24), (39, 24), (40, 24),
+  (41, 25), (42, 25), (43, 25), (44, 25);
+
+INSERT INTO public.ajusteporsiniestro (idajustesiniestro, cantidadsiniestros) VALUES
+  (1, 0), (2, 1), (3, 2), (4, 3);
+
+  INSERT INTO public.valorporcentual (idvalorporcentual, fechaasignacion, fechamodificacion, valorporcentual, idcobertura, idajustedescuento, idmarca, idmodelo, idajusteemision, idajustehijo,
+ idajustekilometro, idajustesiniestro, idlocalidad, idmedida, idprovincia) VALUES
+  (1, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, 1, null, null, null, null, null, null, null, null),
+  (2, '2023-02-01 12:00:00', '2023-02-01 12:00:00', 0.08, null, null, 2, null, null, null, null, null, null, null, null),
+  (3, '2023-03-01 12:00:00', '2023-03-01 12:00:00', 0.07, null, null, 3, null, null, null, null, null, null, null, null),
+  (4, '2023-04-01 12:00:00', '2023-04-01 12:00:00', 0.06, null, null, 4, null, null, null, null, null, null, null, null),
+  (5, '2023-05-01 12:00:00', '2023-05-01 12:00:00', 0.09, null, null, 5, null, null, null, null, null, null, null, null),
+  (6, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, null, 1, null, null, null, null, null, null, null),
+  (7, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, null, 6, null, null, null, null, null, null, null),
+  (8, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, null, 11, null, null, null, null, null, null, null),
+  (9, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, null, 16, null, null, null, null, null, null, null),
+  (10, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, null, 21, null, null, null, null, null, null, null),
+  (11, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06, null, null, null, 2, null, null, null, null, null, null, null),
+  (12, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06, null, null, null, 7, null, null, null, null, null, null, null),
+  (13, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06, null, null, null, 12, null, null, null, null, null, null, null),
+  (14, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06, null, null, null, 17, null, null, null, null, null, null, null),
+  (15, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06, null, null, null, 22, null, null, null, null, null, null, null),
+  (16, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07, null, null, null, 3, null, null, null, null, null, null, null),
+  (17, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07, null, null, null, 8, null, null, null, null, null, null, null),
+  (18, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07, null, null, null, 13, null, null, null, null, null, null, null),
+  (19, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07, null, null, null, 18, null, null, null, null, null, null, null),
+  (20, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07, null, null, null, 23, null, null, null, null, null, null, null),
+  (21, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08, null, null, null, 4, null, null, null, null, null, null, null),
+  (22, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08, null, null, null, 9, null, null, null, null, null, null, null),
+  (23, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08, null, null, null, 14, null, null, null, null, null, null, null),
+  (24, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08, null, null, null, 19, null, null, null, null, null, null, null),
+  (25, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08, null, null, null, 24, null, null, null, null, null, null, null),
+  (26, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09, null, null, null, 5, null, null, null, null, null, null, null),
+  (27, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09, null, null, null, 10, null, null, null, null, null, null, null),
+  (28, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09, null, null, null, 15, null, null, null, null, null, null, null),
+  (29, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09, null, null, null, 19, null, null, null, null, null, null, null),
+  (30, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09, null, null, null, 25, null, null, null, null, null, null, null),
+  (31, '2023-02-01 12:00:00', '2023-02-01 12:00:00', 0.08, null, null, null, null, null, null, null, 1, null, null, null),
+  (32, '2023-03-01 12:00:00', '2023-03-01 12:00:00', 0.07, null, null, null, null, null, null, null, 2, null, null, null),
+  (33, '2023-04-01 12:00:00', '2023-04-01 12:00:00', 0.06, null, null, null, null, null, null, null, 3, null, null, null),
+  (34, '2023-05-01 12:00:00', '2023-05-01 12:00:00', 0.09, null, null, null, null, null, null, null, 4, null, null, null);
+  
