@@ -25,6 +25,7 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import DTOS.HijosDTO;
+import DTOS.ListadoDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 
@@ -42,6 +43,7 @@ import java.awt.event.ActionListener;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 ;
 
@@ -51,6 +53,9 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private GestorPoliza gestorPoliza;
+	private List<ListadoDTO> modeloDTO;
+	private String[] modelos; 
 
 	/**
 	 * Launch the application.
@@ -61,6 +66,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	 */
 	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hijos,
 			GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
+		this.gestorPoliza = gestorPoliza;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,7 +98,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		gbl_panel.columnWidths = new int[]{0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JPanel panel_3 = new JPanel();
@@ -113,6 +119,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		panel_3.add(lblNewLabel_5_1);
 		
 		JPanel contenedorDeScrollpane = new JPanel();
+		contenedorDeScrollpane.setPreferredSize(new Dimension(800, 500));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(10, 0, 10, 0);
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
@@ -126,8 +133,6 @@ public class CrearPoliza_ListadoHijos extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setViewportView(ContenedorDeInfo);
         contenedorDeScrollpane.add(scrollPane, BorderLayout.CENTER);
-        ContenedorDeInfo.setSize(new Dimension(900, 1000));
-        contenedorDeScrollpane.setVisible(true);
 		
 		//--------EMPIEZA------------------------------------------------
 		for(HijosDTO hijo : hijos) {
@@ -173,7 +178,10 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		gbc_lblNewLabel_1_2_1_1.gridy = 0;
 		prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
 		
-		JComboBox TipoSexo = new JComboBox();
+		modeloDTO = this.gestorPoliza.getSexos();
+		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> TipoSexo = new JComboBox(modelos);
+//		JComboBox TipoSexo = new JComboBox();
 		TipoSexo.setEnabled(false);
 		TipoSexo.setSelectedItem(h.getSexo());
 		TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -195,7 +203,10 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		gbc_lblEstadoCivil_1_1.gridy = 2;
 		prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 		
-		JComboBox TipoEstadoCivil = new JComboBox();
+		modeloDTO = this.gestorPoliza.getEstadoCiviles();
+		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> TipoEstadoCivil = new JComboBox(modelos);
+//		JComboBox TipoEstadoCivil = new JComboBox();
 		TipoEstadoCivil.setEnabled(false);
 		TipoEstadoCivil.setSelectedItem(h.getEstadoCivil());
 		TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -208,9 +219,11 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		prueba.add(TipoEstadoCivil, gbc_MarcaVehiculo_1_1_1);
 		
 		JButton btnNewButton_1_1_1 = new JButton("Editar");
+		CrearPoliza_ListadoHijos anterior = this;
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(h.getFechaNacimiento(), h.getSexo(), h.getEstadoCivil());
+				CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(h.getFechaNacimiento(), h.getSexo(), h.getEstadoCivil(),
+						gestorPoliza, h);
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -238,9 +251,10 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		prueba.add(btnNewButton_1_2, gbc_btnNewButton_1_2);
 		
 		ContenedorDeInfo.add(prueba);
-		contentPane.revalidate();
+		contentPane.validate();
 }
-		
+		//---------FIN--------------
+        scrollPane.setViewportView(ContenedorDeInfo);
 	
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(SystemColor.inactiveCaptionBorder);

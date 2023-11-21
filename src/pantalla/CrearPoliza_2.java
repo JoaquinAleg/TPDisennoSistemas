@@ -53,8 +53,8 @@ public class CrearPoliza_2 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private ArrayList<HijosDTO> cantidadHijos;
-	List<ListadoDTO> modeloDTO;
 	private GestorPoliza gestorPoliza;
+	List<ListadoDTO> modeloDTO;
 	String[] modelos;
 	private DatosPolizaDTO datosPolizaDTO;
 	private GestorCliente gestorCliente;

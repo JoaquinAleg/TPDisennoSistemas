@@ -24,6 +24,7 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import DTOS.HijosDTO;
+import DTOS.ListadoDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 
@@ -33,6 +34,7 @@ import java.awt.event.ActionListener;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.awt.event.ActionEvent;
 ;
 
@@ -43,9 +45,13 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private ArrayList<HijosDTO> hijoss;
+	private GestorPoliza gestorPoliza;
+	private List<ListadoDTO> modeloDTO;
+	private String[] modelos;
 
 	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
 			GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
+		this.gestorPoliza = gestorPoliza;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -316,9 +322,12 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_lblNewLabel_1_2.gridy = 0;
 		panel_1_1.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 		
-		JComboBox sexo = new JComboBox();
-		sexo.addItem("Masculino");
-		sexo.addItem("Femenino");
+		modeloDTO = this.gestorPoliza.getSexos();
+		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> sexo = new JComboBox(modelos);
+//		JComboBox sexo = new JComboBox();
+//		sexo.addItem("Masculino");
+//		sexo.addItem("Femenino");
 		sexo.setSelectedIndex(se);
 		sexo.setBackground(SystemColor.inactiveCaptionBorder);
 		sexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -339,12 +348,15 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_lblEstadoCivil.gridy = 2;
 		panel_1_1.add(lblEstadoCivil, gbc_lblEstadoCivil);
 		
-		JComboBox estadoCivil = new JComboBox();
-		estadoCivil.addItem("Soltero/a");
-		estadoCivil.addItem("Casado/a");
-		estadoCivil.addItem("Viudo/a");
-		estadoCivil.addItem("Divorciado/a");
-		estadoCivil.addItem("Separado/a");
+		modeloDTO = this.gestorPoliza.getEstadoCiviles();
+		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> estadoCivil = new JComboBox(modelos);
+//		JComboBox estadoCivil = new JComboBox();
+//		estadoCivil.addItem("Soltero/a");
+//		estadoCivil.addItem("Casado/a");
+//		estadoCivil.addItem("Viudo/a");
+//		estadoCivil.addItem("Divorciado/a");
+//		estadoCivil.addItem("Separado/a");
 		estadoCivil.setSelectedIndex(ec);
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));

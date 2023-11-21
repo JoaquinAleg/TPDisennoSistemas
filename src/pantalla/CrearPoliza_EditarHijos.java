@@ -21,6 +21,12 @@ import javax.swing.JTextField;
 import java.awt.SystemColor;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
+
+import DTOS.HijosDTO;
+import DTOS.ListadoDTO;
+import Gestores.GestorCliente;
+import Gestores.GestorPoliza;
+
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
 import javax.swing.JScrollBar;
@@ -34,7 +40,9 @@ import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 ;
 
@@ -44,10 +52,16 @@ public class CrearPoliza_EditarHijos extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	 
-	public CrearPoliza_EditarHijos(LocalDate nacimiento, String sexo, String estadoCivil) {
+	private GestorPoliza gestorPoliza;
+	private List<ListadoDTO> modeloDTO;
+	private String[] modelos; 
+	
+	
+	public CrearPoliza_EditarHijos(LocalDate nacimiento, String sexo, String estadoCivil, GestorPoliza gestorPoliza,
+			HijosDTO h) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
+		this.gestorPoliza = gestorPoliza;
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setExtendedState(MAXIMIZED_BOTH);
 		setBounds(100, 100, 1000, 320);
@@ -142,7 +156,10 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		gbc_lblNewLabel_1_2_1_1.gridy = 0;
 		prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
 		
-		JComboBox TipoSexo = new JComboBox();
+		modeloDTO = this.gestorPoliza.getSexos();
+		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> TipoSexo = new JComboBox(modelos);
+//		JComboBox TipoSexo = new JComboBox();
 		TipoSexo.setSelectedItem(sexo);
 		TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -163,7 +180,10 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		gbc_lblEstadoCivil_1_1.gridy = 2;
 		prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 		
-		JComboBox TipoEstadoCivil = new JComboBox();
+		modeloDTO = this.gestorPoliza.getEstadoCiviles();
+		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> TipoEstadoCivil = new JComboBox(modelos);
+//		JComboBox TipoEstadoCivil = new JComboBox();
 		TipoEstadoCivil.setSelectedItem(estadoCivil);
 		TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
@@ -177,9 +197,11 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		JButton btnNewButton_1_2 = new JButton("Confirmar");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				h.setFechaNacimiento(nacimiento);
+				h.setSexo(sexo);
+				h.setEstadoCivil(estadoCivil);
 				CrearPoliza_EditarHijos.this.setVisible(false);
 				CrearPoliza_EditarHijos.this.dispose();
-				
 			}
 		});
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.PLAIN, 35));
@@ -189,7 +211,5 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		gbc_btnNewButton_1_2.gridx = 4;
 		gbc_btnNewButton_1_2.gridy = 2;
 		prueba.add(btnNewButton_1_2, gbc_btnNewButton_1_2);
-
-
 	}
 }
