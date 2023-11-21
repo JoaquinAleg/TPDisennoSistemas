@@ -18,8 +18,8 @@ public class Modelo {
 	@Column
 	private String nombreModelo;
 	@OneToMany
-	@JoinColumn(name = "idModelo", nullable = true, referencedColumnName = "idModelo", 
-	foreignKey=@ForeignKey(name = "fk_Marca", value = ConstraintMode.CONSTRAINT))
+	@JoinColumn(name = "idModelo", nullable = false, referencedColumnName = "idModelo", 
+	foreignKey=@ForeignKey(name = "fk_	", value = ConstraintMode.CONSTRAINT))
 	private List<fabricado> anioFabricacion;
 	
 	

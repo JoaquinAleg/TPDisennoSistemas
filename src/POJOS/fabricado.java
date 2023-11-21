@@ -5,12 +5,13 @@ import jakarta.persistence.*;
 @Table(name = "Fabricado", schema = "public")
 public class fabricado {
 	@Id
-	@OneToOne
-	@JoinColumn(name = "idAnioFabricacion", nullable = false, referencedColumnName = "idAnioFabricacion", 
+	@ManyToOne
+	@JoinColumn(unique = false, name = "idAnioFabricacion", nullable = false, referencedColumnName = "idAnioFabricacion", 
 	foreignKey=@ForeignKey(name = "fk_fabricadoEn", value = ConstraintMode.CONSTRAINT))
 	private AnioFabricacion AnioFabricacion;
-	@OneToOne
-	@JoinColumn(name = "idModelo", nullable = false, referencedColumnName = "idModelo", 
+	@Id
+	@ManyToOne
+	@JoinColumn(unique = false, name = "idModelo", nullable = false, referencedColumnName = "idModelo", 
 	foreignKey=@ForeignKey(name = "fk_Modelo", value = ConstraintMode.CONSTRAINT))
 	private Modelo Modelo;
 	
