@@ -278,7 +278,7 @@ INSERT INTO public.fabricado (idaniofabricacion, idmodelo) VALUES
 INSERT INTO public.ajusteporsiniestro (idajustesiniestro, cantidadsiniestros) VALUES
   (1, 0), (2, 1), (3, 2), (4, 3);
 
-  INSERT INTO public.valorporcentual (idvalorporcentual, fechaasignacion, fechamodificacion, valorporcentual, idcobertura, idajustedescuento, idmarca, idmodelo, idajusteemision, idajustehijo,
+ INSERT INTO public.valorporcentual (idvalorporcentual, fechaasignacion, fechamodificacion, valorporcentual, idcobertura, idajustedescuento, idmarca, idmodelo, idajusteemision, idajustehijo,
  idajustekilometro, idajustesiniestro, idlocalidad, idmedida, idprovincia) VALUES
   (1, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, 1, null, null, null, null, null, null, null, null),
   (2, '2023-02-01 12:00:00', '2023-02-01 12:00:00', 0.08, null, null, 2, null, null, null, null, null, null, null, null),
@@ -315,3 +315,48 @@ INSERT INTO public.ajusteporsiniestro (idajustesiniestro, cantidadsiniestros) VA
   (33, '2023-04-01 12:00:00', '2023-04-01 12:00:00', 0.06, null, null, null, null, null, null, null, 3, null, null, null),
   (34, '2023-05-01 12:00:00', '2023-05-01 12:00:00', 0.09, null, null, null, null, null, null, null, 4, null, null, null);
   
+INSERT INTO public.tipocondicioniva (idtipocondicioniva, descripcion) VALUES
+  (1, 'IVA Responsable Inscripto'),
+  (2, 'IVA Responsable no Inscripto'),
+  (3, 'IVA no Responsable'),
+  (4, 'IVA Sujeto Exento'),
+  (5, 'Consumidor Final'),
+  (6, 'Responsable Monotributo'),
+  (7, 'Sujeto no Categorizado'),
+  (8, 'Cliente Exterior'),
+  (9, 'IVA Liberado - Ley Nro 19640'),
+  (10, 'IVA Responsable Inscripto - Agente de Persepcion'),
+  (11, 'Pequenio Contribuyente Eventual'),
+  (12, 'Monotributista Social'),
+  (13, 'Pequenio Contribuyente Eventual Social'),
+  (14, 'Proveedor Exterior');
+
+INSERT INTO public.tipoestadocliente (idtipoestadocliente, descripcion) VALUES
+  (1, 'ACTIVO'),
+  (2, 'SUSPENDIDO'),
+  (3, 'INACTIVO');
+
+INSERT INTO public.tiposexo (idtiposexo, descripcion) VALUES
+  (1, 'Hombre'),
+  (2, 'Mujer');
+
+INSERT INTO public.tipoestadocivil (idtipoestadocivil, descripcion) VALUES
+  (1, 'Soltero/a'),
+  (2, 'Casado/a'),
+  (3, 'Viudo/a'),
+  (4, 'EnPareja');
+
+INSERT INTO public.tipodocumento (idtipodocumento, descripcion) VALUES
+  (1, 'DNI Ejemplar A'),
+  (2, 'DNI Ejemplar B'),
+  (3, 'DNI Ejemplar C'),
+  (4, 'DNI Ejemplar D');
+
+INSERT INTO public.domicilio (iddomicilio, calle, dpto, nrocalle, piso, idlocalidad) VALUES
+  (1, 'Lavaisse', '-', 610, 0, 20);
+
+INSERT INTO public.persona (cuit, apellido, nombre, cuil, documento, fechanacimiento, iddomicilio, idtipodocumento, idtipoestadocivil, idtiposexo) VALUES
+  (1, 'Oggier', 'Ivan Matias', 11, '11111111', '2001-01-01 12:00:00', 1, 1, 1, 1);
+
+INSERT INTO public.cliente (idcliente, fecharegistro, profesion, idtipocondicioniva, idtipoestadocliente, cuit) VALUES
+  (0100000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 1);

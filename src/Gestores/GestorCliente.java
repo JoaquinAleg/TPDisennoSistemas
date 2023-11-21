@@ -39,7 +39,7 @@ public class GestorCliente {
 		//ClienteDTO clienteDTO = new ClienteDTO(" ", null);
 		//clientesDTO.add(clienteDTO);
 		for(Cliente e : clientes) {
-			ClienteDTO clienteDTO = new ClienteDTO(e.getPersona().getNombre(), e.getPersona().getApellido(), e.getTipoDocumento(), Integer.parseInt(e.getDocumento()),e.getIdCliente());
+			ClienteDTO clienteDTO = new ClienteDTO(e.getPersona().getNombre(), e.getPersona().getApellido(),e.getIdCliente(), Integer.parseInt(e.getDocumento()), e.getTipoDocumento());
 			clientesDTO.add(clienteDTO);
 		}
 		return clientesDTO;
@@ -47,7 +47,7 @@ public class GestorCliente {
 
 	public ClienteDTO getClienteDTO(Long numeroCliente) {
 		Cliente cliente = daoCliente.getCliente(numeroCliente);
-		return new ClienteDTO(cliente.getPersona().getNombre(), cliente.getPersona().getApellido(), cliente.getTipoDocumento(), Integer.parseInt(cliente.getDocumento()),cliente.getIdCliente());
+		return new ClienteDTO(cliente.getPersona().getNombre(), cliente.getPersona().getApellido(), cliente.getIdCliente(), Integer.parseInt(cliente.getDocumento()), cliente.getTipoDocumento());
 	}
     
 }

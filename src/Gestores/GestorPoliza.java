@@ -418,7 +418,7 @@ public class GestorPoliza {
 			estadoCivilesDTO.add(estadoCivilDTO);
 		}
 		return estadoCivilesDTO;
-	}
+	}	
 	
 }
 
