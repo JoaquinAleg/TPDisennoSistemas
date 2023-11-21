@@ -81,7 +81,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_contentPane.rowHeights = new int[]{10, 202, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel panel = new JPanel();
@@ -99,7 +99,6 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		String numeroCliente = new String("numeroCliente");
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(SystemColor.inactiveCaptionBorder);
@@ -134,211 +133,116 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		scrollPane.setViewportView(Box);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		//--------EMPIEZA------------------------------------------------
-		for(HijosDTO hijo : hijos) {
-		final HijosDTO h = hijo;
-		JPanel prueba = new JPanel();
-		prueba.setBorder(new MatteBorder(2, 0, 0, 0, (Color) new Color(0, 0, 0)));
-		prueba.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagLayout gbl_prueba = new GridBagLayout();
-		gbl_prueba.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_prueba.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_prueba.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_prueba.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		prueba.setLayout(gbl_prueba);
-		Box.add(prueba);
-
+				for(HijosDTO hijo : hijos) {
+				final HijosDTO h = hijo;
+				JPanel prueba = new JPanel();
+				prueba.setBorder(new MatteBorder(2, 0, 0, 0, (Color) new Color(0, 0, 0)));
+				prueba.setBackground(SystemColor.inactiveCaptionBorder);
+				GridBagLayout gbl_prueba = new GridBagLayout();
+				gbl_prueba.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+				gbl_prueba.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+				gbl_prueba.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+				gbl_prueba.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+				prueba.setLayout(gbl_prueba);
+				Box.add(prueba);
 		
-		JLabel lblFechaDeNacimiento_1_1 = new JLabel("Fecha de nacimiento:");
-		lblFechaDeNacimiento_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblFechaDeNacimiento_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_lblFechaDeNacimiento_1_1 = new GridBagConstraints();
-		gbc_lblFechaDeNacimiento_1_1.anchor = GridBagConstraints.WEST;
-		gbc_lblFechaDeNacimiento_1_1.insets = new Insets(30, 50, 5, 5);
-		gbc_lblFechaDeNacimiento_1_1.gridx = 0;
-		gbc_lblFechaDeNacimiento_1_1.gridy = 0;
-		prueba.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
-		
-		JDateChooser nacimiento = new JDateChooser();
-		nacimiento.setDate(nacimiento.getDate());
-		nacimiento.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_dateChooser_1_1 = new GridBagConstraints();
-		gbc_dateChooser_1_1.fill = GridBagConstraints.BOTH;
-		gbc_dateChooser_1_1.insets = new Insets(30, 5, 5, 30);
-		gbc_dateChooser_1_1.gridx = 1;
-		gbc_dateChooser_1_1.gridy = 0;
-		prueba.add(nacimiento, gbc_dateChooser_1_1);
-		
-		JLabel lblNewLabel_1_2_1_1 = new JLabel("Sexo:");
-		lblNewLabel_1_2_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_lblNewLabel_1_2_1_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1_2_1_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1_2_1_1.insets = new Insets(30, 0, 5, 10);
-		gbc_lblNewLabel_1_2_1_1.gridx = 3;
-		gbc_lblNewLabel_1_2_1_1.gridy = 0;
-		prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
-		
-		JComboBox TipoSexo = new JComboBox();
-		TipoSexo.setSelectedItem(h.getSexo());
-		TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_LocalidadRiesgo_1_1_1 = new GridBagConstraints();
-		gbc_LocalidadRiesgo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_LocalidadRiesgo_1_1_1.insets = new Insets(30, 0, 5, 40);
-		gbc_LocalidadRiesgo_1_1_1.gridx = 4;
-		gbc_LocalidadRiesgo_1_1_1.gridy = 0;
-		prueba.add(TipoSexo, gbc_LocalidadRiesgo_1_1_1);
-		
-		JLabel lblEstadoCivil_1_1 = new JLabel("Estado Civil:");
-		lblEstadoCivil_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblEstadoCivil_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_lblEstadoCivil_1_1 = new GridBagConstraints();
-		gbc_lblEstadoCivil_1_1.anchor = GridBagConstraints.WEST;
-		gbc_lblEstadoCivil_1_1.insets = new Insets(20, 50, 40, 5);
-		gbc_lblEstadoCivil_1_1.gridx = 0;
-		gbc_lblEstadoCivil_1_1.gridy = 2;
-		prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
-		
-		JComboBox TipoEstadoCivil = new JComboBox();
-		TipoEstadoCivil.setSelectedItem(h.getEstadoCivil());
-		TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_MarcaVehiculo_1_1_1 = new GridBagConstraints();
-		gbc_MarcaVehiculo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_MarcaVehiculo_1_1_1.insets = new Insets(20, 0, 40, 30);
-		gbc_MarcaVehiculo_1_1_1.gridx = 1;
-		gbc_MarcaVehiculo_1_1_1.gridy = 2;
-		prueba.add(TipoEstadoCivil, gbc_MarcaVehiculo_1_1_1);
-		
-		JButton btnNewButton_1_1_1 = new JButton("Editar");
-		btnNewButton_1_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos();
+				JLabel lblFechaDeNacimiento_1_1 = new JLabel("Fecha de nacimiento:");
+				lblFechaDeNacimiento_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+				lblFechaDeNacimiento_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				GridBagConstraints gbc_lblFechaDeNacimiento_1_1 = new GridBagConstraints();
+				gbc_lblFechaDeNacimiento_1_1.anchor = GridBagConstraints.WEST;
+				gbc_lblFechaDeNacimiento_1_1.insets = new Insets(30, 50, 5, 5);
+				gbc_lblFechaDeNacimiento_1_1.gridx = 0;
+				gbc_lblFechaDeNacimiento_1_1.gridy = 0;
+				prueba.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
 				
-				try {
-					FuturaPantalla.setVisible(true);
-				} catch(Exception er) {
-					er.printStackTrace();
-				}
-
-			}
-		});
-		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		btnNewButton_1_1_1.setBackground(SystemColor.controlHighlight);
-		GridBagConstraints gbc_btnNewButton_1_1_1 = new GridBagConstraints();
-		gbc_btnNewButton_1_1_1.insets = new Insets(20, 0, 40, 10);
-		gbc_btnNewButton_1_1_1.gridx = 3;
-		gbc_btnNewButton_1_1_1.gridy = 2;
-		prueba.add(btnNewButton_1_1_1, gbc_btnNewButton_1_1_1);
+				JDateChooser nacimiento = new JDateChooser();
+				nacimiento.setDate(nacimiento.getDate());
+				nacimiento.setBackground(SystemColor.inactiveCaptionBorder);
+				GridBagConstraints gbc_dateChooser_1_1 = new GridBagConstraints();
+				gbc_dateChooser_1_1.fill = GridBagConstraints.BOTH;
+				gbc_dateChooser_1_1.insets = new Insets(30, 5, 5, 30);
+				gbc_dateChooser_1_1.gridx = 1;
+				gbc_dateChooser_1_1.gridy = 0;
+				prueba.add(nacimiento, gbc_dateChooser_1_1);
+				
+				JLabel lblNewLabel_1_2_1_1 = new JLabel("Sexo:");
+				lblNewLabel_1_2_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+				lblNewLabel_1_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				GridBagConstraints gbc_lblNewLabel_1_2_1_1 = new GridBagConstraints();
+				gbc_lblNewLabel_1_2_1_1.anchor = GridBagConstraints.WEST;
+				gbc_lblNewLabel_1_2_1_1.insets = new Insets(30, 0, 5, 10);
+				gbc_lblNewLabel_1_2_1_1.gridx = 3;
+				gbc_lblNewLabel_1_2_1_1.gridy = 0;
+				prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
+				
+				JComboBox TipoSexo = new JComboBox();
+				TipoSexo.setSelectedItem(h.getSexo());
+				TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
+				GridBagConstraints gbc_LocalidadRiesgo_1_1_1 = new GridBagConstraints();
+				gbc_LocalidadRiesgo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
+				gbc_LocalidadRiesgo_1_1_1.insets = new Insets(30, 0, 5, 40);
+				gbc_LocalidadRiesgo_1_1_1.gridx = 4;
+				gbc_LocalidadRiesgo_1_1_1.gridy = 0;
+				prueba.add(TipoSexo, gbc_LocalidadRiesgo_1_1_1);
+				
+				JLabel lblEstadoCivil_1_1 = new JLabel("Estado Civil:");
+				lblEstadoCivil_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+				lblEstadoCivil_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				GridBagConstraints gbc_lblEstadoCivil_1_1 = new GridBagConstraints();
+				gbc_lblEstadoCivil_1_1.anchor = GridBagConstraints.WEST;
+				gbc_lblEstadoCivil_1_1.insets = new Insets(20, 50, 40, 5);
+				gbc_lblEstadoCivil_1_1.gridx = 0;
+				gbc_lblEstadoCivil_1_1.gridy = 2;
+				prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
+				
+				JComboBox TipoEstadoCivil = new JComboBox();
+				TipoEstadoCivil.setSelectedItem(h.getEstadoCivil());
+				TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
+				GridBagConstraints gbc_MarcaVehiculo_1_1_1 = new GridBagConstraints();
+				gbc_MarcaVehiculo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
+				gbc_MarcaVehiculo_1_1_1.insets = new Insets(20, 0, 40, 30);
+				gbc_MarcaVehiculo_1_1_1.gridx = 1;
+				gbc_MarcaVehiculo_1_1_1.gridy = 2;
+				prueba.add(TipoEstadoCivil, gbc_MarcaVehiculo_1_1_1);
+				
+				JButton btnNewButton_1_1_1 = new JButton("Editar");
+				btnNewButton_1_1_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos();
+						
+						try {
+							FuturaPantalla.setVisible(true);
+						} catch(Exception er) {
+							er.printStackTrace();
+						}
 		
-		JButton btnNewButton_1_2 = new JButton("Eliminar");
-		btnNewButton_1_2.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		btnNewButton_1_2.setBackground(SystemColor.controlHighlight);
-		GridBagConstraints gbc_btnNewButton_1_2 = new GridBagConstraints();
-		gbc_btnNewButton_1_2.insets = new Insets(20, 0, 40, 40);
-		gbc_btnNewButton_1_2.gridx = 4;
-		gbc_btnNewButton_1_2.gridy = 2;
-		prueba.add(btnNewButton_1_2, gbc_btnNewButton_1_2);
+					}
+				});
+				btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
+				btnNewButton_1_1_1.setBackground(SystemColor.controlHighlight);
+				GridBagConstraints gbc_btnNewButton_1_1_1 = new GridBagConstraints();
+				gbc_btnNewButton_1_1_1.insets = new Insets(20, 0, 40, 10);
+				gbc_btnNewButton_1_1_1.gridx = 3;
+				gbc_btnNewButton_1_1_1.gridy = 2;
+				prueba.add(btnNewButton_1_1_1, gbc_btnNewButton_1_1_1);
+				
+				JButton btnNewButton_1_2 = new JButton("Eliminar");
+				btnNewButton_1_2.setFont(new Font("Tahoma", Font.PLAIN, 35));
+				btnNewButton_1_2.setBackground(SystemColor.controlHighlight);
+				GridBagConstraints gbc_btnNewButton_1_2 = new GridBagConstraints();
+				gbc_btnNewButton_1_2.insets = new Insets(20, 0, 40, 40);
+				gbc_btnNewButton_1_2.gridx = 4;
+				gbc_btnNewButton_1_2.gridy = 2;
+				prueba.add(btnNewButton_1_2, gbc_btnNewButton_1_2);
+				Box.add(prueba);
+				Box.revalidate();
+				Box.repaint();
+		
 	}
-//		JPanel prueba_1 = new JPanel();
-//		prueba_1.setBorder(new MatteBorder(2, 0, 0, 0, (Color) new Color(0, 0, 0)));
-//		prueba_1.setBackground(SystemColor.inactiveCaptionBorder);
-//		Box.add(prueba_1);
-//		GridBagLayout gbl_prueba_1 = new GridBagLayout();
-//		gbl_prueba_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-//		gbl_prueba_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
-//		gbl_prueba_1.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-//		gbl_prueba_1.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-//		prueba_1.setLayout(gbl_prueba_1);
-//		
-//		JLabel lblFechaDeNacimiento_1_1_1 = new JLabel("Fecha de nacimiento:");
-//		lblFechaDeNacimiento_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-//		lblFechaDeNacimiento_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-//		GridBagConstraints gbc_lblFechaDeNacimiento_1_1_1 = new GridBagConstraints();
-//		gbc_lblFechaDeNacimiento_1_1_1.anchor = GridBagConstraints.WEST;
-//		gbc_lblFechaDeNacimiento_1_1_1.insets = new Insets(30, 50, 5, 5);
-//		gbc_lblFechaDeNacimiento_1_1_1.gridx = 0;
-//		gbc_lblFechaDeNacimiento_1_1_1.gridy = 0;
-//		prueba_1.add(lblFechaDeNacimiento_1_1_1, gbc_lblFechaDeNacimiento_1_1_1);
-//		
-//		JDateChooser dateChooser_1_1_1 = new JDateChooser();
-//		dateChooser_1_1_1.setBackground(SystemColor.inactiveCaptionBorder);
-//		GridBagConstraints gbc_dateChooser_1_1_1 = new GridBagConstraints();
-//		gbc_dateChooser_1_1_1.fill = GridBagConstraints.BOTH;
-//		gbc_dateChooser_1_1_1.insets = new Insets(30, 5, 5, 30);
-//		gbc_dateChooser_1_1_1.gridx = 1;
-//		gbc_dateChooser_1_1_1.gridy = 0;
-//		prueba_1.add(dateChooser_1_1_1, gbc_dateChooser_1_1_1);
-//		
-//		JLabel lblNewLabel_1_2_1_1_1 = new JLabel("Sexo:");
-//		lblNewLabel_1_2_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-//		lblNewLabel_1_2_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-//		GridBagConstraints gbc_lblNewLabel_1_2_1_1_1 = new GridBagConstraints();
-//		gbc_lblNewLabel_1_2_1_1_1.anchor = GridBagConstraints.WEST;
-//		gbc_lblNewLabel_1_2_1_1_1.insets = new Insets(30, 0, 5, 10);
-//		gbc_lblNewLabel_1_2_1_1_1.gridx = 3;
-//		gbc_lblNewLabel_1_2_1_1_1.gridy = 0;
-//		prueba_1.add(lblNewLabel_1_2_1_1_1, gbc_lblNewLabel_1_2_1_1_1);
-//		
-//		JComboBox LocalidadRiesgo_1_1_1_1 = new JComboBox();
-//		LocalidadRiesgo_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-//		LocalidadRiesgo_1_1_1_1.setBackground(SystemColor.inactiveCaptionBorder);
-//		GridBagConstraints gbc_LocalidadRiesgo_1_1_1_1 = new GridBagConstraints();
-//		gbc_LocalidadRiesgo_1_1_1_1.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_LocalidadRiesgo_1_1_1_1.insets = new Insets(30, 0, 5, 40);
-//		gbc_LocalidadRiesgo_1_1_1_1.gridx = 4;
-//		gbc_LocalidadRiesgo_1_1_1_1.gridy = 0;
-//		prueba_1.add(LocalidadRiesgo_1_1_1_1, gbc_LocalidadRiesgo_1_1_1_1);
-//		
-//		JLabel lblEstadoCivil_1_1_1 = new JLabel("Estado Civil:");
-//		lblEstadoCivil_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-//		lblEstadoCivil_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-//		GridBagConstraints gbc_lblEstadoCivil_1_1_1 = new GridBagConstraints();
-//		gbc_lblEstadoCivil_1_1_1.anchor = GridBagConstraints.WEST;
-//		gbc_lblEstadoCivil_1_1_1.insets = new Insets(20, 50, 40, 5);
-//		gbc_lblEstadoCivil_1_1_1.gridx = 0;
-//		gbc_lblEstadoCivil_1_1_1.gridy = 2;
-//		prueba_1.add(lblEstadoCivil_1_1_1, gbc_lblEstadoCivil_1_1_1);
-//		
-//		JComboBox MarcaVehiculo_1_1_1_1 = new JComboBox();
-//		MarcaVehiculo_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-//		MarcaVehiculo_1_1_1_1.setBackground(SystemColor.inactiveCaptionBorder);
-//		GridBagConstraints gbc_MarcaVehiculo_1_1_1_1 = new GridBagConstraints();
-//		gbc_MarcaVehiculo_1_1_1_1.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_MarcaVehiculo_1_1_1_1.insets = new Insets(20, 0, 40, 30);
-//		gbc_MarcaVehiculo_1_1_1_1.gridx = 1;
-//		gbc_MarcaVehiculo_1_1_1_1.gridy = 2;
-//		prueba_1.add(MarcaVehiculo_1_1_1_1, gbc_MarcaVehiculo_1_1_1_1);
-//		
-//		JButton btnNewButton_1_1_1_1 = new JButton("Editar");
-//		btnNewButton_1_1_1_1.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos();
-//				
-//				try {
-//					FuturaPantalla.setVisible(true);
-//				} catch(Exception er) {
-//					er.printStackTrace();
-//				}
-//			}
-//		});
-//		btnNewButton_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
-//		btnNewButton_1_1_1_1.setBackground(SystemColor.controlHighlight);
-//		GridBagConstraints gbc_btnNewButton_1_1_1_1 = new GridBagConstraints();
-//		gbc_btnNewButton_1_1_1_1.insets = new Insets(20, 0, 40, 10);
-//		gbc_btnNewButton_1_1_1_1.gridx = 3;
-//		gbc_btnNewButton_1_1_1_1.gridy = 2;
-//		prueba_1.add(btnNewButton_1_1_1_1, gbc_btnNewButton_1_1_1_1);
-//		
-//		JButton btnNewButton_1_2_1 = new JButton("Eliminar");
-//		btnNewButton_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
-//		btnNewButton_1_2_1.setBackground(SystemColor.controlHighlight);
-//		GridBagConstraints gbc_btnNewButton_1_2_1 = new GridBagConstraints();
-//		gbc_btnNewButton_1_2_1.insets = new Insets(20, 0, 40, 40);
-//		gbc_btnNewButton_1_2_1.gridx = 4;
-//		gbc_btnNewButton_1_2_1.gridy = 2;
-//		prueba_1.add(btnNewButton_1_2_1, gbc_btnNewButton_1_2_1);
-//		
+	
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_2.setBorder(new MatteBorder(4, 0, 0, 0, (Color) new Color(0, 0, 0)));
