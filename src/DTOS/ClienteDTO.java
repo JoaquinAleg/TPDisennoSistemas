@@ -4,7 +4,7 @@ public class ClienteDTO {
 	private String nombre;
 	private String apellido;
 	private Long numeroCliente;
-	private Integer numeroDOcumento;
+	private Integer numeroDocumento;
 	private Long idTipoDocumento;
 	
 	public ClienteDTO(String nombre, String apellido, Long numeroCliente, Integer numeroDocumento,
@@ -13,7 +13,7 @@ public class ClienteDTO {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.numeroCliente = numeroCliente;
-		this.numeroDOcumento = numeroDocumento;
+		this.numeroDocumento = numeroDocumento;
 		this.idTipoDocumento = idTipoDocumento;
 	}
 
@@ -42,11 +42,11 @@ public class ClienteDTO {
 	}
 
 	public Integer getNumeroDocumento() {
-		return numeroDOcumento;
+		return numeroDocumento;
 	}
 
-	public void setNumeroDocumento(Integer numeroDOcumento) {
-		this.numeroDOcumento = numeroDOcumento;
+	public void setNumeroDocumento(Integer numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 	}
 
 	public Long getIdTipoDocumento() {

@@ -126,11 +126,14 @@ public class CrearPoliza_1 extends JFrame {
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		String numeroClienteS = new String("01-00000001");
-		this.numeroCliente = 0100000001L;
+		this.numeroCliente = 100000001L;
 		//CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE//
-		//List<ClienteDTO> clientesDTO = this.gestorCliente.getClientes();
-		//Long[] idCliente = clientesDTO.stream().filter(a -> a.getNumeroCliente() == numeroCliente).map(b -> b.getNumeroCliente()).toArray(Long[]::new);
-		//ClienteDTO clienteDTO = gestorCliente.getClienteDTO(idCliente[0]);
+		List<ClienteDTO> clientesDTO = this.gestorCliente.getClientes();
+		System.out.println(String.valueOf(clientesDTO.get(0).getNumeroCliente()));
+		System.out.println(clientesDTO.get(0).getNombre());
+		Long[] idCliente = clientesDTO.stream().filter(a -> a.getNumeroCliente().equals(numeroCliente)).map(b -> b.getNumeroCliente()).toArray(Long[]::new);
+		
+		ClienteDTO clienteDTO = gestorCliente.getClienteDTO(idCliente[0]);
 		
 		
 		JPanel panel_3 = new JPanel();
@@ -148,7 +151,7 @@ public class CrearPoliza_1 extends JFrame {
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblNewLabel_5_1.setBorder(null);
 		panel_3.add(lblNewLabel_5_1);
-		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroCliente);
+		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroClienteS);
 		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();
@@ -545,11 +548,11 @@ public class CrearPoliza_1 extends JFrame {
 							Long[] idSiniestro = siniestrosDTO.stream().filter(a -> a.getNombre().equals(text_Siniestros.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 							datosPolizaDTO.setSiniestrosUltimoA(idSiniestro[0]);
 							
-							//datosPolizaDTO.setNombre(clienteDTO.getNombre());
-							//datosPolizaDTO.setApellido(clienteDTO.getApellido());
-							//datosPolizaDTO.setNumeroCliente(clienteDTO.getNumeroCliente());
-							//datosPolizaDTO.setDni(clienteDTO.getNumeroDocumento());
-							//datosPolizaDTO.setTipoDNI(clienteDTO.getIdTipoDocumento());
+							datosPolizaDTO.setNombre(clienteDTO.getNombre());
+							datosPolizaDTO.setApellido(clienteDTO.getApellido());
+							datosPolizaDTO.setNumeroCliente(clienteDTO.getNumeroCliente());
+							datosPolizaDTO.setDni(clienteDTO.getNumeroDocumento());
+							datosPolizaDTO.setTipoDNI(clienteDTO.getIdTipoDocumento());
 							
 							System.out.println(datosPolizaDTO.getApellido());
 							System.out.println(datosPolizaDTO.getNombre());
