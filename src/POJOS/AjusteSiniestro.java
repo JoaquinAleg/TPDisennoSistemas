@@ -7,7 +7,7 @@ public class AjusteSiniestro {
 	@Id
 	@Column
 	private long idAjusteSiniestro;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idValorPorcentual", nullable = false, referencedColumnName = "idValorPorcentual", 
 	foreignKey=@ForeignKey(name = "fk_valorSiniestro", value = ConstraintMode.CONSTRAINT))
 	private ValorPorcentual valorPorcentual;

@@ -109,7 +109,7 @@ public class GestorPoliza {
         }
         return instancia;
     }
-    
+    /*
     public void darAltaPoliza(DatosPolizaDTO datosPolizaDTO) {
     	DAOlocalidad daoLocalidad;
     	validarDatos(datosPolizaDTO);
@@ -209,7 +209,7 @@ public class GestorPoliza {
         daoPoliza.createPoliza(poliza);
 		
     }
-    
+    */
     private void validarDatos(DatosPolizaDTO dp){
     	try{
     		if(!(dp.getNumeroCliente() instanceof Long)){
@@ -382,7 +382,7 @@ public class GestorPoliza {
 			ajusteSiniestroDTO = new ListadoDTO(String.valueOf(e.getCantidadSiniestros()), e.getIdAjusteSiniestro());
 			ajusteSiniestrosDTO.add(ajusteSiniestroDTO);
 		}
-		return aniosDTO;
+		return ajusteSiniestrosDTO;
 	}
 	public List<ListadoDTO> getMedidasSeguridad() {
 		List<MedidaSeguridad> medidasSeguridad = daoMedidaSeguridad.getAll();

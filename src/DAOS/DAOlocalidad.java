@@ -68,7 +68,7 @@ public class DAOlocalidad implements localidadDAO {
 			return null;
 		}
 	}
-
+	/*
 	@Override
 	public List<Localidad> getLocalidadPorProvincia(long provincia) {
 		try {
@@ -85,4 +85,5 @@ public class DAOlocalidad implements localidadDAO {
 			return null;
 		}
 	}
+	*/
 }
