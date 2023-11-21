@@ -7,13 +7,13 @@ public class ClienteDTO {
 	private Integer numeroDOcumento;
 	private Long idTipoDocumento;
 	
-	public ClienteDTO(String nombre, String apellido, Long numeroCliente, Integer numeroDOcumento,
+	public ClienteDTO(String nombre, String apellido, Long numeroCliente, Integer numeroDocumento,
 			Long idTipoDocumento) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.numeroCliente = numeroCliente;
-		this.numeroDOcumento = numeroDOcumento;
+		this.numeroDOcumento = numeroDocumento;
 		this.idTipoDocumento = idTipoDocumento;
 	}
 
@@ -41,11 +41,11 @@ public class ClienteDTO {
 		this.numeroCliente = numeroCliente;
 	}
 
-	public Integer getNumeroDOcumento() {
+	public Integer getNumeroDocumento() {
 		return numeroDOcumento;
 	}
 
-	public void setNumeroDOcumento(Integer numeroDOcumento) {
+	public void setNumeroDocumento(Integer numeroDOcumento) {
 		this.numeroDOcumento = numeroDOcumento;
 	}
 

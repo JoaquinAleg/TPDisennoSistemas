@@ -12,6 +12,10 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.LineBorder;
+
+import Gestores.GestorCliente;
+import Gestores.GestorPoliza;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -26,6 +30,8 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private GestorPoliza gestorPoliza;
+	private GestorCliente gestorCliente;
 
 	/**
 	 * Launch the application.
@@ -47,6 +53,10 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 	 * Create the frame.
 	 */
 	public PantallaInicio_ProductorDeSeguro() {
+		
+		this.gestorPoliza = GestorPoliza.getInstance();
+		this.gestorCliente = GestorCliente.getInstance();
+		
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -218,7 +228,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		btnDarDeAlta_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnDarDeAlta_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_1 FuturaPantalla = new CrearPoliza_1();
+				CrearPoliza_1 FuturaPantalla = new CrearPoliza_1(gestorPoliza, gestorCliente);
 				
 				try {
 					FuturaPantalla.setVisible(true);

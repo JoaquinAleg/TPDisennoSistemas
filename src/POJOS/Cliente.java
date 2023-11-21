@@ -1,5 +1,6 @@
 package POJOS;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -37,11 +38,12 @@ public class Cliente {
 
 
 
-	public Cliente(long idCliente, LocalDate fechaRegistro, String profesion, Persona persona,
+	public Cliente(long idCliente, String profesion, Persona persona,
 			POJOS.TipoEstadoCliente tipoEstadoCliente, POJOS.TipoCondicionIVA tipoCondicionIVA, List<Poliza> polizas) {
 		super();
+		LocalDateTime fechaHoraActual = LocalDateTime.now();
 		this.idCliente = idCliente;
-		this.fechaRegistro = fechaRegistro;
+		this.fechaRegistro = fechaHoraActual.toLocalDate();;
 		this.profesion = profesion;
 		this.persona = persona;
 		TipoEstadoCliente = tipoEstadoCliente;
