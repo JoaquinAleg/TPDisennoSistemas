@@ -383,6 +383,7 @@ public class GestorPoliza {
 			ajusteSiniestroDTO = new ListadoDTO(String.valueOf(e.getCantidadSiniestros()), e.getIdAjusteSiniestro());
 			ajusteSiniestrosDTO.add(ajusteSiniestroDTO);
 		}
+		ajusteSiniestrosDTO.get(4).setNombre("Más de 2");
 		return ajusteSiniestrosDTO;
 	}
 	public List<ListadoDTO> getMedidasSeguridad() {
