@@ -50,7 +50,7 @@ public class CrearPoliza_2 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private Integer cantidadHijos;
 	List<ListadoDTO> modeloDTO;
 	private GestorPoliza gestorPoliza;
 	String[] modelos;
@@ -84,6 +84,7 @@ public class CrearPoliza_2 extends JFrame {
 		this.datosPolizaDTO=datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
 		this.gestorCliente = gestorCliente;
+		this.cantidadHijos = datosPolizaDTO.getHijos().size();
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -372,7 +373,8 @@ public class CrearPoliza_2 extends JFrame {
 						JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
 					}else {
 					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
-							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex());
+							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
+							cantidadHijos);
 					try {
 						CPoliza.setVisible(true);
 					} catch(Exception er) {
