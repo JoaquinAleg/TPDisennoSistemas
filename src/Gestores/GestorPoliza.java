@@ -111,7 +111,6 @@ public class GestorPoliza {
     }
     
     public void darAltaPoliza(DatosPolizaDTO datosPolizaDTO) {
-    	DAOlocalidad daoLocalidad;
     	validarDatos(datosPolizaDTO);
 		
         Poliza poliza = new Poliza();
