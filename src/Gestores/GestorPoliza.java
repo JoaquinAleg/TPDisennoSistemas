@@ -374,7 +374,7 @@ public class GestorPoliza {
 		ListadoDTO medidaDTO = new ListadoDTO(" ", null);
 		medidasDTO.add(medidaDTO);
 		for(MedidaSeguridad e : medidasSeguridad) {
-			medidaDTO = new ListadoDTO(String.valueOf(e.getTipoMedidaSeguridad()), e.getIdMedida());
+			medidaDTO = new ListadoDTO(e.getTipoMedidaSeguridad()+"", e.getIdMedida());
 			medidasDTO.add(medidaDTO);
 		}
 		return medidasDTO;

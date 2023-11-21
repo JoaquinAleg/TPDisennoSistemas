@@ -264,7 +264,7 @@ public class CrearPoliza_1 extends JFrame {
 		MarcaVehiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				idMarcaVehiculo = marcaDTO.stream().filter(a -> a.getNombre().equals(MarcaVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-				List<ListadoDTO> modelosDTO = gestorPoliza.getModelos(idMarcaVehiculo[0]);
+				modelosDTO = gestorPoliza.getModelos(idMarcaVehiculo[0]);
 				modelos = modelosDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(modelos);
 				modeloVehiculo.setModel(nuevoModelo);
@@ -290,9 +290,13 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		modeloVehiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				idModeloVehiculo = anioDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+				idModeloVehiculo = modelosDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+				System.out.println(idModeloVehiculo[0]);
 				anioDTO = gestorPoliza.getAniosFabricacion(idModeloVehiculo[0]);
+				System.out.println(anioDTO.get(0).getNombre());
+				System.out.println(modelosDTO.get(0).getNombre());
 				anios = anioDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+				System.out.println(anioDTO.get(0).getNombre());
 				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(anios);
 				MarcaVehiculo_1.setModel(nuevoModelo);
 			}
