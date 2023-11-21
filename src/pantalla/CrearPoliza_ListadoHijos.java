@@ -66,6 +66,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	 */
 	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hijos,
 			GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
+		int cantidadHijos = hijos.size();
 		this.gestorPoliza = gestorPoliza;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
@@ -138,6 +139,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		
 		//--------EMPIEZA------------------------------------------------
 			for(HijosDTO hijo : hijos){
+				if(cantidadHijos == 1) {scrollPane.getViewport().setPreferredSize(new Dimension(1000, 250));}
 			final HijosDTO h = hijo;
 			JPanel prueba = new JPanel();
 			prueba.setBorder(new MatteBorder(2, 0, 0, 0, (Color) new Color(0, 0, 0)));
