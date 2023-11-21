@@ -437,6 +437,19 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_Boton_Continuar.gridx = 3;
 		gbc_Boton_Continuar.gridy = 0;
 		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
+		Boton_Continuar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura();
+					
+					try {
+						CPoliza.setVisible(true);
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
+					CrearPoliza_HijosExistentes.this.setVisible(false);
+					CrearPoliza_HijosExistentes.this.dispose();
+			}
+		});
 		
 		JButton Boton_Continuar_2 = new JButton("Volver");
 		Boton_Continuar_2.setFont(new Font("Tahoma", Font.PLAIN, 40));

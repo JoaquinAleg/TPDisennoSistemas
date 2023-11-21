@@ -379,7 +379,7 @@ public class CrearPoliza_2 extends JFrame {
 						Boolean A = estadoCivil.getSelectedItem().equals(" ");
 						Boolean B = sexo.getSelectedItem().equals(" ");
 						if( A || B ) {
-							JOptionPane.showMessageDialog(null, "Por favor, complete todas las areas","Error",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
 						}else {
 						JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 						HijosDTO h = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), estadoCivil.getSelectedItem().toString(),sexo.getSelectedItem().toString());
@@ -450,7 +450,7 @@ public class CrearPoliza_2 extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
-					CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral();
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura();
 					
 					try {
 						CPoliza.setVisible(true);
