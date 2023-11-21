@@ -109,7 +109,7 @@ public class GestorPoliza {
         }
         return instancia;
     }
-    /*
+    
     public void darAltaPoliza(DatosPolizaDTO datosPolizaDTO) {
     	DAOlocalidad daoLocalidad;
     	validarDatos(datosPolizaDTO);
@@ -125,10 +125,12 @@ public class GestorPoliza {
         poliza.setDatosVehiculo(datosPolizaDTO.getChasis(), datosPolizaDTO.getMotor(), datosPolizaDTO.getPatente(), datosPolizaDTO.getSumaAsegurada());
         Cliente cliente = daoCliente.getCliente(datosPolizaDTO.getNumeroCliente());
         poliza.setCliente(cliente);
-        cliente.createPoliza(this);
+        List<Poliza> polizas = cliente.getPolizas();
+    	polizas.add(poliza);
+        cliente.setPolizas(polizas);
         
         TipoDocumento tipoDNI = daoTipoDocumento.getTipoDocumento(datosPolizaDTO.getTipoDNI());
-        poliza.setDatosCliente(datosPolizaDTO.getNumeroCliente(), datosPolizaDTO.getNombre(), datosPolizaDTO.getApellido(), tipoDNI, poliza.getNumeroDocumento());
+        poliza.setDatosCliente(datosPolizaDTO.getNombre(), datosPolizaDTO.getApellido(), tipoDNI, poliza.getDniCliente());
         TipoFormaPago tipoFormaPago = daoTipoFormaPago.getTipoFormaPago(datosPolizaDTO.getIdFormaPago());
         poliza.setFormaPago(tipoFormaPago);
         poliza.setDatosPoliza(datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago());
@@ -137,7 +139,7 @@ public class GestorPoliza {
         	TipoEstadoCivil tipoEstadoCivil = daoTipoEstadoCivil.getTipoEstadoCivil(Long.parseLong(e.getEstadoCivil()));
         	hijo.setEstadoCivil(tipoEstadoCivil);
         	TipoSexo tipoSexo = daoTipoSexo.getTipoSexo(Long.parseLong(e.getSexo()));
-        	hijo.setTipoSexo(tipoSexo);
+        	hijo.setSexo(tipoSexo);
         	poliza.setHijo(hijo);
         }
         
@@ -155,23 +157,23 @@ public class GestorPoliza {
         
         List<Poliza> polizasAsociadas = cliente.getPolizas();
         if(polizasAsociadas == null) {
-        	cliente.setCondicionNomral();
+        	cliente.setCondicionNormal();
         }
         else {
         	List<Poliza> polizasVigentes = filtrarVigentes(polizasAsociadas);
         	if(polizasVigentes == null) {
-        		cliente.setCondicionNomral();
+        		cliente.setCondicionNormal();
         	}
         }
         
         List<Cuota> cuotasImpagas = cliente.getCuotasImpagas();
         if(cuotasImpagas != null || datosPolizaDTO.getSiniestrosUltimoA() > 0) {
-        	cliente.setCondicionNomral();
+        	cliente.setCondicionNormal();
         }
         else {
         	TipoEstadoCliente tipoEstadoCliente = cliente.getTipoEstadoCliente();
         	if(tipoEstadoCliente.getDescripcion() == "ACTIVO") {
-        		cliente.setCondicionNomral();
+        		cliente.setCondicionNormal();
         	}
         }
         
@@ -209,7 +211,7 @@ public class GestorPoliza {
         daoPoliza.createPoliza(poliza);
 		
     }
-    */
+    
     private void validarDatos(DatosPolizaDTO dp){
     	try{
     		if(!(dp.getNumeroCliente() instanceof Long)){

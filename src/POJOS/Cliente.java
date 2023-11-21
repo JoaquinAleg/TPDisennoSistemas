@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import DAOS.DAOtipoCondicionCliente;
 import jakarta.persistence.*;
 
 @Entity
@@ -35,8 +36,9 @@ public class Cliente {
 	@JoinColumn(name = "idTipoCondicionCliente", nullable = true, referencedColumnName = "idTipoCondicionCliente", 
 	foreignKey=@ForeignKey(name = "fk_condicionCliente", value = ConstraintMode.CONSTRAINT))
 	private TipoCondicionCliente condicionCliente;
-	
-	
+
+
+
 	public Cliente() {}
 
 
@@ -139,7 +141,28 @@ public class Cliente {
 		TipoCondicionIVA = tipoCondicionIVA;
 	}
 
+	public TipoCondicionCliente getCondicionCliente() {
+		return condicionCliente;
+	}
 	
+	public void setCondicionCliente(TipoCondicionCliente condicionCliente) {
+		this.condicionCliente = condicionCliente;
+	}
+
+	public void setCondicionNormal() {
+		DAOtipoCondicionCliente  daoTipoCondicionCliente = new DAOtipoCondicionCliente();
+		this.condicionCliente = daoTipoCondicionCliente.getTipoCondicionCliente(1);
+	}
+	
+	public void setCondicionPlata() {
+		DAOtipoCondicionCliente  daoTipoCondicionCliente = new DAOtipoCondicionCliente();
+		this.condicionCliente = daoTipoCondicionCliente.getTipoCondicionCliente(2);
+	}
+
+	public List<Cuota> getCuotasImpagas() {
+		List<Cuota> cuotasImpagas = this.polizas.stream().flatMap(a -> a.getCuotas().stream()).filter(b -> b.getRecibo().equals(null)).toList();
+		return cuotasImpagas;
+	}
 	
 	
 }
