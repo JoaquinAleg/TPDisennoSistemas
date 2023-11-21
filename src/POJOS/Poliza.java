@@ -109,11 +109,20 @@ public class Poliza {
 	@JoinColumn(name = "numeroPoliza", nullable = true, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_ModificacionPoliza", value = ConstraintMode.CONSTRAINT))
 	private List<Modificacion> modificaciones;
+	@OneToMany
+	@JoinColumn(name = "numeroPoliza", nullable = true, referencedColumnName = "numeroPoliza", 
+	foreignKey=@ForeignKey(name = "fk_HijosPoliza", value = ConstraintMode.CONSTRAINT))
+	private List<Hijo> hijos;
 	
 	public Poliza(){}
 
 	
 	
+
+
+
+
+
 
 
 	public Poliza(long numeroPoliza, Modelo modelo, AjusteHijo ajusteHijo, AjusteKilometro ajusteKilometro,
@@ -124,7 +133,7 @@ public class Poliza {
 			LocalDate ultimoDiaPago, float montoTotalAbonar, String chasis, String patente, String estadoPoliza,
 			String motor, String nombreCliente, String dniCliente, LocalDate fechaCreacion, List<Cuota> cuotas,
 			TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida,
-			List<Modificacion> modificaciones) {
+			List<Modificacion> modificaciones, List<Hijo> hijos) {
 		super();
 		this.numeroPoliza = numeroPoliza;
 		this.modelo = modelo;
@@ -160,9 +169,38 @@ public class Poliza {
 		Cobertura = cobertura;
 		Medida = medida;
 		this.modificaciones = modificaciones;
+		this.hijos = hijos;
 	}
 
 
+
+
+
+
+
+
+
+
+	public List<Hijo> getHijos() {
+		return hijos;
+	}
+
+
+
+
+
+
+
+
+
+
+	public void setHijos(List<Hijo> hijos) {
+		this.hijos = hijos;
+	}
+	
+	public void setHijo(Hijo hijo) {
+		hijos.add(hijo);
+	}
 
 
 

@@ -19,14 +19,29 @@ public class Hijo {
 	@JoinColumn(name = "idTipoSexo", nullable = false, referencedColumnName = "idTipoSexo", 
 	foreignKey=@ForeignKey(name = "fk_sexoHijo", value = ConstraintMode.CONSTRAINT))
 	private TipoSexo sexo;
+	@ManyToOne
+	@JoinColumn(name = "numeroPoliza", nullable = false, referencedColumnName = "numeroPoliza", 
+	foreignKey=@ForeignKey(name = "fk_polizaHijo", value = ConstraintMode.CONSTRAINT))
+	private Poliza poliza;
 	public Hijo() {}
-	public Hijo(long idHijo, LocalDate fechaNacimiento, TipoEstadoCivil estadoCivil, TipoSexo sexo) {
+	
+	public Hijo(long idHijo, LocalDate fechaNacimiento, TipoEstadoCivil estadoCivil, TipoSexo sexo, Poliza poliza) {
 		super();
 		this.idHijo = idHijo;
 		this.fechaNacimiento = fechaNacimiento;
 		this.estadoCivil = estadoCivil;
 		this.sexo = sexo;
+		this.poliza = poliza;
 	}
+	
+	public Poliza getPoliza() {
+		return poliza;
+	}
+
+	public void setPoliza(Poliza poliza) {
+		this.poliza = poliza;
+	}
+
 	public long getIdHijo() {
 		return idHijo;
 	}
