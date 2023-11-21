@@ -49,7 +49,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CrearPoliza_ListadoHijos frame = new CrearPoliza_ListadoHijos();
+					CrearPoliza_ListadoHijos frame = new CrearPoliza_ListadoHijos(0,0,0,0,0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -61,7 +61,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo) {
+	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer hijos) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -128,17 +128,18 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		Box.setBackground(SystemColor.inactiveCaptionBorder);
 		scrollPane.setViewportView(Box);
 		Box.setLayout(new BoxLayout(Box, BoxLayout.Y_AXIS));
-		
+		//--------EMPIEZA--------
 		JPanel prueba = new JPanel();
 		prueba.setBorder(new MatteBorder(2, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		prueba.setBackground(SystemColor.inactiveCaptionBorder);
-		Box.add(prueba);
 		GridBagLayout gbl_prueba = new GridBagLayout();
 		gbl_prueba.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_prueba.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gbl_prueba.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_prueba.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		prueba.setLayout(gbl_prueba);
+		Box.add(prueba);
+
 		
 		JLabel lblFechaDeNacimiento_1_1 = new JLabel("Fecha de nacimiento:");
 		lblFechaDeNacimiento_1_1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -202,7 +203,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		JButton btnNewButton_1_1_1 = new JButton("Editar");
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_EditarHijo FuturaPantalla = new CrearPoliza_EditarHijo();
+				CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos();
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -302,7 +303,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		JButton btnNewButton_1_1_1_1 = new JButton("Editar");
 		btnNewButton_1_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_EditarHijo FuturaPantalla = new CrearPoliza_EditarHijo();
+				CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos();
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -371,7 +372,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		JButton Boton_Continuar = new JButton("Volver");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_HijosExistentes FuturaPantalla = new CrearPoliza_HijosExistentes();
+				CrearPoliza_HijosExistentes FuturaPantalla = new CrearPoliza_HijosExistentes(0,0,0,0,0,0);
 				
 				try {
 					FuturaPantalla.setVisible(true);

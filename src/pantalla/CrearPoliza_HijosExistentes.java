@@ -34,9 +34,9 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private Integer hijos;
 
-
-	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec) {
+	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, Integer cantidadHijos) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,6 +46,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.hijos=cantidadHijos;
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -238,7 +239,8 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JButton Boton_Continuar_1 = new JButton("Ver Hijos");
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(tuercas.getSelectedIndex(), garage.getSelectedIndex(), alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex());
+				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(tuercas.getSelectedIndex(), garage.getSelectedIndex(), alarma.getSelectedIndex(),
+						rastreoVehicular.getSelectedIndex(), hijos);
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -344,15 +346,24 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_estadoCivil.gridy = 2;
 		panel_1_1.add(estadoCivil, gbc_estadoCivil);
 		
-		JButton btnNewButton = new JButton("Añadir hijo");
-		btnNewButton.setBackground(SystemColor.controlHighlight);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		JButton añadirHijo = new JButton("Añadir hijo");
+		añadirHijo.setBackground(SystemColor.controlHighlight);
+		añadirHijo.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.gridwidth = 3;
 		gbc_btnNewButton.insets = new Insets(0, 0, 10, 5);
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 3;
-		panel_1_1.add(btnNewButton, gbc_btnNewButton);
+		panel_1_1.add(añadirHijo, gbc_btnNewButton);
+
+		añadirHijo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				hijos++;
+			}
+			
+		});
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
