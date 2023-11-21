@@ -14,6 +14,7 @@ import java.awt.Insets;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -362,9 +363,11 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		panel_1_1.add(añadirHijo, gbc_btnNewButton);
 
 		añadirHijo.addActionListener(new ActionListener() {
-			HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),estadoCivil.getSelectedItem().toString(),sexo.getSelectedItem().toString());
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),estadoCivil.getSelectedItem().toString(),sexo.getSelectedItem().toString());
+				JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 				hijos.add(hijo);
 			}
 			

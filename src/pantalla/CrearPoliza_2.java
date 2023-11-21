@@ -332,7 +332,8 @@ public class CrearPoliza_2 extends JFrame {
 		modeloDTO = this.gestorPoliza.getSexos();
 		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> sexo = new JComboBox(modelos);
-		sexo.setSelectedIndex(0);
+		sexo.remove(0);
+		sexo.setSelectedIndex(1);
 //		JComboBox <String> sexo = new JComboBox();
 //		sexo.addItem("Masculino");
 //		sexo.addItem("Femenino");
@@ -358,7 +359,8 @@ public class CrearPoliza_2 extends JFrame {
 		modeloDTO = this.gestorPoliza.getEstadoCiviles();
 		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> estadoCivil = new JComboBox(modelos);
-		estadoCivil.setSelectedIndex(0);
+		estadoCivil.remove(0);
+		estadoCivil.setSelectedIndex(1);
 //		JComboBox <String> estadoCivil = new JComboBox();
 //		estadoCivil.addItem("Soltero/a");
 //		estadoCivil.addItem("Casado/a");
@@ -380,6 +382,7 @@ public class CrearPoliza_2 extends JFrame {
 					if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) < 6570) {
 						JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
 					}else {
+						JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 						HijosDTO h = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), estadoCivil.getSelectedItem().toString(),sexo.getSelectedItem().toString());
 						cantidadHijos.add(h);
 					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
