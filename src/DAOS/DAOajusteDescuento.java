@@ -60,7 +60,7 @@ public class DAOajusteDescuento implements ajusteDescuentoDAO {
 	public List<AjusteDescuento> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<AjusteDescuento> all = manager.createQuery("From AjustePorDescuento").getResultList();
+			List<AjusteDescuento> all = manager.createQuery("From AjusteDescuento").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

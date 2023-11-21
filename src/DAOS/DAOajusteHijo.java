@@ -60,7 +60,7 @@ public class DAOajusteHijo implements ajustePorHijoDAO {
 	public List<AjusteHijo> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<AjusteHijo> all = manager.createQuery("From AjustePorHijo").getResultList();
+			List<AjusteHijo> all = manager.createQuery("From AjusteHijo").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

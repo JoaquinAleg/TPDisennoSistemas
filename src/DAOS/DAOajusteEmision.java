@@ -61,7 +61,7 @@ public class DAOajusteEmision implements ajusteEmisionDAO{
 	public List<AjusteEmision> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<AjusteEmision> all = manager.createQuery("From AjustePorEmision").getResultList();
+			List<AjusteEmision> all = manager.createQuery("From AjusteEmision").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

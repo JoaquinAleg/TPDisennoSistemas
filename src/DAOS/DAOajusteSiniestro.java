@@ -61,7 +61,7 @@ public class DAOajusteSiniestro implements ajusteSiniestroDAO{
 	public List<AjusteSiniestro> getAll() {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<AjusteSiniestro> all = manager.createQuery("From AjustePorSiniestros").getResultList();
+			List<AjusteSiniestro> all = manager.createQuery("From AjusteSiniestro").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

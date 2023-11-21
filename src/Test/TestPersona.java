@@ -7,6 +7,7 @@ import java.util.List;
 import DAOS.DAOlocalidad;
 import DAOS.HibernateUtil;
 import Gestores.GestorPoliza;
+import POJOS.AjusteSiniestro;
 import POJOS.Persona;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -18,7 +19,8 @@ public class TestPersona {
 		HibernateUtil.createEMF();
 		EntityManager manager = HibernateUtil.getEntityManager();
 		gestorPoliza = GestorPoliza.getInstance();
-		System.out.println(gestorPoliza.getAniosFabricacion(1).get(1).getNombre());
+		List<AjusteSiniestro> ajustes = manager.createQuery("From AjusteSiniestro").getResultList();
+		System.out.println(ajustes.get(0).getCantidadSiniestros());
 		
 		
 	}
