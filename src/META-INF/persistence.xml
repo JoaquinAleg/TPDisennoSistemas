@@ -41,7 +41,7 @@
     <properties>
 
       <!-- JDBC URL Server:Port/DBName -->
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/UNIVERSIDAD"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
 
       <!-- DB Driver -->
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
@@ -50,7 +50,7 @@
       <property name="javax.persistence.jdbc.user" value="postgres"/>
 
       <!-- DB Pass -->
-      <property name="javax.persistence.jdbc.password" value="44181207"/>
+      <property name="javax.persistence.jdbc.password" value="tpdisenio"/>
 
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
