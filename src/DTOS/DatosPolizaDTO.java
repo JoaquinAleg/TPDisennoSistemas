@@ -19,7 +19,7 @@ public class DatosPolizaDTO {
 	private String patente;
 	private Float kilometrosPorAnio;
 	private Float sumaAsegurada;
-	private Integer siniestrosUltimoA;
+	private Long siniestrosUltimoA;
 	//private Boolean guardadoEnGarage;
 	//private Boolean tuercasAntiRobos;
 	//private Boolean alarma;
@@ -41,7 +41,7 @@ public class DatosPolizaDTO {
 	
 	public DatosPolizaDTO(Long numeroCliente, String nombre, String apellido, Long tipoDNI, Integer dni,
 			Long idLocalidadRiesgo, Long idModeloVehiculo, Long idAnioVehiculo, String motor, String chasis,
-			String patente, Float kilometrosPorAnio, Float sumaAsegurada, Integer siniestrosUltimoA,
+			String patente, Float kilometrosPorAnio, Float sumaAsegurada, Long siniestrosUltimoA,
 			List<Long> listaMedidaSeguridad/*Boolean guardadoEnGarage, Boolean tuercasAntiRobos, Boolean alarma, Boolean dispositivoRastreo*/, List<HijosDTO> hijos,
 			LocalDate comienzoVigencia, LocalDate ultimoDiaPago, Long idFormaPago, Float prima, Float descuento
 			, Float premio, Long idCobertura) {
@@ -176,10 +176,10 @@ public class DatosPolizaDTO {
 	public void setSumaAsegurada(Float sumaAsegurada) {
 		this.sumaAsegurada = sumaAsegurada;
 	}
-	public Integer getSiniestrosUltimoA() {
+	public Long getSiniestrosUltimoA() {
 		return siniestrosUltimoA;
 	}
-	public void setSiniestrosUltimoA(Integer siniestrosUltimoA) {
+	public void setSiniestrosUltimoA(Long siniestrosUltimoA) {
 		this.siniestrosUltimoA = siniestrosUltimoA;
 	}
 	/*

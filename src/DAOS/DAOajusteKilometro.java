@@ -67,5 +67,13 @@ public class DAOajusteKilometro implements ajusteKilometroDAO{
 			return null;
 		}
 	}
-
+	public AjusteKilometro buscarAjusteKilometro(Float cantKilometros) {
+		int min = 0;
+		for(AjusteKilometro a : this.getAll()) {
+			if(cantKilometros < a.getEscalaKM() && min < cantKilometros) {
+				return a;
+			}
+		}
+		return null;
+	}
 }

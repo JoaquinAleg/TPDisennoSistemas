@@ -18,7 +18,7 @@ public class TestPersona {
 		HibernateUtil.createEMF();
 		EntityManager manager = HibernateUtil.getEntityManager();
 		gestorPoliza = GestorPoliza.getInstance();
-		System.out.println(gestorPoliza.getAniosFabricacion(1).get(0).getNombre());
+		System.out.println(gestorPoliza.getAniosFabricacion(1).get(1).getNombre());
 		
 		
 	}

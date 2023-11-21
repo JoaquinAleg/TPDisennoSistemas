@@ -20,6 +20,7 @@ import POJOS.Cuota;
 import POJOS.TipoEstadoCliente;
 import POJOS.AjusteHijo;
 import POJOS.AjusteKilometro;
+import POJOS.AjusteSiniestro;
 import POJOS.AjusteDescuento;
 import POJOS.AjusteEmision;
 import DTOS.ClienteDTO;
@@ -108,7 +109,7 @@ public class GestorPoliza {
         }
         return instancia;
     }
-    /*
+    
     public void darAltaPoliza(DatosPolizaDTO datosPolizaDTO) {
     	DAOlocalidad daoLocalidad;
     	validarDatos(datosPolizaDTO);
@@ -178,13 +179,17 @@ public class GestorPoliza {
         if(tipoFormaPago.getDescripcion() == "SEMESTRAL") {
         	
         	Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), 1, pago);
-        	poliza.setCuota(cuota);
+        	List<Cuota> cuotas = poliza.getCuotas();
+        	cuotas.add(cuota);
+        	poliza.setCuotas(cuotas);
         }
         if(tipoFormaPago.getDescripcion() == "MENSUAL") {
         	
         	for(int a=0; a < 6; a++) {
         		Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), a, pago/6);
-        		poliza.setCuota(cuota);
+        		List<Cuota> cuotas = poliza.getCuotas();
+            	cuotas.add(cuota);
+            	poliza.setCuotas(cuotas);
         	}
         }
         
@@ -193,18 +198,18 @@ public class GestorPoliza {
         poliza.setAjusteHijo(ajusteHijo);
         
         AjusteKilometro ajusteKilometro = daoAjusteKilometro.buscarAjusteKilometro(datosPolizaDTO.getKilometrosPorAnio());
-        poliza.setAjusteHijo(ajusteKilometro);
+        poliza.setAjusteKilometro(ajusteKilometro);
         
         AjusteDescuento ajusteUnidadAd = daoAjusteDescuento.buscarAjusteUnidadAd(polizasAsociadas.size());
-        poliza.setAjusteUnidadAd(ajusteUnidadAd);
+        poliza.setAjusteDescuento(ajusteUnidadAd);
         
-        AjusteEmision ajusteEmision = daoAjusteEmision.getAjusteEmision();
+        AjusteEmision ajusteEmision = daoAjusteEmision.getAll().get(0);
         poliza.setAjusteEmision(ajusteEmision);
         
         daoPoliza.createPoliza(poliza);
 		
     }
-    */
+    
     private void validarDatos(DatosPolizaDTO dp){
     	try{
     		if(!(dp.getNumeroCliente() instanceof Long)){
@@ -246,7 +251,7 @@ public class GestorPoliza {
     		if(!(dp.getSumaAsegurada() instanceof Float)){
     			throw new VerificationException("SumaAseguradaCliente invalido");
     		}
-    		if(!(dp.getSiniestrosUltimoA() instanceof Integer)){
+    		if(!(dp.getSiniestrosUltimoA() instanceof Long)){
     			throw new VerificationException("SiniestrosUltimoCliente invalido");
     		}
     		/*
@@ -365,6 +370,17 @@ public class GestorPoliza {
 		for(AnioFabricacion e : anios) {
 			anioDTO = new ListadoDTO(String.valueOf(e.getAnioFabricacion()), e.getIdAnioFabricacion());
 			aniosDTO.add(anioDTO);
+		}
+		return aniosDTO;
+	}
+	public List<ListadoDTO> getSiniestros() {
+		List<AjusteSiniestro> ajustesSiniestros = daoAjusteSiniestro.getAll();
+		List<ListadoDTO> ajusteSiniestrosDTO = new ArrayList<>();
+		ListadoDTO ajusteSiniestroDTO = new ListadoDTO(" ", null);
+		ajusteSiniestrosDTO.add(ajusteSiniestroDTO);
+		for(AjusteSiniestro e : ajustesSiniestros) {
+			ajusteSiniestroDTO = new ListadoDTO(String.valueOf(e.getCantidadSiniestros()), e.getIdAjusteSiniestro());
+			ajusteSiniestrosDTO.add(ajusteSiniestroDTO);
 		}
 		return aniosDTO;
 	}

@@ -68,5 +68,10 @@ public class DAOajusteHijo implements ajustePorHijoDAO {
 			return null;
 		}
 	}
+	
+	public AjusteHijo buscarAjusteHijo(Integer cantHijos) {
+		List<AjusteHijo> ajuste = this.getAll().stream().filter(a -> (a.getCantHijos() == cantHijos)).toList();
+		return ajuste.get(0);
+	}
 
 }

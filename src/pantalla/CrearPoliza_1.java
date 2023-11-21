@@ -291,12 +291,8 @@ public class CrearPoliza_1 extends JFrame {
 		modeloVehiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				idModeloVehiculo = modelosDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-				System.out.println(idModeloVehiculo[0]);
 				anioDTO = gestorPoliza.getAniosFabricacion(idModeloVehiculo[0]);
-				System.out.println(anioDTO.get(0).getNombre());
-				System.out.println(modelosDTO.get(0).getNombre());
 				anios = anioDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-				System.out.println(anioDTO.get(0).getNombre());
 				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(anios);
 				MarcaVehiculo_1.setModel(nuevoModelo);
 			}
@@ -325,7 +321,7 @@ public class CrearPoliza_1 extends JFrame {
 		
 		//ANIO--FABRICACION///////////////////////////////////////////////////////////////////////////
 		//String[] anios = {"2000", "2001", "2002", "2003"};
-		JComboBox<String> MarcaVehiculo_1 = new JComboBox<>(anios);
+		//JComboBox<String> MarcaVehiculo_1 = new JComboBox<>(anios);
 		MarcaVehiculo_1.setBackground(SystemColor.inactiveCaptionBorder);
 		MarcaVehiculo_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_MarcaVehiculo_1 = new GridBagConstraints();
@@ -450,7 +446,9 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_Siniestros.gridy = 5;
 		panel_1.add(Siniestros, gbc_Siniestros);
 		//CAMBIE DE JComboBox a JTextField, PORQUE SI TENGO MAS SINIESTROS DE LOS QUE APARECE EN LA LISTA?
-		text_Siniestros = new JComboBox();
+		List<ListadoDTO> siniestrosDTO = gestorPoliza.getSiniestros();
+		String[] siniestros = siniestrosDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		text_Siniestros = new JComboBox<String>(siniestros);
 		text_Siniestros.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Siniestros.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_Box_Siniestros = new GridBagConstraints();
@@ -541,7 +539,8 @@ public class CrearPoliza_1 extends JFrame {
 							datosPolizaDTO.setChasis(text_Chasis.getText());
 							datosPolizaDTO.setPatente(text_Patente.getText());
 							datosPolizaDTO.setKilometrosPorAnio(Float.parseFloat(text_Kilometros.getText()));
-							//datosPolizaDTO.setSiniestrosUltimoA(Integer.parseInt(text_Siniestros.getText()));
+							Long[] idSiniestro = siniestrosDTO.stream().filter(a -> a.getNombre().equals(MarcaVehiculo_1.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+							datosPolizaDTO.setSiniestrosUltimoA(idSiniestro[0]);
 							
 							System.out.println(datosPolizaDTO.getApellido());
 							System.out.println(datosPolizaDTO.getNombre());
