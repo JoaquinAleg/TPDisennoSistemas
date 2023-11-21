@@ -29,6 +29,7 @@ import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -36,6 +37,7 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import DTOS.DatosPolizaDTO;
+import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
@@ -50,7 +52,7 @@ public class CrearPoliza_2 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Integer cantidadHijos;
+	private ArrayList<HijosDTO> cantidadHijos;
 	List<ListadoDTO> modeloDTO;
 	private GestorPoliza gestorPoliza;
 	String[] modelos;
@@ -84,7 +86,7 @@ public class CrearPoliza_2 extends JFrame {
 		this.datosPolizaDTO=datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
 		this.gestorCliente = gestorCliente;
-		this.cantidadHijos = datosPolizaDTO.getHijos().size();
+		this.cantidadHijos = new ArrayList<HijosDTO>();
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -181,6 +183,7 @@ public class CrearPoliza_2 extends JFrame {
 		JComboBox <String> garage = new JComboBox();
 		garage.addItem("No");
 		garage.addItem("Si");
+		garage.setSelectedIndex(0);
 		garage.setBackground(SystemColor.inactiveCaptionBorder);
 		garage.setToolTipText("");
 		garage.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -207,6 +210,7 @@ public class CrearPoliza_2 extends JFrame {
 		JComboBox <String> alarma = new JComboBox();
 		alarma.addItem("No");
 		alarma.addItem("Si");
+		alarma.setSelectedIndex(0);
 		alarma.setBackground(SystemColor.inactiveCaptionBorder);
 		alarma.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_alarma = new GridBagConstraints();
@@ -232,6 +236,7 @@ public class CrearPoliza_2 extends JFrame {
 		JComboBox <String> rastreoVehicular = new JComboBox();
 		rastreoVehicular.addItem("No");
 		rastreoVehicular.addItem("Si");
+		rastreoVehicular.setSelectedIndex(0);
 		rastreoVehicular.setBackground(SystemColor.inactiveCaptionBorder);
 		rastreoVehicular.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_rastreoVehicular = new GridBagConstraints();
@@ -257,6 +262,7 @@ public class CrearPoliza_2 extends JFrame {
 		JComboBox <String> tuercas = new JComboBox();
 		tuercas.addItem("No");
 		tuercas.addItem("Si");
+		tuercas.setSelectedIndex(0);
 		tuercas.setBackground(SystemColor.inactiveCaptionBorder);
 		tuercas.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_tuercas = new GridBagConstraints();
@@ -326,6 +332,7 @@ public class CrearPoliza_2 extends JFrame {
 		modeloDTO = this.gestorPoliza.getSexos();
 		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> sexo = new JComboBox(modelos);
+		sexo.setSelectedIndex(0);
 //		JComboBox <String> sexo = new JComboBox();
 //		sexo.addItem("Masculino");
 //		sexo.addItem("Femenino");
@@ -351,6 +358,7 @@ public class CrearPoliza_2 extends JFrame {
 		modeloDTO = this.gestorPoliza.getEstadoCiviles();
 		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> estadoCivil = new JComboBox(modelos);
+		estadoCivil.setSelectedIndex(0);
 //		JComboBox <String> estadoCivil = new JComboBox();
 //		estadoCivil.addItem("Soltero/a");
 //		estadoCivil.addItem("Casado/a");
@@ -372,6 +380,8 @@ public class CrearPoliza_2 extends JFrame {
 					if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) < 6570) {
 						JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
 					}else {
+						HijosDTO h = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), estadoCivil.getSelectedItem().toString(),sexo.getSelectedItem().toString());
+						cantidadHijos.add(h);
 					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
 							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
 							cantidadHijos);

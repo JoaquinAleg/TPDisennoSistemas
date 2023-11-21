@@ -21,9 +21,14 @@ import javax.swing.JTextField;
 import java.awt.SystemColor;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
+
+import DTOS.HijosDTO;
+
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
 import java.awt.event.ActionListener;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
 ;
@@ -34,9 +39,9 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Integer hijos;
+	private ArrayList<HijosDTO> hijoss;
 
-	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, Integer cantidadHijos) {
+	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,7 +51,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.hijos=cantidadHijos;
+		this.hijoss=hijos;
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -240,7 +245,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(tuercas.getSelectedIndex(), garage.getSelectedIndex(), alarma.getSelectedIndex(),
-						rastreoVehicular.getSelectedIndex(), hijos);
+						rastreoVehicular.getSelectedIndex(), hijoss);
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -357,10 +362,10 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		panel_1_1.add(añadirHijo, gbc_btnNewButton);
 
 		añadirHijo.addActionListener(new ActionListener() {
-
+			HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),estadoCivil.getSelectedItem().toString(),sexo.getSelectedItem().toString());
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				hijos++;
+				hijos.add(hijo);
 			}
 			
 		});
