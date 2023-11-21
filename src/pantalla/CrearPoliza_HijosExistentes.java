@@ -24,6 +24,8 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import DTOS.HijosDTO;
+import Gestores.GestorCliente;
+import Gestores.GestorPoliza;
 
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
@@ -42,7 +44,8 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 	private JPanel contentPane;
 	private ArrayList<HijosDTO> hijoss;
 
-	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos) {
+	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
+			GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -246,7 +249,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(tuercas.getSelectedIndex(), garage.getSelectedIndex(), alarma.getSelectedIndex(),
-						rastreoVehicular.getSelectedIndex(), hijoss);
+						rastreoVehicular.getSelectedIndex(), hijoss,gestorPoliza,gestorCliente);
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -433,7 +436,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		panel_2.add(Boton_Continuar_2, gbc_Boton_Continuar_2);
 		Boton_Continuar_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {							
-								CrearPoliza_1 CPoliza = new CrearPoliza_1();
+								CrearPoliza_1 CPoliza = new CrearPoliza_1(gestorPoliza,gestorCliente);
 								
 								try {
 									CPoliza.setVisible(true);

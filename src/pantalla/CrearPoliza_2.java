@@ -387,7 +387,7 @@ public class CrearPoliza_2 extends JFrame {
 						cantidadHijos.add(h);
 					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
 							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
-							cantidadHijos);
+							cantidadHijos, gestorPoliza,gestorCliente);
 					try {
 						CPoliza.setVisible(true);
 					} catch(Exception er) {

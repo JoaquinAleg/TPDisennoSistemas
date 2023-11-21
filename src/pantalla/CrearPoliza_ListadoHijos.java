@@ -23,6 +23,8 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import DTOS.HijosDTO;
+import Gestores.GestorCliente;
+import Gestores.GestorPoliza;
 
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
@@ -35,7 +37,9 @@ import java.awt.Component;
 import java.awt.Container;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 ;
 
@@ -65,7 +69,8 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hijos) {
+	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hijos,
+			GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -132,6 +137,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		contenedorDeScrollpane.setVisible(true);
 		
 		//--------EMPIEZA------------------------------------------------
+//		scrollPane.setViewportView(ContenedorDeInfo);
 		for(HijosDTO hijo : hijos) {
 		final HijosDTO h = hijo;
 		JPanel prueba = new JPanel();
@@ -155,7 +161,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		prueba.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
 		
 		JDateChooser nacimiento = new JDateChooser();
-		nacimiento.setDate(nacimiento.getDate());
+		nacimiento.setDate(Date.from(h.getFechaNacimiento().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 		nacimiento.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_dateChooser_1_1 = new GridBagConstraints();
 		gbc_dateChooser_1_1.fill = GridBagConstraints.BOTH;
@@ -286,7 +292,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		JButton Boton_Continuar = new JButton("Volver");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_HijosExistentes FuturaPantalla = new CrearPoliza_HijosExistentes(0,0,0,0,0,0);
+				CrearPoliza_HijosExistentes FuturaPantalla = new CrearPoliza_HijosExistentes(0,0,0,0,0,0, hijos,gestorPoliza,gestorCliente );
 				
 				try {
 					FuturaPantalla.setVisible(true);
