@@ -358,7 +358,7 @@ public class GestorPoliza {
 	
 	public List<ListadoDTO> getAniosFabricacion(long idModeloVehiculo) {
 		Modelo modelo = daoModelo.getModelo(idModeloVehiculo);
-		List<AnioFabricacion> anios = modelo.getAniosFabricacion();
+		List<AnioFabricacion> anios = modelo.getAnioFabricacion().stream().map(a -> a.getAnioFabricacion()).toList();
 		List<ListadoDTO> aniosDTO = new ArrayList<>();
 		ListadoDTO anioDTO = new ListadoDTO(" ", null);
 		aniosDTO.add(anioDTO);

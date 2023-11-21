@@ -291,7 +291,7 @@ public class CrearPoliza_1 extends JFrame {
 		modeloVehiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				idModeloVehiculo = anioDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-				anioDTO = gestorPoliza.getAniosFabricacion(idModeloVehiculo);
+				anioDTO = gestorPoliza.getAniosFabricacion(idModeloVehiculo[0]);
 				anios = anioDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(anios);
 				MarcaVehiculo_1.setModel(nuevoModelo);
