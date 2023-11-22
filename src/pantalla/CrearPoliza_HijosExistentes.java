@@ -23,6 +23,7 @@ import java.awt.SystemColor;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
 import Gestores.GestorCliente;
@@ -47,6 +48,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 	private ArrayList<HijosDTO> hijoss;
 	private GestorPoliza gestorPoliza;
 	private List<ListadoDTO> modeloDTO;
+	private DatosPolizaDTO datosPolizaDTO;
 	private String[] modelos;
 
 	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
@@ -437,6 +439,19 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_Boton_Continuar.gridx = 3;
 		gbc_Boton_Continuar.gridy = 0;
 		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
+		Boton_Continuar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(datosPolizaDTO, gestorPoliza, gestorCliente);
+					
+					try {
+						CPoliza.setVisible(true);
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
+					CrearPoliza_HijosExistentes.this.setVisible(false);
+					CrearPoliza_HijosExistentes.this.dispose();
+			}
+		});
 		
 		JButton Boton_Continuar_2 = new JButton("Volver");
 		Boton_Continuar_2.setFont(new Font("Tahoma", Font.PLAIN, 40));

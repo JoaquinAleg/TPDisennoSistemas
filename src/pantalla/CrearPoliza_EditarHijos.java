@@ -57,13 +57,10 @@ public class CrearPoliza_EditarHijos extends JFrame {
 	private String[] modelos; 
 	
 	
-	public CrearPoliza_EditarHijos(LocalDate nacimiento, String sexo, String estadoCivil, GestorPoliza gestorPoliza,
-			HijosDTO h) {
+	public CrearPoliza_EditarHijos(LocalDate nacimiento, String sexo, String estadoCivil, GestorPoliza gestorPoliza,GestorCliente gestorCliente, HijosDTO h,  Integer tue, Integer gar, Integer alar, Integer rastreo) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		this.gestorPoliza = gestorPoliza;
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.setExtendedState(MAXIMIZED_BOTH);
 		setBounds(100, 100, 1000, 320);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
@@ -183,7 +180,6 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		modeloDTO = this.gestorPoliza.getEstadoCiviles();
 		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> TipoEstadoCivil = new JComboBox(modelos);
-//		JComboBox TipoEstadoCivil = new JComboBox();
 		TipoEstadoCivil.setSelectedItem(estadoCivil);
 		TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
@@ -200,10 +196,21 @@ public class CrearPoliza_EditarHijos extends JFrame {
 				h.setFechaNacimiento(nacimiento);
 				h.setSexo(sexo);
 				h.setEstadoCivil(estadoCivil);
+	CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos( hijoss,gestorPoliza, gestorCliente);
+				
+				try {
+					FuturaPantalla.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
 				CrearPoliza_EditarHijos.this.setVisible(false);
 				CrearPoliza_EditarHijos.this.dispose();
+				
+				
 			}
 		});
+		
+		
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		btnNewButton_1_2.setBackground(SystemColor.controlHighlight);
 		GridBagConstraints gbc_btnNewButton_1_2 = new GridBagConstraints();

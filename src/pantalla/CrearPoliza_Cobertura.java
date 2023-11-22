@@ -28,6 +28,9 @@ import java.util.ArrayList;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import DTOS.DatosPolizaDTO;
+import Gestores.GestorCliente;
+import Gestores.GestorPoliza;
 import Gestores.GestorRuta;
 import POJO.Ruta;
 
@@ -46,7 +49,9 @@ public class CrearPoliza_Cobertura extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-
+	private GestorPoliza gestorPoliza;
+	private GestorCliente gestorCliente;
+	private DatosPolizaDTO datosPolizaDTO;
 	/**
 	 * Launch the application.
 	 */
@@ -66,7 +71,10 @@ public class CrearPoliza_Cobertura extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_Cobertura() {
+	public CrearPoliza_Cobertura(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
+		this.datosPolizaDTO=datosPolizaDTO;
+		this.gestorPoliza = gestorPoliza;
+		this.gestorCliente = gestorCliente;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -332,11 +332,7 @@ public class CrearPoliza_2 extends JFrame {
 		modeloDTO = this.gestorPoliza.getSexos();
 		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> sexo = new JComboBox(modelos);
-		sexo.remove(0);
-		sexo.setSelectedIndex(1);
-//		JComboBox <String> sexo = new JComboBox();
-//		sexo.addItem("Masculino");
-//		sexo.addItem("Femenino");
+
 		sexo.setBackground(SystemColor.inactiveCaptionBorder);
 		sexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_sexo = new GridBagConstraints();
@@ -359,8 +355,6 @@ public class CrearPoliza_2 extends JFrame {
 		modeloDTO = this.gestorPoliza.getEstadoCiviles();
 		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> estadoCivil = new JComboBox(modelos);
-		estadoCivil.remove(0);
-		estadoCivil.setSelectedIndex(1);
 //		JComboBox <String> estadoCivil = new JComboBox();
 //		estadoCivil.addItem("Soltero/a");
 //		estadoCivil.addItem("Casado/a");
@@ -382,6 +376,11 @@ public class CrearPoliza_2 extends JFrame {
 					if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) < 6570) {
 						JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
 					}else {
+						Boolean A = estadoCivil.getSelectedItem().equals(" ");
+						Boolean B = sexo.getSelectedItem().equals(" ");
+						if( A || B ) {
+							JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
+						}else {
 						JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 						HijosDTO h = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), estadoCivil.getSelectedItem().toString(),sexo.getSelectedItem().toString());
 						cantidadHijos.add(h);
@@ -396,7 +395,7 @@ public class CrearPoliza_2 extends JFrame {
 					CrearPoliza_2.this.setVisible(false);
 					CrearPoliza_2.this.dispose();
 			}
-			}
+			}}
 			
 		});
 		anadirHijo.setBackground(SystemColor.controlHighlight);
@@ -451,7 +450,7 @@ public class CrearPoliza_2 extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
-					CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral();
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(datosPolizaDTO, gestorPoliza, gestorCliente);
 					
 					try {
 						CPoliza.setVisible(true);
