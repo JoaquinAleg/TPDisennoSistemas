@@ -356,12 +356,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		modeloDTO = this.gestorPoliza.getEstadoCiviles();
 		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> estadoCivil = new JComboBox(modelos);
-//		JComboBox estadoCivil = new JComboBox();
-//		estadoCivil.addItem("Soltero/a");
-//		estadoCivil.addItem("Casado/a");
-//		estadoCivil.addItem("Viudo/a");
-//		estadoCivil.addItem("Divorciado/a");
-//		estadoCivil.addItem("Separado/a");
+
 		estadoCivil.setSelectedIndex(ec);
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));

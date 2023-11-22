@@ -83,7 +83,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 	 */
 	public CrearPoliza_Cobertura(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
 			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO) {
-		this.cantidadHijos = new ArrayList<HijosDTO>();
+		this.cantidadHijos = hijos;
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
 		this.gestorCliente = gestorCliente;
@@ -320,28 +320,29 @@ public class CrearPoliza_Cobertura extends JFrame {
 		Boton_Continuar_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if( cantidadHijos.size() != 0) {
-					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tue, gar, alar,rastreo, se, ec,cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
-								
-								try {
-									CPoliza.setVisible(true);
-								} catch(Exception er) {
-									er.printStackTrace();
-								}
-								CrearPoliza_Cobertura.this.setVisible(false);
-								CrearPoliza_Cobertura.this.dispose();
-				}else {			
-		
-				CrearPoliza_2 CPolizad = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
+				if(cantidadHijos.size() == 0) {		
+					
+					CrearPoliza_2 CPolizad = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
+					
+					try {
+						CPolizad.setVisible(true);
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
 				
-				try {
-					CPolizad.setVisible(true);
-				} catch(Exception er) {
-					er.printStackTrace();
+				} else {	
+			
+			CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tue, gar, alar,rastreo, se, ec,cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
+			
+			try {
+				CPoliza.setVisible(true);
+			} catch(Exception er) {
+				er.printStackTrace();
+			}
 				}
-				CrearPoliza_Cobertura.this.setVisible(false);
-				CrearPoliza_Cobertura.this.dispose();
-				}}
+			CrearPoliza_Cobertura.this.setVisible(false);
+			CrearPoliza_Cobertura.this.dispose();
+			}
 		});
 		Boton_Continuar_2.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		Boton_Continuar_2.setBackground(SystemColor.controlHighlight);

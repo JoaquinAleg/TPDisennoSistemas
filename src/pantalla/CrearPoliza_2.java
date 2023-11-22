@@ -378,9 +378,10 @@ public class CrearPoliza_2 extends JFrame {
 						if( A || B ) {
 							JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
 						}else {
-						JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
+
 						HijosDTO h = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), estadoCivil.getSelectedItem().toString(),sexo.getSelectedItem().toString());
 						cantidadHijos.add(h);
+						JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
 							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
 							cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
