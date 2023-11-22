@@ -54,8 +54,9 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 	private  NombresDTO nombresDTO;
 
 	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
-			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO) {
+			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO) {
 		this.gestorPoliza = gestorPoliza;
+		this.datosPolizaDTO = datosPolizaDTO;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -259,7 +260,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(tuercas.getSelectedIndex(), garage.getSelectedIndex(), alarma.getSelectedIndex(),
-						rastreoVehicular.getSelectedIndex(), hijoss,gestorPoliza,gestorCliente, nombresDTO);
+						rastreoVehicular.getSelectedIndex(), hijoss,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO);
 				
 				try {
 					FuturaPantalla.setVisible(true);

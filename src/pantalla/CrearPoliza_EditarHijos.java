@@ -22,6 +22,7 @@ import java.awt.SystemColor;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
 import DTOS.NombresDTO;
@@ -60,7 +61,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 	private NombresDTO nombresDTO;
 	
 	public CrearPoliza_EditarHijos(LocalDate nacimiento, String sexo, String estadoCivil, GestorPoliza gestorPoliza,GestorCliente gestorCliente,
-			HijosDTO h,  Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hList, NombresDTO nombresDTO) {
+			HijosDTO h,  Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hList, NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		this.gestorPoliza = gestorPoliza;
@@ -197,10 +198,12 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		JButton btnNewButton_1_2 = new JButton("Confirmar");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				h.setFechaNacimiento(nacimiento);
-				h.setSexo(sexo);
-				h.setEstadoCivil(estadoCivil);
-	CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos( tue,gar,alar,rastreo,hList,gestorPoliza, gestorCliente,nombresDTO);
+				Integer i = hList.lastIndexOf(h);
+				h.setEstadoCivil(TipoEstadoCivil.getSelectedItem().toString());
+				h.setFechaNacimiento(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+				h.setSexo(TipoSexo.getSelectedItem().toString());
+				hList.set(i, h);
+	CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos( tue,gar,alar,rastreo,hList,gestorPoliza, gestorCliente,nombresDTO,datosPolizaDTO);
 
 				try {
 					FuturaPantalla.setVisible(true);

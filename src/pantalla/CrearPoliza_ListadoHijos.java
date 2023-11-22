@@ -24,6 +24,7 @@ import java.awt.SystemColor;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
 import DTOS.NombresDTO;
@@ -66,7 +67,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hijos,
-			GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO) {
+			GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO) {
 		int cantidadHijos = hijos.size();
 		this.gestorPoliza = gestorPoliza;
 		setFont(new Font("Arial", Font.PLAIN, 12));
@@ -228,7 +229,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 			btnNewButton_1_1_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(h.getFechaNacimiento(), h.getSexo(), h.getEstadoCivil(),
-							gestorPoliza, gestorCliente, h,tue,gar,alar,rastreo, hijos, nombresDTO);
+							gestorPoliza, gestorCliente, h,tue,gar,alar,rastreo, hijos, nombresDTO,datosPolizaDTO);
 					
 					try {
 						FuturaPantalla.setVisible(true);
@@ -247,14 +248,32 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 			gbc_btnNewButton_1_1_1.gridy = 2;
 			prueba.add(btnNewButton_1_1_1, gbc_btnNewButton_1_1_1);
 			
-			JButton btnNewButton_1_2 = new JButton("Eliminar");
-			btnNewButton_1_2.setFont(new Font("Tahoma", Font.PLAIN, 35));
-			btnNewButton_1_2.setBackground(SystemColor.controlHighlight);
+			JButton eliminar = new JButton("Eliminar");
+			eliminar.setFont(new Font("Tahoma", Font.PLAIN, 35));
+			eliminar.setBackground(SystemColor.controlHighlight);
 			GridBagConstraints gbc_btnNewButton_1_2 = new GridBagConstraints();
 			gbc_btnNewButton_1_2.insets = new Insets(20, 0, 40, 40);
 			gbc_btnNewButton_1_2.gridx = 4;
 			gbc_btnNewButton_1_2.gridy = 2;
-			prueba.add(btnNewButton_1_2, gbc_btnNewButton_1_2);
+			prueba.add(eliminar, gbc_btnNewButton_1_2);
+			
+			eliminar.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					hijos.remove(h);
+					CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos(tue, gar, alar, rastreo, hijos,
+							gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO);
+					try {
+						actualizada.setVisible(true);
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
+					CrearPoliza_ListadoHijos.this.setVisible(false);
+					CrearPoliza_ListadoHijos.this.dispose();
+				}
+				
+			});
 			
 			ContenedorDeInfo.add(prueba);
 			contentPane.validate();
@@ -305,11 +324,9 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		JButton Boton_Continuar = new JButton("Volver");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(!hijos.isEmpty()) {
 				CrearPoliza_HijosExistentes FuturaPantalla = new CrearPoliza_HijosExistentes(tue,gar,alar,rastreo,0,0, hijos,gestorPoliza,
-						gestorCliente, nombresDTO);
-				
-						
-
+						gestorCliente, nombresDTO,datosPolizaDTO);
 				try {
 					FuturaPantalla.setVisible(true);
 				} catch(Exception er) {
@@ -317,6 +334,17 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				}
 				CrearPoliza_ListadoHijos.this.setVisible(false);
 				CrearPoliza_ListadoHijos.this.dispose();
+				}else {
+					CrearPoliza_2 FuturaPantalla = new CrearPoliza_2(datosPolizaDTO,gestorPoliza, gestorCliente,nombresDTO);
+					try {
+						FuturaPantalla.setVisible(true);
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
+					CrearPoliza_ListadoHijos.this.setVisible(false);
+					CrearPoliza_ListadoHijos.this.dispose();
+				}
+
 			}
 		});
 		Boton_Continuar.setBackground(SystemColor.controlHighlight);
