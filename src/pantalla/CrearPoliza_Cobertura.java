@@ -29,10 +29,9 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import DTOS.DatosPolizaDTO;
+import DTOS.NombresDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
-import Gestores.GestorRuta;
-import POJO.Ruta;
 
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
@@ -59,8 +58,8 @@ public class CrearPoliza_Cobertura extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CrearPoliza_Cobertura frame = new CrearPoliza_Cobertura();
-					frame.setVisible(true);
+					//CrearPoliza_Cobertura frame = new CrearPoliza_Cobertura();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,8 +70,8 @@ public class CrearPoliza_Cobertura extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_Cobertura(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
-		this.datosPolizaDTO=datosPolizaDTO;
+	public CrearPoliza_Cobertura(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente , NombresDTO nombresDTO) {
+		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
 		this.gestorCliente = gestorCliente;
 		setFont(new Font("Arial", Font.PLAIN, 12));
@@ -258,7 +257,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1();
+				CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
 				
 				try {
 					CPoliza.setVisible(true);
@@ -281,7 +280,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		JButton Boton_Continuar_2 = new JButton("Volver");
 		Boton_Continuar_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {							
-								CrearPoliza_2 CPoliza = new CrearPoliza_2();
+								CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
 								
 								try {
 									CPoliza.setVisible(true);

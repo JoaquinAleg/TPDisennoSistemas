@@ -39,6 +39,7 @@ import com.toedter.calendar.JDateChooser;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
+import DTOS.NombresDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 
@@ -58,6 +59,7 @@ public class CrearPoliza_2 extends JFrame {
 	String[] modelos;
 	private DatosPolizaDTO datosPolizaDTO;
 	private GestorCliente gestorCliente;
+	private NombresDTO nombresDTO;
 	
 	
 	/**
@@ -67,11 +69,11 @@ public class CrearPoliza_2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GestorPoliza gestorPoliza = GestorPoliza.getInstance();
-					GestorCliente gestorCliente = GestorCliente.getInstance();
-					DatosPolizaDTO datosPolizaDTO = DatosPolizaDTO.getInstance();
-					CrearPoliza_2 frame = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente);
-					frame.setVisible(true);
+					//GestorPoliza gestorPoliza = GestorPoliza.getInstance();
+					//GestorCliente gestorCliente = GestorCliente.getInstance();
+					//DatosPolizaDTO datosPolizaDTO = DatosPolizaDTO.getInstance();
+					//CrearPoliza_2 frame = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -82,10 +84,11 @@ public class CrearPoliza_2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
+	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO) {
 		this.datosPolizaDTO=datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
 		this.gestorCliente = gestorCliente;
+		this.nombresDTO = nombresDTO;
 		this.cantidadHijos = new ArrayList<HijosDTO>();
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
@@ -450,7 +453,7 @@ public class CrearPoliza_2 extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
-					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(datosPolizaDTO, gestorPoliza, gestorCliente);
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
 					
 					try {
 						CPoliza.setVisible(true);

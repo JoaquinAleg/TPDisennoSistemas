@@ -484,7 +484,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			// acá tendrían que poner un if(cantidadhijos) a ver si se tira CrearPoliza_2 [caso sin hijos] o CrearPoliza_HijosExistentes.
 						
-						CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente);
+						CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
 						
 						try {
 							CPoliza.setVisible(true);

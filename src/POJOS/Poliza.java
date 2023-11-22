@@ -517,7 +517,7 @@ public class Poliza {
 
 	public void setDatosCliente(String nombre, String apellido, TipoDocumento tipoDNI,
 			String dniCliente2) {
-		this.nombreCliente = nombre+""+apellido;
+		this.nombreCliente = nombre+" "+apellido;
 		this.tipoDocumento = tipoDNI;
 		this.dniCliente = dniCliente2;
 		

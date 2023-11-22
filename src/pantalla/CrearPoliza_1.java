@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 import DTOS.ClienteDTO;
 import DTOS.DatosPolizaDTO;
 import DTOS.ListadoDTO;
+import DTOS.NombresDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 import POJOS.Empleado;
@@ -39,6 +40,7 @@ public class CrearPoliza_1 extends JFrame {
 	
 	private GestorPoliza gestorPoliza;
 	private GestorCliente gestorCliente;
+	private NombresDTO nombresDTO;
 	//private Empleado empleado;
 	
 	private static final long serialVersionUID = 1L;
@@ -536,6 +538,7 @@ public class CrearPoliza_1 extends JFrame {
 						
 						if(A &&  B && C && D && E && F && G && H && I && K) {
 							DatosPolizaDTO datosPolizaDTO = new DatosPolizaDTO();
+							nombresDTO = new NombresDTO(marcaParaPantalla, modeloParaPantalla);
 							Long[] idLocalidad= localidadDTO.stream().filter(a -> a.getNombre().equals(LocalidadRiesgo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 							datosPolizaDTO.setIdLocalidadRiesgo(idLocalidad[0]);
 							Long[] idModeloVehiculo = modelosDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
@@ -566,7 +569,7 @@ public class CrearPoliza_1 extends JFrame {
 							System.out.println(datosPolizaDTO.getSumaAsegurada());
 							System.out.println(datosPolizaDTO.getKilometrosPorAnio());
 							System.out.println(datosPolizaDTO.getIdModeloVehiculo());
-							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente);
+							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
 						
 							try {
 								CPoliza.setVisible(true);
