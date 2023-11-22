@@ -25,6 +25,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -115,7 +116,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		String numeroCliente = new String("numeroCliente");
+		//String numeroCliente = new String("numeroCliente");
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(SystemColor.inactiveCaptionBorder);
@@ -186,7 +187,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 			
 
 		
-		JLabel lblFechaDeNacimiento_1_1 = new JLabel("Fecha de nacimiento:");
+		JLabel lblFechaDeNacimiento_1_1 = new JLabel("Fecha de Inicio:");
 
 		lblFechaDeNacimiento_1_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFechaDeNacimiento_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -217,7 +218,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		
 		modeloTipoFormaPagoDTO = this.gestorPoliza.getTipoFormaPago();
 		modelosTipoFormaPago = modeloTipoFormaPagoDTO.stream().map(fp -> fp.getNombre()).toArray(String[]::new);
-		JComboBox<String> formasPago = new JComboBox(modelosTipoFormaPago);
+		JComboBox<String> formasPago = new JComboBox<>(modelosTipoFormaPago);
 		formasPago.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		formasPago.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_formasPago = new GridBagConstraints();
@@ -274,10 +275,12 @@ public class CrearPoliza_Cobertura extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(formasPago.getSelectedItem() == " " || table.getSelectedColumn() == 0 ) {
+				datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+				datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusDays(30));
+				if(formasPago.getSelectedItem().equals(" ") /* || table.getSelectedColumn() == 0*/ ) {
 					JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
 				}else {
-				if(formasPago.getSelectedItem() == "Mensual") {
+				if(formasPago.getSelectedItem().equals("Mensual")) {
 				CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
 				
 				try {
