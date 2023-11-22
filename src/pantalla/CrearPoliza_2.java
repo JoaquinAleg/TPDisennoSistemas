@@ -358,12 +358,6 @@ public class CrearPoliza_2 extends JFrame {
 		modeloDTO = this.gestorPoliza.getEstadoCiviles();
 		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> estadoCivil = new JComboBox(modelos);
-//		JComboBox <String> estadoCivil = new JComboBox();
-//		estadoCivil.addItem("Soltero/a");
-//		estadoCivil.addItem("Casado/a");
-//		estadoCivil.addItem("Viudo/a");
-//		estadoCivil.addItem("Divorciado/a");
-//		estadoCivil.addItem("Separado/a");
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_estadoCivil = new GridBagConstraints();

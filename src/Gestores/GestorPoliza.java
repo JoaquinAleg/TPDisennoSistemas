@@ -422,5 +422,30 @@ public class GestorPoliza {
 		return estadoCivilesDTO;
 	}	
 	
+	public List<ListadoDTO> getCoberturas(){
+		List<Cobertura> coberturas = daoCobertura.getAll();
+		List<ListadoDTO> coberturasDTO = new ArrayList<>();
+		ListadoDTO coberturaDTO = new ListadoDTO(" ",null);
+		coberturasDTO.add(coberturaDTO);
+		for(Cobertura e : coberturas) {
+			coberturaDTO = new ListadoDTO(String.valueOf(e.getDescripcion()), e.getIdCobertura());
+			coberturasDTO.add(coberturaDTO);
+	}
+	return coberturasDTO;
+	}
+	
+	public List<ListadoDTO> getTipoFormaPago(){
+		List<TipoFormaPago> formaPagos = daoTipoFormaPago.getAll();
+		List<ListadoDTO> formaPagosDTO = new ArrayList<>();
+		ListadoDTO FormaPagoDTO = new ListadoDTO(" ",null);
+		formaPagosDTO.add(FormaPagoDTO);
+		for(TipoFormaPago e: formaPagos) {
+			FormaPagoDTO = new ListadoDTO(String.valueOf(e.getDescripcion()), e.getIdFormaPago());
+			formaPagosDTO.add(FormaPagoDTO);
+		}
+		
+		return formaPagosDTO;
+	}
+	
 }
 

@@ -360,3 +360,15 @@ INSERT INTO public.persona (cuit, apellido, nombre, cuil, documento, fechanacimi
 
 INSERT INTO public.cliente (idcliente, fecharegistro, profesion, idtipocondicioniva, idtipoestadocliente, cuit) VALUES
   (0100000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 1);
+  
+INSERT INTO public.cobertura( idcobertura, descripcion) VALUES
+ (1, 'Responsabilidad Civil'),
+ (2, 'Respo. Civil + Robo o incendio total'),
+ (3, 'Todo Total'),
+ (4, 'Terceros Completos'),
+ (5, 'Todo riesgo con Franquicia');
+INSERT INTO public.tipoformapago(idtipoformapago, descripcion) VALUES
+(1, 'Mensual'),
+(2, 'Semestral');
+ 
+ 

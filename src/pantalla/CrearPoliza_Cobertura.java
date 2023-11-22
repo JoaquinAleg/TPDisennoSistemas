@@ -14,6 +14,8 @@ import java.awt.Insets;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -24,14 +26,18 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import DTOS.DatosPolizaDTO;
+import DTOS.ListadoDTO;
 import DTOS.NombresDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
+import POJOS.Cobertura;
 
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
@@ -51,6 +57,8 @@ public class CrearPoliza_Cobertura extends JFrame {
 	private GestorPoliza gestorPoliza;
 	private GestorCliente gestorCliente;
 	private DatosPolizaDTO datosPolizaDTO;
+	List<ListadoDTO> modeloTipoFormaPagoDTO;
+	String[] modelosTipoFormaPago;
 	/**
 	 * Launch the application.
 	 */
@@ -155,11 +163,13 @@ public class CrearPoliza_Cobertura extends JFrame {
 		panel_1.setLayout(gbl_panel_1);
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("Cobertura Disponibles");
-		modelo.addRow(new Object[]{"Responsabilidad Civil"});
-		modelo.addRow(new Object[]{"Resp. Civil + Robo o incendio total"});
-		modelo.addRow(new Object[]{"Todo Total"});
-		modelo.addRow(new Object[]{"Terceros Completos"});
-		modelo.addRow(new Object[]{"Todo riesgo con Franquicia"});
+		
+		List<ListadoDTO> coberturaDTO = this.gestorPoliza.getCoberturas();
+		String[] coberturas = coberturaDTO.stream().map(c->c.getNombre()).toArray(String[]::new);
+		for(String e : coberturas) {
+			modelo.addRow( new Object[]{e});
+	}
+
 		table = new JTable(modelo);
 		table.setToolTipText("");
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -177,6 +187,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 
 		
 		JLabel lblFechaDeNacimiento_1_1 = new JLabel("Fecha de nacimiento:");
+
 		lblFechaDeNacimiento_1_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFechaDeNacimiento_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblFechaDeNacimiento_1_1 = new GridBagConstraints();
@@ -186,6 +197,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		panel.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
 		
 		JDateChooser dateChooser_1_1 = new JDateChooser();
+		dateChooser_1_1.setDate(Calendar.getInstance().getTime());
 		dateChooser_1_1.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_dateChooser_1_1 = new GridBagConstraints();
 		gbc_dateChooser_1_1.insets = new Insets(0, 0, 20, 5);
@@ -203,15 +215,20 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_lblNewLabel.gridy = 3;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
-		JComboBox LocalidadRiesgo_1_1_1 = new JComboBox();
-		LocalidadRiesgo_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		LocalidadRiesgo_1_1_1.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_LocalidadRiesgo_1_1_1 = new GridBagConstraints();
-		gbc_LocalidadRiesgo_1_1_1.insets = new Insets(0, 5, 20, 40);
-		gbc_LocalidadRiesgo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_LocalidadRiesgo_1_1_1.gridx = 3;
-		gbc_LocalidadRiesgo_1_1_1.gridy = 3;
-		panel.add(LocalidadRiesgo_1_1_1, gbc_LocalidadRiesgo_1_1_1);
+		modeloTipoFormaPagoDTO = this.gestorPoliza.getTipoFormaPago();
+		modelosTipoFormaPago = modeloTipoFormaPagoDTO.stream().map(fp -> fp.getNombre()).toArray(String[]::new);
+		JComboBox<String> formasPago = new JComboBox(modelosTipoFormaPago);
+		formasPago.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		formasPago.setBackground(SystemColor.inactiveCaptionBorder);
+		GridBagConstraints gbc_formasPago = new GridBagConstraints();
+		gbc_formasPago.insets = new Insets(0, 5, 20, 40);
+		gbc_formasPago.fill = GridBagConstraints.HORIZONTAL;
+		gbc_formasPago.gridx = 3;
+		gbc_formasPago.gridy = 3;
+		panel.add(formasPago, gbc_formasPago);
+
+		
+	
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
@@ -257,6 +274,10 @@ public class CrearPoliza_Cobertura extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(formasPago.getSelectedItem() == " " || table.getSelectedColumn() == 0 ) {
+					JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
+				}else {
+				if(formasPago.getSelectedItem() == "Mensual") {
 				CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
 				
 				try {
@@ -266,7 +287,18 @@ public class CrearPoliza_Cobertura extends JFrame {
 				}
 				CrearPoliza_Cobertura.this.setVisible(false);
 				CrearPoliza_Cobertura.this.dispose();
-			}
+				} else {
+					CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
+					
+					try {
+						CPoliza.setVisible(true);
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
+					CrearPoliza_Cobertura.this.setVisible(false);
+					CrearPoliza_Cobertura.this.dispose();
+				}
+			}}
 		});
 		Boton_Continuar.setBackground(SystemColor.controlHighlight);
 		Boton_Continuar.setFont(new Font("Tahoma", Font.PLAIN, 40));
