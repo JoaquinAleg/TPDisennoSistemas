@@ -450,7 +450,7 @@ public class CrearPoliza_2 extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
-					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura();
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(datosPolizaDTO, gestorPoliza, gestorCliente);
 					
 					try {
 						CPoliza.setVisible(true);

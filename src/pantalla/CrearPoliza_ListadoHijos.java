@@ -227,13 +227,15 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 			btnNewButton_1_1_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(h.getFechaNacimiento(), h.getSexo(), h.getEstadoCivil(),
-							gestorPoliza, h);
+							gestorPoliza, gestorCliente, h,tue,gar,alar,rastreo);
 					
 					try {
 						FuturaPantalla.setVisible(true);
 					} catch(Exception er) {
 						er.printStackTrace();
 					}
+					CrearPoliza_ListadoHijos.this.setVisible(false);
+					CrearPoliza_ListadoHijos.this.dispose();
 				}
 			});
 			btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
