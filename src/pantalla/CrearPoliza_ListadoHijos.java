@@ -26,6 +26,7 @@ import com.toedter.calendar.JDateChooser;
 
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
+import DTOS.NombresDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 
@@ -56,7 +57,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	private GestorPoliza gestorPoliza;
 	private List<ListadoDTO> modeloDTO;
 	private String[] modelos; 
-
+	private  NombresDTO nombresDTO;
 	/**
 	 * Launch the application.
 	 */
@@ -65,7 +66,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hijos,
-			GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
+			GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO) {
 		int cantidadHijos = hijos.size();
 		this.gestorPoliza = gestorPoliza;
 		setFont(new Font("Arial", Font.PLAIN, 12));
@@ -227,7 +228,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 			btnNewButton_1_1_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(h.getFechaNacimiento(), h.getSexo(), h.getEstadoCivil(),
-							gestorPoliza, gestorCliente, h,tue,gar,alar,rastreo);
+							gestorPoliza, gestorCliente, h,tue,gar,alar,rastreo, hijos, nombresDTO);
 					
 					try {
 						FuturaPantalla.setVisible(true);
@@ -304,8 +305,11 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		JButton Boton_Continuar = new JButton("Volver");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_HijosExistentes FuturaPantalla = new CrearPoliza_HijosExistentes(0,0,0,0,0,0, hijos,gestorPoliza,gestorCliente );
+				CrearPoliza_HijosExistentes FuturaPantalla = new CrearPoliza_HijosExistentes(tue,gar,alar,rastreo,0,0, hijos,gestorPoliza,
+						gestorCliente, nombresDTO);
 				
+						
+
 				try {
 					FuturaPantalla.setVisible(true);
 				} catch(Exception er) {

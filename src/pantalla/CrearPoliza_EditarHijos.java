@@ -24,6 +24,7 @@ import com.toedter.calendar.JDateChooser;
 
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
+import DTOS.NombresDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 
@@ -55,13 +56,16 @@ public class CrearPoliza_EditarHijos extends JFrame {
 	private GestorPoliza gestorPoliza;
 	private List<ListadoDTO> modeloDTO;
 	private String[] modelos; 
+	private ArrayList<HijosDTO> hList; 
+	private NombresDTO nombresDTO;
 	
-	
-	public CrearPoliza_EditarHijos(LocalDate nacimiento, String sexo, String estadoCivil, GestorPoliza gestorPoliza,GestorCliente gestorCliente, HijosDTO h,  Integer tue, Integer gar, Integer alar, Integer rastreo) {
+	public CrearPoliza_EditarHijos(LocalDate nacimiento, String sexo, String estadoCivil, GestorPoliza gestorPoliza,GestorCliente gestorCliente,
+			HijosDTO h,  Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hList, NombresDTO nombresDTO) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		this.gestorPoliza = gestorPoliza;
 		setBounds(100, 100, 1000, 320);
+		this.setExtendedState(MAXIMIZED_BOTH);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setForeground(new Color(0, 0, 0));
@@ -196,8 +200,8 @@ public class CrearPoliza_EditarHijos extends JFrame {
 				h.setFechaNacimiento(nacimiento);
 				h.setSexo(sexo);
 				h.setEstadoCivil(estadoCivil);
-	CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos( hijoss,gestorPoliza, gestorCliente);
-				
+	CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos( tue,gar,alar,rastreo,hList,gestorPoliza, gestorCliente,nombresDTO);
+
 				try {
 					FuturaPantalla.setVisible(true);
 				} catch(Exception er) {
