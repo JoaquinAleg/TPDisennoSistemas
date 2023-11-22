@@ -34,6 +34,7 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import DTOS.DatosPolizaDTO;
+import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
 import DTOS.NombresDTO;
 import Gestores.GestorCliente;
@@ -59,6 +60,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 	private GestorCliente gestorCliente;
 	private DatosPolizaDTO datosPolizaDTO;
 	List<ListadoDTO> modeloTipoFormaPagoDTO;
+	private ArrayList<HijosDTO> cantidadHijos;
 	String[] modelosTipoFormaPago;
 	/**
 	 * Launch the application.
@@ -79,7 +81,9 @@ public class CrearPoliza_Cobertura extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_Cobertura(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente , NombresDTO nombresDTO) {
+	public CrearPoliza_Cobertura(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
+			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO) {
+		this.cantidadHijos = new ArrayList<HijosDTO>();
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
 		this.gestorCliente = gestorCliente;
@@ -277,7 +281,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusDays(30));
-				if(formasPago.getSelectedItem().equals(" ") /* || table.getSelectedColumn() == 0*/ ) {
+				if(formasPago.getSelectedItem().equals(" ")  || table.getSelectionModel().isSelectionEmpty() ) {
 					JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
 				}else {
 				if(formasPago.getSelectedItem().equals("Mensual")) {
@@ -314,8 +318,10 @@ public class CrearPoliza_Cobertura extends JFrame {
 		
 		JButton Boton_Continuar_2 = new JButton("Volver");
 		Boton_Continuar_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {							
-								CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
+			public void actionPerformed(ActionEvent e) {
+
+				if( cantidadHijos.size() != 0) {
+					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tue, gar, alar,rastreo, se, ec,cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
 								
 								try {
 									CPoliza.setVisible(true);
@@ -324,7 +330,18 @@ public class CrearPoliza_Cobertura extends JFrame {
 								}
 								CrearPoliza_Cobertura.this.setVisible(false);
 								CrearPoliza_Cobertura.this.dispose();
-			}
+				}else {			
+		
+				CrearPoliza_2 CPolizad = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
+				
+				try {
+					CPolizad.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				CrearPoliza_Cobertura.this.setVisible(false);
+				CrearPoliza_Cobertura.this.dispose();
+				}}
 		});
 		Boton_Continuar_2.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		Boton_Continuar_2.setBackground(SystemColor.controlHighlight);
