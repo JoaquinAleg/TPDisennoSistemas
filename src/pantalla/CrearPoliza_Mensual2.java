@@ -27,6 +27,7 @@ import com.toedter.calendar.JDateChooser;
 
 import DAOS.HibernateUtil;
 import DTOS.DatosPolizaDTO;
+import DTOS.NombresDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 
@@ -72,7 +73,7 @@ public class CrearPoliza_Mensual2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_Mensual2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
+	public CrearPoliza_Mensual2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente,NombresDTO nombresDTO) {
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorCliente = gestorCliente;
 		this.gestorPoliza = gestorPoliza;
