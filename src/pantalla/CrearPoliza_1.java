@@ -64,7 +64,8 @@ public class CrearPoliza_1 extends JFrame {
 	private List<ListadoDTO> anioDTO;
 	private JComboBox<String> MarcaVehiculo_1 = new JComboBox<>(anios);
 	private Long numeroCliente;
-	
+	private String marcaParaPantalla = "";
+	private String modeloParaPantalla = "";
 	
 
 	/**
@@ -91,7 +92,6 @@ public class CrearPoliza_1 extends JFrame {
 	public CrearPoliza_1(GestorPoliza gestorP, GestorCliente gestorC) {
 		this.gestorPoliza = gestorP;
 		this.gestorCliente = gestorC;
-		//this.empleado = empleado;
 		
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
@@ -269,7 +269,8 @@ public class CrearPoliza_1 extends JFrame {
 		JComboBox<String> MarcaVehiculo = new JComboBox<>(marcas);
 		MarcaVehiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				idMarcaVehiculo = marcaDTO.stream().filter(a -> a.getNombre().equals(MarcaVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+				marcaParaPantalla = (String)MarcaVehiculo.getSelectedItem();
+				idMarcaVehiculo = marcaDTO.stream().filter(a -> a.getNombre().equals(marcaParaPantalla)).map(b -> b.getId()).toArray(Long[]::new);
 				modelosDTO = gestorPoliza.getModelos(idMarcaVehiculo[0]);
 				modelos = modelosDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(modelos);
@@ -296,7 +297,8 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		modeloVehiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				idModeloVehiculo = modelosDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+				modeloParaPantalla = (String)modeloVehiculo.getSelectedItem();
+				idModeloVehiculo = modelosDTO.stream().filter(a -> a.getNombre().equals(modeloParaPantalla)).map(b -> b.getId()).toArray(Long[]::new);
 				anioDTO = gestorPoliza.getAniosFabricacion(idModeloVehiculo[0]);
 				anios = anioDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(anios);
