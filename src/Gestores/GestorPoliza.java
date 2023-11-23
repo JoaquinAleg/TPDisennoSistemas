@@ -129,7 +129,7 @@ public class GestorPoliza {
         cliente.setPolizas(polizas);
         
         TipoDocumento tipoDNI = daoTipoDocumento.getTipoDocumento(datosPolizaDTO.getTipoDNI());
-        poliza.setDatosCliente(datosPolizaDTO.getNombre(), datosPolizaDTO.getApellido(), tipoDNI, poliza.getDniCliente());
+        poliza.setDatosCliente(datosPolizaDTO.getNombre(), datosPolizaDTO.getApellido(), tipoDNI, datosPolizaDTO.getDni().toString());
         TipoFormaPago tipoFormaPago = daoTipoFormaPago.getTipoFormaPago(datosPolizaDTO.getIdFormaPago());
         poliza.setFormaPago(tipoFormaPago);
         poliza.setDatosPoliza(datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago());

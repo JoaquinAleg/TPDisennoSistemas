@@ -418,3 +418,7 @@ VALUES
     (18, 3),
     (19, 2),
     (20, 4);
+	
+INSERT INTO public.tipocondicioncliente(idtipocondicioncliente, descripcion) VALUES
+(1, 'Normal'),
+(2, 'Plata');

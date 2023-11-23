@@ -26,7 +26,9 @@ public class DAOpoliza implements polizaDAO{
 	public void createPoliza(Poliza poliza) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(poliza);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

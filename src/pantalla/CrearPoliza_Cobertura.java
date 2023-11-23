@@ -280,7 +280,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-				datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusDays(30));
+				datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusMonths(6));
 				Long[] idFormaPago = modeloTipoFormaPagoDTO.stream().filter(a -> a.getNombre().equals(formasPago.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 				datosPolizaDTO.setIdFormaPago(idFormaPago[0]);
 				Long[] idCobertura = coberturaDTO.stream().filter(a -> a.getNombre().equals(modelo.getValueAt(table.getSelectedRow(), 0))).map(b -> b.getId()).toArray(Long[]::new);
