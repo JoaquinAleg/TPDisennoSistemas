@@ -203,13 +203,13 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer i = hList.lastIndexOf(h);
-				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(TipoSexo.getSelectedObjects())).map(b -> b.getId()).toArray(Long[]::new);
-				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(TipoEstadoCivil.getSelectedObjects())).map(b -> b.getId()).toArray(Long[]::new);
+				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(TipoSexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(TipoEstadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 				h.setEstadoCivil(idEstadoCivil[0]);
 				h.setFechaNacimiento(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				h.setSexo(idSexo[0]);
 				hList.set(i, h);
-	CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos( tue,gar,alar,rastreo,hList,gestorPoliza, gestorCliente,nombresDTO,datosPolizaDTO);
+	CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos( tue,gar,alar,rastreo,hList,gestorPoliza, gestorCliente,nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
 
 				try {
 					FuturaPantalla.setVisible(true);

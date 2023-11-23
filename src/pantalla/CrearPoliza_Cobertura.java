@@ -82,7 +82,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearPoliza_Cobertura(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
-			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO) {
+			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO) {
 		this.cantidadHijos = hijos;
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
@@ -338,7 +338,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 				
 				} else {	
 			
-			CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tue, gar, alar,rastreo, se, ec,cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
+			CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tue, gar, alar,rastreo, se, ec,cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
 			
 			try {
 				CPoliza.setVisible(true);

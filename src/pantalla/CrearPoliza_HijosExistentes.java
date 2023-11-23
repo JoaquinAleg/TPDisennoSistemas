@@ -56,9 +56,11 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 	private NombresDTO nombresDTO;
 
 	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
-			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO) {
+			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO) {
 		this.gestorPoliza = gestorPoliza;
 		this.datosPolizaDTO = datosPolizaDTO;
+		this.sexoDTO = sexoDTO;
+		this.estadoCivilDTO = estadoCivilDTO;
 		
 		List<ListadoDTO> medidaSeguridadDTO = this.gestorPoliza.getMedidasSeguridad();
 		
@@ -265,7 +267,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(tuercas.getSelectedIndex(), garage.getSelectedIndex(), alarma.getSelectedIndex(),
-						rastreoVehicular.getSelectedIndex(), hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO);
+						rastreoVehicular.getSelectedIndex(), hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -332,9 +334,9 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_lblNewLabel_1_2.gridy = 0;
 		panel_1_1.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 		
-		sexoDTO = this.gestorPoliza.getSexos();
+		//sexoDTO = this.gestorPoliza.getSexos();
 		sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> sexo = new JComboBox(sexos);
+		JComboBox <String> sexo = new JComboBox<>(sexos);
 //		JComboBox sexo = new JComboBox();
 //		sexo.addItem("Masculino");
 //		sexo.addItem("Femenino");
@@ -358,7 +360,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_lblEstadoCivil.gridy = 2;
 		panel_1_1.add(lblEstadoCivil, gbc_lblEstadoCivil);
 		
-		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
+		//estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
 		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> estadoCivil = new JComboBox<>(estadosCivil);
 
@@ -386,8 +388,8 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(sexo.getSelectedObjects())).map(b -> b.getId()).toArray(Long[]::new);
-				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedObjects())).map(b -> b.getId()).toArray(Long[]::new);
+				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(sexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 				HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), idEstadoCivil[0], idSexo[0]);
 				JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 				hijos.add(hijo);
@@ -468,7 +470,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 					datosPolizaDTO.setListaMedidaSeguridad(medidas);
 					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
 							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
-							hijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
+							hijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
 					
 					try {
 						CPoliza.setVisible(true);

@@ -393,7 +393,7 @@ public class CrearPoliza_2 extends JFrame {
 							JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 							CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
 							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
-							cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
+							cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
 					try {
 						CPoliza.setVisible(true);
 					} catch(Exception er) {
@@ -480,7 +480,7 @@ public class CrearPoliza_2 extends JFrame {
 					datosPolizaDTO.setListaMedidaSeguridad(medidas);
 					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
 							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
-							cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
+							cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
 					
 					try {
 						CPoliza.setVisible(true);

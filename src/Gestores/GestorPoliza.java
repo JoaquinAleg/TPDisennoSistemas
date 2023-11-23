@@ -206,6 +206,9 @@ public class GestorPoliza {
         
         AjusteDescuento ajusteUnidadAd = daoAjusteDescuento.buscarAjusteUnidadAd(polizasAsociadas.size());
         poliza.setAjusteDescuento(ajusteUnidadAd);
+
+        AjusteSiniestro ajusteSiniestro = daoAjusteSiniestro.getAjusteSiniestro(datosPolizaDTO.getSiniestrosUltimoA());
+        poliza.setIdAjusteSiniestro(ajusteSiniestro);
         
         AjusteEmision ajusteEmision = daoAjusteEmision.getAll().get(0);
         poliza.setAjusteEmision(ajusteEmision);

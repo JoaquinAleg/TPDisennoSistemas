@@ -71,9 +71,11 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hijos,
-			GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO) {
+			GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO) {
 		int cantidadHijos = hijos.size();
 		this.gestorPoliza = gestorPoliza;
+		this.estadoCivilDTO = estadoCivilDTO;
+		this.sexoDTO = sexoDTO;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -146,142 +148,144 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		//--------EMPIEZA------------------------------------------------
 			for(HijosDTO hijo : hijos){
 				if(cantidadHijos == 1) {scrollPane.getViewport().setPreferredSize(new Dimension(1000, 225));}
-			final HijosDTO h = hijo;
-			JPanel prueba = new JPanel();
-			prueba.setBorder(new MatteBorder(2, 0, 0, 0, (Color) new Color(0, 0, 0)));
-			prueba.setBackground(SystemColor.inactiveCaptionBorder);
-			GridBagLayout gbl_prueba = new GridBagLayout();
-			gbl_prueba.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-			gbl_prueba.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
-			gbl_prueba.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-			gbl_prueba.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-			prueba.setLayout(gbl_prueba);
-	
-			JLabel lblFechaDeNacimiento_1_1 = new JLabel("Fecha de nacimiento:");
-			lblFechaDeNacimiento_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-			lblFechaDeNacimiento_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-			GridBagConstraints gbc_lblFechaDeNacimiento_1_1 = new GridBagConstraints();
-			gbc_lblFechaDeNacimiento_1_1.anchor = GridBagConstraints.WEST;
-			gbc_lblFechaDeNacimiento_1_1.insets = new Insets(30, 50, 5, 5);
-			gbc_lblFechaDeNacimiento_1_1.gridx = 0;
-			gbc_lblFechaDeNacimiento_1_1.gridy = 0;
-			prueba.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
-			
-			JDateChooser nacimiento = new JDateChooser();
-			nacimiento.setEnabled(false);
-			nacimiento.setDate(Date.from(h.getFechaNacimiento().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-			nacimiento.setBackground(SystemColor.inactiveCaptionBorder);
-			GridBagConstraints gbc_dateChooser_1_1 = new GridBagConstraints();
-			gbc_dateChooser_1_1.fill = GridBagConstraints.BOTH;
-			gbc_dateChooser_1_1.insets = new Insets(30, 5, 5, 30);
-			gbc_dateChooser_1_1.gridx = 1;
-			gbc_dateChooser_1_1.gridy = 0;
-			prueba.add(nacimiento, gbc_dateChooser_1_1);
-			
-			JLabel lblNewLabel_1_2_1_1 = new JLabel("Sexo:");
-			lblNewLabel_1_2_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-			lblNewLabel_1_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-			GridBagConstraints gbc_lblNewLabel_1_2_1_1 = new GridBagConstraints();
-			gbc_lblNewLabel_1_2_1_1.anchor = GridBagConstraints.WEST;
-			gbc_lblNewLabel_1_2_1_1.insets = new Insets(30, 0, 5, 10);
-			gbc_lblNewLabel_1_2_1_1.gridx = 3;
-			gbc_lblNewLabel_1_2_1_1.gridy = 0;
-			prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
-			
-			sexoDTO = this.gestorPoliza.getSexos();
-			sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-			JComboBox <String> TipoSexo = new JComboBox<>(sexos);
-	//		JComboBox TipoSexo = new JComboBox();
-			TipoSexo.setEnabled(false);
-			TipoSexo.setSelectedItem(h.getSexo());
-			TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
-			TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
-			GridBagConstraints gbc_LocalidadRiesgo_1_1_1 = new GridBagConstraints();
-			gbc_LocalidadRiesgo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
-			gbc_LocalidadRiesgo_1_1_1.insets = new Insets(30, 0, 5, 40);
-			gbc_LocalidadRiesgo_1_1_1.gridx = 4;
-			gbc_LocalidadRiesgo_1_1_1.gridy = 0;
-			prueba.add(TipoSexo, gbc_LocalidadRiesgo_1_1_1);
-			
-			JLabel lblEstadoCivil_1_1 = new JLabel("Estado Civil:");
-			lblEstadoCivil_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-			lblEstadoCivil_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-			GridBagConstraints gbc_lblEstadoCivil_1_1 = new GridBagConstraints();
-			gbc_lblEstadoCivil_1_1.anchor = GridBagConstraints.WEST;
-			gbc_lblEstadoCivil_1_1.insets = new Insets(20, 50, 40, 5);
-			gbc_lblEstadoCivil_1_1.gridx = 0;
-			gbc_lblEstadoCivil_1_1.gridy = 2;
-			prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
-			
-			estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
-			estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-			JComboBox <String> TipoEstadoCivil = new JComboBox<>(estadosCivil);
-	//		JComboBox TipoEstadoCivil = new JComboBox();
-			TipoEstadoCivil.setEnabled(false);
-			TipoEstadoCivil.setSelectedItem(h.getEstadoCivil());
-			TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
-			TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
-			GridBagConstraints gbc_MarcaVehiculo_1_1_1 = new GridBagConstraints();
-			gbc_MarcaVehiculo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
-			gbc_MarcaVehiculo_1_1_1.insets = new Insets(20, 0, 40, 30);
-			gbc_MarcaVehiculo_1_1_1.gridx = 1;
-			gbc_MarcaVehiculo_1_1_1.gridy = 2;
-			prueba.add(TipoEstadoCivil, gbc_MarcaVehiculo_1_1_1);
-			
-			JButton btnNewButton_1_1_1 = new JButton("Editar");
-			CrearPoliza_ListadoHijos anterior = this;
-			btnNewButton_1_1_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(h.getFechaNacimiento(), h.getSexo(), h.getEstadoCivil(),
-							gestorPoliza, gestorCliente, h,tue,gar,alar,rastreo, hijos, nombresDTO,datosPolizaDTO);
-					
-					try {
-						FuturaPantalla.setVisible(true);
-					} catch(Exception er) {
-						er.printStackTrace();
-					}
-					CrearPoliza_ListadoHijos.this.setVisible(false);
-					CrearPoliza_ListadoHijos.this.dispose();
-				}
-			});
-			btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
-			btnNewButton_1_1_1.setBackground(SystemColor.controlHighlight);
-			GridBagConstraints gbc_btnNewButton_1_1_1 = new GridBagConstraints();
-			gbc_btnNewButton_1_1_1.insets = new Insets(20, 0, 40, 10);
-			gbc_btnNewButton_1_1_1.gridx = 3;
-			gbc_btnNewButton_1_1_1.gridy = 2;
-			prueba.add(btnNewButton_1_1_1, gbc_btnNewButton_1_1_1);
-			
-			JButton eliminar = new JButton("Eliminar");
-			eliminar.setFont(new Font("Tahoma", Font.PLAIN, 35));
-			eliminar.setBackground(SystemColor.controlHighlight);
-			GridBagConstraints gbc_btnNewButton_1_2 = new GridBagConstraints();
-			gbc_btnNewButton_1_2.insets = new Insets(20, 0, 40, 40);
-			gbc_btnNewButton_1_2.gridx = 4;
-			gbc_btnNewButton_1_2.gridy = 2;
-			prueba.add(eliminar, gbc_btnNewButton_1_2);
-			
-			eliminar.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					hijos.remove(h);
-					CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos(tue, gar, alar, rastreo, hijos,
-							gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO);
-					try {
-						actualizada.setVisible(true);
-					} catch(Exception er) {
-						er.printStackTrace();
-					}
-					CrearPoliza_ListadoHijos.this.setVisible(false);
-					CrearPoliza_ListadoHijos.this.dispose();
-				}
+				final HijosDTO h = hijo;
+				JPanel prueba = new JPanel();
+				prueba.setBorder(new MatteBorder(2, 0, 0, 0, (Color) new Color(0, 0, 0)));
+				prueba.setBackground(SystemColor.inactiveCaptionBorder);
+				GridBagLayout gbl_prueba = new GridBagLayout();
+				gbl_prueba.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+				gbl_prueba.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+				gbl_prueba.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+				gbl_prueba.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+				prueba.setLayout(gbl_prueba);
+		
+				JLabel lblFechaDeNacimiento_1_1 = new JLabel("Fecha de nacimiento:");
+				lblFechaDeNacimiento_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+				lblFechaDeNacimiento_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				GridBagConstraints gbc_lblFechaDeNacimiento_1_1 = new GridBagConstraints();
+				gbc_lblFechaDeNacimiento_1_1.anchor = GridBagConstraints.WEST;
+				gbc_lblFechaDeNacimiento_1_1.insets = new Insets(30, 50, 5, 5);
+				gbc_lblFechaDeNacimiento_1_1.gridx = 0;
+				gbc_lblFechaDeNacimiento_1_1.gridy = 0;
+				prueba.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
 				
-			});
-			
-			ContenedorDeInfo.add(prueba);
-			contentPane.validate();
-}
+				JDateChooser nacimiento = new JDateChooser();
+				nacimiento.setEnabled(false);
+				nacimiento.setDate(Date.from(h.getFechaNacimiento().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+				nacimiento.setBackground(SystemColor.inactiveCaptionBorder);
+				GridBagConstraints gbc_dateChooser_1_1 = new GridBagConstraints();
+				gbc_dateChooser_1_1.fill = GridBagConstraints.BOTH;
+				gbc_dateChooser_1_1.insets = new Insets(30, 5, 5, 30);
+				gbc_dateChooser_1_1.gridx = 1;
+				gbc_dateChooser_1_1.gridy = 0;
+				prueba.add(nacimiento, gbc_dateChooser_1_1);
+				
+				JLabel lblEstadoCivil_1_1 = new JLabel("Estado Civil:");
+				lblEstadoCivil_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+				lblEstadoCivil_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				GridBagConstraints gbc_lblEstadoCivil_1_1 = new GridBagConstraints();
+				gbc_lblEstadoCivil_1_1.anchor = GridBagConstraints.WEST;
+				gbc_lblEstadoCivil_1_1.insets = new Insets(20, 50, 40, 5);
+				gbc_lblEstadoCivil_1_1.gridx = 0;
+				gbc_lblEstadoCivil_1_1.gridy = 2;
+				prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
+				
+				//estadoCivilDTO = gestorPoliza.getEstadoCiviles();
+				estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+				JComboBox <String> TipoEstadoCivil = new JComboBox<>(estadosCivil);
+		//		JComboBox TipoEstadoCivil = new JComboBox();
+				TipoEstadoCivil.setEnabled(false);
+				String[] nombreEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getId() != null && a.getId().equals(h.getEstadoCivil())).map(b -> b.getNombre()).toArray(String[]::new);
+				TipoEstadoCivil.setSelectedItem(nombreEstadoCivil[0]);
+				TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
+				GridBagConstraints gbc_MarcaVehiculo_1_1_1 = new GridBagConstraints();
+				gbc_MarcaVehiculo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
+				gbc_MarcaVehiculo_1_1_1.insets = new Insets(20, 0, 40, 30);
+				gbc_MarcaVehiculo_1_1_1.gridx = 1;
+				gbc_MarcaVehiculo_1_1_1.gridy = 2;
+				prueba.add(TipoEstadoCivil, gbc_MarcaVehiculo_1_1_1);
+				
+				JLabel lblNewLabel_1_2_1_1 = new JLabel("Sexo:");
+				lblNewLabel_1_2_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+				lblNewLabel_1_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				GridBagConstraints gbc_lblNewLabel_1_2_1_1 = new GridBagConstraints();
+				gbc_lblNewLabel_1_2_1_1.anchor = GridBagConstraints.WEST;
+				gbc_lblNewLabel_1_2_1_1.insets = new Insets(30, 0, 5, 10);
+				gbc_lblNewLabel_1_2_1_1.gridx = 3;
+				gbc_lblNewLabel_1_2_1_1.gridy = 0;
+				prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
+				
+				//sexoDTO = gestorPoliza.getSexos();
+				sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+				JComboBox <String> TipoSexo = new JComboBox<>(sexos);
+		//		JComboBox TipoSexo = new JComboBox();
+				TipoSexo.setEnabled(false);
+				String[] nombreSexo = sexoDTO.stream().filter(a -> a.getId() != null && a.getId().equals(h.getSexo())).map(b -> b.getNombre()).toArray(String[]::new);
+				TipoSexo.setSelectedItem(nombreSexo[0]);
+				TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
+				GridBagConstraints gbc_LocalidadRiesgo_1_1_1 = new GridBagConstraints();
+				gbc_LocalidadRiesgo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
+				gbc_LocalidadRiesgo_1_1_1.insets = new Insets(30, 0, 5, 40);
+				gbc_LocalidadRiesgo_1_1_1.gridx = 4;
+				gbc_LocalidadRiesgo_1_1_1.gridy = 0;
+				prueba.add(TipoSexo, gbc_LocalidadRiesgo_1_1_1);
+				
+				JButton btnNewButton_1_1_1 = new JButton("Editar");
+				CrearPoliza_ListadoHijos anterior = this;
+				btnNewButton_1_1_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(h.getFechaNacimiento(), h.getSexo(), h.getEstadoCivil(),
+								gestorPoliza, gestorCliente, h,tue,gar,alar,rastreo, hijos, nombresDTO,datosPolizaDTO);
+						
+						try {
+							FuturaPantalla.setVisible(true);
+						} catch(Exception er) {
+							er.printStackTrace();
+						}
+						CrearPoliza_ListadoHijos.this.setVisible(false);
+						CrearPoliza_ListadoHijos.this.dispose();
+					}
+				});
+				btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
+				btnNewButton_1_1_1.setBackground(SystemColor.controlHighlight);
+				GridBagConstraints gbc_btnNewButton_1_1_1 = new GridBagConstraints();
+				gbc_btnNewButton_1_1_1.insets = new Insets(20, 0, 40, 10);
+				gbc_btnNewButton_1_1_1.gridx = 3;
+				gbc_btnNewButton_1_1_1.gridy = 2;
+				prueba.add(btnNewButton_1_1_1, gbc_btnNewButton_1_1_1);
+				
+				JButton eliminar = new JButton("Eliminar");
+				eliminar.setFont(new Font("Tahoma", Font.PLAIN, 35));
+				eliminar.setBackground(SystemColor.controlHighlight);
+				GridBagConstraints gbc_btnNewButton_1_2 = new GridBagConstraints();
+				gbc_btnNewButton_1_2.insets = new Insets(20, 0, 40, 40);
+				gbc_btnNewButton_1_2.gridx = 4;
+				gbc_btnNewButton_1_2.gridy = 2;
+				prueba.add(eliminar, gbc_btnNewButton_1_2);
+				
+				eliminar.addActionListener(new ActionListener() {
+	
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						hijos.remove(h);
+						CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos(tue, gar, alar, rastreo, hijos,
+								gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
+						try {
+							actualizada.setVisible(true);
+						} catch(Exception er) {
+							er.printStackTrace();
+						}
+						CrearPoliza_ListadoHijos.this.setVisible(false);
+						CrearPoliza_ListadoHijos.this.dispose();
+					}
+					
+				});
+				
+				ContenedorDeInfo.add(prueba);
+				contentPane.validate();
+			}
 			//---------FIN--------------
 
 	
@@ -330,7 +334,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!hijos.isEmpty()) {
 				CrearPoliza_HijosExistentes FuturaPantalla = new CrearPoliza_HijosExistentes(tue,gar,alar,rastreo,0,0, hijos,gestorPoliza,
-						gestorCliente, nombresDTO,datosPolizaDTO);
+						gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
 				try {
 					FuturaPantalla.setVisible(true);
 				} catch(Exception er) {

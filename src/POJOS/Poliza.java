@@ -116,6 +116,7 @@ public class Poliza {
 	private List<Hijo> hijos;
 	
 	public Poliza(){
+		this.modificaciones = new ArrayList<Modificacion>();
 		this.hijos = new ArrayList<Hijo>();
 		this.cuotas = new ArrayList<Cuota>();
 	}
