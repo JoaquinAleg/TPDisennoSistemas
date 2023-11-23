@@ -398,26 +398,27 @@ VALUES
  
 INSERT INTO public.ajustehijo (idajustehijo, canthijos)
 VALUES
+	(0, 0),
     (1, 1),
     (2, 2),
     (3, 3),
     (4, 4),
     (5, 5),
-    (6, 2),
-    (7, 1),
-    (8, 3),
-    (9, 2),
-    (10, 4),
-    (11, 1),
-    (12, 5),
-    (13, 3),
-    (14, 2),
-    (15, 4),
-    (16, 1),
-    (17, 5),
-    (18, 3),
-    (19, 2),
-    (20, 4);
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10),
+    (11, 11),
+    (12, 12),
+    (13, 13),
+    (14, 14),
+    (15, 15),
+    (16, 16),
+    (17, 17),
+    (18, 18),
+    (19, 19),
+    (20, 20);
 	
 INSERT INTO public.tipocondicioncliente(idtipocondicioncliente, descripcion) VALUES
 (1, 'Normal'),

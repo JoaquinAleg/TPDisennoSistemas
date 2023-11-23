@@ -68,8 +68,8 @@ public class DAOajusteKilometro implements ajusteKilometroDAO{
 			return null;
 		}
 	}
-	public AjusteKilometro buscarAjusteKilometro(Float cantKilometros) {
-		List<AjusteKilometro> ajuste = this.getAll().stream().filter(a -> a.getEscalaKM() <= cantKilometros).toList();
+	public AjusteKilometro buscarAjusteKilometro(Integer integer) {
+		List<AjusteKilometro> ajuste = this.getAll().stream().filter(a -> a.getEscalaKM() <= integer).toList();
 		return ajuste.get(ajuste.size()-1);
 		}
 }

@@ -552,7 +552,7 @@ public class CrearPoliza_1 extends JFrame {
 							datosPolizaDTO.setMotor(text_Motor.getText());
 							datosPolizaDTO.setChasis(text_Chasis.getText());
 							datosPolizaDTO.setPatente(text_Patente.getText());
-							datosPolizaDTO.setKilometrosPorAnio(Float.parseFloat(text_Kilometros.getText()));
+							datosPolizaDTO.setKilometrosPorAnio(Integer.parseInt(text_Kilometros.getText()));
 							Long[] idSiniestro = siniestrosDTO.stream().filter(a -> a.getNombre().equals(text_Siniestros.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 							datosPolizaDTO.setSiniestrosUltimoA(idSiniestro[0]);
 							
@@ -561,9 +561,10 @@ public class CrearPoliza_1 extends JFrame {
 							datosPolizaDTO.setNumeroCliente(clienteDTO.getNumeroCliente());
 							datosPolizaDTO.setDni(clienteDTO.getNumeroDocumento());
 							datosPolizaDTO.setTipoDNI(clienteDTO.getIdTipoDocumento());
-							datosPolizaDTO.setDescuento(20.0F);
-							datosPolizaDTO.setPremio(300.0F);
-							datosPolizaDTO.setPrima(0.3F);
+							datosPolizaDTO.setDescuento((float)0.05);
+							datosPolizaDTO.setPrima((float)0.15);
+							datosPolizaDTO.setPremio(datosPolizaDTO.getSumaAsegurada()*datosPolizaDTO.getPrima());
+							
 							
 							System.out.println(datosPolizaDTO.getApellido());
 							System.out.println(datosPolizaDTO.getNombre());

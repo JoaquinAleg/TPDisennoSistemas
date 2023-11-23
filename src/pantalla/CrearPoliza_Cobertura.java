@@ -202,7 +202,10 @@ public class CrearPoliza_Cobertura extends JFrame {
 		panel.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
 		
 		JDateChooser dateChooser_1_1 = new JDateChooser();
-		dateChooser_1_1.setDate(Calendar.getInstance().getTime());
+		Calendar maniana = Calendar.getInstance();
+		maniana.setTime(Calendar.getInstance().getTime());
+		maniana.add(Calendar.DAY_OF_YEAR, 1);
+		dateChooser_1_1.setDate(maniana.getTime());
 		dateChooser_1_1.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_dateChooser_1_1 = new GridBagConstraints();
 		gbc_dateChooser_1_1.insets = new Insets(0, 0, 20, 5);
@@ -280,7 +283,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-				datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusMonths(6));
+				datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().minusDays(1));
 				Long[] idFormaPago = modeloTipoFormaPagoDTO.stream().filter(a -> a.getNombre().equals(formasPago.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 				datosPolizaDTO.setIdFormaPago(idFormaPago[0]);
 				Long[] idCobertura = coberturaDTO.stream().filter(a -> a.getNombre().equals(modelo.getValueAt(table.getSelectedRow(), 0))).map(b -> b.getId()).toArray(Long[]::new);
@@ -326,7 +329,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		Boton_Continuar_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if(cantidadHijos.size() == 0) {		
+				if(cantidadHijos == null) {		
 					
 					CrearPoliza_2 CPolizad = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
 					

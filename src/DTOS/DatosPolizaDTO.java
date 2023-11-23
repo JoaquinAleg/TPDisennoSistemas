@@ -17,20 +17,16 @@ public class DatosPolizaDTO {
 	private String motor;
 	private String chasis;
 	private String patente;
-	private Float kilometrosPorAnio;
+	private Integer kilometrosPorAnio;
 	private Float sumaAsegurada;
 	private Long siniestrosUltimoA;
-	//private Boolean guardadoEnGarage;
-	//private Boolean tuercasAntiRobos;
-	//private Boolean alarma;
-	//private Boolean dispositivoRastreo;
-	//ESTOS COMENTADOS EQUIVALEN A ESTO AHORA:
 	private List<Long> listaMedidaSeguridad;
 	private List<HijosDTO> hijos;
 	private LocalDate comienzoVigencia;
+	private LocalDate finVigencia;
 	private LocalDate ultimoDiaPago;
 	private Long idFormaPago;
-	private Float prima, descuento, premio;
+	private Float prima, descuento, premio, montoTotal;
 	private Long idCobertura;
 	
     private static DatosPolizaDTO instancia = null;
@@ -39,12 +35,22 @@ public class DatosPolizaDTO {
 		
 	};
 	
+	
+    public static DatosPolizaDTO getInstance() {
+        if (instancia == null) {
+            instancia = new DatosPolizaDTO();
+        }
+        return instancia;
+    }
+    
+    
 	public DatosPolizaDTO(Long numeroCliente, String nombre, String apellido, Long tipoDNI, Integer dni,
 			Long idLocalidadRiesgo, Long idModeloVehiculo, Long idAnioVehiculo, String motor, String chasis,
-			String patente, Float kilometrosPorAnio, Float sumaAsegurada, Long siniestrosUltimoA,
-			List<Long> listaMedidaSeguridad/*Boolean guardadoEnGarage, Boolean tuercasAntiRobos, Boolean alarma, Boolean dispositivoRastreo*/, List<HijosDTO> hijos,
-			LocalDate comienzoVigencia, LocalDate ultimoDiaPago, Long idFormaPago, Float prima, Float descuento
-			, Float premio, Long idCobertura) {
+			String patente, Integer kilometrosPorAnio, Float sumaAsegurada, Long siniestrosUltimoA,
+			List<Long> listaMedidaSeguridad, List<HijosDTO> hijos, LocalDate comienzoVigencia, LocalDate finVigencia,
+			LocalDate ultimoDiaPago, Long idFormaPago, Float prima, Float descuento, Float premio, Float montoTotal,
+			Long idCobertura) {
+		super();
 		this.numeroCliente = numeroCliente;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -59,27 +65,36 @@ public class DatosPolizaDTO {
 		this.kilometrosPorAnio = kilometrosPorAnio;
 		this.sumaAsegurada = sumaAsegurada;
 		this.siniestrosUltimoA = siniestrosUltimoA;
-		//this.guardadoEnGarage = guardadoEnGarage;
-		//this.tuercasAntiRobos = tuercasAntiRobos;
-		//this.alarma = alarma;
-		//this.dispositivoRastreo = dispositivoRastreo;
-		//ESTOS COMENTADOS EQUIVALEN A ESTO AHORA:
 		this.listaMedidaSeguridad = listaMedidaSeguridad;
 		this.hijos = hijos;
 		this.comienzoVigencia = comienzoVigencia;
+		this.finVigencia = finVigencia;
 		this.ultimoDiaPago = ultimoDiaPago;
 		this.idFormaPago = idFormaPago;
-		this.premio=premio;
-		this.descuento=descuento;
-		this.prima=prima;
+		this.prima = prima;
+		this.descuento = descuento;
+		this.premio = premio;
+		this.montoTotal = montoTotal;
 		this.idCobertura = idCobertura;
 	}
-    public static DatosPolizaDTO getInstance() {
-        if (instancia == null) {
-            instancia = new DatosPolizaDTO();
-        }
-        return instancia;
-    }
+
+
+	public LocalDate getFinVigencia() {
+		return finVigencia;
+	}
+
+	public void setFinVigencia(LocalDate finVigencia) {
+		this.finVigencia = finVigencia;
+	}
+
+	public Float getMontoTotal() {
+		return montoTotal;
+	}
+
+	public void setMontoTotal(Float montoTotal) {
+		this.montoTotal = montoTotal;
+	}
+
 	public Float getPrima() {
 		return prima;
 	}
@@ -164,10 +179,10 @@ public class DatosPolizaDTO {
 	public void setPatente(String patente) {
 		this.patente = patente;
 	}
-	public Float getKilometrosPorAnio() {
+	public Integer getKilometrosPorAnio() {
 		return kilometrosPorAnio;
 	}
-	public void setKilometrosPorAnio(Float kilometrosPorAnio) {
+	public void setKilometrosPorAnio(Integer kilometrosPorAnio) {
 		this.kilometrosPorAnio = kilometrosPorAnio;
 	}
 	public Float getSumaAsegurada() {
@@ -226,6 +241,7 @@ public class DatosPolizaDTO {
 	}
 	public void setComienzoVigencia(LocalDate comienzoVigencia) {
 		this.comienzoVigencia = comienzoVigencia;
+		this.finVigencia = comienzoVigencia.plusMonths(6);
 	}
 	public LocalDate getUltimoDiaPago() {
 		return ultimoDiaPago;

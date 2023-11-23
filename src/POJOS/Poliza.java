@@ -10,33 +10,33 @@ import jakarta.persistence.*;
 @Table(name = "Poliza", schema = "public")
 public class Poliza {
 	@Id
-	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long numeroPoliza;
 	@ManyToOne
 	@JoinColumn(name = "idModelo", nullable = false, referencedColumnName = "idModelo", 
 	foreignKey=@ForeignKey(name = "fk_ModeloPoliza", value = ConstraintMode.CONSTRAINT))
 	private Modelo modelo;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idAjusteHijo", nullable = false, referencedColumnName = "idAjusteHijo", 
 	foreignKey=@ForeignKey(name = "fk_AjusteHijo", value = ConstraintMode.CONSTRAINT))
 	private AjusteHijo ajusteHijo;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idAjusteKilometro", nullable = false, referencedColumnName = "idAjusteKilometro", 
 	foreignKey=@ForeignKey(name = "fk_AjusteKilometro", value = ConstraintMode.CONSTRAINT))
 	private AjusteKilometro ajusteKilometro;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idAjusteSiniestro", nullable = false, referencedColumnName = "idAjusteSiniestro", 
 	foreignKey=@ForeignKey(name = "fk_AjusteSiniestro", value = ConstraintMode.CONSTRAINT))
 	private AjusteSiniestro idAjusteSiniestro;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idAnioFabricacion", nullable = false, referencedColumnName = "idAnioFabricacion", 
 	foreignKey=@ForeignKey(name = "fk_AnioFabricacion", value = ConstraintMode.CONSTRAINT))
 	private AnioFabricacion anioFabricacion;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idAjusteDescuento", nullable = false, referencedColumnName = "idAjusteDescuento", 
 	foreignKey=@ForeignKey(name = "fk_AjusteDescuento", value = ConstraintMode.CONSTRAINT))
 	private AjusteDescuento ajusteDescuento;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idAjusteEmision", nullable = false, referencedColumnName = "idAjusteEmision", 
 	foreignKey=@ForeignKey(name = "fk_AjusteEmision", value = ConstraintMode.CONSTRAINT))
 	private AjusteEmision ajusteEmision;
@@ -90,16 +90,16 @@ public class Poliza {
 	@JoinColumn(name = "NroPoliza", nullable = false, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_polizaCuota", value = ConstraintMode.CONSTRAINT))
 	private List<Cuota> cuotas;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idFormaPago", nullable = false, referencedColumnName = "idFormaPago", 
 	foreignKey=@ForeignKey(name = "fk_TipoFormaPago", value = ConstraintMode.CONSTRAINT))
 	private TipoFormaPago FormaPago;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idCobertura", nullable = false, referencedColumnName = "idCobertura", 
 	foreignKey=@ForeignKey(name = "fk_CoberturaPoliza", value = ConstraintMode.CONSTRAINT))
 	private Cobertura Cobertura;
-	@OneToOne
-	@JoinColumn(name = "numeroPoliza", nullable = false, referencedColumnName = "numeroPoliza", 
+	@ManyToOne
+	@JoinColumn(name = "idMedida", nullable = false, referencedColumnName = "idMedida", 
 	foreignKey=@ForeignKey(name = "fk_MedidaSeguridad", value = ConstraintMode.CONSTRAINT))
 	private MedidaSeguridad Medida;
 	@OneToMany(fetch = FetchType.LAZY)
@@ -270,6 +270,7 @@ public class Poliza {
 
 	public void setIdAjusteSiniestro(AjusteSiniestro idAjusteSiniestro) {
 		this.idAjusteSiniestro = idAjusteSiniestro;
+		this.cantSiniestrosUA = idAjusteSiniestro.getCantidadSiniestros();
 	}
 
 	public AnioFabricacion getAnioFabricacion() {

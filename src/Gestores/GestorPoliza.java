@@ -133,8 +133,13 @@ public class GestorPoliza {
         TipoFormaPago tipoFormaPago = daoTipoFormaPago.getTipoFormaPago(datosPolizaDTO.getIdFormaPago());
         poliza.setFormaPago(tipoFormaPago);
         poliza.setDatosPoliza(datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago());
+        poliza.setMontoTotalAbonar(datosPolizaDTO.getPremio()*(1 - datosPolizaDTO.getDescuento()));
+        poliza.setPrima(datosPolizaDTO.getPrima());
+        poliza.setPremio(datosPolizaDTO.getPremio());
+        poliza.setKilometrosRealizadosAnio(datosPolizaDTO.getKilometrosPorAnio());
+        poliza.setFechaDeFin(datosPolizaDTO.getFinVigencia());
         List<HijosDTO> hijosDTO = datosPolizaDTO.getHijos();
-        if(hijosDTO.size() != 0) {
+        if(hijosDTO != null) {
         	for(HijosDTO e : datosPolizaDTO.getHijos()) {
         	Hijo hijo = new Hijo();
         	TipoEstadoCivil tipoEstadoCivil = daoTipoEstadoCivil.getTipoEstadoCivil(e.getEstadoCivil());
@@ -197,15 +202,22 @@ public class GestorPoliza {
         	}
         }
         
+        if(datosPolizaDTO.getHijos() != null) {
+        	AjusteHijo ajusteHijo = daoAjusteHijo.buscarAjusteHijo(datosPolizaDTO.getHijos().size());
+            poliza.setAjusteHijo(ajusteHijo);
+        }
+        else {
+        	poliza.setAjusteHijo(daoAjusteHijo.buscarAjusteHijo(0));
+        }
         
-        AjusteHijo ajusteHijo = daoAjusteHijo.buscarAjusteHijo(datosPolizaDTO.getHijos().size());
-        poliza.setAjusteHijo(ajusteHijo);
         
         AjusteKilometro ajusteKilometro = daoAjusteKilometro.buscarAjusteKilometro(datosPolizaDTO.getKilometrosPorAnio());
         poliza.setAjusteKilometro(ajusteKilometro);
         
         AjusteDescuento ajusteUnidadAd = daoAjusteDescuento.buscarAjusteUnidadAd(polizasAsociadas.size());
         poliza.setAjusteDescuento(ajusteUnidadAd);
+        
+        poliza.setDescuentos(datosPolizaDTO.getDescuento()*datosPolizaDTO.getPremio());
 
         AjusteSiniestro ajusteSiniestro = daoAjusteSiniestro.getAjusteSiniestro(datosPolizaDTO.getSiniestrosUltimoA());
         poliza.setIdAjusteSiniestro(ajusteSiniestro);
@@ -252,7 +264,7 @@ public class GestorPoliza {
     		if(!(dp.getPatente() instanceof String)){
     			throw new VerificationException("PatenteVehiculoCliente invalido");
     		}
-    		if(!(dp.getKilometrosPorAnio() instanceof Float)){
+    		if(!(dp.getKilometrosPorAnio() instanceof Integer)){
     			throw new VerificationException("KilometrosPorAnioCliente invalido");
     		}
     		if(!(dp.getSumaAsegurada() instanceof Float)){
