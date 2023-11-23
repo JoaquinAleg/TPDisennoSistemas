@@ -377,7 +377,8 @@ public class CrearPoliza_2 extends JFrame {
 		JButton anadirHijo = new JButton("Añadir hijo");//Cambiar los carteles
 		anadirHijo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) < 6570) {
+					if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) < 6570 | 
+							ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) > 10950) {
 						JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
 					}else {
 						Boolean A = estadoCivil.getSelectedItem().equals(" ");
