@@ -562,7 +562,7 @@ public class CrearPoliza_1 extends JFrame {
 							datosPolizaDTO.setDni(clienteDTO.getNumeroDocumento());
 							datosPolizaDTO.setTipoDNI(clienteDTO.getIdTipoDocumento());
 							datosPolizaDTO.setDescuento((float)0.05);
-							datosPolizaDTO.setPrima((float)0.15);
+							datosPolizaDTO.setPrima((float)0.03);
 							datosPolizaDTO.setPremio(datosPolizaDTO.getSumaAsegurada()*datosPolizaDTO.getPrima());
 							
 							
