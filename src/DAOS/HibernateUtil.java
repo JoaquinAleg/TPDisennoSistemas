@@ -2,11 +2,12 @@ package DAOS;
 import jakarta.persistence.*;
 public class HibernateUtil {
 	private static EntityManagerFactory emf;
-
+	private static EntityManager manager = null;
 	public static EntityManager getEntityManager(){
 		try {
-			EntityManager manager = null;
-			manager = emf.createEntityManager();
+			if(manager == null) {
+				manager = emf.createEntityManager();
+			}
 			return manager;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
