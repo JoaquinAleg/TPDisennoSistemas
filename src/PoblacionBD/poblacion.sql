@@ -376,3 +376,24 @@ INSERT INTO public.medidaseguridad (idmedida, tipomedidaseguridad) VALUES
 (3, 'Tuercas'),
 (4, 'Rastreo Vehicularl');
  
+INSERT INTO public.ajustepordescuentounidadad (idajustedescuento, ajustedescuento)
+VALUES
+    (1, 10.0),
+    (2, 20.0),
+    (3, 30.0);
+ INSERT INTO public.ajusteporemision (idajusteemision, ajusteemision)
+VALUES
+    (1, 5);
+ 
+INSERT INTO public.ajusteporkilometro (idajustekilometro, escalakm)
+VALUES
+    (1, 100.0),
+    (2, 200.0),
+    (3, 300.0);
+ 
+ INSERT INTO public.ajustehijo (idajustehijo, canthijos)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3);
+ 
