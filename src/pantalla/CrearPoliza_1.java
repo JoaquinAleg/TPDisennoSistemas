@@ -3,6 +3,9 @@ package pantalla;
 
 import java.awt.EventQueue;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -527,10 +530,10 @@ public class CrearPoliza_1 extends JFrame {
 						Boolean C = !MarcaVehiculo.getSelectedItem().equals(" ");
 						Boolean D = !modeloVehiculo.getSelectedItem().equals(" ");
 						Boolean E = !MarcaVehiculo_1.getSelectedItem().equals(" ");
-						Boolean F = !(text_Asegurado.getText() == null && text_Asegurado.getText().matches("[0-9]+"));
+						Boolean F = !(text_Asegurado.getText() == null || contieneCaracter(text_Asegurado.getText()));
 						Boolean G = !(text_Motor.getText() == null);
 						Boolean H = !(text_Chasis.getText() == null);
-						Boolean I = !(text_Kilometros.getText() == null && text_Kilometros.getText().matches("[0-9]+"));
+						Boolean I = !(text_Kilometros.getText() == null || contieneCaracter(text_Kilometros.getText()));
 						//Boolean J = !(text_Siniestros.getText() == null);
 						Boolean K = !(text_Patente.getText() == null);
 						
@@ -600,5 +603,12 @@ public class CrearPoliza_1 extends JFrame {
 
 
 	}
+	
+	public static boolean contieneCaracter(String cadena) {
+		String patron = ".*[a-zA-Z].*";
+        Pattern pattern = Pattern.compile(patron);
+        Matcher matcher = pattern.matcher(cadena);
+        return matcher.matches();
+    }
 
 }
