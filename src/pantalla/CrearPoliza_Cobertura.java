@@ -116,9 +116,9 @@ public class CrearPoliza_Cobertura extends JFrame {
 		contentPane.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		//String numeroCliente = new String("numeroCliente");
 		
@@ -152,13 +152,25 @@ public class CrearPoliza_Cobertura extends JFrame {
 		panel.add(lblDatosDeLa_1, gbc_lblDatosDeLa_1);
 		lblDatosDeLa_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		
+		JLabel lblDatosDeLa_1_1 = new JLabel("Cobertura Disponible");
+		GridBagConstraints gbc_lblDatosDeLa_1_1 = new GridBagConstraints();
+		gbc_lblDatosDeLa_1_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblDatosDeLa_1_1.gridwidth = 4;
+		gbc_lblDatosDeLa_1_1.gridx = 0;
+		gbc_lblDatosDeLa_1_1.gridy = 2;
+		panel.add(lblDatosDeLa_1_1, gbc_lblDatosDeLa_1_1);
+		lblDatosDeLa_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDatosDeLa_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblDatosDeLa_1_1.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));
+		lblDatosDeLa_1_1.setBackground(SystemColor.inactiveCaptionBorder);
+		
 		JPanel panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.gridwidth = 4;
 		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 2;
+		gbc_panel_1.gridy = 3;
 		panel.add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{234, 0};
@@ -184,6 +196,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0));
 		table.setBackground(Color.WHITE);
 		GridBagConstraints gbc_table = new GridBagConstraints();
+		gbc_table.insets = new Insets(0, 0, 5, 0);
 		gbc_table.fill = GridBagConstraints.BOTH;
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 0;
@@ -198,7 +211,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		GridBagConstraints gbc_lblFechaDeNacimiento_1_1 = new GridBagConstraints();
 		gbc_lblFechaDeNacimiento_1_1.insets = new Insets(0, 0, 20, 5);
 		gbc_lblFechaDeNacimiento_1_1.gridx = 0;
-		gbc_lblFechaDeNacimiento_1_1.gridy = 3;
+		gbc_lblFechaDeNacimiento_1_1.gridy = 4;
 		panel.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
 		
 		JDateChooser dateChooser_1_1 = new JDateChooser();
@@ -211,7 +224,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_dateChooser_1_1.insets = new Insets(0, 0, 20, 5);
 		gbc_dateChooser_1_1.fill = GridBagConstraints.BOTH;
 		gbc_dateChooser_1_1.gridx = 1;
-		gbc_dateChooser_1_1.gridy = 3;
+		gbc_dateChooser_1_1.gridy = 4;
 		panel.add(dateChooser_1_1, gbc_dateChooser_1_1);
 		
 		JLabel lblNewLabel = new JLabel("Formas de pago:");
@@ -220,7 +233,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 20, 5);
 		gbc_lblNewLabel.gridx = 2;
-		gbc_lblNewLabel.gridy = 3;
+		gbc_lblNewLabel.gridy = 4;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
 		modeloTipoFormaPagoDTO = this.gestorPoliza.getTipoFormaPago();
@@ -232,7 +245,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_formasPago.insets = new Insets(0, 5, 20, 40);
 		gbc_formasPago.fill = GridBagConstraints.HORIZONTAL;
 		gbc_formasPago.gridx = 3;
-		gbc_formasPago.gridy = 3;
+		gbc_formasPago.gridy = 4;
 		panel.add(formasPago, gbc_formasPago);
 
 		
@@ -247,7 +260,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_panel_2.anchor = GridBagConstraints.SOUTH;
 		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 5;
+		gbc_panel_2.gridy = 6;
 		panel.add(panel_2, gbc_panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[]{89, 0, 0, 89, 0};
