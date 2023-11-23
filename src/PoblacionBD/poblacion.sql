@@ -378,10 +378,14 @@ INSERT INTO public.medidaseguridad (idmedida, tipomedidaseguridad) VALUES
  
 INSERT INTO public.ajustepordescuentounidadad (idajustedescuento, ajustedescuento)
 VALUES
-    (1, 10.0),
-    (2, 20.0),
-    (3, 30.0);
- INSERT INTO public.ajusteporemision (idajusteemision, ajusteemision)
+    (1, 0.0),
+    (2, 5.0),
+    (3, 20.0),
+    (4, 15.0),
+    (5, 20.0),
+    (6, 22.0),
+    (7, 30.0);
+INSERT INTO public.ajusteporemision (idajusteemision, ajusteemision)
 VALUES
     (1, 5);
  

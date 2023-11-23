@@ -69,7 +69,7 @@ public class DAOajusteDescuento implements ajusteDescuentoDAO {
 		}
 	}
 	public AjusteDescuento buscarAjusteUnidadAd(Integer cantUnidades) {
-		List<AjusteDescuento> ajuste = this.getAll().stream().filter(a -> a.getAjusteDescuento() == (Integer)cantUnidades).toList();
-		return ajuste.get(0);
+		List<AjusteDescuento> ajuste = this.getAll().stream().filter(a -> a.getAjusteDescuento() <= (Integer)cantUnidades).toList();
+		return ajuste.get(ajuste.size()-1);
 	}
 }
