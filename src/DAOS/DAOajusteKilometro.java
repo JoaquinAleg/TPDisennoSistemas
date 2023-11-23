@@ -2,6 +2,7 @@ package DAOS;
 
 import java.util.List;
 
+import POJOS.AjusteDescuento;
 import POJOS.AjusteHijo;
 import POJOS.AjusteKilometro;
 import interfaces.ajusteKilometroDAO;
@@ -68,12 +69,7 @@ public class DAOajusteKilometro implements ajusteKilometroDAO{
 		}
 	}
 	public AjusteKilometro buscarAjusteKilometro(Float cantKilometros) {
-		int min = 0;
-		for(AjusteKilometro a : this.getAll()) {
-			if(cantKilometros < a.getEscalaKM() && min < cantKilometros) {
-				return a;
-			}
+		List<AjusteKilometro> ajuste = this.getAll().stream().filter(a -> a.getEscalaKM() <= cantKilometros).toList();
+		return ajuste.get(ajuste.size()-1);
 		}
-		return null;
-	}
 }
