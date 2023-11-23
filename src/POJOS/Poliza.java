@@ -12,7 +12,7 @@ public class Poliza {
 	@Id
 	@Column
 	private long numeroPoliza;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idModelo", nullable = false, referencedColumnName = "idModelo", 
 	foreignKey=@ForeignKey(name = "fk_ModeloPoliza", value = ConstraintMode.CONSTRAINT))
 	private Modelo modelo;
@@ -40,10 +40,6 @@ public class Poliza {
 	@JoinColumn(name = "idAjusteEmision", nullable = false, referencedColumnName = "idAjusteEmision", 
 	foreignKey=@ForeignKey(name = "fk_AjusteEmision", value = ConstraintMode.CONSTRAINT))
 	private AjusteEmision ajusteEmision;
-	@OneToOne
-	@JoinColumn(name = "idModificacion", nullable = false, referencedColumnName = "idModificacion", 
-	foreignKey=@ForeignKey(name = "fk_Modificacion", value = ConstraintMode.CONSTRAINT))
-	private Modificacion modificacion;
 	@ManyToOne
 	@JoinColumn(name = "idLocalidad", nullable = false, referencedColumnName = "idLocalidad", 
 	foreignKey=@ForeignKey(name = "fk_LocalidadPoliza", value = ConstraintMode.CONSTRAINT))
@@ -132,7 +128,7 @@ public class Poliza {
 
 	public Poliza(long numeroPoliza, Modelo modelo, AjusteHijo ajusteHijo, AjusteKilometro ajusteKilometro,
 			AjusteSiniestro idAjusteSiniestro, AnioFabricacion anioFabricacion, AjusteDescuento ajusteDescuento,
-			AjusteEmision ajusteEmision, Modificacion modificacion, Localidad localidad, TipoDocumento tipoDocumento,
+			AjusteEmision ajusteEmision, Localidad localidad, TipoDocumento tipoDocumento,
 			Cliente cliente, float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA,
 			LocalDate fechaDeInicio, LocalDate fechaDeFin, float premio, float prima, float descuentos,
 			LocalDate ultimoDiaPago, float montoTotalAbonar, String chasis, String patente, String estadoPoliza,
@@ -148,7 +144,6 @@ public class Poliza {
 		this.anioFabricacion = anioFabricacion;
 		this.ajusteDescuento = ajusteDescuento;
 		this.ajusteEmision = ajusteEmision;
-		this.modificacion = modificacion;
 		this.localidad = localidad;
 		this.tipoDocumento = tipoDocumento;
 		this.cliente = cliente;
@@ -299,14 +294,6 @@ public class Poliza {
 
 	public void setAjusteEmision(AjusteEmision ajusteEmision) {
 		this.ajusteEmision = ajusteEmision;
-	}
-
-	public Modificacion getModificacion() {
-		return modificacion;
-	}
-
-	public void setModificacion(Modificacion modificacion) {
-		this.modificacion = modificacion;
 	}
 
 	public Localidad getLocalidad() {
