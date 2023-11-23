@@ -367,7 +367,7 @@ INSERT INTO public.cobertura( idcobertura, descripcion) VALUES
  (3, 'Todo Total'),
  (4, 'Terceros Completos'),
  (5, 'Todo riesgo con Franquicia');
-INSERT INTO public.tipoformapago(idtipoformapago, descripcion) VALUES
+INSERT INTO public.tipoformapago(idformapago, descripcion) VALUES
 (1, 'Mensual'),
 (2, 'Semestral');
  

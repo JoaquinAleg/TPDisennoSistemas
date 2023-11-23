@@ -11,6 +11,6 @@ import jakarta.persistence.Persistence;
 public class App {
 	public static void main(String[] args) {
 		HibernateUtil.createEMF();
-		CrearPoliza_1.main(args);
+		PantallaInicio_ProductorDeSeguro.main(args);
 	}
 }
