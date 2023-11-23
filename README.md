@@ -1,16 +1,10 @@
 # TPDisennoSistemas
 
-Metodos Faltantes:
-  -  setCliente(Cliente) en Poliza
-  -  setCuota(Cuota) en Poliza
-  -  setPoliza(Poliza) en Cliente
-  -  getTipoEstadoCliente() en Cliente
-  -  setEstadoCivli(TipoEstadoCivil) en Hijo
-  -  setTipoSexo(TipoSexo) en Hijo
+Por Favor leer:
 
-Lo que Falta de la clase GestorPoliza
-  - Definir bien como hacer con los Ajustes, ya que no se que valor porcentual agregar,
-    si no se cual es cual, ya que no tienen descripcion.
-
-Problemas con la base de datos, el hibernate no se porque no quiere andar en pantalla
-  CrearPoliza_1
+Faltan los ajustes:
+ - Ajuste descuento por unidad es una escala, en donde el campo ajustedescuento es el numero de unidades.
+ - Ajuste por emision es unico, en donde el campo ajusteemision(que deberia ser real) es el ajuste por emision.
+ - Ajuste por kilometro, es una escala, en donde el campo escalakm es el tope maximo de la escala.
+ - Ajuste por siniestro, ya esta cargado.
+ - Ajuste hijo es una escala, en donde el campo canthijos es la cantidad de hijos. 
