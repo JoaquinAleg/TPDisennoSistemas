@@ -173,7 +173,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		String[] coberturas = coberturaDTO.stream().map(c->c.getNombre()).toArray(String[]::new);
 		for(String e : coberturas) {
 			modelo.addRow( new Object[]{e});
-	}
+		}
 
 		table = new JTable(modelo);
 		table.setToolTipText("");
@@ -281,6 +281,12 @@ public class CrearPoliza_Cobertura extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusDays(30));
+				Long[] idFormaPago = modeloTipoFormaPagoDTO.stream().filter(a -> a.getNombre().equals(formasPago.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+				datosPolizaDTO.setIdFormaPago(idFormaPago[0]);
+				Long[] idCobertura = coberturaDTO.stream().filter(a -> a.getNombre().equals(modelo.getValueAt(table.getSelectedRow(), 0))).map(b -> b.getId()).toArray(Long[]::new);
+				System.out.println(modelo.getValueAt(table.getSelectedRow(), 0));
+				System.out.println(idCobertura.toString());
+				datosPolizaDTO.setIdCobertura(idCobertura[0]);
 				if(formasPago.getSelectedItem().equals(" ")  || table.getSelectionModel().isSelectionEmpty() ) {
 					JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
 				}else {

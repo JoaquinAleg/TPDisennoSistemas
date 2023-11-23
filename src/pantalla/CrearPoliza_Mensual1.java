@@ -427,7 +427,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		PanelMedioInferior.add(Chasis, gbc_Chasis);
 		
 		textField_1 = new JTextField();
-		textField_1.setText(String.valueOf(datosPolizaDTO.getPrima()-datosPolizaDTO.getDescuento()));
+		textField_1.setText(String.valueOf(datosPolizaDTO.getPremio()-datosPolizaDTO.getDescuento()));
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_1.setEditable(false);
 		textField_1.setColumns(10);

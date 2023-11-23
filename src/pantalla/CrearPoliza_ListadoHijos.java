@@ -58,7 +58,11 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	private GestorPoliza gestorPoliza;
 	private List<ListadoDTO> modeloDTO;
 	private String[] modelos; 
-	private  NombresDTO nombresDTO;
+	private NombresDTO nombresDTO;
+	private List<ListadoDTO> sexoDTO;
+	private List<ListadoDTO> estadoCivilDTO;
+	private String[] sexos;
+	private String[] estadosCivil;
 	/**
 	 * Launch the application.
 	 */
@@ -184,9 +188,9 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 			gbc_lblNewLabel_1_2_1_1.gridy = 0;
 			prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
 			
-			modeloDTO = this.gestorPoliza.getSexos();
-			modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-			JComboBox <String> TipoSexo = new JComboBox(modelos);
+			sexoDTO = this.gestorPoliza.getSexos();
+			sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+			JComboBox <String> TipoSexo = new JComboBox<>(sexos);
 	//		JComboBox TipoSexo = new JComboBox();
 			TipoSexo.setEnabled(false);
 			TipoSexo.setSelectedItem(h.getSexo());
@@ -209,9 +213,9 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 			gbc_lblEstadoCivil_1_1.gridy = 2;
 			prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 			
-			modeloDTO = this.gestorPoliza.getEstadoCiviles();
-			modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-			JComboBox <String> TipoEstadoCivil = new JComboBox(modelos);
+			estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
+			estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+			JComboBox <String> TipoEstadoCivil = new JComboBox<>(estadosCivil);
 	//		JComboBox TipoEstadoCivil = new JComboBox();
 			TipoEstadoCivil.setEnabled(false);
 			TipoEstadoCivil.setSelectedItem(h.getEstadoCivil());

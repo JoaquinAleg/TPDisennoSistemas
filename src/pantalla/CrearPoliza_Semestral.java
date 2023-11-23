@@ -485,8 +485,8 @@ public class CrearPoliza_Semestral extends JFrame {
 		Boton_Continuar.setBackground(SystemColor.controlHighlight);
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null,"La póliza fue generada correctamente");
 				gestorPoliza.darAltaPoliza(datosPolizaDTO);
+				JOptionPane.showMessageDialog(null,"La póliza fue generada correctamente");
 				PantallaInicio_ProductorDeSeguro FuturaPantalla = new PantallaInicio_ProductorDeSeguro();
 				
 				try {

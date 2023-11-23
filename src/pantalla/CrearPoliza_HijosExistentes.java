@@ -46,17 +46,22 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private ArrayList<HijosDTO> hijoss;
+	private ArrayList<HijosDTO> hijos;
 	private GestorPoliza gestorPoliza;
-	private List<ListadoDTO> modeloDTO;
+	private List<ListadoDTO> sexoDTO;
+	private List<ListadoDTO> estadoCivilDTO;
 	private DatosPolizaDTO datosPolizaDTO;
-	private String[] modelos;
-	private  NombresDTO nombresDTO;
+	private String[] sexos;
+	private String[] estadosCivil;
+	private NombresDTO nombresDTO;
 
 	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
 			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO) {
 		this.gestorPoliza = gestorPoliza;
 		this.datosPolizaDTO = datosPolizaDTO;
+		
+		List<ListadoDTO> medidaSeguridadDTO = this.gestorPoliza.getMedidasSeguridad();
+		
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,7 +71,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.hijoss=hijos;
+		this.hijos=hijos;
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -260,7 +265,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(tuercas.getSelectedIndex(), garage.getSelectedIndex(), alarma.getSelectedIndex(),
-						rastreoVehicular.getSelectedIndex(), hijoss,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO);
+						rastreoVehicular.getSelectedIndex(), hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO);
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -327,9 +332,9 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_lblNewLabel_1_2.gridy = 0;
 		panel_1_1.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 		
-		modeloDTO = this.gestorPoliza.getSexos();
-		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> sexo = new JComboBox(modelos);
+		sexoDTO = this.gestorPoliza.getSexos();
+		sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> sexo = new JComboBox(sexos);
 //		JComboBox sexo = new JComboBox();
 //		sexo.addItem("Masculino");
 //		sexo.addItem("Femenino");
@@ -353,9 +358,9 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_lblEstadoCivil.gridy = 2;
 		panel_1_1.add(lblEstadoCivil, gbc_lblEstadoCivil);
 		
-		modeloDTO = this.gestorPoliza.getEstadoCiviles();
-		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> estadoCivil = new JComboBox(modelos);
+		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
+		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> estadoCivil = new JComboBox<>(estadosCivil);
 
 		estadoCivil.setSelectedIndex(ec);
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
@@ -381,7 +386,9 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),estadoCivil.getSelectedItem().toString(),sexo.getSelectedItem().toString());
+				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(sexo.getSelectedObjects())).map(b -> b.getId()).toArray(Long[]::new);
+				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedObjects())).map(b -> b.getId()).toArray(Long[]::new);
+				HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), idEstadoCivil[0], idSexo[0]);
 				JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 				hijos.add(hijo);
 			}
@@ -439,10 +446,29 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
 		Boton_Continuar.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {	
+			public void actionPerformed(ActionEvent e) {
+					datosPolizaDTO.setHijos(hijos);
+					List<Long> medidas = new ArrayList<>();
+					if(garage.getSelectedItem().equals("Si")){
+						Long[] idGarage = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Garage")).map(b -> b.getId()).toArray(Long[]::new);
+						medidas.add(idGarage[0]);
+					}
+					if(alarma.getSelectedItem().equals("Si")){
+						Long[] idAlarma = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Alarma")).map(b -> b.getId()).toArray(Long[]::new);
+						medidas.add(idAlarma[0]);
+					}
+					if(tuercas.getSelectedItem().equals("Si")){
+						Long[] idTuercas = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Tuercas")).map(b -> b.getId()).toArray(Long[]::new);
+						medidas.add(idTuercas[0]);
+					}
+					if(rastreoVehicular.getSelectedItem().equals("Si")){
+						Long[] idRastreoVehicular = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Rastreo Vehicular")).map(b -> b.getId()).toArray(Long[]::new);
+						medidas.add(idRastreoVehicular[0]);
+					}
+					datosPolizaDTO.setListaMedidaSeguridad(medidas);
 					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
 							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
-							hijoss, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
+							hijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
 					
 					try {
 						CPoliza.setVisible(true);

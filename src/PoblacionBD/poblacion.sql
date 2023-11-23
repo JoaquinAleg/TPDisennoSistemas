@@ -370,5 +370,9 @@ INSERT INTO public.cobertura( idcobertura, descripcion) VALUES
 INSERT INTO public.tipoformapago(idformapago, descripcion) VALUES
 (1, 'Mensual'),
 (2, 'Semestral');
- 
+INSERT INTO public.medidaseguridad (idmedida, tipomedidaseguridad) VALUES
+(1, 'Garage'),
+(2, 'Alarma'),
+(3, 'Tuercas'),
+(4, 'Rastreo Vehicularl');
  

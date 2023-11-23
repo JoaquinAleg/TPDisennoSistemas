@@ -59,8 +59,12 @@ public class CrearPoliza_EditarHijos extends JFrame {
 	private String[] modelos; 
 	private ArrayList<HijosDTO> hList; 
 	private NombresDTO nombresDTO;
+	private List<ListadoDTO> sexoDTO;
+	private List<ListadoDTO> estadoCivilDTO;
+	private String[] sexos;
+	private String[] estadosCivil;
 	
-	public CrearPoliza_EditarHijos(LocalDate nacimiento, String sexo, String estadoCivil, GestorPoliza gestorPoliza,GestorCliente gestorCliente,
+	public CrearPoliza_EditarHijos(LocalDate nacimiento, Long sexo, Long estadoCivil, GestorPoliza gestorPoliza,GestorCliente gestorCliente,
 			HijosDTO h,  Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hList, NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
@@ -158,9 +162,9 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		gbc_lblNewLabel_1_2_1_1.gridy = 0;
 		prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
 		
-		modeloDTO = this.gestorPoliza.getSexos();
-		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> TipoSexo = new JComboBox(modelos);
+		sexoDTO = this.gestorPoliza.getSexos();
+		sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> TipoSexo = new JComboBox<>(sexos);
 //		JComboBox TipoSexo = new JComboBox();
 		TipoSexo.setSelectedItem(sexo);
 		TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -182,9 +186,9 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		gbc_lblEstadoCivil_1_1.gridy = 2;
 		prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 		
-		modeloDTO = this.gestorPoliza.getEstadoCiviles();
-		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> TipoEstadoCivil = new JComboBox(modelos);
+		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
+		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> TipoEstadoCivil = new JComboBox<>(estadosCivil);
 		TipoEstadoCivil.setSelectedItem(estadoCivil);
 		TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
@@ -199,9 +203,11 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer i = hList.lastIndexOf(h);
-				h.setEstadoCivil(TipoEstadoCivil.getSelectedItem().toString());
+				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(TipoSexo.getSelectedObjects())).map(b -> b.getId()).toArray(Long[]::new);
+				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(TipoEstadoCivil.getSelectedObjects())).map(b -> b.getId()).toArray(Long[]::new);
+				h.setEstadoCivil(idEstadoCivil[0]);
 				h.setFechaNacimiento(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-				h.setSexo(TipoSexo.getSelectedItem().toString());
+				h.setSexo(idSexo[0]);
 				hList.set(i, h);
 	CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos( tue,gar,alar,rastreo,hList,gestorPoliza, gestorCliente,nombresDTO,datosPolizaDTO);
 

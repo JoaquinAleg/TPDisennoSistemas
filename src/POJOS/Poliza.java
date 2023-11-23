@@ -1,5 +1,6 @@
 package POJOS;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.time.ZoneId;
 
@@ -114,7 +115,10 @@ public class Poliza {
 	foreignKey=@ForeignKey(name = "fk_HijosPoliza", value = ConstraintMode.CONSTRAINT))
 	private List<Hijo> hijos;
 	
-	public Poliza(){}
+	public Poliza(){
+		this.hijos = new ArrayList<Hijo>();
+		this.cuotas = new ArrayList<Cuota>();
+	}
 
 	
 	
@@ -199,42 +203,28 @@ public class Poliza {
 	}
 	
 	public void setHijo(Hijo hijo) {
-		hijos.add(hijo);
+		this.hijos.add(hijo);
 	}
-
-
 
 	public Cliente getCliente() {
 		return cliente;
 	}
 
-
-
-
-
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
-
-
-
 
 	public List<Cuota> getCuotas() {
 		return cuotas;
 	}
 
-
-
-
-
 	public void setCuotas(List<Cuota> cuotas) {
 		this.cuotas = cuotas;
 	}
-
-
-
-
+	
+	public void setCuota(Cuota cuota) {
+		this.cuotas.add(cuota);
+	}
 
 	public List<Modificacion> getModificaciones() {
 		return modificaciones;
@@ -506,7 +496,8 @@ public class Poliza {
 
 	public void setDatosPoliza(LocalDate comienzoVigencia, LocalDate ultimoDiaPago) {
 		LocalDate fechaActual = LocalDate.now();
-		this.fechaCreacion = java.time.LocalDate.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		this.fechaCreacion = fechaActual;
+		//this.fechaCreacion = LocalDate.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		this.fechaDeInicio = comienzoVigencia;
 		this.ultimoDiaPago = ultimoDiaPago;
 	}

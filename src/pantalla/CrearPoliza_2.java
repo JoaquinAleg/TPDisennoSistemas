@@ -60,6 +60,10 @@ public class CrearPoliza_2 extends JFrame {
 	private DatosPolizaDTO datosPolizaDTO;
 	private GestorCliente gestorCliente;
 	private NombresDTO nombresDTO;
+	private List<ListadoDTO> sexoDTO;
+	private List<ListadoDTO> estadoCivilDTO;
+	private String[] sexos;
+	private String[] estadosCivil;
 	
 	
 	/**
@@ -90,6 +94,9 @@ public class CrearPoliza_2 extends JFrame {
 		this.gestorCliente = gestorCliente;
 		this.nombresDTO = nombresDTO;
 		this.cantidadHijos = new ArrayList<HijosDTO>();
+		
+		List<ListadoDTO> medidaSeguridadDTO = this.gestorPoliza.getMedidasSeguridad();
+		
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -183,7 +190,7 @@ public class CrearPoliza_2 extends JFrame {
 //		modeloDTO = this.gestorPoliza.getMedidasSeguridad();
 //		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 //		JComboBox <String> garage = new JComboBox(modelos);
-		JComboBox <String> garage = new JComboBox();
+		JComboBox <String> garage = new JComboBox<>();
 		garage.addItem("No");
 		garage.addItem("Si");
 		garage.setSelectedIndex(0);
@@ -210,7 +217,7 @@ public class CrearPoliza_2 extends JFrame {
 //		modeloDTO = this.gestorPoliza.getAlarmas();
 //		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 //		JComboBox <String> alarma = new JComboBox(modelos);
-		JComboBox <String> alarma = new JComboBox();
+		JComboBox <String> alarma = new JComboBox<>();
 		alarma.addItem("No");
 		alarma.addItem("Si");
 		alarma.setSelectedIndex(0);
@@ -236,7 +243,7 @@ public class CrearPoliza_2 extends JFrame {
 //		modeloDTO = this.gestorPoliza.getRastreoVehicular();
 //		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 //		JComboBox <String> rastreoVehicular = new JComboBox(modelos);
-		JComboBox <String> rastreoVehicular = new JComboBox();
+		JComboBox <String> rastreoVehicular = new JComboBox<>();
 		rastreoVehicular.addItem("No");
 		rastreoVehicular.addItem("Si");
 		rastreoVehicular.setSelectedIndex(0);
@@ -262,7 +269,7 @@ public class CrearPoliza_2 extends JFrame {
 //		modeloDTO = this.gestorPoliza.getTuercas();
 //		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 //		JComboBox <String> tuercas = new JComboBox(modelos);
-		JComboBox <String> tuercas = new JComboBox();
+		JComboBox <String> tuercas = new JComboBox<>();
 		tuercas.addItem("No");
 		tuercas.addItem("Si");
 		tuercas.setSelectedIndex(0);
@@ -332,9 +339,9 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblNewLabel_1_2.gridy = 0;
 		panel_1_1.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 		
-		modeloDTO = this.gestorPoliza.getSexos();
-		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> sexo = new JComboBox(modelos);
+		sexoDTO = this.gestorPoliza.getSexos();
+		sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> sexo = new JComboBox<>(sexos);
 
 		sexo.setBackground(SystemColor.inactiveCaptionBorder);
 		sexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -355,9 +362,9 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblEstadoCivil.gridy = 2;
 		panel_1_1.add(lblEstadoCivil, gbc_lblEstadoCivil);
 		
-		modeloDTO = this.gestorPoliza.getEstadoCiviles();
-		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> estadoCivil = new JComboBox(modelos);
+		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
+		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> estadoCivil = new JComboBox<>(estadosCivil);
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_estadoCivil = new GridBagConstraints();
@@ -379,10 +386,12 @@ public class CrearPoliza_2 extends JFrame {
 							JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
 						}else {
 
-						HijosDTO h = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), estadoCivil.getSelectedItem().toString(),sexo.getSelectedItem().toString());
-						cantidadHijos.add(h);
-						JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
-					CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
+							Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(sexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+							Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+							HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), idEstadoCivil[0], idSexo[0]);
+							cantidadHijos.add(hijo);
+							JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
+							CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
 							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
 							cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);
 					try {
@@ -448,6 +457,27 @@ public class CrearPoliza_2 extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
+					//datosPolizaDTO.setHijos(cantidadHijos);
+					//System.out.println(cantidadHijos.get(0).getSexo());
+					//System.out.println(cantidadHijos.get(0).getFechaNacimiento().toString());
+					List<Long> medidas = new ArrayList<>();
+					if(garage.getSelectedItem().equals("Si")){
+						Long[] idGarage = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Garage")).map(b -> b.getId()).toArray(Long[]::new);
+						medidas.add(idGarage[0]);
+					}
+					if(alarma.getSelectedItem().equals("Si")){
+						Long[] idAlarma = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Alarma")).map(b -> b.getId()).toArray(Long[]::new);
+						medidas.add(idAlarma[0]);
+					}
+					if(tuercas.getSelectedItem().equals("Si")){
+						Long[] idTuercas = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Tuercas")).map(b -> b.getId()).toArray(Long[]::new);
+						medidas.add(idTuercas[0]);
+					}
+					if(rastreoVehicular.getSelectedItem().equals("Si")){
+						Long[] idRastreoVehicular = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Rastreo Vehicular")).map(b -> b.getId()).toArray(Long[]::new);
+						medidas.add(idRastreoVehicular[0]);
+					}
+					datosPolizaDTO.setListaMedidaSeguridad(medidas);
 					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
 							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
 							cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO);

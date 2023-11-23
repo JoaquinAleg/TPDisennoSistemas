@@ -133,18 +133,25 @@ public class GestorPoliza {
         TipoFormaPago tipoFormaPago = daoTipoFormaPago.getTipoFormaPago(datosPolizaDTO.getIdFormaPago());
         poliza.setFormaPago(tipoFormaPago);
         poliza.setDatosPoliza(datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago());
-        for(HijosDTO e : datosPolizaDTO.getHijos()) {
+        List<HijosDTO> hijosDTO = datosPolizaDTO.getHijos();
+        if(hijosDTO.size() != 0) {
+        	for(HijosDTO e : datosPolizaDTO.getHijos()) {
         	Hijo hijo = new Hijo();
-        	TipoEstadoCivil tipoEstadoCivil = daoTipoEstadoCivil.getTipoEstadoCivil(Long.parseLong(e.getEstadoCivil()));
+        	TipoEstadoCivil tipoEstadoCivil = daoTipoEstadoCivil.getTipoEstadoCivil(e.getEstadoCivil());
         	hijo.setEstadoCivil(tipoEstadoCivil);
-        	TipoSexo tipoSexo = daoTipoSexo.getTipoSexo(Long.parseLong(e.getSexo()));
+        	TipoSexo tipoSexo = daoTipoSexo.getTipoSexo(e.getSexo());
         	hijo.setSexo(tipoSexo);
         	poliza.setHijo(hijo);
+        	}
+        }
+        else {
+        	poliza.setHijo(null);
         }
         
         List<MedidaSeguridad> medidasSeguridad = daoMedidaSeguridad.getAll();
+        List<Long> idMedidasSeguridad = datosPolizaDTO.getListaMedidaSeguridad();
         for(MedidaSeguridad e : medidasSeguridad) {
-        	if(datosPolizaDTO.getListaMedidaSeguridad().contains(e.getIdMedida())) {
+        	if(idMedidasSeguridad.contains(e.getIdMedida())) {
             	poliza.setMedida(e);
             }
         
@@ -180,17 +187,13 @@ public class GestorPoliza {
         if(tipoFormaPago.getDescripcion() == "SEMESTRAL") {
         	
         	Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), 1, pago);
-        	List<Cuota> cuotas = poliza.getCuotas();
-        	cuotas.add(cuota);
-        	poliza.setCuotas(cuotas);
+        	poliza.setCuota(cuota);
         }
         if(tipoFormaPago.getDescripcion() == "MENSUAL") {
         	
         	for(int a=0; a < 6; a++) {
         		Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), a, pago/6);
-        		List<Cuota> cuotas = poliza.getCuotas();
-            	cuotas.add(cuota);
-            	poliza.setCuotas(cuotas);
+            	poliza.setCuota(cuota);
         	}
         }
         
@@ -296,10 +299,10 @@ public class GestorPoliza {
     		if(!(h.getFechaNacimiento() instanceof LocalDate)){
     			throw new VerificationException("FechaDeNacimientoHijo invalido");
     		}
-    		if(!(h.getEstadoCivil() instanceof String)){
+    		if(!(h.getEstadoCivil() instanceof Long)){
     			throw new VerificationException("EstadoCivilHijo invalido");
     		}
-    		if(!(h.getSexo() instanceof String)){
+    		if(!(h.getSexo() instanceof Long)){
     			throw new VerificationException("SexoHijo invalido");
     		}
     	}catch(Exception e){
