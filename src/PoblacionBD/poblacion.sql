@@ -387,13 +387,29 @@ VALUES
  
 INSERT INTO public.ajusteporkilometro (idajustekilometro, escalakm)
 VALUES
-    (1, 100.0),
-    (2, 200.0),
-    (3, 300.0);
+    (1, 10000.0),
+    (2, 20000.0),
+    (3, 30000.0);
  
- INSERT INTO public.ajustehijo (idajustehijo, canthijos)
+INSERT INTO public.ajustehijo (idajustehijo, canthijos)
 VALUES
     (1, 1),
     (2, 2),
-    (3, 3);
- 
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 2),
+    (7, 1),
+    (8, 3),
+    (9, 2),
+    (10, 4),
+    (11, 1),
+    (12, 5),
+    (13, 3),
+    (14, 2),
+    (15, 4),
+    (16, 1),
+    (17, 5),
+    (18, 3),
+    (19, 2),
+    (20, 4);
