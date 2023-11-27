@@ -19,6 +19,8 @@ import Gestores.GestorPoliza;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JDesktopPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
@@ -32,7 +34,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 	private JPanel contentPane;
 	private GestorPoliza gestorPoliza;
 	private GestorCliente gestorCliente;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -318,6 +320,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		btnDarDeAlta.setBackground(SystemColor.controlHighlight);
 		btnDarDeAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnDarDeAlta.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -331,18 +334,30 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		gbc_btnDarDeAlta.gridy = 1;
 		panel_3.add(btnDarDeAlta, gbc_btnDarDeAlta);
 		
-		JButton btnNewButton_1_1 = new JButton("Consultar Cliente");
-		btnNewButton_1_1.setBackground(SystemColor.controlHighlight);
-		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		GridBagConstraints gbc_btnNewButton_1_1 = new GridBagConstraints();
-		gbc_btnNewButton_1_1.ipady = 25;
-		gbc_btnNewButton_1_1.gridwidth = 2;
-		gbc_btnNewButton_1_1.weighty = 0.25;
-		gbc_btnNewButton_1_1.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_1_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1_1.gridx = 1;
-		gbc_btnNewButton_1_1.gridy = 2;
-		panel_3.add(btnNewButton_1_1, gbc_btnNewButton_1_1);
+		JButton ConsultarCliente = new JButton("Consultar Cliente");
+		ConsultarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuscarCliente PantallaSiguiente = new BuscarCliente(gestorCliente);
+				try {
+					PantallaSiguiente.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				PantallaInicio_ProductorDeSeguro.this.setVisible(false);
+				PantallaInicio_ProductorDeSeguro.this.dispose();
+			}
+		});
+		ConsultarCliente.setBackground(SystemColor.controlHighlight);
+		ConsultarCliente.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		GridBagConstraints gbc_ConsultarCliente = new GridBagConstraints();
+		gbc_ConsultarCliente.ipady = 25;
+		gbc_ConsultarCliente.gridwidth = 2;
+		gbc_ConsultarCliente.weighty = 0.25;
+		gbc_ConsultarCliente.fill = GridBagConstraints.BOTH;
+		gbc_ConsultarCliente.insets = new Insets(0, 0, 5, 5);
+		gbc_ConsultarCliente.gridx = 1;
+		gbc_ConsultarCliente.gridy = 2;
+		panel_3.add(ConsultarCliente, gbc_ConsultarCliente);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(SystemColor.inactiveCaptionBorder);
