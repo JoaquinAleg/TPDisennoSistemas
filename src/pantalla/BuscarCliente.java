@@ -110,7 +110,7 @@ public class BuscarCliente extends JFrame {
 		gbl_panel.columnWidths = new int[]{0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 2.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		
@@ -268,7 +268,6 @@ public class BuscarCliente extends JFrame {
 		panel_1.add(NDocumento, gbc_Documento);
 		
 		JPanel contenedorDeScrollpane = new JPanel();
-		contenedorDeScrollpane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contenedorDeScrollpane.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_panel_1_1 = new GridBagConstraints();
 		gbc_panel_1_1.fill = GridBagConstraints.BOTH;
@@ -277,25 +276,26 @@ public class BuscarCliente extends JFrame {
 		gbc_panel_1_1.gridy = 3;
 		panel.add(contenedorDeScrollpane, gbc_panel_1_1);
 		//DEFINO SCROLLPANE 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.getViewport().setPreferredSize(new Dimension(800, 500));
-        //LO AGREGO AL PANEL
-        contenedorDeScrollpane.add(scrollPane, BorderLayout.CENTER);
-//CARGO Y CREO LA TABLA
+
 		String[] columnas = {"Cliente", "Apellido", "Nombre", "Tipo Documento", "Numero Documento"};
 		DefaultTableModel model = new DefaultTableModel(null, columnas);
 		List<ClienteDTO> clienteDTO = this.gestorCliente.getClientes();
 		cargarClientes(model,clienteDTO,gestorC);
-		table = new JTable(model);
+		table = new JTable();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setViewportView(table);
+        contenedorDeScrollpane.add(scrollPane, BorderLayout.CENTER);
+        scrollPane.getViewport().setPreferredSize(new Dimension(800, 400));
+		table.setModel(model);
 		table.setEnabled(false);
-		table.setPreferredScrollableViewportSize(getSize());
+		//table.setPreferredScrollableViewportSize(getSize());
 		table.setBackground(SystemColor.inactiveCaptionBorder);
 		table.setFillsViewportHeight(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        scrollPane.setViewportView(table);
-				
+
+        
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_2.setBorder(new MatteBorder(4, 0, 0, 0, (Color) new Color(0, 0, 0)));
