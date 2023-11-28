@@ -50,7 +50,6 @@ public class BuscarCliente extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	String[] modelos;
-	private JTextField textField;
 	private JTable table;
 	private GestorCliente gestorCliente;
 
@@ -110,7 +109,7 @@ public class BuscarCliente extends JFrame {
 		gbl_panel.columnWidths = new int[]{0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		
@@ -130,6 +129,7 @@ public class BuscarCliente extends JFrame {
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblNewLabel_5_1.setBorder(null);
 		panel_3.add(lblNewLabel_5_1);
+		
 		JLabel lblDatosDeLa_1 = new JLabel("Buscar Cliente");
 		lblDatosDeLa_1.setBackground(SystemColor.inactiveCaptionBorder);
 		lblDatosDeLa_1.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));
@@ -152,39 +152,19 @@ public class BuscarCliente extends JFrame {
 		gbc_panel_1.gridy = 2;
 		panel.add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0,};
+		gbl_panel_1.columnWeights = new double[]{0.0, 0.5, 0.0, 0.5};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0,};
+
 		panel_1.setLayout(gbl_panel_1);
-		
-		JLabel lblNmeroCliente = new JLabel("Número Cliente:");
-		lblNmeroCliente.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNmeroCliente.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_lblNmeroCliente = new GridBagConstraints();
-		gbc_lblNmeroCliente.anchor = GridBagConstraints.EAST;
-		gbc_lblNmeroCliente.insets = new Insets(50, 0, 5, 0);
-		gbc_lblNmeroCliente.gridx = 1;
-		gbc_lblNmeroCliente.gridy = 0;
-		panel_1.add(lblNmeroCliente, gbc_lblNmeroCliente);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		textField.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.anchor = GridBagConstraints.WEST;
-		gbc_textField.insets = new Insets(50, 30, 5, 30);
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 0;
-		panel_1.add(textField, gbc_textField);
 		
 		JLabel lblNewLabel = new JLabel("Apellido");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblNewLabel.insets = new Insets(20, 70, 5, 5);
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 1;
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
@@ -193,7 +173,7 @@ public class BuscarCliente extends JFrame {
 		apellido.setBackground(SystemColor.inactiveCaptionBorder);
 		apellido.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_apellido = new GridBagConstraints();
-		gbc_apellido.insets = new Insets(20, 0, 5, 30);
+		gbc_apellido.insets = new Insets(20, 0, 5, 15);
 		gbc_apellido.fill = GridBagConstraints.HORIZONTAL;
 		gbc_apellido.gridx = 1;
 		gbc_apellido.gridy = 1;
@@ -203,8 +183,8 @@ public class BuscarCliente extends JFrame {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.insets = new Insets(20, 20, 5, 5);
+		gbc_lblNewLabel_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_1.insets = new Insets(20, 15, 5, 5);
 		gbc_lblNewLabel_1.gridx = 2;
 		gbc_lblNewLabel_1.gridy = 1;
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
@@ -225,7 +205,7 @@ public class BuscarCliente extends JFrame {
 		lblMarcaDelVehculo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMarcaDelVehculo.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_lblMarcaDelVehculo = new GridBagConstraints();
-		gbc_lblMarcaDelVehculo.anchor = GridBagConstraints.WEST;
+		gbc_lblMarcaDelVehculo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblMarcaDelVehculo.insets = new Insets(20, 70, 20, 5);
 		gbc_lblMarcaDelVehculo.gridx = 0;
 		gbc_lblMarcaDelVehculo.gridy = 2;
@@ -239,7 +219,7 @@ public class BuscarCliente extends JFrame {
 		TipoDocumento.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_TipoDocumento = new GridBagConstraints();
 		gbc_TipoDocumento.fill = GridBagConstraints.HORIZONTAL;
-		gbc_TipoDocumento.insets = new Insets(20, 0, 20, 30);
+		gbc_TipoDocumento.insets = new Insets(20, 0, 20, 15);
 		gbc_TipoDocumento.gridx = 1;
 		gbc_TipoDocumento.gridy = 2;
 		panel_1.add(TipoDocumento, gbc_TipoDocumento);
@@ -248,8 +228,8 @@ public class BuscarCliente extends JFrame {
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel_1_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1_1.insets = new Insets(20, 20, 20, 5);
+		gbc_lblNewLabel_1_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_1_1.insets = new Insets(20, 15, 20, 5);
 		gbc_lblNewLabel_1_1.gridx = 2;
 		gbc_lblNewLabel_1_1.gridy = 2;
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
@@ -266,6 +246,10 @@ public class BuscarCliente extends JFrame {
 		gbc_Documento.gridx = 3;
 		gbc_Documento.gridy = 2;
 		panel_1.add(NDocumento, gbc_Documento);
+	
+		
+
+		
 		
 		JPanel contenedorDeScrollpane = new JPanel();
 		contenedorDeScrollpane.setBackground(SystemColor.inactiveCaptionBorder);
@@ -275,6 +259,11 @@ public class BuscarCliente extends JFrame {
 		gbc_panel_1_1.gridx = 0;
 		gbc_panel_1_1.gridy = 3;
 		panel.add(contenedorDeScrollpane, gbc_panel_1_1);
+		
+		
+	
+		
+		
 		//DEFINO SCROLLPANE 
 
 		String[] columnas = {"Cliente", "Apellido", "Nombre", "Tipo Documento", "Numero Documento"};
@@ -286,7 +275,7 @@ public class BuscarCliente extends JFrame {
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setViewportView(table);
         contenedorDeScrollpane.add(scrollPane, BorderLayout.CENTER);
-        scrollPane.getViewport().setPreferredSize(new Dimension(800, 400));
+        scrollPane.getViewport().setPreferredSize(new Dimension(800, 200));
 		table.setModel(model);
 		table.setEnabled(false);
 		//table.setPreferredScrollableViewportSize(getSize());
