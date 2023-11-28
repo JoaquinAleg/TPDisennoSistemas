@@ -52,6 +52,7 @@ public class BuscarCliente extends JFrame {
 	String[] modelos;
 	private JTable table;
 	private GestorCliente gestorCliente;
+	private JTextField textField;
 
 	
 	
@@ -107,9 +108,9 @@ public class BuscarCliente extends JFrame {
 		contentPane.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		
@@ -142,6 +143,40 @@ public class BuscarCliente extends JFrame {
 		panel.add(lblDatosDeLa_1, gbc_lblDatosDeLa_1);
 		lblDatosDeLa_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		
+		JPanel panelIngresos = new JPanel();
+		panelIngresos.setBackground(SystemColor.inactiveCaptionBorder);
+		GridBagConstraints gbc_panelIngresos = new GridBagConstraints();
+		gbc_panelIngresos.insets = new Insets(0, 0, 5, 0);
+		gbc_panelIngresos.fill = GridBagConstraints.BOTH;
+		gbc_panelIngresos.gridx = 0;
+		gbc_panelIngresos.gridy = 2;
+		panel.add(panelIngresos, gbc_panelIngresos);
+		GridBagLayout gbl_panelIngresos = new GridBagLayout();
+		gbl_panelIngresos.columnWidths = new int[]{363, 216, 0, 7, 0};
+		gbl_panelIngresos.rowHeights = new int[]{0, 0};
+		gbl_panelIngresos.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panelIngresos.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panelIngresos.setLayout(gbl_panelIngresos);
+		
+		JLabel lblNmeroCliente = new JLabel("Número Cliente:");
+		lblNmeroCliente.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_lblNmeroCliente = new GridBagConstraints();
+		gbc_lblNmeroCliente.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNmeroCliente.insets = new Insets(50, 0, 0, 5);
+		gbc_lblNmeroCliente.gridx = 1;
+		gbc_lblNmeroCliente.gridy = 0;
+		panelIngresos.add(lblNmeroCliente, gbc_lblNmeroCliente);
+		
+		textField = new JTextField();
+		textField.setBackground(SystemColor.inactiveCaptionBorder);
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(50, 0, 0, 70);
+		gbc_textField.fill = GridBagConstraints.BOTH;
+		gbc_textField.gridx = 2;
+		gbc_textField.gridy = 0;
+		panelIngresos.add(textField, gbc_textField);
+		textField.setColumns(10);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_1.setBorder(null);
@@ -149,7 +184,7 @@ public class BuscarCliente extends JFrame {
 		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 2;
+		gbc_panel_1.gridy = 3;
 		panel.add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0};
@@ -257,7 +292,7 @@ public class BuscarCliente extends JFrame {
 		gbc_panel_1_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1_1.insets = new Insets(0, 20, 20, 20);
 		gbc_panel_1_1.gridx = 0;
-		gbc_panel_1_1.gridy = 3;
+		gbc_panel_1_1.gridy = 4;
 		panel.add(contenedorDeScrollpane, gbc_panel_1_1);
 		
 		
@@ -289,10 +324,11 @@ public class BuscarCliente extends JFrame {
 		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_2.setBorder(new MatteBorder(4, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_2.anchor = GridBagConstraints.SOUTH;
 		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 4;
+		gbc_panel_2.gridy = 5;
 		panel.add(panel_2, gbc_panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[]{89, 0, 0, 89, 0};
@@ -333,7 +369,7 @@ public class BuscarCliente extends JFrame {
 		gbc_Boton_Cancelar.gridy = 1;
 		panel_2.add(Boton_Cancelar, gbc_Boton_Cancelar);
 		
-		JButton Boton_Continuar = new JButton("Continuar\r\n");
+		JButton Boton_Continuar = new JButton("Buscar");
 		/*
 		Boton_Continuar.addActionListener(new ActionListener() {
 
@@ -381,28 +417,6 @@ public class BuscarCliente extends JFrame {
 		gbc_Boton_Continuar.gridx = 3;
 		gbc_Boton_Continuar.gridy = 1;
 		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
-		
-		JButton Boton_Continuar_2 = new JButton("Volver");
-		Boton_Continuar_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {							
-				PantallaInicio_ProductorDeSeguro CPoliza = new PantallaInicio_ProductorDeSeguro();
-								
-								try {
-									CPoliza.setVisible(true);
-								} catch(Exception er) {
-									er.printStackTrace();
-								}
-								BuscarCliente.this.setVisible(false);
-								BuscarCliente.this.dispose();
-			}
-		});
-		Boton_Continuar_2.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		Boton_Continuar_2.setBackground(SystemColor.controlHighlight);
-		GridBagConstraints gbc_Boton_Continuar_2 = new GridBagConstraints();
-		gbc_Boton_Continuar_2.insets = new Insets(10, 0, 10, 5);
-		gbc_Boton_Continuar_2.gridx = 2;
-		gbc_Boton_Continuar_2.gridy = 1;
-		panel_2.add(Boton_Continuar_2, gbc_Boton_Continuar_2);
 
 		
 
