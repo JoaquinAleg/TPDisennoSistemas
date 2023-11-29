@@ -38,6 +38,7 @@ import javax.swing.table.DefaultTableModel;
 import DTOS.ClienteDTO;
 import DTOS.ListadoDTO;
 import Gestores.GestorCliente;
+import POJOS.TipoDocumento;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -223,9 +224,7 @@ public class BuscarCliente extends JFrame {
 		gbc_lblNewLabel_1.gridx = 2;
 		gbc_lblNewLabel_1.gridy = 1;
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
-//		modeloDTO = this.gestorPoliza.getAlarmas();
-//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-//		JComboBox <String> alarma = new JComboBox(modelos);
+ 
 		JTextField nombre = new JTextField();
 		nombre.setBackground(SystemColor.inactiveCaptionBorder);
 		nombre.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -246,10 +245,8 @@ public class BuscarCliente extends JFrame {
 		gbc_lblMarcaDelVehculo.gridy = 2;
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
-//		modeloDTO = this.gestorPoliza.getRastreoVehicular();
-//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-//		JComboBox <String> rastreoVehicular = new JComboBox(modelos);
-		JComboBox <String> TipoDocumento = new JComboBox<>();
+
+		JComboBox <TipoDocumento> TipoDocumento = new JComboBox<>();
 		TipoDocumento.setBackground(SystemColor.inactiveCaptionBorder);
 		TipoDocumento.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_TipoDocumento = new GridBagConstraints();
@@ -269,9 +266,7 @@ public class BuscarCliente extends JFrame {
 		gbc_lblNewLabel_1_1.gridy = 2;
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
-//		modeloDTO = this.gestorPoliza.getTuercas();
-//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-//		JComboBox <String> tuercas = new JComboBox(modelos);
+
 		JTextField NDocumento = new JTextField();
 		NDocumento.setBackground(SystemColor.inactiveCaptionBorder);
 		NDocumento.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -282,7 +277,6 @@ public class BuscarCliente extends JFrame {
 		gbc_Documento.gridy = 2;
 		panel_1.add(NDocumento, gbc_Documento);
 	
-		
 
 		
 		
@@ -295,10 +289,7 @@ public class BuscarCliente extends JFrame {
 		gbc_panel_1_1.gridy = 4;
 		panel.add(contenedorDeScrollpane, gbc_panel_1_1);
 		
-		
-	
-		
-		
+
 		//DEFINO SCROLLPANE 
 
 		String[] columnas = {"Cliente", "Apellido", "Nombre", "Tipo Documento", "Numero Documento"};
@@ -313,7 +304,7 @@ public class BuscarCliente extends JFrame {
         scrollPane.getViewport().setPreferredSize(new Dimension(800, 200));
 		table.setModel(model);
 		table.setEnabled(false);
-		//table.setPreferredScrollableViewportSize(getSize());
+
 		table.setBackground(SystemColor.inactiveCaptionBorder);
 		table.setFillsViewportHeight(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -331,9 +322,9 @@ public class BuscarCliente extends JFrame {
 		gbc_panel_2.gridy = 5;
 		panel.add(panel_2, gbc_panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{89, 0, 0, 89, 0};
+		gbl_panel_2.columnWidths = new int[]{89, 0, 0, 89, 0, 0};
 		gbl_panel_2.rowHeights = new int[]{0, 23, 0, 0, 0};
-		gbl_panel_2.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_2.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_2.setLayout(gbl_panel_2);
 		
@@ -352,11 +343,21 @@ public class BuscarCliente extends JFrame {
 			}
 		});
 		
+		JButton Boton_Continuar_1 = new JButton("Continuar\r\n");
+		Boton_Continuar_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		Boton_Continuar_1.setBackground(SystemColor.controlHighlight);
+		GridBagConstraints gbc_Boton_Continuar_1 = new GridBagConstraints();
+		gbc_Boton_Continuar_1.insets = new Insets(10, 0, 10, 40);
+		gbc_Boton_Continuar_1.gridx = 4;
+		gbc_Boton_Continuar_1.gridy = 1;
+		panel_2.add(Boton_Continuar_1, gbc_Boton_Continuar_1);
+		
 		JButton crearCliente = new JButton("Crear Cliente");
-		crearCliente.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		crearCliente.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		crearCliente.setBackground(SystemColor.controlHighlight);
 		GridBagConstraints gbc_crearCliente = new GridBagConstraints();
-		gbc_crearCliente.insets = new Insets(10, 0, 10, 5);
+		gbc_crearCliente.anchor = GridBagConstraints.EAST;
+		gbc_crearCliente.insets = new Insets(10, 0, 10, 10);
 		gbc_crearCliente.gridx = 1;
 		gbc_crearCliente.gridy = 1;
 		panel_2.add(crearCliente, gbc_crearCliente);
@@ -370,49 +371,27 @@ public class BuscarCliente extends JFrame {
 		panel_2.add(Boton_Cancelar, gbc_Boton_Cancelar);
 		
 		JButton Boton_Continuar = new JButton("Buscar");
-		/*
 		Boton_Continuar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {	
-					//datosPolizaDTO.setHijos(cantidadHijos);
-					//System.out.println(cantidadHijos.get(0).getSexo());
-					//System.out.println(cantidadHijos.get(0).getFechaNacimiento().toString());
-					List<Long> medidas = new ArrayList<>();
-					if(garage.getSelectedItem().equals("Si")){
-						Long[] idGarage = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Garage")).map(b -> b.getId()).toArray(Long[]::new);
-						medidas.add(idGarage[0]);
-					}
-					if(alarma.getSelectedItem().equals("Si")){
-						Long[] idAlarma = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Alarma")).map(b -> b.getId()).toArray(Long[]::new);
-						medidas.add(idAlarma[0]);
-					}
-					if(tuercas.getSelectedItem().equals("Si")){
-						Long[] idTuercas = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Tuercas")).map(b -> b.getId()).toArray(Long[]::new);
-						medidas.add(idTuercas[0]);
-					}
-					if(rastreoVehicular.getSelectedItem().equals("Si")){
-						Long[] idRastreoVehicular = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Rastreo Vehicular")).map(b -> b.getId()).toArray(Long[]::new);
-						medidas.add(idRastreoVehicular[0]);
-					}
-					datosPolizaDTO.setListaMedidaSeguridad(medidas);
-					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
-							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
-							cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
-					
-					try {
-						CPoliza.setVisible(true);
-					} catch(Exception er) {
-						er.printStackTrace();
-					}
-					BuscarCliente.this.setVisible(false);
-					BuscarCliente.this.dispose();
+				
+				String filtroApellido = apellido.getText();
+				String filtroNombre = nombre.getText();
+				String filtroNDoc = NDocumento.getText();
+				String filtroTipoDoc = TipoDocumento.getSelectedItem().getDescripcion();
+				List<ClienteDTO> clienteEditadoDTO = clienteDTO;
+
+				
+				
+				
+				cargarClientes(model, clienteEditadoDTO, gestorCliente);
+				
 			}
 		});
-		*/
 		Boton_Continuar.setBackground(SystemColor.controlHighlight);
 		Boton_Continuar.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		GridBagConstraints gbc_Boton_Continuar = new GridBagConstraints();
-		gbc_Boton_Continuar.insets = new Insets(10, 0, 10, 40);
+		gbc_Boton_Continuar.insets = new Insets(10, 0, 10, 10);
 		gbc_Boton_Continuar.anchor = GridBagConstraints.EAST;
 		gbc_Boton_Continuar.gridx = 3;
 		gbc_Boton_Continuar.gridy = 1;
