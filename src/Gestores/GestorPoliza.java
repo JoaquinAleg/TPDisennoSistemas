@@ -465,5 +465,17 @@ public class GestorPoliza {
 		return formaPagosDTO;
 	}
 	
+	public List<ListadoDTO> getTipoDocumento(){
+		List<TipoDocumento> tipoDocumentos = daoTipoDocumento.getAll();
+		List<ListadoDTO> tipoDocumentosDTO = new ArrayList<>();
+		ListadoDTO TipoDocumentoDTO = new ListadoDTO(" ", null);
+		tipoDocumentosDTO.add(TipoDocumentoDTO);
+		for(TipoDocumento d : tipoDocumentos) {
+			TipoDocumentoDTO = new ListadoDTO(String.valueOf(d.getDescripcion()), d.getIdTipoDocumento());
+			tipoDocumentosDTO.add(TipoDocumentoDTO);
+		}
+		return tipoDocumentosDTO;
+	}
+	
 }
 

@@ -38,6 +38,7 @@ import javax.swing.table.DefaultTableModel;
 import DTOS.ClienteDTO;
 import DTOS.ListadoDTO;
 import Gestores.GestorCliente;
+import Gestores.GestorPoliza;
 import POJOS.TipoDocumento;
 
 import javax.swing.JTable;
@@ -53,6 +54,7 @@ public class BuscarCliente extends JFrame {
 	String[] modelos;
 	private JTable table;
 	private GestorCliente gestorCliente;
+	private GestorPoliza gestorPoliza;
 	private JTextField textField;
 
 	
@@ -65,7 +67,8 @@ public class BuscarCliente extends JFrame {
 			public void run() {
 				try {
 					GestorCliente gestorCliente = GestorCliente.getInstance();
-					BuscarCliente frame = new BuscarCliente(gestorCliente);
+					GestorPoliza gestorPoliza = GestorPoliza.getInstance();
+					BuscarCliente frame = new BuscarCliente(gestorCliente, gestorPoliza);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,8 +80,9 @@ public class BuscarCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BuscarCliente(GestorCliente gestorC) {
+	public BuscarCliente(GestorCliente gestorC, GestorPoliza gestorP) {
 		this.gestorCliente = gestorC;
+		this.gestorPoliza = gestorP;
 		//PARTE VISUAL DE LA PANTALLA
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
@@ -245,8 +249,9 @@ public class BuscarCliente extends JFrame {
 		gbc_lblMarcaDelVehculo.gridy = 2;
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
-
-		JComboBox <TipoDocumento> TipoDocumento = new JComboBox<>();
+		List<ListadoDTO> tipoDocumentoDTO = this.gestorPoliza.getTipoDocumento();
+		String[] tipoDocumentos = tipoDocumentoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> TipoDocumento = new JComboBox<>(tipoDocumentos);
 		TipoDocumento.setBackground(SystemColor.inactiveCaptionBorder);
 		TipoDocumento.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_TipoDocumento = new GridBagConstraints();
@@ -378,7 +383,7 @@ public class BuscarCliente extends JFrame {
 				String filtroApellido = apellido.getText();
 				String filtroNombre = nombre.getText();
 				String filtroNDoc = NDocumento.getText();
-				String filtroTipoDoc = TipoDocumento.getSelectedItem().getDescripcion();
+			//	String filtroTipoDoc = TipoDocumento.getSelectedItem().getDescripcion();
 				List<ClienteDTO> clienteEditadoDTO = clienteDTO;
 
 				
