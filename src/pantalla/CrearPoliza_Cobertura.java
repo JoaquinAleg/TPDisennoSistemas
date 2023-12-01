@@ -81,8 +81,8 @@ public class CrearPoliza_Cobertura extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_Cobertura(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
-			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO) {
+	public CrearPoliza_Cobertura(ArrayList<HijosDTO> hijos,
+			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame anterior) {
 		this.cantidadHijos = hijos;
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
@@ -341,27 +341,13 @@ public class CrearPoliza_Cobertura extends JFrame {
 		JButton Boton_Continuar_2 = new JButton("Volver");
 		Boton_Continuar_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				if(cantidadHijos == null) {		
-					
-					CrearPoliza_2 CPolizad = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
-					
-					try {
-						CPolizad.setVisible(true);
-					} catch(Exception er) {
-						er.printStackTrace();
-					}
-				
-				} else {	
-			
-			CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tue, gar, alar,rastreo, se, ec,cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
 			
 			try {
-				CPoliza.setVisible(true);
+				anterior.setVisible(true);
 			} catch(Exception er) {
 				er.printStackTrace();
 			}
-				}
+				
 			CrearPoliza_Cobertura.this.setVisible(false);
 			CrearPoliza_Cobertura.this.dispose();
 			}

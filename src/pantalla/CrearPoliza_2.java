@@ -64,6 +64,7 @@ public class CrearPoliza_2 extends JFrame {
 	private List<ListadoDTO> estadoCivilDTO;
 	private String[] sexos;
 	private String[] estadosCivil;
+	private JComboBox<String> alarma;
 	
 	
 	/**
@@ -72,6 +73,7 @@ public class CrearPoliza_2 extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				
 				try {
 					//GestorPoliza gestorPoliza = GestorPoliza.getInstance();
 					//GestorCliente gestorCliente = GestorCliente.getInstance();
@@ -88,7 +90,7 @@ public class CrearPoliza_2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO) {
+	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO, JFrame anterior) {
 		this.datosPolizaDTO=datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
 		this.gestorCliente = gestorCliente;
@@ -217,7 +219,7 @@ public class CrearPoliza_2 extends JFrame {
 //		modeloDTO = this.gestorPoliza.getAlarmas();
 //		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 //		JComboBox <String> alarma = new JComboBox(modelos);
-		JComboBox <String> alarma = new JComboBox<>();
+		this.alarma = new JComboBox<>();
 		alarma.addItem("No");
 		alarma.addItem("Si");
 		alarma.setSelectedIndex(0);
@@ -243,7 +245,7 @@ public class CrearPoliza_2 extends JFrame {
 //		modeloDTO = this.gestorPoliza.getRastreoVehicular();
 //		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 //		JComboBox <String> rastreoVehicular = new JComboBox(modelos);
-		JComboBox <String> rastreoVehicular = new JComboBox<>();
+		JComboBox<String> rastreoVehicular = new JComboBox<>();
 		rastreoVehicular.addItem("No");
 		rastreoVehicular.addItem("Si");
 		rastreoVehicular.setSelectedIndex(0);
@@ -269,7 +271,7 @@ public class CrearPoliza_2 extends JFrame {
 //		modeloDTO = this.gestorPoliza.getTuercas();
 //		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 //		JComboBox <String> tuercas = new JComboBox(modelos);
-		JComboBox <String> tuercas = new JComboBox<>();
+		JComboBox<String> tuercas = new JComboBox<>();
 		tuercas.addItem("No");
 		tuercas.addItem("Si");
 		tuercas.setSelectedIndex(0);
@@ -341,7 +343,7 @@ public class CrearPoliza_2 extends JFrame {
 		
 		sexoDTO = this.gestorPoliza.getSexos();
 		sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> sexo = new JComboBox<>(sexos);
+		JComboBox<String> sexo = new JComboBox<>(sexos);
 
 		sexo.setBackground(SystemColor.inactiveCaptionBorder);
 		sexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -364,7 +366,7 @@ public class CrearPoliza_2 extends JFrame {
 		
 		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
 		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> estadoCivil = new JComboBox<>(estadosCivil);
+		JComboBox<String> estadoCivil = new JComboBox<>(estadosCivil);
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_estadoCivil = new GridBagConstraints();
@@ -392,9 +394,7 @@ public class CrearPoliza_2 extends JFrame {
 							HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), idEstadoCivil[0], idSexo[0]);
 							cantidadHijos.add(hijo);
 							JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
-							CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
-							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
-							cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
+							CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, anterior);
 					try {
 						CPoliza.setVisible(true);
 					} catch(Exception er) {
@@ -479,9 +479,7 @@ public class CrearPoliza_2 extends JFrame {
 						medidas.add(idRastreoVehicular[0]);
 					}
 					datosPolizaDTO.setListaMedidaSeguridad(medidas);
-					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
-							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
-							cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this);
 					
 					try {
 						CPoliza.setVisible(true);
@@ -504,10 +502,8 @@ public class CrearPoliza_2 extends JFrame {
 		JButton Boton_Continuar_2 = new JButton("Volver");
 		Boton_Continuar_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {							
-								CrearPoliza_1 CPoliza = new CrearPoliza_1(gestorPoliza,gestorCliente);
-								
 								try {
-									CPoliza.setVisible(true);
+									anterior.setVisible(true);
 								} catch(Exception er) {
 									er.printStackTrace();
 								}
@@ -527,5 +523,11 @@ public class CrearPoliza_2 extends JFrame {
 
 
 	}
+	
+	public int getAlarma() {
+		int alarm = this.alarma.getSelectedIndex();
+		return alarm;
+	}
+	
 
 }

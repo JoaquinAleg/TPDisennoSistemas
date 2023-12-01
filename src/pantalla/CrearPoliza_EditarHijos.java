@@ -54,21 +54,18 @@ public class CrearPoliza_EditarHijos extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private GestorPoliza gestorPoliza;
-	private List<ListadoDTO> modeloDTO;
-	private String[] modelos; 
+	private GestorPoliza gestorPoliza; 
 	private ArrayList<HijosDTO> hList; 
-	private NombresDTO nombresDTO;
 	private List<ListadoDTO> sexoDTO;
 	private List<ListadoDTO> estadoCivilDTO;
 	private String[] sexos;
 	private String[] estadosCivil;
 	
-	public CrearPoliza_EditarHijos(LocalDate nacimiento, Long sexo, Long estadoCivil, GestorPoliza gestorPoliza,GestorCliente gestorCliente,
-			HijosDTO h,  Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hList, NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO) {
+	public CrearPoliza_EditarHijos( GestorPoliza gestorPoliza,GestorCliente gestorCliente,	ArrayList<HijosDTO> listaHijos ,HijosDTO h,   NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO, CrearPoliza_ListadoHijos anterior) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		this.gestorPoliza = gestorPoliza;
+		this.hList = listaHijos;
 		setBounds(100, 100, 1000, 320);
 		this.setExtendedState(MAXIMIZED_BOTH);
 		contentPane = new JPanel();
@@ -98,7 +95,6 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		String numeroCliente = new String("numeroCliente");
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(SystemColor.inactiveCaptionBorder);
@@ -143,7 +139,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		
 		//Agregar de la base de datos...
 		JDateChooser birth = new JDateChooser();
-		birth.setDate(Date.from(nacimiento.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+		birth.setDate(Date.from(h.getFechaNacimiento().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 		birth.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_dateChooser_1_1 = new GridBagConstraints();
 		gbc_dateChooser_1_1.fill = GridBagConstraints.BOTH;
@@ -165,8 +161,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		sexoDTO = this.gestorPoliza.getSexos();
 		sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> TipoSexo = new JComboBox<>(sexos);
-//		JComboBox TipoSexo = new JComboBox();
-		TipoSexo.setSelectedItem(sexo);
+		TipoSexo.setSelectedItem(h.getSexo().toString());
 		TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_LocalidadRiesgo_1_1_1 = new GridBagConstraints();
@@ -189,7 +184,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
 		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> TipoEstadoCivil = new JComboBox<>(estadosCivil);
-		TipoEstadoCivil.setSelectedItem(estadoCivil);
+		TipoEstadoCivil.setSelectedItem(h.getEstadoCivil().toString());
 		TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_MarcaVehiculo_1_1_1 = new GridBagConstraints();
@@ -209,10 +204,8 @@ public class CrearPoliza_EditarHijos extends JFrame {
 				h.setFechaNacimiento(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				h.setSexo(idSexo[0]);
 				hList.set(i, h);
-	CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos( tue,gar,alar,rastreo,hList,gestorPoliza, gestorCliente,nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
-
 				try {
-					FuturaPantalla.setVisible(true);
+				anterior.setVisible(true);
 				} catch(Exception er) {
 					er.printStackTrace();
 				}

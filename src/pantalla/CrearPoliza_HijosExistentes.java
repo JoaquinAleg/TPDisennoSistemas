@@ -57,8 +57,8 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 	private String[] estadosCivil;
 	private NombresDTO nombresDTO;
 
-	public CrearPoliza_HijosExistentes(Integer tue, Integer gar, Integer alar, Integer rastreo, Integer se, Integer ec, ArrayList<HijosDTO> hijos,
-			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO) {
+	public CrearPoliza_HijosExistentes(ArrayList<HijosDTO> hijos,GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,
+			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame anterior) {
 		this.gestorPoliza = gestorPoliza;
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.sexoDTO = sexoDTO;
@@ -159,7 +159,6 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JComboBox <String> garage = new JComboBox();
 		garage.addItem("No");
 		garage.addItem("Si");
-		garage.setSelectedIndex(gar);
 		garage.setBackground(SystemColor.inactiveCaptionBorder);
 		garage.setToolTipText("");
 		garage.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -183,7 +182,6 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JComboBox alarma = new JComboBox();
 		alarma.addItem("No");
 		alarma.addItem("Si");
-		alarma.setSelectedIndex(alar);
 		alarma.setBackground(SystemColor.inactiveCaptionBorder);
 		alarma.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_alarma = new GridBagConstraints();
@@ -206,7 +204,6 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JComboBox rastreoVehicular = new JComboBox();
 		rastreoVehicular.addItem("No");
 		rastreoVehicular.addItem("Si");
-		rastreoVehicular.setSelectedIndex(rastreo);
 		rastreoVehicular.setBackground(SystemColor.inactiveCaptionBorder);
 		rastreoVehicular.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_rastreoVehicular = new GridBagConstraints();
@@ -229,7 +226,6 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JComboBox tuercas = new JComboBox();
 		tuercas.addItem("No");
 		tuercas.addItem("Si");
-		tuercas.setSelectedIndex(tue);
 		tuercas.setBackground(SystemColor.inactiveCaptionBorder);
 		tuercas.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_tuercas = new GridBagConstraints();
@@ -268,8 +264,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		JButton Boton_Continuar_1 = new JButton("Ver Hijos");
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(tuercas.getSelectedIndex(), garage.getSelectedIndex(), alarma.getSelectedIndex(),
-						rastreoVehicular.getSelectedIndex(), hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
+				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_HijosExistentes.this,anterior);
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -342,7 +337,6 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 //		JComboBox sexo = new JComboBox();
 //		sexo.addItem("Masculino");
 //		sexo.addItem("Femenino");
-		sexo.setSelectedIndex(se);
 		sexo.setBackground(SystemColor.inactiveCaptionBorder);
 		sexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_sexo = new GridBagConstraints();
@@ -366,7 +360,6 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox <String> estadoCivil = new JComboBox<>(estadosCivil);
 
-		estadoCivil.setSelectedIndex(ec);
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_estadoCivil = new GridBagConstraints();
@@ -475,9 +468,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 						medidas.add(idRastreoVehicular[0]);
 					}
 					datosPolizaDTO.setListaMedidaSeguridad(medidas);
-					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(tuercas.getSelectedIndex(), garage.getSelectedIndex(), 
-							alarma.getSelectedIndex(),rastreoVehicular.getSelectedIndex(), sexo.getSelectedIndex(), estadoCivil.getSelectedIndex(),
-							hijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(hijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_HijosExistentes.this);
 					
 					try {
 						CPoliza.setVisible(true);
@@ -499,10 +490,9 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		panel_2.add(Boton_Continuar_2, gbc_Boton_Continuar_2);
 		Boton_Continuar_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {							
-								CrearPoliza_1 CPoliza = new CrearPoliza_1(gestorPoliza,gestorCliente);
-								
+							
 								try {
-									CPoliza.setVisible(true);
+									anterior.setVisible(true);
 								} catch(Exception er) {
 									er.printStackTrace();
 								}

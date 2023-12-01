@@ -349,6 +349,18 @@ public class BuscarCliente extends JFrame {
 		});
 		
 		JButton Boton_Continuar_1 = new JButton("Continuar\r\n");
+		Boton_Continuar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearPoliza_1 FuturaPantalla = new CrearPoliza_1(gestorPoliza, gestorCliente,BuscarCliente.this);
+				try {
+					FuturaPantalla.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				BuscarCliente.this.setVisible(false);
+				BuscarCliente.this.dispose();
+			}
+		});
 		Boton_Continuar_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		Boton_Continuar_1.setBackground(SystemColor.controlHighlight);
 		GridBagConstraints gbc_Boton_Continuar_1 = new GridBagConstraints();

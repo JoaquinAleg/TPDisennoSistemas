@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -63,6 +64,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	private List<ListadoDTO> estadoCivilDTO;
 	private String[] sexos;
 	private String[] estadosCivil;
+	private ArrayList <HijosDTO> hijos;
 	/**
 	 * Launch the application.
 	 */
@@ -70,12 +72,13 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_ListadoHijos(Integer tue, Integer gar, Integer alar, Integer rastreo, ArrayList <HijosDTO> hijos,
-			GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO) {
+	public CrearPoliza_ListadoHijos(ArrayList <HijosDTO> Listhijos,	GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO,
+			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1) {
 		int cantidadHijos = hijos.size();
 		this.gestorPoliza = gestorPoliza;
 		this.estadoCivilDTO = estadoCivilDTO;
 		this.sexoDTO = sexoDTO;
+		this.hijos = Listhijos;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -233,11 +236,9 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				prueba.add(TipoSexo, gbc_LocalidadRiesgo_1_1_1);
 				
 				JButton btnNewButton_1_1_1 = new JButton("Editar");
-				CrearPoliza_ListadoHijos anterior = this;
 				btnNewButton_1_1_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(h.getFechaNacimiento(), h.getSexo(), h.getEstadoCivil(),
-								gestorPoliza, gestorCliente, h,tue,gar,alar,rastreo, hijos, nombresDTO,datosPolizaDTO);
+						CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(gestorPoliza, gestorCliente, hijos ,h, nombresDTO,datosPolizaDTO, CrearPoliza_ListadoHijos.this);
 						
 						try {
 							FuturaPantalla.setVisible(true);
@@ -264,14 +265,27 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				gbc_btnNewButton_1_2.gridx = 4;
 				gbc_btnNewButton_1_2.gridy = 2;
 				prueba.add(eliminar, gbc_btnNewButton_1_2);
-				
 				eliminar.addActionListener(new ActionListener() {
-	
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
+					int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar el hijo?", "Eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if(opcion == 0) { //como el YES está puesto primero, retorna un 0 si lo elije
 						hijos.remove(h);
-						CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos(tue, gar, alar, rastreo, hijos,
-								gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
+						
+						if(hijos.isEmpty()) {
+							CrearPoliza_2 FuturaPantalla = new CrearPoliza_2(datosPolizaDTO,gestorPoliza,gestorCliente, nombresDTO,poliza1);
+							
+							try {
+								FuturaPantalla.setVisible(true);
+							} catch(Exception er) {
+								er.printStackTrace();
+							}
+							CrearPoliza_ListadoHijos.this.setVisible(false);
+							CrearPoliza_ListadoHijos.this.dispose();
+							}else {
+						
+						CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos( hijos,gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, conHijos,poliza1);
 						try {
 							actualizada.setVisible(true);
 						} catch(Exception er) {
@@ -279,10 +293,9 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 						}
 						CrearPoliza_ListadoHijos.this.setVisible(false);
 						CrearPoliza_ListadoHijos.this.dispose();
+					}}
 					}
-					
 				});
-				
 				ContenedorDeInfo.add(prueba);
 				contentPane.validate();
 			}
@@ -332,26 +345,14 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		JButton Boton_Continuar = new JButton("Volver");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!hijos.isEmpty()) {
-				CrearPoliza_HijosExistentes FuturaPantalla = new CrearPoliza_HijosExistentes(tue,gar,alar,rastreo,0,0, hijos,gestorPoliza,
-						gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO);
-				try {
-					FuturaPantalla.setVisible(true);
-				} catch(Exception er) {
-					er.printStackTrace();
-				}
-				CrearPoliza_ListadoHijos.this.setVisible(false);
-				CrearPoliza_ListadoHijos.this.dispose();
-				}else {
-					CrearPoliza_2 FuturaPantalla = new CrearPoliza_2(datosPolizaDTO,gestorPoliza, gestorCliente,nombresDTO);
 					try {
-						FuturaPantalla.setVisible(true);
+						conHijos.setVisible(true);
 					} catch(Exception er) {
 						er.printStackTrace();
 					}
 					CrearPoliza_ListadoHijos.this.setVisible(false);
 					CrearPoliza_ListadoHijos.this.dispose();
-				}
+				
 
 			}
 		});
@@ -365,5 +366,8 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
 
 
+	}
+	public void setListaHijos(ArrayList <HijosDTO> hijosNuevos) {
+		this.hijos = hijosNuevos;
 	}
 }

@@ -79,12 +79,12 @@ public class CrearPoliza_1 extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
+				try {/*
 					GestorPoliza gestorPoliza = GestorPoliza.getInstance();
 					GestorCliente gestorCliente = GestorCliente.getInstance();
-					CrearPoliza_1 frame = new CrearPoliza_1(gestorPoliza, gestorCliente);
+					CrearPoliza_1 frame = new CrearPoliza_1(gestorPoliza, gestorCliente, null);
 					frame.setVisible(true);
-				} catch (Exception e) {
+				*/} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -94,10 +94,9 @@ public class CrearPoliza_1 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_1(GestorPoliza gestorP, GestorCliente gestorC) {
+	public CrearPoliza_1(GestorPoliza gestorP, GestorCliente gestorC, JFrame anterior) {
 		this.gestorPoliza = gestorP;
 		this.gestorCliente = gestorC;
-		
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -491,9 +490,9 @@ public class CrearPoliza_1 extends JFrame {
 		panel.add(panelInferior, gbc_panelInferior);
 		GridBagLayout gbl_panelInferior = new GridBagLayout();
 		gbl_panelInferior.columnWidths = new int[]{89, 0, 89, 0};
-		gbl_panelInferior.rowHeights = new int[]{23, 0};
+		gbl_panelInferior.rowHeights = new int[]{23, 0, 0};
 		gbl_panelInferior.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_panelInferior.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panelInferior.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panelInferior.setLayout(gbl_panelInferior);
 		
 		JButton Boton_Cancelar = new JButton("Cancelar");
@@ -576,8 +575,9 @@ public class CrearPoliza_1 extends JFrame {
 							System.out.println(datosPolizaDTO.getSumaAsegurada());
 							System.out.println(datosPolizaDTO.getKilometrosPorAnio());
 							System.out.println(datosPolizaDTO.getIdModeloVehiculo());
-							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
-						
+							
+							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO, CrearPoliza_1.this);
+						System.out.println("Se creó una instancia");
 							try {
 								CPoliza.setVisible(true);
 							} catch(Exception er) {
@@ -587,7 +587,7 @@ public class CrearPoliza_1 extends JFrame {
 							CrearPoliza_1.this.dispose();
 							
 						}
-						else {
+						else{
 							JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
 						}
 			}
@@ -599,6 +599,27 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_Boton_Continuar.gridx = 2;
 		gbc_Boton_Continuar.gridy = 0;
 		panelInferior.add(Boton_Continuar, gbc_Boton_Continuar);
+		
+		JButton Boton_Cancelar_1 = new JButton("Volver");
+		Boton_Cancelar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					anterior.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				CrearPoliza_1.this.setVisible(false);
+				CrearPoliza_1.this.dispose();
+			}
+		});
+		Boton_Cancelar_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		Boton_Cancelar_1.setBackground(SystemColor.controlHighlight);
+		GridBagConstraints gbc_Boton_Cancelar_1 = new GridBagConstraints();
+		gbc_Boton_Cancelar_1.anchor = GridBagConstraints.WEST;
+		gbc_Boton_Cancelar_1.insets = new Insets(10, 10, 10, 5);
+		gbc_Boton_Cancelar_1.gridx = 1;
+		gbc_Boton_Cancelar_1.gridy = 0;
+		panelInferior.add(Boton_Cancelar_1, gbc_Boton_Cancelar_1);
 
 
 
@@ -611,5 +632,6 @@ public class CrearPoliza_1 extends JFrame {
         Matcher matcher = pattern.matcher(cadena);
         return matcher.matches();
     }
+	
 
 }
