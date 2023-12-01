@@ -64,7 +64,6 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	private List<ListadoDTO> estadoCivilDTO;
 	private String[] sexos;
 	private String[] estadosCivil;
-	private ArrayList <HijosDTO> hijos;
 	/**
 	 * Launch the application.
 	 */
@@ -72,13 +71,12 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_ListadoHijos(ArrayList <HijosDTO> Listhijos,	GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO,
+	public CrearPoliza_ListadoHijos(ArrayList <HijosDTO> hijos,	GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO,
 			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1) {
 		int cantidadHijos = hijos.size();
 		this.gestorPoliza = gestorPoliza;
 		this.estadoCivilDTO = estadoCivilDTO;
 		this.sexoDTO = sexoDTO;
-		this.hijos = Listhijos;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -367,7 +365,5 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 
 
 	}
-	public void setListaHijos(ArrayList <HijosDTO> hijosNuevos) {
-		this.hijos = hijosNuevos;
-	}
+
 }
