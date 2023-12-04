@@ -36,6 +36,7 @@ import java.util.List;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import CustomRenderers.ListadoDTORenderer;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
@@ -342,9 +343,8 @@ public class CrearPoliza_2 extends JFrame {
 		panel_1_1.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 		
 		sexoDTO = this.gestorPoliza.getSexos();
-		sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox<String> sexo = new JComboBox<>(sexos);
-
+		JComboBox<ListadoDTO> sexo = new JComboBox<>(sexoDTO.toArray(new ListadoDTO[sexoDTO.size()]));
+		sexo.setRenderer(new ListadoDTORenderer());
 		sexo.setBackground(SystemColor.inactiveCaptionBorder);
 		sexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_sexo = new GridBagConstraints();
@@ -365,8 +365,8 @@ public class CrearPoliza_2 extends JFrame {
 		panel_1_1.add(lblEstadoCivil, gbc_lblEstadoCivil);
 		
 		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
-		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox<String> estadoCivil = new JComboBox<>(estadosCivil);
+		JComboBox<ListadoDTO> estadoCivil = new JComboBox<>(estadoCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]));
+		estadoCivil.setRenderer(new ListadoDTORenderer());
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_estadoCivil = new GridBagConstraints();

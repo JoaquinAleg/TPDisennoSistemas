@@ -22,6 +22,7 @@ import java.awt.SystemColor;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import CustomRenderers.ListadoDTORenderer;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
@@ -159,8 +160,8 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
 		
 		sexoDTO = this.gestorPoliza.getSexos();
-		sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> TipoSexo = new JComboBox<>(sexos);
+		JComboBox<ListadoDTO> TipoSexo = new JComboBox<>(sexoDTO.toArray(new ListadoDTO[sexoDTO.size()]));
+		TipoSexo.setRenderer(new ListadoDTORenderer());
 		TipoSexo.setSelectedItem(h.getSexo().toString());
 		TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -182,24 +183,24 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 		
 		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
-		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> TipoEstadoCivil = new JComboBox<>(estadosCivil);
-		TipoEstadoCivil.setSelectedItem(h.getEstadoCivil().toString());
-		TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
+		JComboBox<ListadoDTO> estadoCivil = new JComboBox<>(estadoCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]));
+		estadoCivil.setRenderer(new ListadoDTORenderer());
+		estadoCivil.setSelectedItem(h.getEstadoCivil().toString());
+		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_MarcaVehiculo_1_1_1 = new GridBagConstraints();
 		gbc_MarcaVehiculo_1_1_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_MarcaVehiculo_1_1_1.insets = new Insets(20, 0, 40, 30);
 		gbc_MarcaVehiculo_1_1_1.gridx = 1;
 		gbc_MarcaVehiculo_1_1_1.gridy = 2;
-		prueba.add(TipoEstadoCivil, gbc_MarcaVehiculo_1_1_1);
+		prueba.add(estadoCivil, gbc_MarcaVehiculo_1_1_1);
 		
 		JButton btnNewButton_1_2 = new JButton("Confirmar");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer i = hList.lastIndexOf(h);
 				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(TipoSexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(TipoEstadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 				h.setEstadoCivil(idEstadoCivil[0]);
 				h.setFechaNacimiento(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				h.setSexo(idSexo[0]);

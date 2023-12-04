@@ -33,6 +33,7 @@ import java.util.List;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import CustomRenderers.ListadoDTORenderer;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
@@ -237,8 +238,8 @@ public class CrearPoliza_Cobertura extends JFrame {
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
 		modeloTipoFormaPagoDTO = this.gestorPoliza.getTipoFormaPago();
-		modelosTipoFormaPago = modeloTipoFormaPagoDTO.stream().map(fp -> fp.getNombre()).toArray(String[]::new);
-		JComboBox<String> formasPago = new JComboBox<>(modelosTipoFormaPago);
+		JComboBox<ListadoDTO> formasPago = new JComboBox<>(estadoCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]));
+		formasPago.setRenderer(new ListadoDTORenderer());
 		formasPago.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		formasPago.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_formasPago = new GridBagConstraints();

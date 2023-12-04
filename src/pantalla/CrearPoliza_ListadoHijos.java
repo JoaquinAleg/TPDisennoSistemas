@@ -25,6 +25,7 @@ import java.awt.SystemColor;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import CustomRenderers.ListadoDTORenderer;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
@@ -60,8 +61,8 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	private List<ListadoDTO> modeloDTO;
 	private String[] modelos; 
 	private NombresDTO nombresDTO;
-	private List<ListadoDTO> sexoDTO;
-	private List<ListadoDTO> estadoCivilDTO;
+	private List<ListadoDTO> sexDTO;
+	private List<ListadoDTO> estCivilDTO;
 	private String[] sexos;
 	private String[] estadosCivil;
 	/**
@@ -75,8 +76,8 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1) {
 		int cantidadHijos = hijos.size();
 		this.gestorPoliza = gestorPoliza;
-		this.estadoCivilDTO = estadoCivilDTO;
-		this.sexoDTO = sexoDTO;
+		this.estCivilDTO = estadoCivilDTO;
+		this.sexDTO = sexoDTO;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -191,10 +192,9 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				gbc_lblEstadoCivil_1_1.gridy = 2;
 				prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 				
-				//estadoCivilDTO = gestorPoliza.getEstadoCiviles();
-				estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-				JComboBox <String> TipoEstadoCivil = new JComboBox<>(estadosCivil);
-		//		JComboBox TipoEstadoCivil = new JComboBox();
+				estCivilDTO = gestorPoliza.getEstadoCiviles();
+				JComboBox<ListadoDTO> TipoEstadoCivil = new JComboBox<>(this.estCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]));
+				TipoEstadoCivil.setRenderer(new ListadoDTORenderer());
 				TipoEstadoCivil.setEnabled(false);
 				String[] nombreEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getId() != null && a.getId().equals(h.getEstadoCivil())).map(b -> b.getNombre()).toArray(String[]::new);
 				TipoEstadoCivil.setSelectedItem(nombreEstadoCivil[0]);
@@ -217,9 +217,9 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				gbc_lblNewLabel_1_2_1_1.gridy = 0;
 				prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
 				
-				//sexoDTO = gestorPoliza.getSexos();
-				sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-				JComboBox <String> TipoSexo = new JComboBox<>(sexos);
+				sexDTO = gestorPoliza.getSexos();
+				JComboBox<ListadoDTO> TipoSexo = new JComboBox<>(sexoDTO.toArray(new ListadoDTO[this.sexDTO.size()]));
+				TipoSexo.setRenderer(new ListadoDTORenderer());
 		//		JComboBox TipoSexo = new JComboBox();
 				TipoSexo.setEnabled(false);
 				String[] nombreSexo = sexoDTO.stream().filter(a -> a.getId() != null && a.getId().equals(h.getSexo())).map(b -> b.getNombre()).toArray(String[]::new);
@@ -283,7 +283,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 							CrearPoliza_ListadoHijos.this.dispose();
 							}else {
 						
-						CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos( hijos,gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, conHijos,poliza1);
+						CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos( hijos,gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO, sexDTO, estCivilDTO, conHijos,poliza1);
 						try {
 							actualizada.setVisible(true);
 						} catch(Exception er) {

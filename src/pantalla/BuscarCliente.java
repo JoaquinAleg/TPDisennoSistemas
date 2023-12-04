@@ -254,7 +254,6 @@ public class BuscarCliente extends JFrame {
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
 		List<ListadoDTO> filtroTipoDocumentoDTO = this.gestorPoliza.getTipoDocumento();
-		//String[] filtroTipoDocumentomentos = filtroTipoDocumentomentoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 		JComboBox<ListadoDTO> TipoDocumento = new JComboBox<>(filtroTipoDocumentoDTO.toArray(new ListadoDTO[filtroTipoDocumentoDTO.size()]));
 		TipoDocumento.setRenderer(new ListadoDTORenderer());
 		TipoDocumento.setBackground(SystemColor.inactiveCaptionBorder);
