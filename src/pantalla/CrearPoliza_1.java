@@ -71,6 +71,7 @@ public class CrearPoliza_1 extends JFrame {
 	private Long numeroCliente;
 	private String marcaParaPantalla = "";
 	private String modeloParaPantalla = "";
+	private ClienteDTO clienteDTO;
 	
 
 	/**
@@ -94,9 +95,10 @@ public class CrearPoliza_1 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_1(GestorPoliza gestorP, GestorCliente gestorC, JFrame anterior) {
+	public CrearPoliza_1(GestorPoliza gestorP, GestorCliente gestorC, JFrame anterior, ClienteDTO clienteDTO) {
 		this.gestorPoliza = gestorP;
 		this.gestorCliente = gestorC;
+		this.clienteDTO = clienteDTO;
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -129,15 +131,17 @@ public class CrearPoliza_1 extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		String numeroClienteS = new String("01-00000001");
-		this.numeroCliente = 100000001L;
+		//String numeroClienteS = new String("01-00000001");
+		//this.numeroCliente = 100000001L;
+		String numeroClienteS = clienteDTO.getNumeroCliente().toString();
+		this.numeroCliente = clienteDTO.getNumeroCliente();
 		//CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE//
-		List<ClienteDTO> clientesDTO = this.gestorCliente.getClientes();
-		System.out.println(String.valueOf(clientesDTO.get(0).getNumeroCliente()));
-		System.out.println(clientesDTO.get(0).getNombre());
-		Long[] idCliente = clientesDTO.stream().filter(a -> a.getNumeroCliente().equals(numeroCliente)).map(b -> b.getNumeroCliente()).toArray(Long[]::new);
+		//List<ClienteDTO> clientesDTO = this.gestorCliente.getClientes();
+		//System.out.println(String.valueOf(clientesDTO.get(0).getNumeroCliente()));
+		//System.out.println(clientesDTO.get(0).getNombre());
+		//Long[] idCliente = clientesDTO.stream().filter(a -> a.getNumeroCliente().equals(numeroCliente)).map(b -> b.getNumeroCliente()).toArray(Long[]::new);
 		
-		ClienteDTO clienteDTO = gestorCliente.getClienteDTO(idCliente[0]);
+		//ClienteDTO clienteDTO = gestorCliente.getClienteDTO(idCliente[0]);
 		
 		
 		JPanel panel_3 = new JPanel();

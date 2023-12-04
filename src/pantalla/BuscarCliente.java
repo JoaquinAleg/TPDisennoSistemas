@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -14,6 +15,10 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -32,7 +37,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.border.MatteBorder;
-import javax.swing.table.DefaultTableModel;
 
 import DTOS.ClienteDTO;
 import DTOS.ListadoDTO;
@@ -41,7 +45,6 @@ import Gestores.GestorPoliza;
 import CustomRenderers.ListadoDTORenderer;
 
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 
 
 
@@ -49,12 +52,14 @@ public class BuscarCliente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	String[] modelos;
-	private JTable table;
 	private GestorCliente gestorCliente;
 	private GestorPoliza gestorPoliza;
 	private JTextField numeroCliente;
+	private List<ClienteDTO> clientesDTO;
+	private ClienteDTO cliDTO;
+	private JTable table;
 	private DefaultTableModel model;
+	private ListSelectionModel modeloSeleccion;
 
 	
 	
@@ -248,9 +253,9 @@ public class BuscarCliente extends JFrame {
 		gbc_lblMarcaDelVehculo.gridy = 2;
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
-		List<ListadoDTO> filtroTipoDocumentomentoDTO = this.gestorPoliza.getTipoDocumento();
+		List<ListadoDTO> filtroTipoDocumentoDTO = this.gestorPoliza.getTipoDocumento();
 		//String[] filtroTipoDocumentomentos = filtroTipoDocumentomentoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox<ListadoDTO> TipoDocumento = new JComboBox<>(filtroTipoDocumentomentoDTO.toArray(new ListadoDTO[filtroTipoDocumentomentoDTO.size()]));
+		JComboBox<ListadoDTO> TipoDocumento = new JComboBox<>(filtroTipoDocumentoDTO.toArray(new ListadoDTO[filtroTipoDocumentoDTO.size()]));
 		TipoDocumento.setRenderer(new ListadoDTORenderer());
 		TipoDocumento.setBackground(SystemColor.inactiveCaptionBorder);
 		TipoDocumento.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -283,7 +288,7 @@ public class BuscarCliente extends JFrame {
 		panel_1.add(NDocumento, gbc_Documento);
 	
 
-		
+		//DEFINO SCROLLPANE 
 		
 		JPanel contenedorDeScrollpane = new JPanel();
 		contenedorDeScrollpane.setBackground(SystemColor.inactiveCaptionBorder);
@@ -294,27 +299,50 @@ public class BuscarCliente extends JFrame {
 		gbc_panel_1_1.gridy = 4;
 		panel.add(contenedorDeScrollpane, gbc_panel_1_1);
 		
-
-		//DEFINO SCROLLPANE 
-
+		//DEFINO MODEL Y TABLE
 		String[] columnas = {"Cliente", "Apellido", "Nombre", "Tipo Documento", "Numero Documento"};
 		this.model = new DefaultTableModel(null, columnas);
-		List<ClienteDTO> clienteDTO = this.gestorCliente.getClientes();
-		cargarClientes(model,clienteDTO,gestorC);
-		table = new JTable();
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setViewportView(table);
-        contenedorDeScrollpane.add(scrollPane, BorderLayout.CENTER);
-        scrollPane.getViewport().setPreferredSize(new Dimension(800, 200));
-		table.setModel(model);
-		table.setEnabled(false);
-
+		this.clientesDTO = this.gestorCliente.getClientes();
+		cargarClientes(clientesDTO, filtroTipoDocumentoDTO);
+		
+		table = new JTable(model) {
+			public boolean editCellAt(int row, int column, java.util.EventObject e) {
+	            return false;
+	        }
+        };
+		
+        table.setEnabled(true);
+        table.setRowHeight(30);
 		table.setBackground(SystemColor.inactiveCaptionBorder);
 		table.setFillsViewportHeight(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        contenedorDeScrollpane.add(scrollPane, BorderLayout.CENTER);
+        scrollPane.getViewport().setPreferredSize(new Dimension(800, 200));
+		
+		this.modeloSeleccion = table.getSelectionModel();
+        this.modeloSeleccion.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+		this.modeloSeleccion.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
 
+                   	if (! modeloSeleccion.isSelectionEmpty()) {
+                    	int filaSeleccionada = modeloSeleccion.getMaxSelectionIndex();
+                    	String numeroClienteObj = (String)model.getValueAt(filaSeleccionada, 0);
+                    	String apellidoObj =(String)model.getValueAt(filaSeleccionada, 1);
+                    	String nombreObj = (String)model.getValueAt(filaSeleccionada, 2);
+                    	String tipoDocumentoObj = (String)model.getValueAt(filaSeleccionada, 3);
+                    	String numeroDocumentoObj = (String)model.getValueAt(filaSeleccionada, 4);
+                        
+                        cliDTO = new ClienteDTO(apellidoObj, nombreObj, Long.parseLong(numeroClienteObj), Integer.parseInt((String)numeroDocumentoObj), 
+                        		filtroTipoDocumentoDTO.stream().filter(a -> a.getNombre().equals(tipoDocumentoObj)).map(a -> a.getId()).toList().get(0));
+                    }
+                
+            }
+        });
         
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
@@ -351,14 +379,23 @@ public class BuscarCliente extends JFrame {
 		JButton Boton_Continuar_1 = new JButton("Continuar\r\n");
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_1 FuturaPantalla = new CrearPoliza_1(gestorPoliza, gestorCliente,BuscarCliente.this);
-				try {
-					FuturaPantalla.setVisible(true);
-				} catch(Exception er) {
-					er.printStackTrace();
-				}
-				BuscarCliente.this.setVisible(false);
-				BuscarCliente.this.dispose();
+
+                if (cliDTO != null) {
+                    
+					CrearPoliza_1 FuturaPantalla = new CrearPoliza_1(gestorPoliza, gestorCliente, BuscarCliente.this, cliDTO);
+					try {
+						FuturaPantalla.setVisible(true);
+					} catch(Exception er) {
+						er.printStackTrace();
+					}
+					BuscarCliente.this.setVisible(false);
+					BuscarCliente.this.dispose();
+	                    
+                }
+                else{
+                	JOptionPane.showMessageDialog(null, "Porfavor seleccione un cliente","Error",JOptionPane.WARNING_MESSAGE);
+                }
+				
 			}
 		});
 		Boton_Continuar_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
@@ -401,12 +438,10 @@ public class BuscarCliente extends JFrame {
 				if(!numeroCliente.getText().equals("")) {
 					filtroNumeroCliente = Long.parseLong(numeroCliente.getText());
 				}
-			//	String filtroTipoDoc = TipoDocumento.getSelectedItem().getDescripcion();
-			//	List<ClienteDTO> clienteEditadoDTO = clienteDTO;
 				
-				List<ClienteDTO> clientesDTO = gestorCliente.buscarClientes(filtroNumeroCliente, filtroApellido, filtroNombre, idFiltroTipoDocumento, filtroNDoc);
+				clientesDTO = gestorCliente.buscarClientes(filtroNumeroCliente, filtroApellido, filtroNombre, idFiltroTipoDocumento, filtroNDoc);
 				if(clientesDTO != null) {
-					cargarClientes(model, clientesDTO, gestorCliente);
+					cargarClientes(clientesDTO, filtroTipoDocumentoDTO);
 				}
 						
 			}
@@ -425,13 +460,13 @@ public class BuscarCliente extends JFrame {
 
 	}
 	
-	private void cargarClientes(DefaultTableModel model, List<ClienteDTO> clienteDTO, GestorCliente gestorC) {
+	private void cargarClientes(List<ClienteDTO> clienteDTO, List<ListadoDTO> filtroTipoDocumentoDTO) {
 		this.model.setRowCount(0);
 		for(ClienteDTO c : clienteDTO) {
-			Object[] auxiliar = { c.getNumeroCliente().toString(),
+			String[] auxiliar = { c.getNumeroCliente().toString(),
 					c.getApellido(),
 					c.getNombre(),
-					c.getIdTipoDocumento(),
+					filtroTipoDocumentoDTO.stream().filter(a -> a.getId() == c.getIdTipoDocumento()).map(a -> a.getNombre()).toList().get(0),
 					c.getNumeroDocumento().toString()
 			};
 			this.model.addRow(auxiliar);
