@@ -3,13 +3,15 @@ package Gestores;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import DAOS.DAOcliente;
 import DTOS.ClienteDTO;
-import DTOS.ListadoDTO;
 import POJOS.Cliente;
-import POJOS.Empleado;
 
 public class GestorCliente {
+	
+	//private List<Cliente> clientes;
 	
 	private DAOcliente daoCliente;
 	
@@ -49,5 +51,20 @@ public class GestorCliente {
 		Cliente cliente = daoCliente.getCliente(numeroCliente);
 		return new ClienteDTO(cliente.getPersona().getNombre(), cliente.getPersona().getApellido(), cliente.getIdCliente(), Integer.parseInt(cliente.getDocumento()), cliente.getTipoDocumento());
 	}
-    
+	
+	public List<ClienteDTO> buscarClientes(Long numeroCliente, String Apellido, String nombre, Long tipoDocumento, String numeroDocumento){
+		List<Cliente> clientes = daoCliente.getClientes(numeroCliente, Apellido, nombre, tipoDocumento, numeroDocumento);
+		List<ClienteDTO> clientesDTO = new ArrayList<>();
+		if(clientes.size() >= 1) {
+			for(Cliente e : clientes) {
+				ClienteDTO clienteDTO = new ClienteDTO(e.getPersona().getNombre(), e.getPersona().getApellido(), e.getIdCliente(), Integer.parseInt(e.getPersona().getDocumento()), e.getPersona().getIdTipoDocumento().getIdTipoDocumento());
+				clientesDTO.add(clienteDTO);
+			}
+			return clientesDTO;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "No se encontraron Clientes que cumplan los requisitos ingresados","Error",JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+	}
 }

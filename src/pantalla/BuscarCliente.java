@@ -20,7 +20,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JTextField;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -39,11 +38,10 @@ import DTOS.ClienteDTO;
 import DTOS.ListadoDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
-import POJOS.TipoDocumento;
+import CustomRenderers.ListadoDTORenderer;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-;
 
 
 
@@ -55,7 +53,8 @@ public class BuscarCliente extends JFrame {
 	private JTable table;
 	private GestorCliente gestorCliente;
 	private GestorPoliza gestorPoliza;
-	private JTextField textField;
+	private JTextField numeroCliente;
+	private DefaultTableModel model;
 
 	
 	
@@ -172,15 +171,15 @@ public class BuscarCliente extends JFrame {
 		gbc_lblNmeroCliente.gridy = 0;
 		panelIngresos.add(lblNmeroCliente, gbc_lblNmeroCliente);
 		
-		textField = new JTextField();
-		textField.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(50, 0, 0, 70);
-		gbc_textField.fill = GridBagConstraints.BOTH;
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 0;
-		panelIngresos.add(textField, gbc_textField);
-		textField.setColumns(10);
+		numeroCliente = new JTextField();
+		numeroCliente.setBackground(SystemColor.inactiveCaptionBorder);
+		GridBagConstraints gbc_numeroCliente = new GridBagConstraints();
+		gbc_numeroCliente.insets = new Insets(50, 0, 0, 70);
+		gbc_numeroCliente.fill = GridBagConstraints.BOTH;
+		gbc_numeroCliente.gridx = 2;
+		gbc_numeroCliente.gridy = 0;
+		panelIngresos.add(numeroCliente, gbc_numeroCliente);
+		numeroCliente.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
@@ -249,9 +248,10 @@ public class BuscarCliente extends JFrame {
 		gbc_lblMarcaDelVehculo.gridy = 2;
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
-		List<ListadoDTO> tipoDocumentoDTO = this.gestorPoliza.getTipoDocumento();
-		String[] tipoDocumentos = tipoDocumentoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> TipoDocumento = new JComboBox<>(tipoDocumentos);
+		List<ListadoDTO> filtroTipoDocumentomentoDTO = this.gestorPoliza.getTipoDocumento();
+		//String[] filtroTipoDocumentomentos = filtroTipoDocumentomentoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox<ListadoDTO> TipoDocumento = new JComboBox<>(filtroTipoDocumentomentoDTO.toArray(new ListadoDTO[filtroTipoDocumentomentoDTO.size()]));
+		TipoDocumento.setRenderer(new ListadoDTORenderer());
 		TipoDocumento.setBackground(SystemColor.inactiveCaptionBorder);
 		TipoDocumento.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_TipoDocumento = new GridBagConstraints();
@@ -298,7 +298,7 @@ public class BuscarCliente extends JFrame {
 		//DEFINO SCROLLPANE 
 
 		String[] columnas = {"Cliente", "Apellido", "Nombre", "Tipo Documento", "Numero Documento"};
-		DefaultTableModel model = new DefaultTableModel(null, columnas);
+		this.model = new DefaultTableModel(null, columnas);
 		List<ClienteDTO> clienteDTO = this.gestorCliente.getClientes();
 		cargarClientes(model,clienteDTO,gestorC);
 		table = new JTable();
@@ -395,14 +395,20 @@ public class BuscarCliente extends JFrame {
 				String filtroApellido = apellido.getText();
 				String filtroNombre = nombre.getText();
 				String filtroNDoc = NDocumento.getText();
+				ListadoDTO filtroTipoDocumento = (ListadoDTO)TipoDocumento.getSelectedItem();
+				Long idFiltroTipoDocumento = filtroTipoDocumento.getId();
+				Long filtroNumeroCliente = null;
+				if(!numeroCliente.getText().equals("")) {
+					filtroNumeroCliente = Long.parseLong(numeroCliente.getText());
+				}
 			//	String filtroTipoDoc = TipoDocumento.getSelectedItem().getDescripcion();
-				List<ClienteDTO> clienteEditadoDTO = clienteDTO;
-
+			//	List<ClienteDTO> clienteEditadoDTO = clienteDTO;
 				
-				
-				
-				cargarClientes(model, clienteEditadoDTO, gestorCliente);
-				
+				List<ClienteDTO> clientesDTO = gestorCliente.buscarClientes(filtroNumeroCliente, filtroApellido, filtroNombre, idFiltroTipoDocumento, filtroNDoc);
+				if(clientesDTO != null) {
+					cargarClientes(model, clientesDTO, gestorCliente);
+				}
+						
 			}
 		});
 		Boton_Continuar.setBackground(SystemColor.controlHighlight);
@@ -418,7 +424,9 @@ public class BuscarCliente extends JFrame {
 
 
 	}
+	
 	private void cargarClientes(DefaultTableModel model, List<ClienteDTO> clienteDTO, GestorCliente gestorC) {
+		this.model.setRowCount(0);
 		for(ClienteDTO c : clienteDTO) {
 			Object[] auxiliar = { c.getNumeroCliente().toString(),
 					c.getApellido(),
@@ -426,7 +434,7 @@ public class BuscarCliente extends JFrame {
 					c.getIdTipoDocumento(),
 					c.getNumeroDocumento().toString()
 			};
-			model.addRow(auxiliar);
+			this.model.addRow(auxiliar);
 	}
 	}
     

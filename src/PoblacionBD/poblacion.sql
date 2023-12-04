@@ -131,9 +131,9 @@ INSERT INTO public.localidad (idlocalidad, codigopostal, nombrelocalidad, idprov
   (57, 9405, 'El Calafate', 19),
 
   -- Santa Fe
-  (58, 3000, 'Santa Fe Capital', 3),
-  (59, 2000, 'Rosario', 3),
-  (60, 2132, 'Rafaela', 3),
+  (58, 3000, 'Santa Fe Capital', 20),
+  (59, 2000, 'Rosario', 20),
+  (60, 2132, 'Rafaela', 20),
 
   -- Santiago del Estero
   (61, 4200, 'Santiago del Estero Capital', 21),
@@ -353,13 +353,22 @@ INSERT INTO public.tipodocumento (idtipodocumento, descripcion) VALUES
   (4, 'DNI Ejemplar D');
 
 INSERT INTO public.domicilio (iddomicilio, calle, dpto, nrocalle, piso, idlocalidad) VALUES
-  (1, 'Lavaisse', '-', 610, 0, 20);
+  (1, 'Lavaisse', '-', 610, 0, 20),
+  (2, 'Patricio Cullen', '-', 6161, 0, 20),
+  (3, 'Antonia Godoy', '-', 6145, 0, 20),
+  (4, 'Angel Cassanello', '-', 654, 0, 20);
 
 INSERT INTO public.persona (cuit, apellido, nombre, cuil, documento, fechanacimiento, iddomicilio, idtipodocumento, idtipoestadocivil, idtiposexo) VALUES
-  (1, 'Oggier', 'Ivan Matias', 11, '11111111', '2001-01-01 12:00:00', 1, 1, 1, 1);
+  (1, 'Oggier', 'Ivan Matias', 11, '11111111', '2001-01-01 12:00:00', 1, 1, 1, 1),
+  (2, 'Franzen', 'Fernando Jose', 22, '22222222', '2000-10-19 7:00:00', 2, 1, 1, 1),
+  (3, 'Bracalenti', 'Jose', 33, '33333333', '2001-01-01 13:00:00', 3, 1, 1, 1),
+  (4, 'Alegre', 'Joaquin', 44, '44444444', '2001-01-01 18:00:00', 4, 1, 1, 1);
 
 INSERT INTO public.cliente (idcliente, fecharegistro, profesion, idtipocondicioniva, idtipoestadocliente, cuit) VALUES
-  (0100000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 1);
+  (0001100000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 1),
+  (0001200000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 2),
+  (0001300000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 3),
+  (0001400000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 4);
   
 INSERT INTO public.cobertura( idcobertura, descripcion) VALUES
  (1, 'Responsabilidad Civil'),

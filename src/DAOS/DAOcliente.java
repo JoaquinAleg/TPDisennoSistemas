@@ -2,7 +2,6 @@ package DAOS;
 
 import java.util.List;
 
-import POJOS.AnioFabricacion;
 import POJOS.Cliente;
 import interfaces.clienteDAO;
 import jakarta.persistence.EntityManager;
@@ -69,5 +68,11 @@ public class DAOcliente implements clienteDAO{
 			return null;
 		}
 	}
-
+	public List<Cliente> getClientes(Long numeroCliente, String apellido, String nombre, Long tipoDocumento, String numeroDocumento){
+		return this.getAll().stream().filter(a -> (numeroCliente == null || a.getIdCliente() == (long)numeroCliente))
+									 .filter(a -> (apellido == null || apellido.equals("") || a.getPersona().getApellido().equals(apellido)))
+									 .filter(a -> (nombre == null || nombre.equals("") || a.getPersona().getNombre().equals(nombre)))
+									 .filter(a -> (tipoDocumento == null || a.getPersona().getIdTipoDocumento().getIdTipoDocumento() == (long)tipoDocumento))
+									 .filter(a -> (numeroDocumento == null || numeroDocumento.equals("") || a.getPersona().getDocumento().equals(numeroDocumento))).toList();									  
+	}
 }
