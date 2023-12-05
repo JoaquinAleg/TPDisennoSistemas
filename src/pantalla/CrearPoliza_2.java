@@ -15,28 +15,14 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.Year;
-import java.time.YearMonth;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
-import CustomRenderers.ListadoDTORenderer;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
@@ -46,6 +32,14 @@ import Gestores.GestorPoliza;
 
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.awt.event.ActionEvent;
 ;
 
 
@@ -54,13 +48,8 @@ public class CrearPoliza_2 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private ArrayList<HijosDTO> cantidadHijos;
+	private ArrayList<HijosDTO> hijos;
 	private GestorPoliza gestorPoliza;
-	List<ListadoDTO> modeloDTO;
-	String[] modelos;
-	private DatosPolizaDTO datosPolizaDTO;
-	private GestorCliente gestorCliente;
-	private NombresDTO nombresDTO;
 	private List<ListadoDTO> sexoDTO;
 	private List<ListadoDTO> estadoCivilDTO;
 	private String[] sexos;
@@ -69,40 +58,11 @@ public class CrearPoliza_2 extends JFrame {
 	private JComboBox<String> garage;
 	private JComboBox<String> tuercas;
 	private JComboBox<String> rastreoVehicular;
-	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				
-				try {
-					//GestorPoliza gestorPoliza = GestorPoliza.getInstance();
-					//GestorCliente gestorCliente = GestorCliente.getInstance();
-					//DatosPolizaDTO datosPolizaDTO = DatosPolizaDTO.getInstance();
-					//CrearPoliza_2 frame = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
-					//frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO, JFrame anterior) {
-		this.datosPolizaDTO=datosPolizaDTO;
+	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO,GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO, JFrame anterior) {
 		this.gestorPoliza = gestorPoliza;
-		this.gestorCliente = gestorCliente;
-		this.nombresDTO = nombresDTO;
-		this.cantidadHijos = new ArrayList<HijosDTO>();
-		
+
 		List<ListadoDTO> medidaSeguridadDTO = this.gestorPoliza.getMedidasSeguridad();
-		
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,6 +72,7 @@ public class CrearPoliza_2 extends JFrame {
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -132,9 +93,9 @@ public class CrearPoliza_2 extends JFrame {
 		contentPane.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		String numeroCliente = new String("numeroCliente");
 		
@@ -192,14 +153,9 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
 		
-
-//		modeloDTO = this.gestorPoliza.getMedidasSeguridad();
-//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-//		JComboBox <String> garage = new JComboBox(modelos);
-		garage = new JComboBox<>();
+		garage = new JComboBox<String>();
 		garage.addItem("No");
 		garage.addItem("Si");
-		garage.setSelectedIndex(0);
 		garage.setBackground(SystemColor.inactiveCaptionBorder);
 		garage.setToolTipText("");
 		garage.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -220,13 +176,9 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-//		modeloDTO = this.gestorPoliza.getAlarmas();
-//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-//		JComboBox <String> alarma = new JComboBox(modelos);
-		this.alarma = new JComboBox<>();
+		alarma = new JComboBox<String>();
 		alarma.addItem("No");
 		alarma.addItem("Si");
-		alarma.setSelectedIndex(0);
 		alarma.setBackground(SystemColor.inactiveCaptionBorder);
 		alarma.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_alarma = new GridBagConstraints();
@@ -246,13 +198,9 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblMarcaDelVehculo.gridy = 1;
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
-//		modeloDTO = this.gestorPoliza.getRastreoVehicular();
-//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-//		JComboBox <String> rastreoVehicular = new JComboBox(modelos);
-		rastreoVehicular = new JComboBox<>();
+		rastreoVehicular = new JComboBox<String>();
 		rastreoVehicular.addItem("No");
 		rastreoVehicular.addItem("Si");
-		rastreoVehicular.setSelectedIndex(0);
 		rastreoVehicular.setBackground(SystemColor.inactiveCaptionBorder);
 		rastreoVehicular.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_rastreoVehicular = new GridBagConstraints();
@@ -272,13 +220,9 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblNewLabel_1_1.gridy = 1;
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
-//		modeloDTO = this.gestorPoliza.getTuercas();
-//		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-//		JComboBox <String> tuercas = new JComboBox(modelos);
-		tuercas = new JComboBox<>();
+		tuercas = new JComboBox<String>();
 		tuercas.addItem("No");
 		tuercas.addItem("Si");
-		tuercas.setSelectedIndex(0);
 		tuercas.setBackground(SystemColor.inactiveCaptionBorder);
 		tuercas.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_tuercas = new GridBagConstraints();
@@ -288,16 +232,56 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_tuercas.gridy = 1;
 		panel_1.add(tuercas, gbc_tuercas);
 		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(SystemColor.inactiveCaptionBorder);
+		panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+		gbc_panel_4.insets = new Insets(0, 20, 0, 20);
+		gbc_panel_4.fill = GridBagConstraints.BOTH;
+		gbc_panel_4.gridx = 0;
+		gbc_panel_4.gridy = 4;
+		panel.add(panel_4, gbc_panel_4);
+		GridBagLayout gbl_panel_4 = new GridBagLayout();
+		gbl_panel_4.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_panel_4.rowHeights = new int[]{0, 0, 0};
+		gbl_panel_4.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		panel_4.setLayout(gbl_panel_4);
+		
 		JLabel titulo = new JLabel("Declaración de Hijos");
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		titulo.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		titulo.setBorder(null);
 		GridBagConstraints gbc_titulo = new GridBagConstraints();
-		gbc_titulo.fill = GridBagConstraints.HORIZONTAL;
-		gbc_titulo.insets = new Insets(0, 20, 0, 20);
+		gbc_titulo.insets = new Insets(0, 30, 5, 5);
 		gbc_titulo.gridx = 0;
-		gbc_titulo.gridy = 3;
-		panel.add(titulo, gbc_titulo);
+		gbc_titulo.gridy = 0;
+		panel_4.add(titulo, gbc_titulo);
+		
+		JButton Boton_Continuar_1 = new JButton("Ver Hijos");
+		if(hijos.size() == 0) {Boton_Continuar_1.setEnabled(false);} else {Boton_Continuar_1.setEnabled(false);}
+		Boton_Continuar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this,anterior);
+				
+				try {
+					FuturaPantalla.setVisible(true);
+				} catch(Exception er) {
+					er.printStackTrace();
+				}
+				CrearPoliza_2.this.setVisible(false);
+				CrearPoliza_2.this.dispose();
+			}
+		});
+		Boton_Continuar_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		Boton_Continuar_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		Boton_Continuar_1.setBackground(SystemColor.controlHighlight);
+		GridBagConstraints gbc_Boton_Continuar_1 = new GridBagConstraints();
+		gbc_Boton_Continuar_1.insets = new Insets(5, 0, 5, 30);
+		gbc_Boton_Continuar_1.anchor = GridBagConstraints.EAST;
+		gbc_Boton_Continuar_1.gridx = 2;
+		gbc_Boton_Continuar_1.gridy = 0;
+		panel_4.add(Boton_Continuar_1, gbc_Boton_Continuar_1);
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBorder(new MatteBorder(0, 2, 2, 2, (Color) new Color(0, 0, 0)));
@@ -306,7 +290,7 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_panel_1_1.insets = new Insets(0, 20, 20, 20);
 		gbc_panel_1_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1_1.gridx = 0;
-		gbc_panel_1_1.gridy = 4;
+		gbc_panel_1_1.gridy = 5;
 		panel.add(panel_1_1, gbc_panel_1_1);
 		GridBagLayout gbl_panel_1_1 = new GridBagLayout();
 		gbl_panel_1_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
@@ -315,7 +299,6 @@ public class CrearPoliza_2 extends JFrame {
 		gbl_panel_1_1.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_1_1.setLayout(gbl_panel_1_1);
 		
-
 		JLabel lblFechaDeNacimiento = new JLabel("Fecha de nacimiento:");
 		lblFechaDeNacimiento.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFechaDeNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -328,6 +311,7 @@ public class CrearPoliza_2 extends JFrame {
 		
 		JDateChooser nacimiento = new JDateChooser();
 		nacimiento.setDate(Calendar.getInstance().getTime());
+		nacimiento.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_nacimiento = new GridBagConstraints();
 		gbc_nacimiento.insets = new Insets(30, 5, 5, 30);
 		gbc_nacimiento.fill = GridBagConstraints.BOTH;
@@ -345,13 +329,16 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblNewLabel_1_2.gridy = 0;
 		panel_1_1.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 		
-		sexoDTO = this.gestorPoliza.getSexos();
-		JComboBox<ListadoDTO> sexo = new JComboBox<>(sexoDTO.toArray(new ListadoDTO[sexoDTO.size()]));
-		sexo.setRenderer(new ListadoDTORenderer());
+		//sexoDTO = this.gestorPoliza.getSexos();
+		sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> sexo = new JComboBox<>(sexos);
+//		JComboBox sexo = new JComboBox();
+//		sexo.addItem("Masculino");
+//		sexo.addItem("Femenino");
 		sexo.setBackground(SystemColor.inactiveCaptionBorder);
 		sexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_sexo = new GridBagConstraints();
-		gbc_sexo.fill = GridBagConstraints.BOTH;
+		gbc_sexo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_sexo.insets = new Insets(30, 0, 5, 50);
 		gbc_sexo.gridx = 4;
 		gbc_sexo.gridy = 0;
@@ -367,9 +354,10 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblEstadoCivil.gridy = 2;
 		panel_1_1.add(lblEstadoCivil, gbc_lblEstadoCivil);
 		
-		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
-		JComboBox<ListadoDTO> estadoCivil = new JComboBox<>(estadoCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]));
-		estadoCivil.setRenderer(new ListadoDTORenderer());
+		//estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
+		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+		JComboBox <String> estadoCivil = new JComboBox<>(estadosCivil);
+
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_estadoCivil = new GridBagConstraints();
@@ -379,44 +367,33 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_estadoCivil.gridy = 2;
 		panel_1_1.add(estadoCivil, gbc_estadoCivil);
 		
-		JButton anadirHijo = new JButton("Añadir hijo");//Cambiar los carteles
-		anadirHijo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) < 6570 | 
-							ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) > 10950) {
-						JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
-					}else {
-						Boolean A = estadoCivil.getSelectedItem().equals(" ");
-						Boolean B = sexo.getSelectedItem().equals(" ");
-						if( A || B ) {
-							JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
-						}else {
-
-//							Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(sexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-//							Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-							HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), ((ListadoDTO)estadoCivil.getSelectedItem()).getId(), ((ListadoDTO)sexo.getSelectedItem()).getId());
-							cantidadHijos.add(hijo);
-							JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
-							CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, anterior);
-					try {
-						CPoliza.setVisible(true);
-					} catch(Exception er) {
-						er.printStackTrace();
-					}
-					CrearPoliza_2.this.setVisible(false);
-					CrearPoliza_2.this.dispose();
-			}
-			}}
-			
-		});
-		anadirHijo.setBackground(SystemColor.controlHighlight);
-		anadirHijo.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		JButton añadirHijo = new JButton("Añadir hijo");
+		añadirHijo.setBackground(SystemColor.controlHighlight);
+		añadirHijo.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.gridwidth = 3;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.insets = new Insets(0, 0, 10, 5);
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 3;
-		panel_1_1.add(anadirHijo, gbc_btnNewButton);
+		panel_1_1.add(añadirHijo, gbc_btnNewButton);
+
+		añadirHijo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) < 6570 | 
+						ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) > 10950) {
+					JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
+				}else {
+					HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), ((ListadoDTO)estadoCivil.getSelectedItem()).getId(), ((ListadoDTO)sexo.getSelectedItem()).getId());
+				JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
+				hijos.add(hijo);
+				CrearPoliza_2.this.contentPane.repaint();
+				CrearPoliza_2.this.contentPane.revalidate();
+				}
+			}
+			
+		});
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
@@ -426,13 +403,13 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_panel_2.anchor = GridBagConstraints.SOUTH;
 		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 5;
+		gbc_panel_2.gridy = 6;
 		panel.add(panel_2, gbc_panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[]{89, 0, 0, 89, 0};
-		gbl_panel_2.rowHeights = new int[]{23, 0, 0, 0};
+		gbl_panel_2.rowHeights = new int[]{23, 0, 0};
 		gbl_panel_2.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_2.setLayout(gbl_panel_2);
 		
 		JButton Boton_Cancelar = new JButton("Cancelar");
@@ -459,9 +436,18 @@ public class CrearPoliza_2 extends JFrame {
 		panel_2.add(Boton_Cancelar, gbc_Boton_Cancelar);
 		
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
+		Boton_Continuar.setBackground(SystemColor.controlHighlight);
+		Boton_Continuar.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		GridBagConstraints gbc_Boton_Continuar = new GridBagConstraints();
+		gbc_Boton_Continuar.insets = new Insets(10, 0, 10, 40);
+		gbc_Boton_Continuar.anchor = GridBagConstraints.EAST;
+		gbc_Boton_Continuar.gridx = 3;
+		gbc_Boton_Continuar.gridy = 0;
+		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
 		Boton_Continuar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {	
-					//datosPolizaDTO.setHijos(cantidadHijos);
+			
+			public void actionPerformed(ActionEvent e) {
+					datosPolizaDTO.setHijos(hijos);
 					List<Long> medidas = new ArrayList<>();
 					if(garage.getSelectedItem().equals("Si")){
 						Long[] idGarage = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Garage")).map(b -> b.getId()).toArray(Long[]::new);
@@ -480,7 +466,7 @@ public class CrearPoliza_2 extends JFrame {
 						medidas.add(idRastreoVehicular[0]);
 					}
 					datosPolizaDTO.setListaMedidaSeguridad(medidas);
-					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this);
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(hijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this);
 					
 					try {
 						CPoliza.setVisible(true);
@@ -491,18 +477,18 @@ public class CrearPoliza_2 extends JFrame {
 					CrearPoliza_2.this.dispose();
 			}
 		});
-		Boton_Continuar.setBackground(SystemColor.controlHighlight);
-		Boton_Continuar.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		GridBagConstraints gbc_Boton_Continuar = new GridBagConstraints();
-		gbc_Boton_Continuar.insets = new Insets(10, 0, 10, 40);
-		gbc_Boton_Continuar.anchor = GridBagConstraints.EAST;
-		gbc_Boton_Continuar.gridx = 3;
-		gbc_Boton_Continuar.gridy = 0;
-		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
 		
 		JButton Boton_Continuar_2 = new JButton("Volver");
+		Boton_Continuar_2.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		Boton_Continuar_2.setBackground(SystemColor.controlHighlight);
+		GridBagConstraints gbc_Boton_Continuar_2 = new GridBagConstraints();
+		gbc_Boton_Continuar_2.insets = new Insets(0, 0, 0, 5);
+		gbc_Boton_Continuar_2.gridx = 2;
+		gbc_Boton_Continuar_2.gridy = 0;
+		panel_2.add(Boton_Continuar_2, gbc_Boton_Continuar_2);
 		Boton_Continuar_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {							
+							
 								try {
 									anterior.setVisible(true);
 								} catch(Exception er) {
@@ -512,23 +498,9 @@ public class CrearPoliza_2 extends JFrame {
 								CrearPoliza_2.this.dispose();
 			}
 		});
-		Boton_Continuar_2.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		Boton_Continuar_2.setBackground(SystemColor.controlHighlight);
-		GridBagConstraints gbc_Boton_Continuar_2 = new GridBagConstraints();
-		gbc_Boton_Continuar_2.insets = new Insets(0, 0, 0, 5);
-		gbc_Boton_Continuar_2.gridx = 2;
-		gbc_Boton_Continuar_2.gridy = 0;
-		panel_2.add(Boton_Continuar_2, gbc_Boton_Continuar_2);
 
-		
 
 
 	}
-	
-	public int getAlarma() {
-		int alarm = this.alarma.getSelectedIndex();
-		return alarm;
-	}
-	
 
 }
