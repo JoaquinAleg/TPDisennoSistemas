@@ -23,6 +23,7 @@ import java.awt.SystemColor;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import CustomRenderers.ListadoDTORenderer;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
@@ -52,8 +53,8 @@ public class CrearPoliza_2 extends JFrame {
 	private GestorPoliza gestorPoliza;
 	private List<ListadoDTO> sexoDTO;
 	private List<ListadoDTO> estadoCivilDTO;
-	private String[] sexos;
-	private String[] estadosCivil;
+	private ListadoDTO[] sexos;
+	private ListadoDTO[] estadosCivil;
 	private JComboBox<String> alarma;
 	private JComboBox<String> garage;
 	private JComboBox<String> tuercas;
@@ -61,7 +62,8 @@ public class CrearPoliza_2 extends JFrame {
 
 	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO,GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO, JFrame anterior) {
 		this.gestorPoliza = gestorPoliza;
-
+		this.hijos = new ArrayList<>();
+		
 		List<ListadoDTO> medidaSeguridadDTO = this.gestorPoliza.getMedidasSeguridad();
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
@@ -259,7 +261,6 @@ public class CrearPoliza_2 extends JFrame {
 		panel_4.add(titulo, gbc_titulo);
 		
 		JButton Boton_Continuar_1 = new JButton("Ver Hijos");
-		if(hijos.size() == 0) {Boton_Continuar_1.setEnabled(false);} else {Boton_Continuar_1.setEnabled(false);}
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this,anterior);
@@ -276,6 +277,7 @@ public class CrearPoliza_2 extends JFrame {
 		Boton_Continuar_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		Boton_Continuar_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		Boton_Continuar_1.setBackground(SystemColor.controlHighlight);
+		Boton_Continuar_1.setEnabled(false);
 		GridBagConstraints gbc_Boton_Continuar_1 = new GridBagConstraints();
 		gbc_Boton_Continuar_1.insets = new Insets(5, 0, 5, 30);
 		gbc_Boton_Continuar_1.anchor = GridBagConstraints.EAST;
@@ -329,9 +331,10 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblNewLabel_1_2.gridy = 0;
 		panel_1_1.add(lblNewLabel_1_2, gbc_lblNewLabel_1_2);
 		
-		//sexoDTO = this.gestorPoliza.getSexos();
-		sexos = sexoDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> sexo = new JComboBox<>(sexos);
+		sexoDTO = this.gestorPoliza.getSexos();
+		sexos = sexoDTO.toArray(new ListadoDTO[sexoDTO.size()]);
+		JComboBox <ListadoDTO> sexo = new JComboBox<>(sexos);
+		sexo.setRenderer(new ListadoDTORenderer());
 //		JComboBox sexo = new JComboBox();
 //		sexo.addItem("Masculino");
 //		sexo.addItem("Femenino");
@@ -354,9 +357,10 @@ public class CrearPoliza_2 extends JFrame {
 		gbc_lblEstadoCivil.gridy = 2;
 		panel_1_1.add(lblEstadoCivil, gbc_lblEstadoCivil);
 		
-		//estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
-		estadosCivil = estadoCivilDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		JComboBox <String> estadoCivil = new JComboBox<>(estadosCivil);
+		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
+		estadosCivil = estadoCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]);
+		JComboBox<ListadoDTO> estadoCivil = new JComboBox<>(estadosCivil);
+		estadoCivil.setRenderer(new ListadoDTORenderer());
 
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -385,9 +389,10 @@ public class CrearPoliza_2 extends JFrame {
 						ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) > 10950) {
 					JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
 				}else {
-					HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), ((ListadoDTO)estadoCivil.getSelectedItem()).getId(), ((ListadoDTO)sexo.getSelectedItem()).getId());
+				HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), ((ListadoDTO)estadoCivil.getSelectedItem()).getId(), ((ListadoDTO)sexo.getSelectedItem()).getId());
 				JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 				hijos.add(hijo);
+				Boton_Continuar_1.setEnabled(true);
 				CrearPoliza_2.this.contentPane.repaint();
 				CrearPoliza_2.this.contentPane.revalidate();
 				}

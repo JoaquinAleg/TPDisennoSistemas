@@ -383,7 +383,7 @@ INSERT INTO public.medidaseguridad (idmedida, tipomedidaseguridad) VALUES
 (1, 'Garage'),
 (2, 'Alarma'),
 (3, 'Tuercas'),
-(4, 'Rastreo Vehicularl');
+(4, 'Rastreo Vehicular');
  
 INSERT INTO public.ajustepordescuentounidadad (idajustedescuento, ajustedescuento)
 VALUES
