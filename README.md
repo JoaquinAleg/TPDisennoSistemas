@@ -1,6 +1,6 @@
-# TPDiseñoSistemas
+# TPDiseñoSistemas  📚🖥️📚
 
-Cosas que faltan:
+📝 Cosas que faltan:
 
  - [ ] Fijarse que el vehiculo no esté registrado en otra poliza(osea ver que la patente no se repita).
  - [ ] Implementar clase Superintendencia de Seguros de la Nación que brinde la suma asegurada del vehiculo en cuestion.
