@@ -1,4 +1,4 @@
-# TPDisennoSistemas
+# TPDiseñoSistemas
 
 Cosas que faltan:
 
