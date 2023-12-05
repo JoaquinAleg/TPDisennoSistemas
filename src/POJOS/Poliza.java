@@ -98,10 +98,10 @@ public class Poliza {
 	@JoinColumn(name = "idCobertura", nullable = false, referencedColumnName = "idCobertura", 
 	foreignKey=@ForeignKey(name = "fk_CoberturaPoliza", value = ConstraintMode.CONSTRAINT))
 	private Cobertura Cobertura;
-	@ManyToOne
-	@JoinColumn(name = "idMedida", nullable = false, referencedColumnName = "idMedida", 
+	@OneToMany
+	@JoinColumn(name = "idMedida", nullable = true, referencedColumnName = "idMedida", 
 	foreignKey=@ForeignKey(name = "fk_MedidaSeguridad", value = ConstraintMode.CONSTRAINT))
-	private MedidasPoliza Medida;
+	private List<MedidasPoliza> Medidas;
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "numeroPoliza", nullable = true, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_ModificacionPoliza", value = ConstraintMode.CONSTRAINT))
@@ -133,7 +133,7 @@ public class Poliza {
 			LocalDate fechaDeInicio, LocalDate fechaDeFin, float premio, float prima, float descuentos,
 			LocalDate ultimoDiaPago, float montoTotalAbonar, String chasis, String patente, String estadoPoliza,
 			String motor, String nombreCliente, String dniCliente, LocalDate fechaCreacion, List<Cuota> cuotas,
-			TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidasPoliza medida,
+			TipoFormaPago formaPago, POJOS.Cobertura cobertura, List<MedidasPoliza> medida,
 			List<Modificacion> modificaciones, List<Hijo> hijos) {
 		super();
 		this.numeroPoliza = numeroPoliza;
@@ -167,7 +167,7 @@ public class Poliza {
 		this.cuotas = cuotas;
 		FormaPago = formaPago;
 		Cobertura = cobertura;
-		Medida = medida;
+		Medidas = medida;
 		this.modificaciones = modificaciones;
 		this.hijos = hijos;
 	}
@@ -465,12 +465,12 @@ public class Poliza {
 		Cobertura = cobertura;
 	}
 
-	public MedidasPoliza getMedida() {
-		return Medida;
+	public List<MedidasPoliza> getMedida() {
+		return Medidas;
 	}
 
-	public void setMedida(MedidasPoliza medida) {
-		Medida = medida;
+	public void setMedida(List<MedidasPoliza> medida) {
+		Medidas = medida;
 	}
 
 
