@@ -33,6 +33,7 @@ import java.util.List;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import CustomRenderers.ListadoDTOJTableRenderer;
 import CustomRenderers.ListadoDTORenderer;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
@@ -82,8 +83,8 @@ public class CrearPoliza_Cobertura extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_Cobertura(ArrayList<HijosDTO> hijos,
-			GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame anterior) {
+	public CrearPoliza_Cobertura(ArrayList<HijosDTO> hijos, GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,
+			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame anterior) {
 		this.cantidadHijos = hijos;
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
@@ -180,22 +181,27 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		DefaultTableModel modelo = new DefaultTableModel();
+		
 		modelo.addColumn("Cobertura Disponibles");
 		
+		
 		List<ListadoDTO> coberturaDTO = this.gestorPoliza.getCoberturas();
-		String[] coberturas = coberturaDTO.stream().map(c->c.getNombre()).toArray(String[]::new);
-		for(String e : coberturas) {
+		//String[] coberturas = coberturaDTO.stream().map(c->c.getNombre()).toArray(String[]::new);
+		ListadoDTO[] coberturas = coberturaDTO.toArray(new ListadoDTO[coberturaDTO.size()]);
+		for(ListadoDTO e : coberturas) {
 			modelo.addRow( new Object[]{e});
 		}
 
 		table = new JTable(modelo);
 		table.setToolTipText("");
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getColumnModel().getColumn(0).setCellRenderer(new ListadoDTOJTableRenderer());
 		table.setForeground(Color.BLACK);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setFillsViewportHeight(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0));
 		table.setBackground(Color.WHITE);
+		table.setRowHeight(30);
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.insets = new Insets(0, 0, 5, 0);
 		gbc_table.fill = GridBagConstraints.BOTH;
@@ -296,39 +302,39 @@ public class CrearPoliza_Cobertura extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-				datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().minusDays(1));
-				Long[] idFormaPago = modeloTipoFormaPagoDTO.stream().filter(a -> a.getNombre().equals(formasPago.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-				datosPolizaDTO.setIdFormaPago(idFormaPago[0]);
-				Long[] idCobertura = coberturaDTO.stream().filter(a -> a.getNombre().equals(modelo.getValueAt(table.getSelectedRow(), 0))).map(b -> b.getId()).toArray(Long[]::new);
-				System.out.println(modelo.getValueAt(table.getSelectedRow(), 0));
-				System.out.println(idCobertura.toString());
-				datosPolizaDTO.setIdCobertura(idCobertura[0]);
 				if(formasPago.getSelectedItem().equals(" ")  || table.getSelectionModel().isSelectionEmpty() ) {
 					JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
 				}else {
-				if(formasPago.getSelectedItem().equals("Mensual")) {
-				CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
-				
-				try {
-					CPoliza.setVisible(true);
-				} catch(Exception er) {
-					er.printStackTrace();
-				}
-				CrearPoliza_Cobertura.this.setVisible(false);
-				CrearPoliza_Cobertura.this.dispose();
-				} else {
-					CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
-					
-					try {
-						CPoliza.setVisible(true);
-					} catch(Exception er) {
-						er.printStackTrace();
+					datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+					datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().minusDays(1));
+					//Long[] idFormaPago = modeloTipoFormaPagoDTO.stream().filter(a -> a.getNombre().equals(formasPago.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+					datosPolizaDTO.setIdFormaPago(((ListadoDTO)formasPago.getSelectedItem()).getId());
+					//Long[] idCobertura = coberturaDTO.stream().filter(a -> a.getNombre().equals(modelo.getValueAt(table.getSelectedRow(), 0))).map(b -> b.getId()).toArray(Long[]::new);
+					//System.out.println(modelo.getValueAt(table.getSelectedRow(), 0));
+					//System.out.println(idCobertura.toString());
+					datosPolizaDTO.setIdCobertura(((ListadoDTO)modelo.getValueAt(table.getSelectedRow(), 0)).getId());
+					if(formasPago.getSelectedItem().equals("Mensual")) {
+						CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
+						
+						try {
+							CPoliza.setVisible(true);
+						} catch(Exception er) {
+							er.printStackTrace();
+						}
+						CrearPoliza_Cobertura.this.setVisible(false);
+						CrearPoliza_Cobertura.this.dispose();
+					} else {
+						CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
+						
+						try {
+							CPoliza.setVisible(true);
+						} catch(Exception er) {
+							er.printStackTrace();
+						}
+						CrearPoliza_Cobertura.this.setVisible(false);
+						CrearPoliza_Cobertura.this.dispose();
 					}
-					CrearPoliza_Cobertura.this.setVisible(false);
-					CrearPoliza_Cobertura.this.dispose();
-				}
-			}}
+				}}
 		});
 		Boton_Continuar.setBackground(SystemColor.controlHighlight);
 		Boton_Continuar.setFont(new Font("Tahoma", Font.PLAIN, 40));
@@ -360,10 +366,6 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_Boton_Continuar_2.gridx = 2;
 		gbc_Boton_Continuar_2.gridy = 0;
 		panel_2.add(Boton_Continuar_2, gbc_Boton_Continuar_2);
-
-
-
-
 	}
 
 }

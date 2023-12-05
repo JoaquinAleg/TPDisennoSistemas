@@ -273,20 +273,6 @@ public class GestorPoliza {
     		if(!(dp.getSiniestrosUltimoA() instanceof Long)){
     			throw new VerificationException("SiniestrosUltimoCliente invalido");
     		}
-    		/*
-    		if(!(dp.isGuardadoEnGarage() instanceof Boolean)){
-    			throw new VerificationException("GuardadoEnGarageCliente invalido");
-    		}
-    		if(!(dp.isTuercasAntiRobos() instanceof Boolean)){
-    			throw new VerificationException("TuercaAntiRoboCliente invalido");
-    		}
-    		if(!(dp.isAlarma() instanceof Boolean)){
-    			throw new VerificationException("AlarmaCliente invalido");
-    		}
-    		if(!(dp.isDispositivoRastreo() instanceof Boolean)){
-    			throw new VerificationException("DispositivoRastreoCliente invalido");
-    		}
-    		*/
     		if(!(dp.getComienzoVigencia() instanceof LocalDate)){
     			throw new VerificationException("ComienzoVigenciaCliente invalido");
     		}
@@ -443,8 +429,7 @@ public class GestorPoliza {
 	public List<ListadoDTO> getCoberturas(){
 		List<Cobertura> coberturas = daoCobertura.getAll();
 		List<ListadoDTO> coberturasDTO = new ArrayList<>();
-		ListadoDTO coberturaDTO = new ListadoDTO(" ",null);
-		coberturasDTO.add(coberturaDTO);
+		ListadoDTO coberturaDTO;
 		for(Cobertura e : coberturas) {
 			coberturaDTO = new ListadoDTO(String.valueOf(e.getDescripcion()), e.getIdCobertura());
 			coberturasDTO.add(coberturaDTO);

@@ -56,6 +56,10 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 	private String[] sexos;
 	private String[] estadosCivil;
 	private NombresDTO nombresDTO;
+	private JComboBox<String> alarma;
+	private JComboBox<String> garage;
+	private JComboBox<String> tuercas;
+	private JComboBox<String> rastreoVehicular;
 
 	public CrearPoliza_HijosExistentes(ArrayList<HijosDTO> hijos,GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,
 			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame anterior) {
@@ -156,7 +160,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
 		
-		JComboBox <String> garage = new JComboBox();
+		garage = new JComboBox<String>();
 		garage.addItem("No");
 		garage.addItem("Si");
 		garage.setBackground(SystemColor.inactiveCaptionBorder);
@@ -179,7 +183,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JComboBox alarma = new JComboBox();
+		alarma = new JComboBox<String>();
 		alarma.addItem("No");
 		alarma.addItem("Si");
 		alarma.setBackground(SystemColor.inactiveCaptionBorder);
@@ -201,7 +205,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_lblMarcaDelVehculo.gridy = 1;
 		panel_1.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
-		JComboBox rastreoVehicular = new JComboBox();
+		rastreoVehicular = new JComboBox<String>();
 		rastreoVehicular.addItem("No");
 		rastreoVehicular.addItem("Si");
 		rastreoVehicular.setBackground(SystemColor.inactiveCaptionBorder);
@@ -223,7 +227,7 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 		gbc_lblNewLabel_1_1.gridy = 1;
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
-		JComboBox tuercas = new JComboBox();
+		tuercas = new JComboBox<String>();
 		tuercas.addItem("No");
 		tuercas.addItem("Si");
 		tuercas.setBackground(SystemColor.inactiveCaptionBorder);

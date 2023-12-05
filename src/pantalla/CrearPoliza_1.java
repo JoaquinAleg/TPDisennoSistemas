@@ -15,6 +15,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.LineBorder;
 
+import CustomRenderers.ListadoDTORenderer;
 import DTOS.ClienteDTO;
 import DTOS.DatosPolizaDTO;
 import DTOS.ListadoDTO;
@@ -53,24 +54,24 @@ public class CrearPoliza_1 extends JFrame {
 	private JTextField text_Patente;
 	private JTextField text_Chasis;
 	private JTextField text_Kilometros;
-	private JComboBox<String> text_Siniestros;
-	private String ProvinciaSeleccionada;
+	private JComboBox<ListadoDTO> text_Siniestros;
+	private ListadoDTO ProvinciaSeleccionada;
 	private Long[] idProvincia;
-	private String[] localidades = {" "};
-	private JComboBox<String> LocalidadRiesgo = new JComboBox<>(localidades);
+	private ListadoDTO[] localidades;
+	private JComboBox<ListadoDTO> LocalidadRiesgo = new JComboBox<>();
 	private List<ListadoDTO> localidadDTO;
 	private String ModeloSeleccionado;
 	private Long[] idMarcaVehiculo;
-	private String[] modelos = {" "};
+	private ListadoDTO[] modelos;
 	private List<ListadoDTO> modelosDTO;
-	private JComboBox<String> modeloVehiculo = new JComboBox<>(modelos);
-	private String[] anios = {" "};
+	private JComboBox<ListadoDTO> modeloVehiculo = new JComboBox<>();
+	private ListadoDTO[] anios;
 	private Long[] idModeloVehiculo;
 	private List<ListadoDTO> anioDTO;
-	private JComboBox<String> MarcaVehiculo_1 = new JComboBox<>(anios);
+	private JComboBox<ListadoDTO> MarcaVehiculo_1 = new JComboBox<>();
 	private Long numeroCliente;
-	private String marcaParaPantalla = "";
-	private String modeloParaPantalla = "";
+	private ListadoDTO marcaParaPantalla;
+	private ListadoDTO modeloParaPantalla;
 	private ClienteDTO clienteDTO;
 	
 
@@ -194,37 +195,25 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
 		
-		/*Explicion del metodo de funcionamiento
-		 * ListadoDTO es la clase que usaremos para listar los datos necesarios
-		 * esta clase guarda 2 cosas:
-		 * 	-	El nombre de lo que guardamos, por ejemplo si guardamos provincias, va a guardar los nombres de
-		 * 		las provincias
-		 * 	-	El id de lo que guardamos,en nuestro ejemplo el id de las provincias, que serviran para el DatosPolizaDTO
-		 * 
-		 * ahora bien en la linea:
-		 * 	List<ListadoDTO> provinciaDTO = this.gestorPoliza.getProvincias();
-		 * lo que hacemos es generar un listado invocando al metodo dentro del GestroPoliza, que traiga lo que queremos
-		 * en este caso un listado del tipo Listado de provincias.
-		 * 
-		 * Luego en la linea:
-		 * 	String[] provincias = (String[]) provinciasDTO.stream().map(p -> p.getNombre()).toArray();
-		 * creamos solamente un listado string para mostrar en el JComboBox
-		 * 
-		 * 
-		 */
-		
 		//PROVINCIA--RIESGO/////////////////////////////////////////////////////////////////
 		List<ListadoDTO> provinciaDTO = this.gestorPoliza.getProvincias();
-		String[] provincias = provinciaDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		//String[] provincias = {"Santa Fe", "Cordoba", "Mendoza"};		
-		JComboBox<String> ProvinciaRiesgo = new JComboBox<>(provincias);
+		//ANTERIOR
+		//String[] provincias = provinciaDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);	
+		//JComboBox<String> ProvinciaRiesgo = new JComboBox<>(provincias);
+		//NUEVO
+		ListadoDTO[] provincias = this.gestorPoliza.getProvincias().toArray(new ListadoDTO[provinciaDTO.size()]);
+		JComboBox<ListadoDTO> ProvinciaRiesgo = new JComboBox<>(provincias);
+		ProvinciaRiesgo.setRenderer(new ListadoDTORenderer());
 		ProvinciaRiesgo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProvinciaSeleccionada = (String)ProvinciaRiesgo.getSelectedItem();
-				idProvincia = provinciaDTO.stream().filter(a -> a.getNombre().equals(ProvinciaSeleccionada)).map(b -> b.getId()).toArray(Long[]::new);
-				localidadDTO = gestorPoliza.getLocalidades(idProvincia[0]);
-				localidades = localidadDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(localidades);
+				//ProvinciaSeleccionada = (String)ProvinciaRiesgo.getSelectedItem();
+				ProvinciaSeleccionada = (ListadoDTO)ProvinciaRiesgo.getSelectedItem();
+				//idProvincia = provinciaDTO.stream().filter(a -> a.getNombre().equals(ProvinciaSeleccionada)).map(b -> b.getId()).toArray(Long[]::new);
+				//localidadDTO = gestorPoliza.getLocalidades(idProvincia[0]);
+				localidadDTO = gestorPoliza.getLocalidades(ProvinciaSeleccionada.getId());
+				localidades = localidadDTO.toArray(new ListadoDTO[localidadDTO.size()]);
+				//localidades = localidadDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
+				DefaultComboBoxModel<ListadoDTO> nuevoModelo = new DefaultComboBoxModel<>(localidades);
 				LocalidadRiesgo.setModel(nuevoModelo);
 			}
 		});
@@ -249,8 +238,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		//LOCALIDAD--RIESGO/////////////////////////////////////////////////////////////////
-		//String[] localidades = {"Santa Fe", "Esperanza", "Santo Tome", "Rafaela"};	
-		//LocalidadRiesgo = new JComboBox<>(localidades);
+		LocalidadRiesgo.setRenderer(new ListadoDTORenderer());
 		LocalidadRiesgo.setBackground(SystemColor.inactiveCaptionBorder);
 		LocalidadRiesgo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_LocalidadRiesgo = new GridBagConstraints();
@@ -272,16 +260,15 @@ public class CrearPoliza_1 extends JFrame {
 		
 		//MARCA///////////////////////////////////////////////////////////////////////////
 		List<ListadoDTO> marcaDTO = this.gestorPoliza.getMarcas();
-		String[] marcas = marcaDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		//String[] marcas = {"Renaul", "Fiat", "Ford", "Chevrolet"};	
-		JComboBox<String> MarcaVehiculo = new JComboBox<>(marcas);
+		ListadoDTO[] marcas = marcaDTO.toArray(new ListadoDTO[marcaDTO.size()]);	
+		JComboBox<ListadoDTO> MarcaVehiculo = new JComboBox<>(marcas);
+		MarcaVehiculo.setRenderer(new ListadoDTORenderer());
 		MarcaVehiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				marcaParaPantalla = (String)MarcaVehiculo.getSelectedItem();
-				idMarcaVehiculo = marcaDTO.stream().filter(a -> a.getNombre().equals(marcaParaPantalla)).map(b -> b.getId()).toArray(Long[]::new);
-				modelosDTO = gestorPoliza.getModelos(idMarcaVehiculo[0]);
-				modelos = modelosDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(modelos);
+				marcaParaPantalla = (ListadoDTO)MarcaVehiculo.getSelectedItem();
+				modelosDTO = gestorPoliza.getModelos(marcaParaPantalla.getId());
+				modelos = modelosDTO.toArray(new ListadoDTO[modelosDTO.size()]);
+				DefaultComboBoxModel<ListadoDTO> nuevoModelo = new DefaultComboBoxModel<>(modelos);
 				modeloVehiculo.setModel(nuevoModelo);
 			}
 		});
@@ -303,19 +290,18 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_lblNewLabel_1_1.gridx = 2;
 		gbc_lblNewLabel_1_1.gridy = 1;
 		panel_1.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
+		modeloVehiculo.setRenderer(new ListadoDTORenderer());
 		modeloVehiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				modeloParaPantalla = (String)modeloVehiculo.getSelectedItem();
-				idModeloVehiculo = modelosDTO.stream().filter(a -> a.getNombre().equals(modeloParaPantalla)).map(b -> b.getId()).toArray(Long[]::new);
-				anioDTO = gestorPoliza.getAniosFabricacion(idModeloVehiculo[0]);
-				anios = anioDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-				DefaultComboBoxModel<String> nuevoModelo = new DefaultComboBoxModel<>(anios);
+				modeloParaPantalla = (ListadoDTO)modeloVehiculo.getSelectedItem();
+				anioDTO = gestorPoliza.getAniosFabricacion(modeloParaPantalla.getId());
+				anios = anioDTO.toArray(new ListadoDTO[anioDTO.size()]);
+				DefaultComboBoxModel<ListadoDTO> nuevoModelo = new DefaultComboBoxModel<>(anios);
 				MarcaVehiculo_1.setModel(nuevoModelo);
 			}
 		});
 		
 		//MODELO///////////////////////////////////////////////////////////////////////////
-		//String[] modelos = {"Senic", "Megane", "Alaskan", "Fluence"};	
 		modeloVehiculo.setBackground(SystemColor.inactiveCaptionBorder);
 		modeloVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_modeloVehiculo = new GridBagConstraints();
@@ -336,8 +322,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(AñoVehiculo, gbc_AñoVehiculo);
 		
 		//ANIO--FABRICACION///////////////////////////////////////////////////////////////////////////
-		//String[] anios = {"2000", "2001", "2002", "2003"};
-		//JComboBox<String> MarcaVehiculo_1 = new JComboBox<>(anios);
+		MarcaVehiculo_1.setRenderer(new ListadoDTORenderer());
 		MarcaVehiculo_1.setBackground(SystemColor.inactiveCaptionBorder);
 		MarcaVehiculo_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_MarcaVehiculo_1 = new GridBagConstraints();
@@ -461,10 +446,11 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_Siniestros.gridx = 0;
 		gbc_Siniestros.gridy = 5;
 		panel_1.add(Siniestros, gbc_Siniestros);
-		//CAMBIE DE JComboBox a JTextField, PORQUE SI TENGO MAS SINIESTROS DE LOS QUE APARECE EN LA LISTA?
+		
 		List<ListadoDTO> siniestrosDTO = gestorPoliza.getSiniestros();
-		String[] siniestros = siniestrosDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
-		text_Siniestros = new JComboBox<String>(siniestros);
+		ListadoDTO[] siniestros = siniestrosDTO.toArray(new ListadoDTO[siniestrosDTO.size()]);
+		text_Siniestros = new JComboBox<ListadoDTO>(siniestros);
+		text_Siniestros.setRenderer(new ListadoDTORenderer());
 		text_Siniestros.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Siniestros.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_Box_Siniestros = new GridBagConstraints();
@@ -528,36 +514,41 @@ public class CrearPoliza_1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			// acá tendrían que poner un if(cantidadhijos) a ver si se tira CrearPoliza_2 [caso sin hijos] o CrearPoliza_HijosExistentes.
 						
-						Boolean A = !ProvinciaRiesgo.getSelectedItem().equals(" ");
-						Boolean B = !LocalidadRiesgo.getSelectedItem().equals(" ");
-						Boolean C = !MarcaVehiculo.getSelectedItem().equals(" ");
-						Boolean D = !modeloVehiculo.getSelectedItem().equals(" ");
-						Boolean E = !MarcaVehiculo_1.getSelectedItem().equals(" ");
-						Boolean F = !(text_Asegurado.getText() == null || contieneCaracter(text_Asegurado.getText()));
-						Boolean G = !(text_Motor.getText() == null);
-						Boolean H = !(text_Chasis.getText() == null);
-						Boolean I = !(text_Kilometros.getText() == null || contieneCaracter(text_Kilometros.getText()));
-						//Boolean J = !(text_Siniestros.getText() == null);
-						Boolean K = !(text_Patente.getText() == null);
+						Boolean A = !((ListadoDTO)ProvinciaRiesgo.getSelectedItem()).getNombre().equals(" ");
+						Boolean B = false;
+						if(A) {
+							B = !((ListadoDTO)LocalidadRiesgo.getSelectedItem()).getNombre().equals(" ");
+						}
+						Boolean C = !((ListadoDTO)MarcaVehiculo.getSelectedItem()).getNombre().equals(" ");
+						Boolean D = false;
+						Boolean E = false;
+						if(C) {
+							D = !((ListadoDTO)modeloVehiculo.getSelectedItem()).getNombre().equals(" ");
+							if(D) {
+								E = !((ListadoDTO)MarcaVehiculo_1.getSelectedItem()).getNombre().equals(" ");
+							}
+						}
+						Boolean F = !(text_Asegurado.getText().equals("") || contieneCaracter(text_Asegurado.getText()));
+						Boolean G = !(text_Motor.getText().equals(""));
+						Boolean H = !(text_Chasis.getText().equals(""));
+						Boolean I = !(text_Kilometros.getText().equals("") || contieneCaracter(text_Kilometros.getText()));
+						Boolean J = !((ListadoDTO)text_Siniestros.getSelectedItem()).getNombre().equals(" ");
+						Boolean K = !(text_Patente.getText().equals(""));
 						
 						
 						
-						if(A &&  B && C && D && E && F && G && H && I && K) {
+						if(A &&  B && C && D && E && F && G && H && I && J && K) {
 							DatosPolizaDTO datosPolizaDTO = new DatosPolizaDTO();
-							nombresDTO = new NombresDTO(marcaParaPantalla, modeloParaPantalla);
-							Long[] idLocalidad= localidadDTO.stream().filter(a -> a.getNombre().equals(LocalidadRiesgo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-							datosPolizaDTO.setIdLocalidadRiesgo(idLocalidad[0]);
-							Long[] idModeloVehiculo = modelosDTO.stream().filter(a -> a.getNombre().equals(modeloVehiculo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-							datosPolizaDTO.setIdModeloVehiculo(idModeloVehiculo[0]);
-							Long[] idAnioFabricacion = anioDTO.stream().filter(a -> a.getNombre().equals(MarcaVehiculo_1.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-							datosPolizaDTO.setIdAnioVehiculo(idAnioFabricacion[0]);
+							nombresDTO = new NombresDTO(marcaParaPantalla.getNombre(), modeloParaPantalla.getNombre());
+							datosPolizaDTO.setIdLocalidadRiesgo(((ListadoDTO)LocalidadRiesgo.getSelectedItem()).getId());
+							datosPolizaDTO.setIdModeloVehiculo(((ListadoDTO)modeloVehiculo.getSelectedItem()).getId());
+							datosPolizaDTO.setIdAnioVehiculo(((ListadoDTO)MarcaVehiculo_1.getSelectedItem()).getId());
 							datosPolizaDTO.setSumaAsegurada(Float.parseFloat(text_Asegurado.getText()));
 							datosPolizaDTO.setMotor(text_Motor.getText());
 							datosPolizaDTO.setChasis(text_Chasis.getText());
 							datosPolizaDTO.setPatente(text_Patente.getText());
 							datosPolizaDTO.setKilometrosPorAnio(Integer.parseInt(text_Kilometros.getText()));
-							Long[] idSiniestro = siniestrosDTO.stream().filter(a -> a.getNombre().equals(text_Siniestros.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-							datosPolizaDTO.setSiniestrosUltimoA(idSiniestro[0]);
+							datosPolizaDTO.setSiniestrosUltimoA(((ListadoDTO)text_Siniestros.getSelectedItem()).getId());
 							
 							datosPolizaDTO.setNombre(clienteDTO.getNombre());
 							datosPolizaDTO.setApellido(clienteDTO.getApellido());
@@ -568,7 +559,7 @@ public class CrearPoliza_1 extends JFrame {
 							datosPolizaDTO.setPrima((float)0.03);
 							datosPolizaDTO.setPremio(datosPolizaDTO.getSumaAsegurada()*datosPolizaDTO.getPrima());
 							
-							
+							/*
 							System.out.println(datosPolizaDTO.getApellido());
 							System.out.println(datosPolizaDTO.getNombre());
 							System.out.println(datosPolizaDTO.getChasis());
@@ -579,6 +570,7 @@ public class CrearPoliza_1 extends JFrame {
 							System.out.println(datosPolizaDTO.getSumaAsegurada());
 							System.out.println(datosPolizaDTO.getKilometrosPorAnio());
 							System.out.println(datosPolizaDTO.getIdModeloVehiculo());
+							*/
 							
 							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO, CrearPoliza_1.this);
 						System.out.println("Se creó una instancia");

@@ -66,6 +66,9 @@ public class CrearPoliza_2 extends JFrame {
 	private String[] sexos;
 	private String[] estadosCivil;
 	private JComboBox<String> alarma;
+	private JComboBox<String> garage;
+	private JComboBox<String> tuercas;
+	private JComboBox<String> rastreoVehicular;
 	
 	
 	/**
@@ -193,7 +196,7 @@ public class CrearPoliza_2 extends JFrame {
 //		modeloDTO = this.gestorPoliza.getMedidasSeguridad();
 //		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 //		JComboBox <String> garage = new JComboBox(modelos);
-		JComboBox <String> garage = new JComboBox<>();
+		garage = new JComboBox<>();
 		garage.addItem("No");
 		garage.addItem("Si");
 		garage.setSelectedIndex(0);
@@ -246,7 +249,7 @@ public class CrearPoliza_2 extends JFrame {
 //		modeloDTO = this.gestorPoliza.getRastreoVehicular();
 //		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 //		JComboBox <String> rastreoVehicular = new JComboBox(modelos);
-		JComboBox<String> rastreoVehicular = new JComboBox<>();
+		rastreoVehicular = new JComboBox<>();
 		rastreoVehicular.addItem("No");
 		rastreoVehicular.addItem("Si");
 		rastreoVehicular.setSelectedIndex(0);
@@ -272,7 +275,7 @@ public class CrearPoliza_2 extends JFrame {
 //		modeloDTO = this.gestorPoliza.getTuercas();
 //		modelos = modeloDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 //		JComboBox <String> tuercas = new JComboBox(modelos);
-		JComboBox<String> tuercas = new JComboBox<>();
+		tuercas = new JComboBox<>();
 		tuercas.addItem("No");
 		tuercas.addItem("Si");
 		tuercas.setSelectedIndex(0);
@@ -459,8 +462,6 @@ public class CrearPoliza_2 extends JFrame {
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
 					//datosPolizaDTO.setHijos(cantidadHijos);
-					//System.out.println(cantidadHijos.get(0).getSexo());
-					//System.out.println(cantidadHijos.get(0).getFechaNacimiento().toString());
 					List<Long> medidas = new ArrayList<>();
 					if(garage.getSelectedItem().equals("Si")){
 						Long[] idGarage = medidaSeguridadDTO.stream().filter(a -> a.getNombre().equals("Garage")).map(b -> b.getId()).toArray(Long[]::new);
