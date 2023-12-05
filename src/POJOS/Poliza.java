@@ -101,7 +101,7 @@ public class Poliza {
 	@ManyToOne
 	@JoinColumn(name = "idMedida", nullable = false, referencedColumnName = "idMedida", 
 	foreignKey=@ForeignKey(name = "fk_MedidaSeguridad", value = ConstraintMode.CONSTRAINT))
-	private MedidaSeguridad Medida;
+	private MedidasPoliza Medida;
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "numeroPoliza", nullable = true, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_ModificacionPoliza", value = ConstraintMode.CONSTRAINT))
@@ -133,7 +133,7 @@ public class Poliza {
 			LocalDate fechaDeInicio, LocalDate fechaDeFin, float premio, float prima, float descuentos,
 			LocalDate ultimoDiaPago, float montoTotalAbonar, String chasis, String patente, String estadoPoliza,
 			String motor, String nombreCliente, String dniCliente, LocalDate fechaCreacion, List<Cuota> cuotas,
-			TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidaSeguridad medida,
+			TipoFormaPago formaPago, POJOS.Cobertura cobertura, MedidasPoliza medida,
 			List<Modificacion> modificaciones, List<Hijo> hijos) {
 		super();
 		this.numeroPoliza = numeroPoliza;
@@ -465,11 +465,11 @@ public class Poliza {
 		Cobertura = cobertura;
 	}
 
-	public MedidaSeguridad getMedida() {
+	public MedidasPoliza getMedida() {
 		return Medida;
 	}
 
-	public void setMedida(MedidaSeguridad medida) {
+	public void setMedida(MedidasPoliza medida) {
 		Medida = medida;
 	}
 
