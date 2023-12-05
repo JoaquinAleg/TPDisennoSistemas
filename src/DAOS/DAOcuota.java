@@ -26,7 +26,9 @@ public class DAOcuota implements cuotaDAO{
 	public void createCuota(Cuota cuota) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(cuota);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,7 +40,9 @@ public class DAOcuota implements cuotaDAO{
 	public void deleteCuota(Cuota cuota) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(cuota);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,7 +53,9 @@ public class DAOcuota implements cuotaDAO{
 	public void updateCuota(Cuota cuota) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(cuota);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

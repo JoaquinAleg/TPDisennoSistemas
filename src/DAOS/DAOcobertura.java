@@ -25,20 +25,26 @@ public class DAOcobertura implements coberturaDAO {
 	@Override
 	public void createCobertura(Cobertura cobertura) {
 		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.getTransaction().begin();
 		manager.persist(cobertura);
+		manager.getTransaction().commit();
 		
 	}
 
 	@Override
 	public void deleteCobertura(Cobertura cobertura) {
 		EntityManager manager = HibernateUtil.getEntityManager();
+		manager.getTransaction().begin();
 		manager.remove(cobertura);
+		manager.getTransaction().commit();
 	}
 
 	@Override
 	public void updateCobertura(Cobertura cobertura) {
 		EntityManager manager = HibernateUtil.getEntityManager();
-		manager.merge(cobertura);		
+		manager.getTransaction().begin();
+		manager.merge(cobertura);
+		manager.getTransaction().commit();		
 	}
 
 	@Override

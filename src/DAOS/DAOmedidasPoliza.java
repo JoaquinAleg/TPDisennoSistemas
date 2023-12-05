@@ -3,31 +3,34 @@ package DAOS;
 import java.util.List;
 
 import POJOS.AjusteDescuento;
-import POJOS.AjusteEmision;
-import interfaces.ajusteEmisionDAO;
+import POJOS.MedidaSeguridad;
+import POJOS.MedidasPoliza;
+import interfaces.medidasPolizaDAO;
 import jakarta.persistence.EntityManager;
 
-public class DAOajusteEmision implements ajusteEmisionDAO{
+public class DAOmedidasPoliza implements medidasPolizaDAO{
 
 	@Override
-	public AjusteEmision getAjusteEmision(long idAjusteEmision) {
+	public MedidasPoliza getMedida(long idMedida) {
+		// TODO Auto-generated method stub
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			AjusteEmision ajuste = manager.getReference(AjusteEmision.class, idAjusteEmision);
-			return ajuste;
+			MedidasPoliza medida = manager.getReference(MedidasPoliza.class,idMedida);
+			return medida;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+		
 	}
 
 	@Override
-	public void createAjusteEmision(AjusteEmision ajusteEmision) {
+	public void createMedida(MedidasPoliza medida) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
 			manager.getTransaction().begin();
-			manager.persist(ajusteEmision);
+			manager.persist(medida);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -37,24 +40,11 @@ public class DAOajusteEmision implements ajusteEmisionDAO{
 	}
 
 	@Override
-	public void deleteAjusteEmision(AjusteEmision ajusteEmision) {
+	public void deleteMedida(MedidasPoliza medida) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
 			manager.getTransaction().begin();
-			manager.remove(ajusteEmision);
-			manager.getTransaction().commit();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void updateAjusteEmision(AjusteEmision ajusteEmision) {
-		try {
-			EntityManager manager = HibernateUtil.getEntityManager();
-			manager.getTransaction().begin();
-			manager.merge(ajusteEmision);
+			manager.remove(medida);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -64,10 +54,24 @@ public class DAOajusteEmision implements ajusteEmisionDAO{
 	}
 
 	@Override
-	public List<AjusteEmision> getAll() {
+	public void updateMedida(MedidasPoliza medida) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			List<AjusteEmision> all = manager.createQuery("From AjusteEmision").getResultList();
+			manager.getTransaction().begin();
+			manager.merge(medida);
+			manager.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public List<MedidasPoliza> getAll() {
+		try {
+			EntityManager manager = HibernateUtil.getEntityManager();
+			List<MedidasPoliza> all = manager.createQuery("From MedidasPoliza").getResultList();
 			return all;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -76,7 +80,4 @@ public class DAOajusteEmision implements ajusteEmisionDAO{
 		}
 	}
 
-
-
-	
 }

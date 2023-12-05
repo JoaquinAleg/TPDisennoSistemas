@@ -27,7 +27,9 @@ public class DAOajusteKilometro implements ajusteKilometroDAO{
 	public void createAjusteKilometro(AjusteKilometro ajusteKilometro) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(ajusteKilometro);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,7 +40,9 @@ public class DAOajusteKilometro implements ajusteKilometroDAO{
 	public void deleteAjusteKilometro(AjusteKilometro ajusteKilometro) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(ajusteKilometro);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,7 +53,9 @@ public class DAOajusteKilometro implements ajusteKilometroDAO{
 	public void updateAjusteKilometro(AjusteKilometro ajusteKilometro) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
-			manager.merge(ajusteKilometro);
+			manager.getTransaction().begin();
+			manager.persist(ajusteKilometro);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

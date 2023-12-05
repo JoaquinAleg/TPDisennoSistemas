@@ -26,7 +26,9 @@ public class DAOmarca implements marcaDAO{
 	public void createMarca(Marca marca) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(marca);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +39,9 @@ public class DAOmarca implements marcaDAO{
 	public void deleteMarca(Marca marca) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(marca);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +52,9 @@ public class DAOmarca implements marcaDAO{
 	public void updateMarca(Marca marca) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(marca);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

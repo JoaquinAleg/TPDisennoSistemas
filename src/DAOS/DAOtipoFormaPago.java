@@ -25,7 +25,9 @@ public class DAOtipoFormaPago implements tipoFormaPagoDAO {
 	public void createTipoFormaPago(TipoFormaPago tipoFormaPago) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(tipoFormaPago);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,7 +38,9 @@ public class DAOtipoFormaPago implements tipoFormaPagoDAO {
 	public void deleteTipoFormaPago(TipoFormaPago tipoFormaPago) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(tipoFormaPago);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +52,9 @@ public class DAOtipoFormaPago implements tipoFormaPagoDAO {
 	public void updateTipoFormaPago(TipoFormaPago tipoFormaPago) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(tipoFormaPago);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -39,7 +39,9 @@ public class DAOpoliza implements polizaDAO{
 	public void deletePoliza(Poliza poliza) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(poliza);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,7 +52,9 @@ public class DAOpoliza implements polizaDAO{
 	public void updatePoliza(Poliza poliza) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(poliza);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

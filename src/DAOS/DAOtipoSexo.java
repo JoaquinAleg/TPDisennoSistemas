@@ -26,7 +26,9 @@ public class DAOtipoSexo implements tipoSexoDAO {
 	public void createTipoSexo(TipoSexo TipoSexo) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(TipoSexo);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +39,9 @@ public class DAOtipoSexo implements tipoSexoDAO {
 	public void deleteTipoSexo(TipoSexo TipoSexo) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(TipoSexo);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +52,9 @@ public class DAOtipoSexo implements tipoSexoDAO {
 	public void updateTipoSexo(TipoSexo TipoSexo) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(TipoSexo);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

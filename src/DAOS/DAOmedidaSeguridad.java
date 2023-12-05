@@ -26,7 +26,9 @@ public class DAOmedidaSeguridad implements medidaSeguridadDAO {
 	public void createMedidaSeguridad(MedidaSeguridad medidaSeguridad) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(medidaSeguridad);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +39,9 @@ public class DAOmedidaSeguridad implements medidaSeguridadDAO {
 	public void deleteMedidaSeguridad(MedidaSeguridad medidaSeguridad) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(medidaSeguridad);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +52,9 @@ public class DAOmedidaSeguridad implements medidaSeguridadDAO {
 	public void updateMedidaSeguridad(MedidaSeguridad medidaSeguridad) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(medidaSeguridad);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

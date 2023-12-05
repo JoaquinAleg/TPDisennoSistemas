@@ -25,7 +25,9 @@ public class DAOajusteSiniestro implements ajusteSiniestroDAO{
 	public void createAjusteSiniestro(AjusteSiniestro ajusteSiniestro) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(ajusteSiniestro);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +39,9 @@ public class DAOajusteSiniestro implements ajusteSiniestroDAO{
 	public void deleteAjusteSiniestro(AjusteSiniestro ajusteSiniestro) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(ajusteSiniestro);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,7 +53,9 @@ public class DAOajusteSiniestro implements ajusteSiniestroDAO{
 	public void updateAjusteSiniestro(AjusteSiniestro ajusteSiniestro) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(ajusteSiniestro);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -25,7 +25,9 @@ public class DAOtipoEstadoCivil implements tipoEstadoCivilDAO {
 	public void createTipoEstadoCivil(TipoEstadoCivil TipoEstadoCivil) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(TipoEstadoCivil);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +39,9 @@ public class DAOtipoEstadoCivil implements tipoEstadoCivilDAO {
 	public void deleteTipoEstadoCivil(TipoEstadoCivil TipoEstadoCivil) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(TipoEstadoCivil);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,7 +53,9 @@ public class DAOtipoEstadoCivil implements tipoEstadoCivilDAO {
 	public void updateTipoEstadoCivil(TipoEstadoCivil TipoEstadoCivil) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(TipoEstadoCivil);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

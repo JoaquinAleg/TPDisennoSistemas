@@ -26,7 +26,9 @@ public class DAOajusteDescuento implements ajusteDescuentoDAO {
 	public void createAjusteDescuento(AjusteDescuento ajusteDescuento) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(ajusteDescuento);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,7 +40,9 @@ public class DAOajusteDescuento implements ajusteDescuentoDAO {
 	public void deleteAjusteDescuento(AjusteDescuento ajusteDescuento) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(ajusteDescuento);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,7 +53,9 @@ public class DAOajusteDescuento implements ajusteDescuentoDAO {
 	public void updateAjusteDescuento(AjusteDescuento ajusteDescuento) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(ajusteDescuento);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

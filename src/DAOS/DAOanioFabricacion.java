@@ -23,7 +23,9 @@ public class DAOanioFabricacion implements anioFabricacionDAO{
 	public void createAnioFabricacion(AnioFabricacion anioFabricacion) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(anioFabricacion);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,7 +36,9 @@ public class DAOanioFabricacion implements anioFabricacionDAO{
 	public void deleteAnioFabricacion(AnioFabricacion anioFabricacion) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(anioFabricacion);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,7 +50,9 @@ public class DAOanioFabricacion implements anioFabricacionDAO{
 	public void updateAnioFabricacion(AnioFabricacion AnioFabricacion) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(AnioFabricacion);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

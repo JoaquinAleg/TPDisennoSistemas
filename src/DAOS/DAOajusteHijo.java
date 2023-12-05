@@ -26,7 +26,9 @@ public class DAOajusteHijo implements ajustePorHijoDAO {
 	public void createAjusteHijo(AjusteHijo ajusteHijo) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(ajusteHijo);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,7 +40,9 @@ public class DAOajusteHijo implements ajustePorHijoDAO {
 	public void deleteAjusteHijo(AjusteHijo ajusteHijo) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(ajusteHijo);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,7 +53,9 @@ public class DAOajusteHijo implements ajustePorHijoDAO {
 	public void updateAjusteHijo(AjusteHijo ajusteHijo) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(ajusteHijo);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

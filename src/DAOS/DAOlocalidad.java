@@ -23,7 +23,9 @@ public class DAOlocalidad implements localidadDAO {
 	public void createLocalidad(Localidad localidad) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(localidad);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,7 +37,9 @@ public class DAOlocalidad implements localidadDAO {
 	public void deleteLocalidad(Localidad localidad) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(localidad);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,7 +51,9 @@ public class DAOlocalidad implements localidadDAO {
 	public void updateLocalidad(Localidad localidad) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(localidad);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

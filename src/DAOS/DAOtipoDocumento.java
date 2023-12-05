@@ -25,7 +25,9 @@ public class DAOtipoDocumento implements tipoDocumentoDAO {
 	public void createTipoDocumento(TipoDocumento tipoDocumento) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.persist(tipoDocumento);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,7 +38,9 @@ public class DAOtipoDocumento implements tipoDocumentoDAO {
 	public void deleteTipoDocumento(TipoDocumento tipoDocumento) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.remove(tipoDocumento);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +52,9 @@ public class DAOtipoDocumento implements tipoDocumentoDAO {
 	public void updateTipoDocumento(TipoDocumento tipoDocumento) {
 		try {
 			EntityManager manager = HibernateUtil.getEntityManager();
+			manager.getTransaction().begin();
 			manager.merge(tipoDocumento);
+			manager.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
