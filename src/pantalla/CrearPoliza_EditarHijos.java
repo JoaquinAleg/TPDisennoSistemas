@@ -62,10 +62,13 @@ public class CrearPoliza_EditarHijos extends JFrame {
 	private String[] sexos;
 	private String[] estadosCivil;
 	
-	public CrearPoliza_EditarHijos( GestorPoliza gestorPoliza,GestorCliente gestorCliente,	ArrayList<HijosDTO> listaHijos ,HijosDTO h,   NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO, CrearPoliza_ListadoHijos anterior) {
+	public CrearPoliza_EditarHijos( GestorPoliza gestorPoliza,GestorCliente gestorCliente,	ArrayList<HijosDTO> listaHijos ,HijosDTO h,   NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO, CrearPoliza_ListadoHijos anterior,
+			List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		this.gestorPoliza = gestorPoliza;
+		this.estadoCivilDTO=estadoCivilDTO;
+		this.sexoDTO=sexoDTO;
 		this.hList = listaHijos;
 		setBounds(100, 100, 1000, 320);
 		this.setExtendedState(MAXIMIZED_BOTH);
@@ -162,7 +165,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		sexoDTO = this.gestorPoliza.getSexos();
 		JComboBox<ListadoDTO> TipoSexo = new JComboBox<>(sexoDTO.toArray(new ListadoDTO[sexoDTO.size()]));
 		TipoSexo.setRenderer(new ListadoDTORenderer());
-		TipoSexo.setSelectedItem(h.getSexo().toString());
+		TipoSexo.setSelectedIndex(Integer.parseInt(h.getSexo().toString()));
 		TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_LocalidadRiesgo_1_1_1 = new GridBagConstraints();
@@ -185,7 +188,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		estadoCivilDTO = this.gestorPoliza.getEstadoCiviles();
 		JComboBox<ListadoDTO> estadoCivil = new JComboBox<>(estadoCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]));
 		estadoCivil.setRenderer(new ListadoDTORenderer());
-		estadoCivil.setSelectedItem(h.getEstadoCivil().toString());
+		estadoCivil.setSelectedIndex(Integer.parseInt(h.getEstadoCivil().toString()));
 		estadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		estadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_MarcaVehiculo_1_1_1 = new GridBagConstraints();
@@ -199,14 +202,21 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer i = hList.lastIndexOf(h);
-				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(TipoSexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-				h.setEstadoCivil(idEstadoCivil[0]);
+//				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(TipoSexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+//				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+				h.setEstadoCivil((long) estadoCivil.getSelectedIndex());
 				h.setFechaNacimiento(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-				h.setSexo(idSexo[0]);
+				h.setSexo((long) TipoSexo.getSelectedIndex());
 				hList.set(i, h);
 				try {
-				anterior.setVisible(true);
+				CrearPoliza_ListadoHijos Panterior = new CrearPoliza_ListadoHijos(hList,gestorPoliza, gestorCliente, nombresDTO, datosPolizaDTO,
+						CrearPoliza_EditarHijos.this.sexoDTO,CrearPoliza_EditarHijos.this.estadoCivilDTO,conHijos, poliza1);
+				Panterior.setVisible(true);
+//				anterior.validate();
+//				anterior.repaint();
+//				anterior.setVisible(true);
+				anterior.dispose();
+				
 				} catch(Exception er) {
 					er.printStackTrace();
 				}

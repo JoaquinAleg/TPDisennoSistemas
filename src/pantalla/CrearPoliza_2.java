@@ -389,9 +389,9 @@ public class CrearPoliza_2 extends JFrame {
 							JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
 						}else {
 
-							Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(sexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-							Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-							HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), idEstadoCivil[0], idSexo[0]);
+//							Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(sexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+//							Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+							HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), ((ListadoDTO)estadoCivil.getSelectedItem()).getId(), ((ListadoDTO)sexo.getSelectedItem()).getId());
 							cantidadHijos.add(hijo);
 							JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 							CrearPoliza_HijosExistentes CPoliza = new CrearPoliza_HijosExistentes(cantidadHijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, anterior);

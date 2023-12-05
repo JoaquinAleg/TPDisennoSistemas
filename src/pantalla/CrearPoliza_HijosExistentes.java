@@ -387,9 +387,9 @@ public class CrearPoliza_HijosExistentes extends JFrame {
 						ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) > 10950) {
 					JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
 				}else {
-				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(sexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-				HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), idEstadoCivil[0], idSexo[0]);
+//					Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(sexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+//					Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
+					HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), ((ListadoDTO)estadoCivil.getSelectedItem()).getId(), ((ListadoDTO)sexo.getSelectedItem()).getId());
 				JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 				hijos.add(hijo);
 				}

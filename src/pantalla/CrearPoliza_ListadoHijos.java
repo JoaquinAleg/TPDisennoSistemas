@@ -65,6 +65,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	private List<ListadoDTO> estCivilDTO;
 	private String[] sexos;
 	private String[] estadosCivil;
+	private ArrayList <HijosDTO> hijos;
 	/**
 	 * Launch the application.
 	 */
@@ -75,6 +76,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	public CrearPoliza_ListadoHijos(ArrayList <HijosDTO> hijos,	GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO,
 			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1) {
 		int cantidadHijos = hijos.size();
+		this.hijos=hijos;
 		this.gestorPoliza = gestorPoliza;
 		this.estCivilDTO = estadoCivilDTO;
 		this.sexDTO = sexoDTO;
@@ -148,7 +150,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 
 		
 		//--------EMPIEZA------------------------------------------------
-			for(HijosDTO hijo : hijos){
+			for(HijosDTO hijo : this.hijos){
 				if(cantidadHijos == 1) {scrollPane.getViewport().setPreferredSize(new Dimension(1000, 225));}
 				final HijosDTO h = hijo;
 				JPanel prueba = new JPanel();
@@ -193,11 +195,11 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 				
 				estCivilDTO = gestorPoliza.getEstadoCiviles();
-				JComboBox<ListadoDTO> TipoEstadoCivil = new JComboBox<>(this.estCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]));
+				JComboBox<ListadoDTO> TipoEstadoCivil = new JComboBox<>(estadoCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]));
 				TipoEstadoCivil.setRenderer(new ListadoDTORenderer());
 				TipoEstadoCivil.setEnabled(false);
-				String[] nombreEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getId() != null && a.getId().equals(h.getEstadoCivil())).map(b -> b.getNombre()).toArray(String[]::new);
-				TipoEstadoCivil.setSelectedItem(nombreEstadoCivil[0]);
+//				String[] nombreEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getId() != null && a.getId().equals(h.getEstadoCivil())).map(b -> b.getNombre()).toArray(String[]::new);
+				TipoEstadoCivil.setSelectedIndex(Integer.parseInt(h.getEstadoCivil().toString()));
 				TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
 				GridBagConstraints gbc_MarcaVehiculo_1_1_1 = new GridBagConstraints();
@@ -220,10 +222,9 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				sexDTO = gestorPoliza.getSexos();
 				JComboBox<ListadoDTO> TipoSexo = new JComboBox<>(sexoDTO.toArray(new ListadoDTO[this.sexDTO.size()]));
 				TipoSexo.setRenderer(new ListadoDTORenderer());
-		//		JComboBox TipoSexo = new JComboBox();
 				TipoSexo.setEnabled(false);
-				String[] nombreSexo = sexoDTO.stream().filter(a -> a.getId() != null && a.getId().equals(h.getSexo())).map(b -> b.getNombre()).toArray(String[]::new);
-				TipoSexo.setSelectedItem(nombreSexo[0]);
+//				String[] nombreSexo = sexoDTO.stream().filter(a -> a.getId() != null && a.getId().equals(h.getSexo())).map(b -> b.getNombre()).toArray(String[]::new);
+				TipoSexo.setSelectedIndex(Integer.parseInt(h.getSexo().toString()));
 				TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
 				GridBagConstraints gbc_LocalidadRiesgo_1_1_1 = new GridBagConstraints();
@@ -236,7 +237,8 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				JButton btnNewButton_1_1_1 = new JButton("Editar");
 				btnNewButton_1_1_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(gestorPoliza, gestorCliente, hijos ,h, nombresDTO,datosPolizaDTO, CrearPoliza_ListadoHijos.this);
+						CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(gestorPoliza, gestorCliente, hijos ,h, nombresDTO,datosPolizaDTO, CrearPoliza_ListadoHijos.this,
+								sexoDTO,estadoCivilDTO, conHijos, poliza1);
 						
 						try {
 							FuturaPantalla.setVisible(true);
@@ -364,6 +366,10 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
 
 
+	}
+
+	public void setHijos(ArrayList<HijosDTO> hijos) {
+		this.hijos = hijos;
 	}
 
 }

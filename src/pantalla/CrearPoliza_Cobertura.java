@@ -238,7 +238,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
 		modeloTipoFormaPagoDTO = this.gestorPoliza.getTipoFormaPago();
-		JComboBox<ListadoDTO> formasPago = new JComboBox<>(estadoCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]));
+		JComboBox<ListadoDTO> formasPago = new JComboBox<>(modeloTipoFormaPagoDTO.toArray(new ListadoDTO[modeloTipoFormaPagoDTO.size()]));
 		formasPago.setRenderer(new ListadoDTORenderer());
 		formasPago.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		formasPago.setBackground(SystemColor.inactiveCaptionBorder);
