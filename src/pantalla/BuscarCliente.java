@@ -70,10 +70,12 @@ public class BuscarCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					/*
 					GestorCliente gestorCliente = GestorCliente.getInstance();
 					GestorPoliza gestorPoliza = GestorPoliza.getInstance();
-					BuscarCliente frame = new BuscarCliente(gestorCliente, gestorPoliza);
+					BuscarCliente frame = new BuscarCliente(gestorCliente, gestorPoliza, int enteroAnterior);
 					frame.setVisible(true);
+					*/
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -84,7 +86,7 @@ public class BuscarCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BuscarCliente(GestorCliente gestorC, GestorPoliza gestorP) {
+	public BuscarCliente(GestorCliente gestorC, GestorPoliza gestorP, int enteroAnterior) {
 		this.gestorCliente = gestorC;
 		this.gestorPoliza = gestorP;
 		//PARTE VISUAL DE LA PANTALLA
@@ -132,14 +134,14 @@ public class BuscarCliente extends JFrame {
 		gbc_panel_3.gridx = 0;
 		gbc_panel_3.gridy = 0;
 		panel.add(panel_3, gbc_panel_3);
-		
+		if(enteroAnterior == 1) {
 		JLabel lblNewLabel_5_1 = new JLabel("Crear Póliza");
 		lblNewLabel_5_1.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblNewLabel_5_1.setBorder(null);
 		panel_3.add(lblNewLabel_5_1);
-		
+		}
 		JLabel lblDatosDeLa_1 = new JLabel("Buscar Cliente");
 		lblDatosDeLa_1.setBackground(SystemColor.inactiveCaptionBorder);
 		lblDatosDeLa_1.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));

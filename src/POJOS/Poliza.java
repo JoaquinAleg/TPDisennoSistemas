@@ -2,6 +2,9 @@ package POJOS;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import DAOS.DAOmedidasPoliza;
+
 import java.time.ZoneId;
 
 import jakarta.persistence.*;
@@ -470,9 +473,11 @@ public class Poliza {
 	}
 
 	public void setMedida(MedidaSeguridad medida) {
+		DAOmedidasPoliza dao =  new DAOmedidasPoliza();
 		MedidasPoliza nuevaMedida = new MedidasPoliza();
 		nuevaMedida.setMedida(medida);
 		nuevaMedida.setPoliza(this);
+		dao.createMedida(nuevaMedida);
 		Medidas.add(nuevaMedida);
 	}
 

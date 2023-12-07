@@ -230,7 +230,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		btnDarDeAlta_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnDarDeAlta_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BuscarCliente FuturaPantalla = new BuscarCliente(gestorCliente, gestorPoliza);
+				BuscarCliente FuturaPantalla = new BuscarCliente(gestorCliente, gestorPoliza,1);
 				try {
 					FuturaPantalla.setVisible(true);
 				} catch(Exception er) {
@@ -336,7 +336,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		JButton ConsultarCliente = new JButton("Consultar Cliente");
 		ConsultarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BuscarCliente PantallaSiguiente = new BuscarCliente(gestorCliente,gestorPoliza);
+				BuscarCliente PantallaSiguiente = new BuscarCliente(gestorCliente,gestorPoliza,2);
 				try {
 					PantallaSiguiente.setVisible(true);
 				} catch(Exception er) {
