@@ -469,8 +469,11 @@ public class Poliza {
 		return Medidas;
 	}
 
-	public void setMedida(List<MedidasPoliza> medida) {
-		Medidas = medida;
+	public void setMedida(MedidaSeguridad medida) {
+		MedidasPoliza nuevaMedida = new MedidasPoliza();
+		nuevaMedida.setMedida(medida);
+		nuevaMedida.setPoliza(this);
+		Medidas.add(nuevaMedida);
 	}
 
 
