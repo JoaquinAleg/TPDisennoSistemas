@@ -89,10 +89,10 @@ public class Poliza {
 	private String dniCliente;
 	@Column
 	private LocalDate fechaCreacion;
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "NroPoliza", nullable = false, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_polizaCuota", value = ConstraintMode.CONSTRAINT))
-	private List<Cuota> cuotas;
+	private List<Cuota> cuotas= new ArrayList<Cuota>();
 	@ManyToOne
 	@JoinColumn(name = "idFormaPago", nullable = false, referencedColumnName = "idFormaPago", 
 	foreignKey=@ForeignKey(name = "fk_TipoFormaPago", value = ConstraintMode.CONSTRAINT))
@@ -101,24 +101,20 @@ public class Poliza {
 	@JoinColumn(name = "idCobertura", nullable = false, referencedColumnName = "idCobertura", 
 	foreignKey=@ForeignKey(name = "fk_CoberturaPoliza", value = ConstraintMode.CONSTRAINT))
 	private Cobertura Cobertura;
-	@OneToMany
-	@JoinColumn(name = "idMedida", nullable = true, referencedColumnName = "idMedida", 
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "numeroPoliza", nullable = true, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_MedidaSeguridad", value = ConstraintMode.CONSTRAINT))
-	private List<MedidasPoliza> Medidas;
+	private List<MedidasPoliza> Medidas = new ArrayList<MedidasPoliza>();
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "numeroPoliza", nullable = true, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_ModificacionPoliza", value = ConstraintMode.CONSTRAINT))
-	private List<Modificacion> modificaciones;
+	private List<Modificacion> modificaciones= new ArrayList<Modificacion>();
 	@OneToMany
 	@JoinColumn(name = "numeroPoliza", nullable = true, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_HijosPoliza", value = ConstraintMode.CONSTRAINT))
-	private List<Hijo> hijos;
+	private List<Hijo> hijos= new ArrayList<Hijo>();
 	
-	public Poliza(){
-		this.modificaciones = new ArrayList<Modificacion>();
-		this.hijos = new ArrayList<Hijo>();
-		this.cuotas = new ArrayList<Cuota>();
-	}
+	public Poliza(){}
 
 	
 	
@@ -473,11 +469,9 @@ public class Poliza {
 	}
 
 	public void setMedida(MedidaSeguridad medida) {
-		DAOmedidasPoliza dao =  new DAOmedidasPoliza();
 		MedidasPoliza nuevaMedida = new MedidasPoliza();
 		nuevaMedida.setMedida(medida);
 		nuevaMedida.setPoliza(this);
-		dao.createMedida(nuevaMedida);
 		Medidas.add(nuevaMedida);
 	}
 

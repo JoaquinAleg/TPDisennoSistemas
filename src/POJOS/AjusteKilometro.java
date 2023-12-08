@@ -1,6 +1,7 @@
 package POJOS;
 import java.util.List;
 
+import DAOS.DAOvalorKilometro;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,17 +12,17 @@ public class AjusteKilometro {
 	private long idAjusteKilometro;
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idAjusteKilometro", nullable = true, referencedColumnName = "idAjusteKilometro", 
-	foreignKey=@ForeignKey(name = "fk_valorKilometro", value = ConstraintMode.CONSTRAINT))
-	private List<ValorPorcentual> valorPorcentual;
+	foreignKey=@ForeignKey(name = "fk_valorKm", value = ConstraintMode.CONSTRAINT))
+	private List<ValorKilometro> valoresKilometro;
 	@Column
 	private float escalaKM;
 	
 	public AjusteKilometro() {}
 
-	public AjusteKilometro(long idAjusteKilometro, List<ValorPorcentual> valorPorcentual, float escalaKM) {
+	public AjusteKilometro(long idAjusteKilometro, List<ValorKilometro> valoresKilometro, float escalaKM) {
 		super();
 		this.idAjusteKilometro = idAjusteKilometro;
-		this.valorPorcentual = valorPorcentual;
+		this.valoresKilometro = valoresKilometro;
 		this.escalaKM = escalaKM;
 	}
 
@@ -33,12 +34,17 @@ public class AjusteKilometro {
 		this.idAjusteKilometro = idAjusteKilometro;
 	}
 
-	public List<ValorPorcentual> getValorPorcentual() {
-		return valorPorcentual;
+	public List<ValorKilometro> getValorPorcentual() {
+		return valoresKilometro;
 	}
 
-	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
-		this.valorPorcentual = valorPorcentual;
+	public void setValorPorcentual(ValorPorcentual valor) {
+		DAOvalorKilometro dao = new DAOvalorKilometro();
+		ValorKilometro nuevoValor = new ValorKilometro();
+		nuevoValor.setAjuste(this);
+		nuevoValor.setValor(valor);
+		dao.createValorKilometro(nuevoValor);
+		this.valoresKilometro.add(nuevoValor);
 	}
 
 	public float getEscalaKM() {

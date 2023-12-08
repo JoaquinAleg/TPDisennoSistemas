@@ -1,6 +1,7 @@
 package POJOS;
 import java.util.List;
 
+import DAOS.DAOvalorDescuento;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,16 +13,16 @@ public class AjusteDescuento {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idAjusteDescuento", nullable = true, referencedColumnName = "idAjusteDescuento", 
 	foreignKey=@ForeignKey(name = "fk_valorDesc", value = ConstraintMode.CONSTRAINT))
-	private List<ValorPorcentual> valorPorcentual;
+	private List<ValorDescuento> valoresDescuento;
 	@Column
 	private float ajusteDescuento;
 	
 	public AjusteDescuento() {}
 
-	public AjusteDescuento(long idAjusteDescuento, List<ValorPorcentual> valorPorcentual, float ajusteDescuento) {
+	public AjusteDescuento(long idAjusteDescuento, List<ValorDescuento> valoresDescuento, float ajusteDescuento) {
 		super();
 		this.idAjusteDescuento = idAjusteDescuento;
-		this.valorPorcentual = valorPorcentual;
+		this.valoresDescuento = valoresDescuento;
 		this.ajusteDescuento = ajusteDescuento;
 	}
 
@@ -33,12 +34,17 @@ public class AjusteDescuento {
 		this.idAjusteDescuento = idAjusteDescuento;
 	}
 
-	public List<ValorPorcentual> getValorPorcentual() {
-		return valorPorcentual;
+	public List<ValorDescuento> getValorPorcentual() {
+		return valoresDescuento;
 	}
 
-	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
-		this.valorPorcentual = valorPorcentual;
+	public void setValorPorcentual(ValorPorcentual valor) {
+		DAOvalorDescuento dao = new DAOvalorDescuento();
+		ValorDescuento nuevoValor = new ValorDescuento();
+		nuevoValor.setAjuste(this);
+		nuevoValor.setValor(valor);
+		dao.createValorDescuento(nuevoValor);
+		this.valoresDescuento.add(nuevoValor);
 	}
 
 	public float getAjusteDescuento() {

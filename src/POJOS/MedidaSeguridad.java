@@ -1,6 +1,7 @@
 package POJOS;
 import java.util.List;
 
+import DAOS.DAOvalorMedida;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,16 +13,16 @@ public class MedidaSeguridad {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idMedida", nullable = true, referencedColumnName = "idMedida", 
 	foreignKey=@ForeignKey(name = "fk_valorMS", value = ConstraintMode.CONSTRAINT))
-	private List<ValorPorcentual> valorPorcentual;
+	private List<ValorMedida> valoresMedida;
 	@Column
 	private String tipoMedidaSeguridad;
 	
 	public MedidaSeguridad() {}
 
-	public MedidaSeguridad(long idMedida, List<ValorPorcentual> valorPorcentual, String tipoMedidaSeguridad) {
+	public MedidaSeguridad(long idMedida, List<ValorMedida> valoresMedida, String tipoMedidaSeguridad) {
 		super();
 		this.idMedida = idMedida;
-		this.valorPorcentual = valorPorcentual;
+		this.valoresMedida = valoresMedida;
 		this.tipoMedidaSeguridad = tipoMedidaSeguridad;
 	}
 
@@ -33,12 +34,17 @@ public class MedidaSeguridad {
 		this.idMedida = idMedida;
 	}
 
-	public List<ValorPorcentual> getValorPorcentual() {
-		return valorPorcentual;
+	public List<ValorMedida> getValorPorcentual() {
+		return valoresMedida;
 	}
 
-	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
-		this.valorPorcentual = valorPorcentual;
+	public void setValorPorcentual(ValorPorcentual valor) {
+		DAOvalorMedida dao = new DAOvalorMedida();
+		ValorMedida nuevoValor = new ValorMedida();
+		nuevoValor.setAjuste(this);
+		nuevoValor.setValor(valor);
+		dao.createValorMedida(nuevoValor);
+		this.valoresMedida.add(nuevoValor);
 	}
 
 	public String getTipoMedidaSeguridad() {

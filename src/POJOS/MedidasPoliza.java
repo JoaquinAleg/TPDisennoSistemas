@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 @Table(name = "MedidasPoliza")
 public class MedidasPoliza {
 	@Id
-	@ManyToOne
-	@JoinColumn(name = "numeroPoliza", nullable = false, referencedColumnName = "numeroPoliza", 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "numeroPoliza", nullable = true, referencedColumnName = "numeroPoliza", 
 	foreignKey=@ForeignKey(name = "fk_PolizaM", value = ConstraintMode.CONSTRAINT))
 	private Poliza poliza;
 	@Id
-	@ManyToOne
-	@JoinColumn(name = "idMedida", nullable = false, referencedColumnName = "idMedida", 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idMedida", nullable = true, referencedColumnName = "idMedida", 
 	foreignKey=@ForeignKey(name = "fk_MedidaP", value = ConstraintMode.CONSTRAINT))
 	private MedidaSeguridad Medida;
 	public MedidasPoliza() {}

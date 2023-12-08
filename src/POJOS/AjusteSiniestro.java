@@ -1,6 +1,7 @@
 package POJOS;
 import java.util.List;
 
+import DAOS.DAOvalorSiniestro;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,18 +12,18 @@ public class AjusteSiniestro {
 	private long idAjusteSiniestro;
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idAjusteSiniestro", nullable = true, referencedColumnName = "idAjusteSiniestro", 
-	foreignKey=@ForeignKey(name = "fk_valorSiniestro", value = ConstraintMode.CONSTRAINT))
-	private List<ValorPorcentual> valorPorcentual;
+	foreignKey=@ForeignKey(name = "fk_valorS", value = ConstraintMode.CONSTRAINT))
+	private List<ValorSiniestro> valoresSiniestro;
 	@Column
 	private int cantidadSiniestros;
 	
 	public AjusteSiniestro() {}
 
 	
-	public AjusteSiniestro(long idAjusteSiniestro, List<ValorPorcentual> valorPorcentual, int cantidadSiniestros) {
+	public AjusteSiniestro(long idAjusteSiniestro, List<ValorSiniestro> valoresSiniestro, int cantidadSiniestros) {
 		super();
 		this.idAjusteSiniestro = idAjusteSiniestro;
-		this.valorPorcentual = valorPorcentual;
+		this.valoresSiniestro = valoresSiniestro;
 		this.cantidadSiniestros = cantidadSiniestros;
 	}
 
@@ -36,13 +37,18 @@ public class AjusteSiniestro {
 	}
 
 	
-	public List<ValorPorcentual> getValorPorcentual() {
-		return valorPorcentual;
+	public List<ValorSiniestro> getValorPorcentual() {
+		return valoresSiniestro;
 	}
 
 
-	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
-		this.valorPorcentual = valorPorcentual;
+	public void setValorPorcentual(ValorPorcentual valor) {
+		DAOvalorSiniestro dao = new DAOvalorSiniestro();
+		ValorSiniestro nuevoValor = new ValorSiniestro();
+		nuevoValor.setAjuste(this);
+		nuevoValor.setValor(valor);
+		dao.createValorSiniestro(nuevoValor);
+		this.valoresSiniestro.add(nuevoValor);
 	}
 
 

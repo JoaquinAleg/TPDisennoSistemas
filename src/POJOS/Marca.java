@@ -1,6 +1,7 @@
 package POJOS;
 import java.util.List;
 
+import DAOS.DAOvalorMarca;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,8 +12,8 @@ public class Marca {
 	private long idMarca;
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idMarca", nullable = true, referencedColumnName = "idMarca", 
-	foreignKey=@ForeignKey(name = "fk_valor", value = ConstraintMode.CONSTRAINT))
-	private List<ValorPorcentual> valorPorcentual;
+	foreignKey=@ForeignKey(name = "fk_valorMa", value = ConstraintMode.CONSTRAINT))
+	private List<ValorMarca> valoresMarca;
 	@Column
 	private String nombreMarca;
 	@OneToMany(fetch = FetchType.LAZY)
@@ -20,10 +21,10 @@ public class Marca {
 	foreignKey=@ForeignKey(name = "fk_ModelosMarca", value = ConstraintMode.CONSTRAINT))
 	private List<Modelo> modelos;
 	public Marca() {}
-	public Marca(long idMarca, List<ValorPorcentual> valorPorcentual, String nombreMarca, List<Modelo> modelos) {
+	public Marca(long idMarca, List<ValorMarca> valoresMarca, String nombreMarca, List<Modelo> modelos) {
 		super();
 		this.idMarca = idMarca;
-		this.valorPorcentual = valorPorcentual;
+		this.valoresMarca = valoresMarca;
 		this.nombreMarca = nombreMarca;
 		this.modelos = modelos;
 	}
@@ -33,11 +34,16 @@ public class Marca {
 	public void setIdMarca(long idMarca) {
 		this.idMarca = idMarca;
 	}
-	public List<ValorPorcentual> getValorPorcentual() {
-		return valorPorcentual;
+	public List<ValorMarca> getValorPorcentual() {
+		return valoresMarca;
 	}
-	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
-		this.valorPorcentual = valorPorcentual;
+	public void setValorPorcentual(ValorPorcentual valor) {
+		DAOvalorMarca dao = new DAOvalorMarca();
+		ValorMarca nuevoValor = new ValorMarca();
+		nuevoValor.setAjuste(this);
+		nuevoValor.setValor(valor);
+		dao.createValorMarca(nuevoValor);
+		this.valoresMarca.add(nuevoValor);
 	}
 	public String getNombreMarca() {
 		return nombreMarca;

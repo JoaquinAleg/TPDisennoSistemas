@@ -1,6 +1,7 @@
 package POJOS;
 import java.util.List;
 
+import DAOS.DAOvalorCobertura;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,16 +13,16 @@ public class Cobertura {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idCobertura", nullable = true, referencedColumnName = "idCobertura", 
 	foreignKey=@ForeignKey(name = "fk_valorC", value = ConstraintMode.CONSTRAINT))
-	private List<ValorPorcentual> valorPorcentual;
+	private List<ValorCobertura> valoresCobertura;
 	@Column
 	private String descripcion;
 	
 	public Cobertura() {}
 
-	public Cobertura(long idCobertura, List<ValorPorcentual> valorPorcentual, String descripcion) {
+	public Cobertura(long idCobertura, List<ValorCobertura> valoresCobertura, String descripcion) {
 		super();
 		this.idCobertura = idCobertura;
-		this.valorPorcentual = valorPorcentual;
+		this.valoresCobertura = valoresCobertura;
 		this.descripcion = descripcion;
 	}
 
@@ -33,12 +34,17 @@ public class Cobertura {
 		this.idCobertura = idCobertura;
 	}
 
-	public List<ValorPorcentual> getValorPorcentual() {
-		return valorPorcentual;
+	public List<ValorCobertura> getValorPorcentual() {
+		return valoresCobertura;
 	}
 
-	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
-		this.valorPorcentual = valorPorcentual;
+	public void setValorPorcentual(ValorPorcentual valor) {
+		DAOvalorCobertura dao = new DAOvalorCobertura();
+		ValorCobertura nuevoValor = new ValorCobertura();
+		nuevoValor.setAjuste(this);
+		nuevoValor.setValor(valor);
+		dao.createValorCobertura(nuevoValor);
+		this.valoresCobertura.add(nuevoValor);
 	}
 
 	public String getDescripcion() {

@@ -1,6 +1,7 @@
 package POJOS;
 import java.util.List;
 
+import DAOS.DAOvalorModelo;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +13,7 @@ public class Modelo {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idModelo", nullable = true, referencedColumnName = "idModelo", 
 	foreignKey=@ForeignKey(name = "fk_valorMd", value = ConstraintMode.CONSTRAINT))
-	private List<ValorPorcentual> valorPorcentual;
+	private List<ValorModelo> valoresModelo;
 	@Column
 	private String nombreModelo;
 	@OneToMany(fetch = FetchType.LAZY)
@@ -24,11 +25,11 @@ public class Modelo {
 	public Modelo() {}
 
 
-	public Modelo(long idModelo, List<ValorPorcentual> valorPorcentual, String nombreModelo,
+	public Modelo(long idModelo, List<ValorModelo> valoresModelo, String nombreModelo,
 			List<fabricado> anioFabricacion) {
 		super();
 		this.idModelo = idModelo;
-		this.valorPorcentual = valorPorcentual;
+		this.valoresModelo = valoresModelo;
 		this.nombreModelo = nombreModelo;
 		this.anioFabricacion = anioFabricacion;
 	}
@@ -44,13 +45,18 @@ public class Modelo {
 	}
 
 
-	public List<ValorPorcentual> getValorPorcentual() {
-		return valorPorcentual;
+	public List<ValorModelo> getValorPorcentual() {
+		return valoresModelo;
 	}
 
 
-	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
-		this.valorPorcentual = valorPorcentual;
+	public void setValorPorcentual(ValorPorcentual valor) {
+		DAOvalorModelo dao = new DAOvalorModelo();
+		ValorModelo nuevoValor = new ValorModelo();
+		nuevoValor.setAjuste(this);
+		nuevoValor.setValor(valor);
+		dao.createValorModelo(nuevoValor);
+		this.valoresModelo.add(nuevoValor);
 	}
 
 

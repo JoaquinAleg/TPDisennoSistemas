@@ -1,6 +1,7 @@
 package POJOS;
 import java.util.List;
 
+import DAOS.DAOvalorEmision;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,16 +13,16 @@ public class AjusteEmision {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idAjusteEmision", nullable = true, referencedColumnName = "idAjusteEmision", 
 	foreignKey=@ForeignKey(name = "fk_valorEm", value = ConstraintMode.CONSTRAINT))
-	private List<ValorPorcentual> valorPorcentual;
+	private List<ValorEmision> valoresEmision;
 	@Column
 	private int ajusteEmision;
 	
 	public AjusteEmision() {}
 
-	public AjusteEmision(long idAjusteEmision, List<POJOS.ValorPorcentual> valorPorcentual, int ajusteEmision) {
+	public AjusteEmision(long idAjusteEmision, List<ValorEmision> valoresEmision, int ajusteEmision) {
 		super();
 		this.idAjusteEmision = idAjusteEmision;
-		this.valorPorcentual = valorPorcentual;
+		this.valoresEmision = valoresEmision;
 		this.ajusteEmision = ajusteEmision;
 	}
 
@@ -33,12 +34,17 @@ public class AjusteEmision {
 		this.idAjusteEmision = idAjusteEmision;
 	}
 
-	public List<ValorPorcentual> getValorPorcentual() {
-		return valorPorcentual;
+	public List<ValorEmision> getValorPorcentual() {
+		return valoresEmision;
 	}
 
-	public void setValorPorcentual(List<ValorPorcentual> valorPorcentual) {
-		this.valorPorcentual = valorPorcentual;
+	public void setValorPorcentual(ValorPorcentual valor) {
+		DAOvalorEmision dao = new DAOvalorEmision();
+		ValorEmision nuevoValor = new ValorEmision();
+		nuevoValor.setAjuste(this);
+		nuevoValor.setValor(valor);
+		dao.createValorEmision(nuevoValor);
+		this.valoresEmision.add(nuevoValor);
 	}
 
 

@@ -277,43 +277,87 @@ INSERT INTO public.fabricado (idaniofabricacion, idmodelo) VALUES
 
 INSERT INTO public.ajusteporsiniestro (idajustesiniestro, cantidadsiniestros) VALUES
   (1, 0), (2, 1), (3, 2), (4, 3);
+  
+  
+  
+ INSERT INTO public.valorporcentual (idvalorporcentual, fechaasignacion, fechamodificacion, valorporcentual)
+VALUES
+  (1, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05),
+  (2, '2023-02-01 12:00:00', '2023-02-01 12:00:00', 0.08),
+  (3, '2023-03-01 12:00:00', '2023-03-01 12:00:00', 0.07),
+  (4, '2023-04-01 12:00:00', '2023-04-01 12:00:00', 0.06),
+  (5, '2023-05-01 12:00:00', '2023-05-01 12:00:00', 0.09),
+  (6, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05),
+  (7, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05),
+  (8, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05),
+  (9, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05),
+  (10, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05),
+  (11, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06),
+  (12, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06),
+  (13, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06),
+  (14, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06),
+  (15, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06),
+  (16, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07),
+  (17, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07),
+  (18, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07),
+  (19, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07),
+  (20, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07),
+  (21, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08),
+  (22, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08),
+  (23, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08),
+  (24, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08),
+  (25, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08),
+  (26, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09),
+  (27, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09),
+  (28, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09),
+  (29, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09),
+  (30, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09),
+  (31, '2023-02-01 12:00:00', '2023-02-01 12:00:00', 0.08),
+  (32, '2023-03-01 12:00:00', '2023-03-01 12:00:00', 0.07),
+  (33, '2023-04-01 12:00:00', '2023-04-01 12:00:00', 0.06),
+  (34, '2023-05-01 12:00:00', '2023-05-01 12:00:00', 0.09);
+INSERT INTO public.ValorMarca(idmarca, idvalorporcentual) VALUES
+(1,1),
+(2,2),
+(3,3),
+(4,4),
+(5,5);
 
- INSERT INTO public.valorporcentual (idvalorporcentual, fechaasignacion, fechamodificacion, valorporcentual, idcobertura, idajustedescuento, idmarca, idmodelo, idajusteemision, idajustehijo,
- idajustekilometro, idajustesiniestro, idlocalidad, idmedida, idprovincia) VALUES
-  (1, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, 1, null, null, null, null, null, null, null, null),
-  (2, '2023-02-01 12:00:00', '2023-02-01 12:00:00', 0.08, null, null, 2, null, null, null, null, null, null, null, null),
-  (3, '2023-03-01 12:00:00', '2023-03-01 12:00:00', 0.07, null, null, 3, null, null, null, null, null, null, null, null),
-  (4, '2023-04-01 12:00:00', '2023-04-01 12:00:00', 0.06, null, null, 4, null, null, null, null, null, null, null, null),
-  (5, '2023-05-01 12:00:00', '2023-05-01 12:00:00', 0.09, null, null, 5, null, null, null, null, null, null, null, null),
-  (6, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, null, 1, null, null, null, null, null, null, null),
-  (7, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, null, 6, null, null, null, null, null, null, null),
-  (8, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, null, 11, null, null, null, null, null, null, null),
-  (9, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, null, 16, null, null, null, null, null, null, null),
-  (10, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.05, null, null, null, 21, null, null, null, null, null, null, null),
-  (11, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06, null, null, null, 2, null, null, null, null, null, null, null),
-  (12, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06, null, null, null, 7, null, null, null, null, null, null, null),
-  (13, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06, null, null, null, 12, null, null, null, null, null, null, null),
-  (14, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06, null, null, null, 17, null, null, null, null, null, null, null),
-  (15, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.06, null, null, null, 22, null, null, null, null, null, null, null),
-  (16, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07, null, null, null, 3, null, null, null, null, null, null, null),
-  (17, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07, null, null, null, 8, null, null, null, null, null, null, null),
-  (18, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07, null, null, null, 13, null, null, null, null, null, null, null),
-  (19, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07, null, null, null, 18, null, null, null, null, null, null, null),
-  (20, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.07, null, null, null, 23, null, null, null, null, null, null, null),
-  (21, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08, null, null, null, 4, null, null, null, null, null, null, null),
-  (22, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08, null, null, null, 9, null, null, null, null, null, null, null),
-  (23, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08, null, null, null, 14, null, null, null, null, null, null, null),
-  (24, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08, null, null, null, 19, null, null, null, null, null, null, null),
-  (25, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.08, null, null, null, 24, null, null, null, null, null, null, null),
-  (26, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09, null, null, null, 5, null, null, null, null, null, null, null),
-  (27, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09, null, null, null, 10, null, null, null, null, null, null, null),
-  (28, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09, null, null, null, 15, null, null, null, null, null, null, null),
-  (29, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09, null, null, null, 19, null, null, null, null, null, null, null),
-  (30, '2023-01-01 12:00:00', '2023-01-01 12:00:00', 0.09, null, null, null, 25, null, null, null, null, null, null, null),
-  (31, '2023-02-01 12:00:00', '2023-02-01 12:00:00', 0.08, null, null, null, null, null, null, null, 1, null, null, null),
-  (32, '2023-03-01 12:00:00', '2023-03-01 12:00:00', 0.07, null, null, null, null, null, null, null, 2, null, null, null),
-  (33, '2023-04-01 12:00:00', '2023-04-01 12:00:00', 0.06, null, null, null, null, null, null, null, 3, null, null, null),
-  (34, '2023-05-01 12:00:00', '2023-05-01 12:00:00', 0.09, null, null, null, null, null, null, null, 4, null, null, null);
+INSERT INTO public.valormodelo(idmodelo, idvalorporcentual) VALUES
+(1,6),
+(6,7),
+(11,8),
+(16,9),
+
+(21,10),
+(2,11),
+(7,12),
+(12,13),
+(17,14),
+(22,15),
+(3,16),
+(8,17),
+(13,18),
+(18,19),
+(23,20),
+(4,21),
+(9,22),
+(14,23),
+(19,24),
+(24,25),
+(5,26),
+(10,27),
+(15,28),
+(19,29),
+(25,30);
+
+INSERT INTO public.valorsiniestro(idajustesiniestro, idvalorporcentual) VALUES
+(1,31),
+(2,32),
+(3,33),
+(4,34);
+
+
   
 INSERT INTO public.tipocondicioniva (idtipocondicioniva, descripcion) VALUES
   (1, 'IVA Responsable Inscripto'),
