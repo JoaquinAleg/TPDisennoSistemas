@@ -86,7 +86,7 @@ public class BuscarCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BuscarCliente(GestorCliente gestorC, GestorPoliza gestorP, int enteroAnterior) {
+	public BuscarCliente(GestorCliente gestorC, GestorPoliza gestorP, boolean panelAnterior) {
 		this.gestorCliente = gestorC;
 		this.gestorPoliza = gestorP;
 		//PARTE VISUAL DE LA PANTALLA
@@ -127,32 +127,19 @@ public class BuscarCliente extends JFrame {
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(SystemColor.inactiveCaptionBorder);
-		panel_3.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));
+
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
-		gbc_panel_3.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_3.fill = GridBagConstraints.BOTH;
 		gbc_panel_3.gridx = 0;
 		gbc_panel_3.gridy = 0;
 		panel.add(panel_3, gbc_panel_3);
-		if(enteroAnterior == 1) {
-		JLabel lblNewLabel_5_1 = new JLabel("Crear Póliza");
-		lblNewLabel_5_1.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		lblNewLabel_5_1.setBorder(null);
-		panel_3.add(lblNewLabel_5_1);
-		}
+
 		JLabel lblDatosDeLa_1 = new JLabel("Buscar Cliente");
 		lblDatosDeLa_1.setBackground(SystemColor.inactiveCaptionBorder);
 		lblDatosDeLa_1.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();
-		gbc_lblDatosDeLa_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblDatosDeLa_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblDatosDeLa_1.gridx = 0;
-		gbc_lblDatosDeLa_1.gridy = 1;
-		panel.add(lblDatosDeLa_1, gbc_lblDatosDeLa_1);
-		lblDatosDeLa_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
+
 		
 		JPanel panelIngresos = new JPanel();
 		panelIngresos.setBackground(SystemColor.inactiveCaptionBorder);
@@ -376,29 +363,60 @@ public class BuscarCliente extends JFrame {
 				BuscarCliente.this.dispose();
 			}
 		});
-		
-		JButton Boton_Continuar_1 = new JButton("Continuar\r\n");
-		Boton_Continuar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-                if (cliDTO != null) {
-                    
-					CrearPoliza_1 FuturaPantalla = new CrearPoliza_1(gestorPoliza, gestorCliente, BuscarCliente.this, cliDTO);
-					try {
-						FuturaPantalla.setVisible(true);
-					} catch(Exception er) {
-						er.printStackTrace();
-					}
-					BuscarCliente.this.setVisible(false);
-					BuscarCliente.this.dispose();
+		JButton Boton_Continuar_1 = new JButton();
+			if(panelAnterior) { // si panelAnterior es true, es porque fue llamado desde crearPoliza
+			//
+			gbc_lblDatosDeLa_1.gridx = 0;
+			gbc_lblDatosDeLa_1.gridy = 1;
+			// esto es para el titulo 
+			JLabel lblNewLabel_5_1 = new JLabel("Crear Póliza");
+			lblNewLabel_5_1.setVerticalAlignment(SwingConstants.TOP);
+			lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
+			lblNewLabel_5_1.setBorder(null);
+			panel_3.add(lblNewLabel_5_1);
+			panel_3.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));
+			Boton_Continuar_1.setText("Continuar\r\n");
+			Boton_Continuar_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) { 
+	
+	                if (cliDTO != null) {
 	                    
-                }
-                else{
-                	JOptionPane.showMessageDialog(null, "Porfavor seleccione un cliente","Error",JOptionPane.WARNING_MESSAGE);
-                }
-				
-			}
-		});
+						CrearPoliza_1 FuturaPantalla = new CrearPoliza_1(gestorPoliza, gestorCliente, BuscarCliente.this, cliDTO);
+						try {
+							FuturaPantalla.setVisible(true);
+						} catch(Exception er) {
+							er.printStackTrace();
+						}
+						BuscarCliente.this.setVisible(false);
+						BuscarCliente.this.dispose();
+		                    
+	                }
+	                else{
+	                	JOptionPane.showMessageDialog(null, "Porfavor seleccione un cliente","Error",JOptionPane.WARNING_MESSAGE);
+	                }
+					
+				}
+			});
+		}else { // la idea es que si viene desde ConsultarCliente pase esto:
+			//
+			gbc_lblDatosDeLa_1.gridx = 0;
+			gbc_lblDatosDeLa_1.gridy = 0;
+			gbc_lblDatosDeLa_1.gridheight = 2;
+			// esto es para el titulo 
+			Boton_Continuar_1.setText("Aceptar");
+			Boton_Continuar_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Boton_Cancelar.doClick();
+	                }
+					
+				}
+			);}
+		gbc_lblDatosDeLa_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblDatosDeLa_1.insets = new Insets(0, 0, 5, 0);
+		panel.add(lblDatosDeLa_1, gbc_lblDatosDeLa_1);
+		lblDatosDeLa_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		
 		Boton_Continuar_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		Boton_Continuar_1.setBackground(SystemColor.controlHighlight);
 		GridBagConstraints gbc_Boton_Continuar_1 = new GridBagConstraints();
@@ -457,8 +475,6 @@ public class BuscarCliente extends JFrame {
 		panel_2.add(Boton_Continuar, gbc_Boton_Continuar);
 
 		
-
-
 	}
 	
 	private void cargarClientes(List<ClienteDTO> clienteDTO, List<ListadoDTO> filtroTipoDocumentoDTO) {
