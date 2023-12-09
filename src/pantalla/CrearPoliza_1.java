@@ -534,10 +534,12 @@ public class CrearPoliza_1 extends JFrame {
 						Boolean I = !(text_Kilometros.getText().equals("") || contieneCaracter(text_Kilometros.getText()));
 						Boolean J = !((ListadoDTO)text_Siniestros.getSelectedItem()).getNombre().equals(" ");
 						Boolean K = !(text_Patente.getText().equals(""));
+						Boolean L = !(gestorPoliza.checkPatente(text_Patente.getText()));
 						
 						
 						
-						if(A &&  B && C && D && E && F && G && H && I && J && K) {
+						
+						if(A &&  B && C && D && E && F && G && H && I && J && K && L) {
 							DatosPolizaDTO datosPolizaDTO = new DatosPolizaDTO();
 							nombresDTO = new NombresDTO(marcaParaPantalla.getNombre(), modeloParaPantalla.getNombre());
 							datosPolizaDTO.setIdLocalidadRiesgo(((ListadoDTO)LocalidadRiesgo.getSelectedItem()).getId());
@@ -584,7 +586,8 @@ public class CrearPoliza_1 extends JFrame {
 							
 						}
 						else{
-							JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
+							if(L)JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
+							else JOptionPane.showMessageDialog(null, "El auto ya tiene una póliza vigente","Error",JOptionPane.WARNING_MESSAGE);
 						}
 			}
 		});

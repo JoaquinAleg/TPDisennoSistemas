@@ -48,7 +48,10 @@ import DAOS.DAOajusteDescuento;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+
+import javax.swing.JTextField;
 
 import DAOS.DAOajusteEmision;
 
@@ -460,6 +463,14 @@ public class GestorPoliza {
 			tipoDocumentosDTO.add(TipoDocumentoDTO);
 		}
 		return tipoDocumentosDTO;
+	}
+
+
+	public boolean checkPatente(String Patente) {
+		boolean ret = false;
+		List<Poliza> polizas = daoPoliza.getAll().stream().filter(a -> a.getPatente().equals(Patente)&& a.getFechaDeFin().isAfter(LocalDate.now())).toList();
+		if(polizas.size()!= 0) ret = true;
+		return ret;
 	}
 	
 }
