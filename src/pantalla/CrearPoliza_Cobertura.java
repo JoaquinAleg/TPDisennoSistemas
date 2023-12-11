@@ -303,12 +303,13 @@ public class CrearPoliza_Cobertura extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if( formasPago.getSelectedIndex() == 0 || table.getSelectionModel().isSelectionEmpty()  ) {
 					JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
+					System.out.println(formasPago.getSelectedItem().toString());
 				}else {
 					datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 					datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().minusDays(1));
 					datosPolizaDTO.setIdFormaPago(((ListadoDTO)formasPago.getSelectedItem()).getId());
 					datosPolizaDTO.setIdCobertura(((ListadoDTO)modelo.getValueAt(table.getSelectedRow(), 0)).getId());
-					if(formasPago.getSelectedItem().equals( modeloTipoFormaPagoDTO.stream().filter(m->m.getNombre().equals("Mensual")))) {
+					if((((ListadoDTO) formasPago.getSelectedItem()).getNombre()).equals("Mensual")) {
 						CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
 						
 						try {
