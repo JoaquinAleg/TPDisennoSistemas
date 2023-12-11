@@ -196,7 +196,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getColumnModel().getColumn(0).setCellRenderer(new ListadoDTOJTableRenderer());
 		table.setForeground(Color.BLACK);
-		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		table.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		table.setFillsViewportHeight(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0));
 		table.setBackground(Color.WHITE);
