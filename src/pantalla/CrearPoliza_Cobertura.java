@@ -301,9 +301,8 @@ public class CrearPoliza_Cobertura extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if( formasPago.getSelectedIndex() == 0 || table.getSelectionModel().isSelectionEmpty()  ) {
+				if( ((((ListadoDTO) formasPago.getSelectedItem()).getNombre()).equals(" ")) || table.getSelectionModel().isSelectionEmpty()  ) {
 					JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
-					System.out.println(formasPago.getSelectedItem().toString());
 				}else {
 					datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 					datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().minusDays(1));
