@@ -186,7 +186,6 @@ public class CrearPoliza_Cobertura extends JFrame {
 		
 		
 		List<ListadoDTO> coberturaDTO = this.gestorPoliza.getCoberturas();
-		//String[] coberturas = coberturaDTO.stream().map(c->c.getNombre()).toArray(String[]::new);
 		ListadoDTO[] coberturas = coberturaDTO.toArray(new ListadoDTO[coberturaDTO.size()]);
 		for(ListadoDTO e : coberturas) {
 			modelo.addRow( new Object[]{e});
@@ -302,18 +301,14 @@ public class CrearPoliza_Cobertura extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(formasPago.getSelectedItem().equals(" ") || formasPago.getSelectedItem() == null || table.getSelectionModel().isSelectionEmpty()  ) {
+				if( formasPago.getSelectedIndex() == 0 || table.getSelectionModel().isSelectionEmpty()  ) {
 					JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
 				}else {
 					datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 					datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().minusDays(1));
-					//Long[] idFormaPago = modeloTipoFormaPagoDTO.stream().filter(a -> a.getNombre().equals(formasPago.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 					datosPolizaDTO.setIdFormaPago(((ListadoDTO)formasPago.getSelectedItem()).getId());
-					//Long[] idCobertura = coberturaDTO.stream().filter(a -> a.getNombre().equals(modelo.getValueAt(table.getSelectedRow(), 0))).map(b -> b.getId()).toArray(Long[]::new);
-					//System.out.println(modelo.getValueAt(table.getSelectedRow(), 0));
-					//System.out.println(idCobertura.toString());
 					datosPolizaDTO.setIdCobertura(((ListadoDTO)modelo.getValueAt(table.getSelectedRow(), 0)).getId());
-					if(formasPago.getSelectedItem().equals("Mensual")) {
+					if(formasPago.getSelectedItem().equals( modeloTipoFormaPagoDTO.stream().filter(m->m.getNombre().equals("Mensual")))) {
 						CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
 						
 						try {
