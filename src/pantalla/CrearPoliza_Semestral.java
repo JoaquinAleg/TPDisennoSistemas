@@ -74,7 +74,7 @@ public class CrearPoliza_Semestral extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_Semestral(DatosPolizaDTO datosPolizaDTO, NombresDTO nombresDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
+	public CrearPoliza_Semestral(DatosPolizaDTO datosPolizaDTO, NombresDTO nombresDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente, String numeroClienteS) {
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorCliente = gestorCliente;
 		this.gestorPoliza = gestorPoliza;
@@ -112,7 +112,7 @@ public class CrearPoliza_Semestral extends JFrame {
 		gbl_panel.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		String numeroCliente = String.valueOf(datosPolizaDTO.getNumeroCliente());
-		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Titular del seguro: " + numeroCliente);
+		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Titular del seguro: " + numeroClienteS);
 		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();

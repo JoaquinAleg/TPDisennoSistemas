@@ -63,7 +63,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 	private String[] estadosCivil;
 	
 	public CrearPoliza_EditarHijos( GestorPoliza gestorPoliza,GestorCliente gestorCliente,	ArrayList<HijosDTO> listaHijos ,HijosDTO h,   NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO, CrearPoliza_ListadoHijos anterior,
-			List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1) {
+			List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1, String numeroClienteS) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		this.gestorPoliza = gestorPoliza;
@@ -210,7 +210,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 				hList.set(i, h);
 				try {
 				CrearPoliza_ListadoHijos Panterior = new CrearPoliza_ListadoHijos(hList,gestorPoliza, gestorCliente, nombresDTO, datosPolizaDTO,
-						CrearPoliza_EditarHijos.this.sexoDTO,CrearPoliza_EditarHijos.this.estadoCivilDTO,conHijos, poliza1);
+						CrearPoliza_EditarHijos.this.sexoDTO,CrearPoliza_EditarHijos.this.estadoCivilDTO,conHijos, poliza1, numeroClienteS);
 				Panterior.setVisible(true);
 //				anterior.validate();
 //				anterior.repaint();

@@ -74,7 +74,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearPoliza_ListadoHijos(ArrayList <HijosDTO> hijos,	GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO,
-			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1) {
+			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1, String numeroClienteS) {
 		int cantidadHijos = hijos.size();
 		this.hijos=hijos;
 		this.gestorPoliza = gestorPoliza;
@@ -238,7 +238,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				btnNewButton_1_1_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(gestorPoliza, gestorCliente, hijos ,h, nombresDTO,datosPolizaDTO, CrearPoliza_ListadoHijos.this,
-								sexoDTO,estadoCivilDTO, conHijos, poliza1);
+								sexoDTO,estadoCivilDTO, conHijos, poliza1, numeroClienteS);
 						
 						try {
 							FuturaPantalla.setVisible(true);
@@ -274,7 +274,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 						hijos.remove(h);
 						
 						if(hijos.isEmpty()) {
-							CrearPoliza_2 FuturaPantalla = new CrearPoliza_2(datosPolizaDTO,gestorPoliza,gestorCliente, nombresDTO,poliza1);
+							CrearPoliza_2 FuturaPantalla = new CrearPoliza_2(datosPolizaDTO,gestorPoliza,gestorCliente, nombresDTO,poliza1, numeroClienteS);
 							
 							try {
 								FuturaPantalla.setVisible(true);
@@ -285,7 +285,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 							CrearPoliza_ListadoHijos.this.dispose();
 							}else {
 						
-						CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos( hijos,gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO, sexDTO, estCivilDTO, conHijos,poliza1);
+						CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos( hijos,gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO, sexDTO, estCivilDTO, conHijos,poliza1,numeroClienteS);
 						try {
 							actualizada.setVisible(true);
 						} catch(Exception er) {

@@ -70,7 +70,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearPoliza_Mensual1(DatosPolizaDTO datosPolizaDTO, NombresDTO nombresDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
+	public CrearPoliza_Mensual1(DatosPolizaDTO datosPolizaDTO, NombresDTO nombresDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente, String numeroClienteS) {
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorCliente = gestorCliente;
 		this.gestorPoliza = gestorPoliza;
@@ -107,8 +107,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		String numeroCliente = String.valueOf(datosPolizaDTO.getNumeroCliente());
-		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Titular del seguro: " + numeroCliente);
+		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Titular del seguro: " + numeroClienteS);
 		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();
@@ -484,7 +483,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			// acá tendrían que poner un if(cantidadhijos) a ver si se tira CrearPoliza_2 [caso sin hijos] o CrearPoliza_HijosExistentes.
 						
-						CrearPoliza_Mensual2 CPoliza = new CrearPoliza_Mensual2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
+						CrearPoliza_Mensual2 CPoliza = new CrearPoliza_Mensual2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO, numeroClienteS);
 						
 						try {
 							CPoliza.setVisible(true);
@@ -503,8 +502,6 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		gbc_Boton_Continuar.gridx = 2;
 		gbc_Boton_Continuar.gridy = 0;
 		panelInferior.add(Boton_Continuar, gbc_Boton_Continuar);
-
-
 
 
 	}

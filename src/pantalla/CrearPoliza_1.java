@@ -132,8 +132,7 @@ public class CrearPoliza_1 extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		//String numeroClienteS = new String("01-00000001");
-		//this.numeroCliente = 100000001L;
+
 		String numeroClienteS = clienteDTO.getNumeroCliente().toString();
 		this.numeroCliente = clienteDTO.getNumeroCliente();
 		//CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE//
@@ -574,7 +573,7 @@ public class CrearPoliza_1 extends JFrame {
 							System.out.println(datosPolizaDTO.getIdModeloVehiculo());
 							*/
 							
-							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO, CrearPoliza_1.this);
+							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO, CrearPoliza_1.this, numeroClienteS);
 						System.out.println("Se creó una instancia");
 							try {
 								CPoliza.setVisible(true);

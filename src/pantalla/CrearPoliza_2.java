@@ -24,6 +24,7 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import CustomRenderers.ListadoDTORenderer;
+import DTOS.ClienteDTO;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
@@ -60,7 +61,7 @@ public class CrearPoliza_2 extends JFrame {
 	private JComboBox<String> tuercas;
 	private JComboBox<String> rastreoVehicular;
 
-	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO,GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO, JFrame anterior) {
+	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO,GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO, JFrame anterior, String numeroClienteS) {
 		this.gestorPoliza = gestorPoliza;
 		this.hijos = new ArrayList<>();
 		
@@ -117,7 +118,7 @@ public class CrearPoliza_2 extends JFrame {
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblNewLabel_5_1.setBorder(null);
 		panel_3.add(lblNewLabel_5_1);
-		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroCliente);
+		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroClienteS);
 		lblDatosDeLa_1.setBackground(SystemColor.inactiveCaptionBorder);
 		lblDatosDeLa_1.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -263,7 +264,7 @@ public class CrearPoliza_2 extends JFrame {
 		JButton Boton_Continuar_1 = new JButton("Ver Hijos");
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this,anterior);
+				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this,anterior,numeroClienteS);
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -471,7 +472,7 @@ public class CrearPoliza_2 extends JFrame {
 						medidas.add(idRastreoVehicular[0]);
 					}
 					datosPolizaDTO.setListaMedidaSeguridad(medidas);
-					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(hijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this);
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(hijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this, numeroClienteS);
 					
 					try {
 						CPoliza.setVisible(true);

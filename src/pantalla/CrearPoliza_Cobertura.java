@@ -84,7 +84,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearPoliza_Cobertura(ArrayList<HijosDTO> hijos, GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,
-			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame anterior) {
+			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame anterior, String numeroClienteS) {
 		this.cantidadHijos = hijos;
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
@@ -141,7 +141,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblNewLabel_5_1.setBorder(null);
 		panel_3.add(lblNewLabel_5_1);
-		JLabel lblDatosDeLa_1 = new JLabel("Selección de cobertura - Cliente nro: numeroCliente");
+		JLabel lblDatosDeLa_1 = new JLabel("Selección de cobertura - Cliente nro: "+ numeroClienteS);
 		lblDatosDeLa_1.setBackground(SystemColor.inactiveCaptionBorder);
 		lblDatosDeLa_1.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -309,7 +309,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 					datosPolizaDTO.setIdFormaPago(((ListadoDTO)formasPago.getSelectedItem()).getId());
 					datosPolizaDTO.setIdCobertura(((ListadoDTO)modelo.getValueAt(table.getSelectedRow(), 0)).getId());
 					if((((ListadoDTO) formasPago.getSelectedItem()).getNombre()).equals("Mensual")) {
-						CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
+						CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente, numeroClienteS);
 						
 						try {
 							CPoliza.setVisible(true);
@@ -319,7 +319,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 						CrearPoliza_Cobertura.this.setVisible(false);
 						CrearPoliza_Cobertura.this.dispose();
 					} else {
-						CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
+						CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente, numeroClienteS);
 						
 						try {
 							CPoliza.setVisible(true);
