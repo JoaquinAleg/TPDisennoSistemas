@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -46,7 +47,9 @@ import POJOS.Cobertura;
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableModel;
 ;
@@ -154,19 +157,8 @@ public class CrearPoliza_Cobertura extends JFrame {
 		panel.add(lblDatosDeLa_1, gbc_lblDatosDeLa_1);
 		lblDatosDeLa_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		
-		JLabel lblDatosDeLa_1_1 = new JLabel("Cobertura Disponible");
-		GridBagConstraints gbc_lblDatosDeLa_1_1 = new GridBagConstraints();
-		gbc_lblDatosDeLa_1_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblDatosDeLa_1_1.gridwidth = 4;
-		gbc_lblDatosDeLa_1_1.gridx = 0;
-		gbc_lblDatosDeLa_1_1.gridy = 2;
-		panel.add(lblDatosDeLa_1_1, gbc_lblDatosDeLa_1_1);
-		lblDatosDeLa_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDatosDeLa_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblDatosDeLa_1_1.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));
-		lblDatosDeLa_1_1.setBackground(SystemColor.inactiveCaptionBorder);
-		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.gridwidth = 4;
 		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
@@ -175,15 +167,14 @@ public class CrearPoliza_Cobertura extends JFrame {
 		gbc_panel_1.gridy = 3;
 		panel.add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{234, 0};
-		gbl_panel_1.rowHeights = new int[]{80, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWidths = new int[]{0, 234, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 80, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
+		
 		DefaultTableModel modelo = new DefaultTableModel();
-		
 		modelo.addColumn("Cobertura Disponibles");
-		
 		
 		List<ListadoDTO> coberturaDTO = this.gestorPoliza.getCoberturas();
 		ListadoDTO[] coberturas = coberturaDTO.toArray(new ListadoDTO[coberturaDTO.size()]);
@@ -191,24 +182,37 @@ public class CrearPoliza_Cobertura extends JFrame {
 			modelo.addRow( new Object[]{e});
 		}
 
+	
 		table = new JTable(modelo);
+
 		table.setToolTipText("");
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getColumnModel().getColumn(0).setCellRenderer(new ListadoDTOJTableRenderer());
 		table.setForeground(Color.BLACK);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		table.setFillsViewportHeight(true);
-		table.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		table.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		table.setBackground(Color.WHITE);
 		table.setRowHeight(30);
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.insets = new Insets(0, 0, 5, 0);
 		gbc_table.fill = GridBagConstraints.BOTH;
-		gbc_table.gridx = 0;
-		gbc_table.gridy = 0;
+		gbc_table.gridx = 1;
+		gbc_table.gridy = 1;
 		panel_1.add(table, gbc_table);
-			
-
+		JLabel tituloTabla = new JLabel("Coberturas Disponibles");
+		tituloTabla.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		tituloTabla.setBorder(new MatteBorder(2, 2, 0, 2, (Color) new Color(0, 0, 0)));
+		tituloTabla.setBackground(SystemColor.inactiveCaptionBorder);
+		tituloTabla.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints GtituloTabla = new GridBagConstraints();
+		GtituloTabla.insets = new Insets(0, 0, 0, 0);
+		GtituloTabla.fill = GridBagConstraints.HORIZONTAL;
+		GtituloTabla.gridx = 1;
+		GtituloTabla.gridy = 0;
+		panel_1.add(tituloTabla, GtituloTabla);
+		
+		
 		
 		JLabel lblFechaDeNacimiento_1_1 = new JLabel("Fecha de Inicio:");
 
