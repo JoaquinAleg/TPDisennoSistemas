@@ -388,7 +388,7 @@ public class BuscarCliente extends JFrame {
 	
 	                if (cliDTO != null) {
 	                	cargarPanelCliente(panelCliente, cliDTO);
-	                	JOptionPane.showMessageDialog(null, panelCliente);
+	                	JOptionPane.showMessageDialog(null, panelCliente, "El Asegurado", JOptionPane.PLAIN_MESSAGE);
 						CrearPoliza_1 FuturaPantalla = new CrearPoliza_1(gestorPoliza, gestorCliente, BuscarCliente.this, cliDTO);
 						try {
 							FuturaPantalla.setVisible(true);
@@ -564,7 +564,9 @@ public class BuscarCliente extends JFrame {
 		gbl_prueba.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		prueba.setLayout(gbl_prueba);
 		
-		JLabel lblFechaDeNacimiento_1_1 = new JLabel("Apellido: ");
+		
+		
+		JLabel lblFechaDeNacimiento_1_1 = new JLabel("Número Cliente: ");
 		lblFechaDeNacimiento_1_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFechaDeNacimiento_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblFechaDeNacimiento_1_1 = new GridBagConstraints();
@@ -573,15 +575,39 @@ public class BuscarCliente extends JFrame {
 		gbc_lblFechaDeNacimiento_1_1.gridx = 0;
 		gbc_lblFechaDeNacimiento_1_1.gridy = 0;
 		prueba.add(lblFechaDeNacimiento_1_1, gbc_lblFechaDeNacimiento_1_1);
+		
+		JTextField numeroClienteTP = new JTextField(numeroCliente);
+		numeroClienteTP .setEnabled(false);
+		numeroClienteTP .setFont(new Font("Tahoma", Font.PLAIN, 30));
+		numeroClienteTP .setBackground(SystemColor.inactiveCaptionBorder);
+		GridBagConstraints gbc_numeroClienteTP  = new GridBagConstraints();
+		gbc_numeroClienteTP.fill = GridBagConstraints.HORIZONTAL;
+		gbc_numeroClienteTP.insets = new Insets(30, 0, 5, 5);
+		gbc_numeroClienteTP.gridx = 1;
+		gbc_numeroClienteTP.gridy = 0;
+		prueba.add(numeroClienteTP , gbc_numeroClienteTP);
+		
+		
+		
+		JLabel apellidoLabel = new JLabel("Apellido: ");
+		apellidoLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		apellidoLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_apellidoLabel = new GridBagConstraints();
+		gbc_apellidoLabel.anchor = GridBagConstraints.WEST;
+		gbc_apellidoLabel.insets = new Insets(20, 50, 5, 5);
+		gbc_apellidoLabel.gridx = 0;
+		gbc_apellidoLabel.gridy = 1;
+		prueba.add(apellidoLabel, gbc_apellidoLabel);
+		
 		JTextField apellidoClienteTP = new JTextField(apellidoCliente);
 		apellidoClienteTP.setEnabled(false);
 		apellidoClienteTP.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		apellidoClienteTP.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_apellidoClienteTP = new GridBagConstraints();
 		gbc_apellidoClienteTP.fill = GridBagConstraints.HORIZONTAL;
-		gbc_apellidoClienteTP.insets = new Insets(30, 0, 5, 40);
+		gbc_apellidoClienteTP.insets = new Insets(20, 0, 5, 40);
 		gbc_apellidoClienteTP.gridx = 1;
-		gbc_apellidoClienteTP.gridy = 0;
+		gbc_apellidoClienteTP.gridy = 1;
 		prueba.add(apellidoClienteTP, gbc_apellidoClienteTP);
 		
 		
@@ -590,9 +616,9 @@ public class BuscarCliente extends JFrame {
 		lblNewLabel_1_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel_1_2_1_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1_2_1_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1_2_1_1.insets = new Insets(30, 0, 5, 10);
+		gbc_lblNewLabel_1_2_1_1.insets = new Insets(20, 50, 5, 5);
 		gbc_lblNewLabel_1_2_1_1.gridx = 2;
-		gbc_lblNewLabel_1_2_1_1.gridy = 0;
+		gbc_lblNewLabel_1_2_1_1.gridy = 1;
 		prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
 		
 		
@@ -602,9 +628,9 @@ public class BuscarCliente extends JFrame {
 		nombreClienteLabel.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_nombreClienteLabel = new GridBagConstraints();
 		gbc_nombreClienteLabel.fill = GridBagConstraints.HORIZONTAL;
-		gbc_nombreClienteLabel.insets = new Insets(30, 0, 5, 40);
+		gbc_nombreClienteLabel.insets = new Insets(20, 0, 5, 30);
 		gbc_nombreClienteLabel.gridx = 3;
-		gbc_nombreClienteLabel.gridy = 0;
+		gbc_nombreClienteLabel.gridy = 1;
 		prueba.add(nombreClienteLabel, gbc_nombreClienteLabel);
 		
 		JLabel lblEstadoCivil_1_1 = new JLabel("Tipo Documento: ");
@@ -614,7 +640,7 @@ public class BuscarCliente extends JFrame {
 		gbc_lblEstadoCivil_1_1.anchor = GridBagConstraints.WEST;
 		gbc_lblEstadoCivil_1_1.insets = new Insets(20, 50, 40, 5);
 		gbc_lblEstadoCivil_1_1.gridx = 0;
-		gbc_lblEstadoCivil_1_1.gridy = 2;
+		gbc_lblEstadoCivil_1_1.gridy = 3;
 		prueba.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 		
 		JTextField JTextFieldtipoDocumentoCliente = new JTextField(tipoDocumentoCliente);
@@ -625,7 +651,7 @@ public class BuscarCliente extends JFrame {
 		gbc_JTextFieldtipoDocumentoCliente.fill = GridBagConstraints.HORIZONTAL;
 		gbc_JTextFieldtipoDocumentoCliente.insets = new Insets(20, 0, 40, 30);
 		gbc_JTextFieldtipoDocumentoCliente.gridx = 1;
-		gbc_JTextFieldtipoDocumentoCliente.gridy = 2;
+		gbc_JTextFieldtipoDocumentoCliente.gridy = 3;
 		prueba.add(JTextFieldtipoDocumentoCliente, gbc_JTextFieldtipoDocumentoCliente);
 		
 		JLabel numeroDoc = new JLabel("Número de Documento: ");
@@ -635,7 +661,7 @@ public class BuscarCliente extends JFrame {
 		gbc_numeroDoc.anchor = GridBagConstraints.WEST;
 		gbc_numeroDoc.insets = new Insets(20, 50, 40, 5);
 		gbc_numeroDoc.gridx = 2;
-		gbc_numeroDoc.gridy = 2;
+		gbc_numeroDoc.gridy = 3;
 		prueba.add(numeroDoc, gbc_numeroDoc);
 		
 		JTextField JTextFielNumeroDocumentoCliente = new JTextField(documentoCliente);
@@ -646,7 +672,7 @@ public class BuscarCliente extends JFrame {
 		gbc_JTextFielNumeroDocumentoCliente.fill = GridBagConstraints.HORIZONTAL;
 		gbc_JTextFielNumeroDocumentoCliente.insets = new Insets(20, 0, 40, 30);
 		gbc_JTextFielNumeroDocumentoCliente.gridx = 3;
-		gbc_JTextFielNumeroDocumentoCliente.gridy = 2;
+		gbc_JTextFielNumeroDocumentoCliente.gridy = 3;
 		prueba.add(JTextFielNumeroDocumentoCliente, gbc_JTextFielNumeroDocumentoCliente);
 	}
 
