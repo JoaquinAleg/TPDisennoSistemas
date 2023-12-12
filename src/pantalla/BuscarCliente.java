@@ -591,7 +591,7 @@ public class BuscarCliente extends JFrame {
 		GridBagConstraints gbc_lblNewLabel_1_2_1_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1_2_1_1.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_1_2_1_1.insets = new Insets(30, 0, 5, 10);
-		gbc_lblNewLabel_1_2_1_1.gridx = 3;
+		gbc_lblNewLabel_1_2_1_1.gridx = 2;
 		gbc_lblNewLabel_1_2_1_1.gridy = 0;
 		prueba.add(lblNewLabel_1_2_1_1, gbc_lblNewLabel_1_2_1_1);
 		
@@ -603,7 +603,7 @@ public class BuscarCliente extends JFrame {
 		GridBagConstraints gbc_nombreClienteLabel = new GridBagConstraints();
 		gbc_nombreClienteLabel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_nombreClienteLabel.insets = new Insets(30, 0, 5, 40);
-		gbc_nombreClienteLabel.gridx = 4;
+		gbc_nombreClienteLabel.gridx = 3;
 		gbc_nombreClienteLabel.gridy = 0;
 		prueba.add(nombreClienteLabel, gbc_nombreClienteLabel);
 		
@@ -628,6 +628,26 @@ public class BuscarCliente extends JFrame {
 		gbc_JTextFieldtipoDocumentoCliente.gridy = 2;
 		prueba.add(JTextFieldtipoDocumentoCliente, gbc_JTextFieldtipoDocumentoCliente);
 		
+		JLabel numeroDoc = new JLabel("Número de Documento: ");
+		numeroDoc.setHorizontalAlignment(SwingConstants.LEFT);
+		numeroDoc.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GridBagConstraints gbc_numeroDoc = new GridBagConstraints();
+		gbc_numeroDoc.anchor = GridBagConstraints.WEST;
+		gbc_numeroDoc.insets = new Insets(20, 50, 40, 5);
+		gbc_numeroDoc.gridx = 2;
+		gbc_numeroDoc.gridy = 2;
+		prueba.add(numeroDoc, gbc_numeroDoc);
+		
+		JTextField JTextFielNumeroDocumentoCliente = new JTextField(documentoCliente);
+		JTextFielNumeroDocumentoCliente.setEnabled(false);
+		JTextFielNumeroDocumentoCliente.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		JTextFielNumeroDocumentoCliente.setBackground(SystemColor.inactiveCaptionBorder);
+		GridBagConstraints gbc_JTextFielNumeroDocumentoCliente = new GridBagConstraints();
+		gbc_JTextFielNumeroDocumentoCliente.fill = GridBagConstraints.HORIZONTAL;
+		gbc_JTextFielNumeroDocumentoCliente.insets = new Insets(20, 0, 40, 30);
+		gbc_JTextFielNumeroDocumentoCliente.gridx = 3;
+		gbc_JTextFielNumeroDocumentoCliente.gridy = 2;
+		prueba.add(JTextFielNumeroDocumentoCliente, gbc_JTextFielNumeroDocumentoCliente);
 	}
 
 }
