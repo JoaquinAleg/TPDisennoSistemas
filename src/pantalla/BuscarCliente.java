@@ -329,7 +329,7 @@ public class BuscarCliente extends JFrame {
                     	String tipoDocumentoObj = (String)model.getValueAt(filaSeleccionada, 3);
                     	String numeroDocumentoObj = (String)model.getValueAt(filaSeleccionada, 4);
                         
-                        cliDTO = new ClienteDTO(apellidoObj, nombreObj, Long.parseLong(numeroClienteObj), Integer.parseInt((String)numeroDocumentoObj), 
+                        cliDTO = new ClienteDTO(nombreObj, apellidoObj, Long.parseLong(numeroClienteObj), Integer.parseInt((String)numeroDocumentoObj), 
                         		filtroTipoDocumentoDTO.stream().filter(a -> a.getNombre().equals(tipoDocumentoObj)).map(a -> a.getId()).toList().get(0));
                     }
                 
@@ -499,17 +499,19 @@ public class BuscarCliente extends JFrame {
     
 	private void cargarPanelCliente( JPanel panelPrincipal, ClienteDTO cliDTO) {
 		
-		String tipoDocumentoCliente = cliDTO.getIdTipoDocumento().toString();
+		
+		String tipoDocumentoCliente =cliDTO.getIdTipoDocumento().toString();
+	
 		String apellidoCliente = cliDTO.getApellido().toString();
 		String nombreCliente = cliDTO.getNombre().toString();
 		String documentoCliente = cliDTO.getNumeroDocumento().toString();
 		String numeroCliente = cliDTO.getNumeroCliente().toString();
 		
+		
 		contentPane = panelPrincipal;
-		contentPane.setBackground(SystemColor.activeCaption);
-		contentPane.setForeground(new Color(0, 0, 0));
-		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-
+		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
+		contentPane.setForeground(SystemColor.inactiveCaptionBorder);
+		//contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0};
