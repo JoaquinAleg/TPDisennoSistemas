@@ -613,7 +613,7 @@ public class CrearPoliza_1 extends JFrame {
 		Boton_Cancelar_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		Boton_Cancelar_1.setBackground(SystemColor.controlHighlight);
 		GridBagConstraints gbc_Boton_Cancelar_1 = new GridBagConstraints();
-		gbc_Boton_Cancelar_1.anchor = GridBagConstraints.WEST;
+		gbc_Boton_Cancelar_1.anchor = GridBagConstraints.EAST;
 		gbc_Boton_Cancelar_1.insets = new Insets(10, 10, 10, 5);
 		gbc_Boton_Cancelar_1.gridx = 1;
 		gbc_Boton_Cancelar_1.gridy = 0;
