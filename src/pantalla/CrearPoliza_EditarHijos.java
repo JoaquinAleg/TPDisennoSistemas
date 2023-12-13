@@ -14,6 +14,7 @@ import java.awt.Insets;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -43,6 +44,7 @@ import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -201,6 +203,8 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		JButton btnNewButton_1_2 = new JButton("Confirmar");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(ChronoUnit.DAYS.between(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) >= 6570 && 
+						ChronoUnit.DAYS.between(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) <= 10950) {
 				Integer i = hList.lastIndexOf(h);
 //				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(TipoSexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 //				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
@@ -223,7 +227,9 @@ public class CrearPoliza_EditarHijos extends JFrame {
 				CrearPoliza_EditarHijos.this.setVisible(false);
 				CrearPoliza_EditarHijos.this.dispose();
 				
-				
+				}else {
+					JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		
