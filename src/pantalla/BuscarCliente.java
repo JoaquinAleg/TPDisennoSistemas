@@ -191,7 +191,7 @@ public class BuscarCliente extends JFrame {
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0,};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.5, 0.0, 0.5};
+		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.5};
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0,};
 
 		panel_1.setLayout(gbl_panel_1);
