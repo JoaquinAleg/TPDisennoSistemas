@@ -345,29 +345,6 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		gbc_textField_5.gridy = 3;
 		PanelMedioInferior.add(textField_5, gbc_textField_5);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Último día de pago:");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_lblNewLabel_1_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1_1.insets = new Insets(20, 20, 5, 5);
-		gbc_lblNewLabel_1_1.gridx = 2;
-		gbc_lblNewLabel_1_1.gridy = 3;
-		PanelMedioInferior.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setText(datosPolizaDTO.getUltimoDiaPago().toString());
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.insets = new Insets(20, 10, 5, 70);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 3;
-		gbc_textField_2.gridy = 3;
-		PanelMedioInferior.add(textField_2, gbc_textField_2);
-		
 		JLabel AñoVehiculo = new JLabel("Suma asegurada:");
 		AñoVehiculo.setHorizontalAlignment(SwingConstants.LEFT);
 		AñoVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -397,9 +374,9 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		GridBagConstraints gbc_SumaAs = new GridBagConstraints();
 		gbc_SumaAs.anchor = GridBagConstraints.WEST;
 		gbc_SumaAs.fill = GridBagConstraints.VERTICAL;
-		gbc_SumaAs.insets = new Insets(20, 20, 5, 5);
+		gbc_SumaAs.insets = new Insets(20, 20, 30, 5);
 		gbc_SumaAs.gridx = 2;
-		gbc_SumaAs.gridy = 4;
+		gbc_SumaAs.gridy = 3;
 		PanelMedioInferior.add(SumaAs, gbc_SumaAs);
 		
 		textField = new JTextField();
@@ -409,34 +386,11 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		textField.setColumns(10);
 		textField.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(20, 10, 5, 70);
+		gbc_textField.insets = new Insets(20, 10, 30, 70);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 3;
-		gbc_textField.gridy = 4;
+		gbc_textField.gridy = 3;
 		PanelMedioInferior.add(textField, gbc_textField);
-		
-		JLabel Chasis = new JLabel("Monto total a abonar:");
-		Chasis.setHorizontalAlignment(SwingConstants.LEFT);
-		Chasis.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GridBagConstraints gbc_Chasis = new GridBagConstraints();
-		gbc_Chasis.insets = new Insets(20, 20, 30, 5);
-		gbc_Chasis.anchor = GridBagConstraints.WEST;
-		gbc_Chasis.gridx = 2;
-		gbc_Chasis.gridy = 5;
-		PanelMedioInferior.add(Chasis, gbc_Chasis);
-		
-		textField_1 = new JTextField();
-		textField_1.setText(String.valueOf(datosPolizaDTO.getPremio()*(1-datosPolizaDTO.getDescuento())));
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBackground(SystemColor.inactiveCaptionBorder);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(20, 10, 30, 70);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 3;
-		gbc_textField_1.gridy = 5;
-		PanelMedioInferior.add(textField_1, gbc_textField_1);
 		
 		JPanel panelInferior = new JPanel();
 		panelInferior.setBackground(SystemColor.inactiveCaptionBorder);

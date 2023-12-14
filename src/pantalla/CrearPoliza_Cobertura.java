@@ -179,10 +179,12 @@ public class CrearPoliza_Cobertura extends JFrame {
 		List<ListadoDTO> coberturaDTO = this.gestorPoliza.getCoberturas();
 		ListadoDTO[] coberturas = coberturaDTO.toArray(new ListadoDTO[coberturaDTO.size()]);
 		for(ListadoDTO e : coberturas) {
+			
+			//if(cantidadanios > 10){ if(e.getNombre().equals("Responsabilidad Civil")) modelo.addRow(new Object[{e})}
+			//else{
 			modelo.addRow( new Object[]{e});
+			//}
 		}
-
-	
 		table = new JTable(modelo);
 
 		table.setToolTipText("");
