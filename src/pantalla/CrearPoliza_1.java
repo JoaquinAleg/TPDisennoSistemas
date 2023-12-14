@@ -138,7 +138,7 @@ public class CrearPoliza_1 extends JFrame {
 		panel.setLayout(gbl_panel);
 
 		String numeroClienteS = clienteDTO.getNumeroCliente().toString();
-		this.numeroCliente = clienteDTO.getNumeroCliente();
+		this.numeroCliente = clienteDTO.getIdCliente();
 		//CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE//
 		//List<ClienteDTO> clientesDTO = this.gestorCliente.getClientes();
 		//System.out.println(String.valueOf(clientesDTO.get(0).getNumeroCliente()));
@@ -565,6 +565,7 @@ public class CrearPoliza_1 extends JFrame {
 							datosPolizaDTO.setKilometrosPorAnio(Integer.parseInt(text_Kilometros.getText()));
 							datosPolizaDTO.setSiniestrosUltimoA(((ListadoDTO)text_Siniestros.getSelectedItem()).getId());
 							
+							datosPolizaDTO.setIdCliente(clienteDTO.getIdCliente());
 							datosPolizaDTO.setNombre(clienteDTO.getNombre());
 							datosPolizaDTO.setApellido(clienteDTO.getApellido());
 							datosPolizaDTO.setNumeroCliente(clienteDTO.getNumeroCliente());

@@ -310,6 +310,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 				}else {
 					datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 					datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().minusDays(1));
+					datosPolizaDTO.setFinVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusMonths(6));
 					datosPolizaDTO.setIdFormaPago(((ListadoDTO)formasPago.getSelectedItem()).getId());
 					datosPolizaDTO.setIdCobertura(((ListadoDTO)modelo.getValueAt(table.getSelectedRow(), 0)).getId());
 					if((((ListadoDTO) formasPago.getSelectedItem()).getNombre()).equals("Mensual")) {

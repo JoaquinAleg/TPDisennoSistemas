@@ -6,11 +6,12 @@ import java.util.List;
 import Gestores.GestorPoliza;
 
 public class DatosPolizaDTO {
-	private Long numeroCliente;
+	private Long idCliente;
+	private String numeroCliente;
 	private String nombre;
 	private String apellido;
 	private Long tipoDNI;
-	private Integer dni;
+	private String dni;
 	private Long idLocalidadRiesgo;
 	private Long idModeloVehiculo;
 	private Long idAnioVehiculo;
@@ -44,7 +45,7 @@ public class DatosPolizaDTO {
     }
     
     
-	public DatosPolizaDTO(Long numeroCliente, String nombre, String apellido, Long tipoDNI, Integer dni,
+	public DatosPolizaDTO(Long idCliente, String numeroCliente, String nombre, String apellido, Long tipoDNI, String dni,
 			Long idLocalidadRiesgo, Long idModeloVehiculo, Long idAnioVehiculo, String motor, String chasis,
 			String patente, Integer kilometrosPorAnio, Float sumaAsegurada, Long siniestrosUltimoA,
 			List<Long> listaMedidaSeguridad, List<HijosDTO> hijos, LocalDate comienzoVigencia, LocalDate finVigencia,
@@ -76,6 +77,14 @@ public class DatosPolizaDTO {
 		this.idCobertura = idCobertura;
 	}
 
+	
+	public Long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
+	}
 
 	public LocalDate getFinVigencia() {
 		return finVigencia;
@@ -103,10 +112,10 @@ public class DatosPolizaDTO {
 	public void setPremio(Float premio) {
 		this.premio = premio;
 	}
-	public Long getNumeroCliente() {
+	public String getNumeroCliente() {
 		return numeroCliente;
 	}
-	public void setNumeroCliente(Long numeroCliente) {
+	public void setNumeroCliente(String numeroCliente) {
 		this.numeroCliente = numeroCliente;
 	}
 	public String getNombre() {
@@ -127,10 +136,10 @@ public class DatosPolizaDTO {
 	public void setTipoDNI(Long tipoDNI) {
 		this.tipoDNI = tipoDNI;
 	}
-	public Integer getDni() {
+	public String getDni() {
 		return dni;
 	}
-	public void setDni(Integer dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 	public Long getIdLocalidadRiesgo() {

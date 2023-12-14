@@ -315,7 +315,7 @@ public class CrearPoliza_Semestral extends JFrame {
 		PanelMedioInferior.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		textField_3 = new JTextField();
-		textField_3.setText(datosPolizaDTO.getComienzoVigencia().plusMonths(6).toString());
+		textField_3.setText(datosPolizaDTO.getFinVigencia().toString());
 		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_3.setEditable(false);
 		textField_3.setColumns(10);

@@ -7,14 +7,14 @@ import jakarta.persistence.*;
 @Table(name = "persona", schema = "public")
 public class Persona {
 	@Id
-	@Column(name = "cuit")
-	private long cuit;
+	@Column(name = "idPersona")
+	private long idPersona;
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "apellido")
 	private String apellido;
 	@Column(name = "cuil")
-	private int cuil;
+	private String cuil;
 	@Column(name = "documento")
 	private String documento;
 	@Column(name = "fechaNacimiento")
@@ -39,11 +39,11 @@ public class Persona {
 	public Persona() {
 	}
 
-	public Persona(long cuit, String nombre, String apellido, int cuil, String documento, LocalDate fechaNacimiento,
+	public Persona(long idPersona, String nombre, String apellido, String cuil, String documento, LocalDate fechaNacimiento,
 			Domicilio idDomicilio, TipoSexo idTiposexo, TipoEstadoCivil idTipoEstadoCivil,
 			TipoDocumento idTipoDocumento) {
 		super();
-		this.cuit = cuit;
+		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.cuil = cuil;
@@ -55,12 +55,12 @@ public class Persona {
 		this.idTipoDocumento = idTipoDocumento;
 	}
 
-	public long getCuit() {
-		return cuit;
+	public long getIdPersona() {
+		return idPersona;
 	}
 
-	public void setCuit(long cuit) {
-		this.cuit = cuit;
+	public void setIdPersona(long idPersona) {
+		this.idPersona = idPersona;
 	}
 
 	public String getNombre() {
@@ -79,11 +79,11 @@ public class Persona {
 		this.apellido = apellido;
 	}
 
-	public int getCuil() {
+	public String getCuil() {
 		return cuil;
 	}
 
-	public void setCuil(int cuil) {
+	public void setCuil(String cuil) {
 		this.cuil = cuil;
 	}
 

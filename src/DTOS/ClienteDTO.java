@@ -1,20 +1,30 @@
 package DTOS;
 
 public class ClienteDTO {
+	private Long idCliente;
 	private String nombre;
 	private String apellido;
-	private Long numeroCliente;
-	private Integer numeroDocumento;
+	private String numeroCliente;
+	private String numeroDocumento;
 	private Long idTipoDocumento;
-	
-	public ClienteDTO(String nombre, String apellido, Long numeroCliente, Integer numeroDocumento,
+
+	public ClienteDTO(Long idCliente, String nombre, String apellido, String numeroCliente, String numeroDocumento,
 			Long idTipoDocumento) {
 		super();
+		this.idCliente = idCliente;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.numeroCliente = numeroCliente;
 		this.numeroDocumento = numeroDocumento;
 		this.idTipoDocumento = idTipoDocumento;
+	}
+
+	public Long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public String getNombre() {
@@ -33,19 +43,19 @@ public class ClienteDTO {
 		this.apellido = apellido;
 	}
 
-	public Long getNumeroCliente() {
+	public String getNumeroCliente() {
 		return numeroCliente;
 	}
 
-	public void setNumeroCliente(Long numeroCliente) {
+	public void setNumeroCliente(String numeroCliente) {
 		this.numeroCliente = numeroCliente;
 	}
 
-	public Integer getNumeroDocumento() {
+	public String getNumeroDocumento() {
 		return numeroDocumento;
 	}
 
-	public void setNumeroDocumento(Integer numeroDocumento) {
+	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
 

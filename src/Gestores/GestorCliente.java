@@ -41,7 +41,7 @@ public class GestorCliente {
 		//ClienteDTO clienteDTO = new ClienteDTO(" ", null);
 		//clientesDTO.add(clienteDTO);
 		for(Cliente e : clientes) {
-			ClienteDTO clienteDTO = new ClienteDTO(e.getPersona().getNombre(), e.getPersona().getApellido(),e.getIdCliente(), Integer.parseInt(e.getDocumento()), e.getTipoDocumento());
+			ClienteDTO clienteDTO = new ClienteDTO(e.getIdCliente(), e.getPersona().getNombre(), e.getPersona().getApellido(),e.getNumeroCliente(), e.getDocumento(), e.getTipoDocumento());
 			clientesDTO.add(clienteDTO);
 		}
 		return clientesDTO;
@@ -49,7 +49,7 @@ public class GestorCliente {
 
 	public ClienteDTO getClienteDTO(Long numeroCliente) {
 		Cliente cliente = daoCliente.getCliente(numeroCliente);
-		return new ClienteDTO(cliente.getPersona().getNombre(), cliente.getPersona().getApellido(), cliente.getIdCliente(), Integer.parseInt(cliente.getDocumento()), cliente.getTipoDocumento());
+		return new ClienteDTO(cliente.getIdCliente(), cliente.getPersona().getNombre(), cliente.getPersona().getApellido(), cliente.getNumeroCliente(), cliente.getDocumento(), cliente.getTipoDocumento());
 	}
 	
 	public List<ClienteDTO> buscarClientes(Long numeroCliente, String Apellido, String nombre, Long tipoDocumento, String numeroDocumento){
@@ -57,7 +57,7 @@ public class GestorCliente {
 		List<ClienteDTO> clientesDTO = new ArrayList<>();
 		if(clientes.size() >= 1) {
 			for(Cliente e : clientes) {
-				ClienteDTO clienteDTO = new ClienteDTO(e.getPersona().getNombre(), e.getPersona().getApellido(), e.getIdCliente(), Integer.parseInt(e.getPersona().getDocumento()), e.getPersona().getIdTipoDocumento().getIdTipoDocumento());
+				ClienteDTO clienteDTO = new ClienteDTO(e.getIdCliente(), e.getPersona().getNombre(), e.getPersona().getApellido(), e.getNumeroCliente(), e.getDocumento(), e.getTipoDocumento());
 				clientesDTO.add(clienteDTO);
 			}
 			return clientesDTO;

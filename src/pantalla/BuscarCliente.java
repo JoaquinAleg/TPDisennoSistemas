@@ -38,7 +38,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.border.MatteBorder;
 
@@ -64,6 +66,7 @@ public class BuscarCliente extends JFrame {
 	private JTable table;
 	private DefaultTableModel model;
 	private ListSelectionModel modeloSeleccion;
+	private Map<Integer, Long> rowIndexToClientId = new HashMap<>();
 
 	
 	
@@ -323,13 +326,14 @@ public class BuscarCliente extends JFrame {
 
                    	if (! modeloSeleccion.isSelectionEmpty()) {
                     	int filaSeleccionada = modeloSeleccion.getMaxSelectionIndex();
+                    	Long idCliente = rowIndexToClientId.get(0);
                     	String numeroClienteObj = (String)model.getValueAt(filaSeleccionada, 0);
                     	String apellidoObj =(String)model.getValueAt(filaSeleccionada, 1);
                     	String nombreObj = (String)model.getValueAt(filaSeleccionada, 2);
                     	String tipoDocumentoObj = (String)model.getValueAt(filaSeleccionada, 3);
                     	String numeroDocumentoObj = (String)model.getValueAt(filaSeleccionada, 4);
                         
-                        cliDTO = new ClienteDTO(nombreObj, apellidoObj, Long.parseLong(numeroClienteObj), Integer.parseInt((String)numeroDocumentoObj), 
+                        cliDTO = new ClienteDTO(idCliente, nombreObj, apellidoObj, numeroClienteObj, numeroDocumentoObj, 
                         		filtroTipoDocumentoDTO.stream().filter(a -> a.getNombre().equals(tipoDocumentoObj)).map(a -> a.getId()).toList().get(0));
                     }
                 
@@ -473,18 +477,42 @@ public class BuscarCliente extends JFrame {
 		
 	}
 	
+	
+	private void cargarClientes(List<ClienteDTO> clienteDTO, List<ListadoDTO> filtroTipoDocumentoDTO) {
+	    this.model.setRowCount(0);
+	    rowIndexToClientId.clear(); // Limpiar el mapa antes de cargar nuevos datos
+	    
+	    for (int rowIndex = 0; rowIndex < clienteDTO.size(); rowIndex++) {
+	        ClienteDTO c = clienteDTO.get(rowIndex);
+	        String[] auxiliar = { 
+	            c.getNumeroCliente(),
+	            c.getApellido(),
+	            c.getNombre(),
+	            filtroTipoDocumentoDTO.stream().filter(a -> a.getId() == c.getIdTipoDocumento()).map(a -> a.getNombre()).findFirst().orElse(""),
+	            c.getNumeroDocumento().toString()
+	        };
+
+	        this.model.addRow(auxiliar);
+	        rowIndexToClientId.put(rowIndex, c.getIdCliente());
+	    }
+	}
+	/*
 	private void cargarClientes(List<ClienteDTO> clienteDTO, List<ListadoDTO> filtroTipoDocumentoDTO) {
 		this.model.setRowCount(0);
 		for(ClienteDTO c : clienteDTO) {
-			String[] auxiliar = { c.getNumeroCliente().toString(),
+			String[] auxiliar = { 
+					c.getIdCliente().toString(),
+					c.getNumeroCliente(),
 					c.getApellido(),
 					c.getNombre(),
 					filtroTipoDocumentoDTO.stream().filter(a -> a.getId() == c.getIdTipoDocumento()).map(a -> a.getNombre()).toList().get(0),
 					c.getNumeroDocumento().toString()
 			};
+			
 			this.model.addRow(auxiliar);
 	}
 	}
+	*/
     
 
 }

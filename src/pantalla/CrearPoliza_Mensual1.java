@@ -310,7 +310,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		PanelMedioInferior.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		textField_3 = new JTextField();
-		textField_3.setText(datosPolizaDTO.getComienzoVigencia().plusDays(30).toString());
+		textField_3.setText(datosPolizaDTO.getFinVigencia().toString());
 		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_3.setEditable(false);
 		textField_3.setColumns(10);
@@ -426,7 +426,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		PanelMedioInferior.add(Chasis, gbc_Chasis);
 		
 		textField_1 = new JTextField();
-		textField_1.setText(String.valueOf(datosPolizaDTO.getPremio()-datosPolizaDTO.getDescuento()));
+		textField_1.setText(String.valueOf(datosPolizaDTO.getPremio()*(1-datosPolizaDTO.getDescuento())));
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_1.setEditable(false);
 		textField_1.setColumns(10);

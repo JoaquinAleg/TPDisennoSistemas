@@ -13,12 +13,14 @@ public class Cliente {
 	@Column
 	private long idCliente;
 	@Column
+	private String numeroCliente;
+	@Column
 	private LocalDate fechaRegistro;
 	@Column
 	private String profesion;
 	@OneToOne
-	@JoinColumn(name = "cuit", nullable = false, referencedColumnName = "cuit", 
-			foreignKey=@ForeignKey(name = "fk_cuitCliente", value = ConstraintMode.CONSTRAINT))
+	@JoinColumn(name = "idPersona", nullable = false, referencedColumnName = "idPersona", 
+			foreignKey=@ForeignKey(name = "fk_idPersona", value = ConstraintMode.CONSTRAINT))
 	private Persona persona;
 	@ManyToOne
 	@JoinColumn(name = "idTipoEstadoCliente", nullable = false, referencedColumnName = "idTipoEstadoCliente", 
@@ -38,17 +40,15 @@ public class Cliente {
 	private TipoCondicionCliente condicionCliente;
 
 
-
 	public Cliente() {}
 
 
-
-
-	public Cliente(long idCliente, String profesion, Persona persona,
+	public Cliente(long idCliente, String numeroCliente, String profesion, Persona persona,
 			POJOS.TipoEstadoCliente tipoEstadoCliente, POJOS.TipoCondicionIVA tipoCondicionIVA, List<Poliza> polizas) {
 		super();
 		LocalDateTime fechaHoraActual = LocalDateTime.now();
 		this.idCliente = idCliente;
+		this.numeroCliente = numeroCliente;
 		this.fechaRegistro = fechaHoraActual.toLocalDate();;
 		this.profesion = profesion;
 		this.persona = persona;
@@ -58,13 +58,9 @@ public class Cliente {
 	}
 
 
-
-
 	public List<Poliza> getPolizas() {
 		return polizas;
 	}
-
-
 
 
 	public void setPolizas(List<Poliza> polizas) {
@@ -89,6 +85,16 @@ public class Cliente {
 
 	public void setIdCliente(long idCliente) {
 		this.idCliente = idCliente;
+	}
+
+
+	public String getNumeroCliente() {
+		return numeroCliente;
+	}
+
+
+	public void setNumeroCliente(String numeroCliente) {
+		this.numeroCliente = numeroCliente;
 	}
 
 

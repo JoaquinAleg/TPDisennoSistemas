@@ -119,7 +119,7 @@ public class GestorPoliza {
         
         poliza.setDatosVehiculo(datosPolizaDTO.getChasis(), datosPolizaDTO.getMotor(), datosPolizaDTO.getPatente(), datosPolizaDTO.getSumaAsegurada());
         
-        Cliente cliente = daoCliente.getCliente(datosPolizaDTO.getNumeroCliente());
+        Cliente cliente = daoCliente.getCliente(datosPolizaDTO.getIdCliente());
         poliza.setCliente(cliente);
         
         List<Poliza> polizas = cliente.getPolizas();
@@ -237,7 +237,10 @@ public class GestorPoliza {
     
     private void validarDatos(DatosPolizaDTO dp){
     	try{
-    		if(!(dp.getNumeroCliente() instanceof Long)){
+    		if(!(dp.getIdCliente() instanceof Long)){
+    			throw new VerificationException("IdCliente invalido");
+    		}
+    		if(!(dp.getNumeroCliente() instanceof String)){
     			throw new VerificationException("NumeroCliente invalido");
     		}
     		if(!(dp.getNombre() instanceof String)){
@@ -249,7 +252,7 @@ public class GestorPoliza {
     		if(!(dp.getTipoDNI() instanceof Long)){
     			throw new VerificationException("TipoDNICliente invalido");
     		}
-    		if(!(dp.getDni() instanceof Integer)){
+    		if(!(dp.getDni() instanceof String)){
     			throw new VerificationException("DNICliente invalido");
     		}
     		if(!(dp.getIdLocalidadRiesgo() instanceof Long)){

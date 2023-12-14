@@ -116,15 +116,6 @@ public class Poliza {
 	
 	public Poliza(){}
 
-	
-	
-
-
-
-
-
-
-
 	public Poliza(long numeroPoliza, Modelo modelo, AjusteHijo ajusteHijo, AjusteKilometro ajusteKilometro,
 			AjusteSiniestro idAjusteSiniestro, AnioFabricacion anioFabricacion, AjusteDescuento ajusteDescuento,
 			AjusteEmision ajusteEmision, Localidad localidad, TipoDocumento tipoDocumento,
@@ -171,27 +162,9 @@ public class Poliza {
 		this.hijos = hijos;
 	}
 
-
-
-
-
-
-
-
-
-
 	public List<Hijo> getHijos() {
 		return hijos;
 	}
-
-
-
-
-
-
-
-
-
 
 	public void setHijos(List<Hijo> hijos) {
 		this.hijos = hijos;
