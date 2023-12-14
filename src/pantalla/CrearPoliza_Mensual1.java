@@ -350,7 +350,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		AñoVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_AñoVehiculo = new GridBagConstraints();
 		gbc_AñoVehiculo.anchor = GridBagConstraints.WEST;
-		gbc_AñoVehiculo.insets = new Insets(20, 70, 5, 5);
+		gbc_AñoVehiculo.insets = new Insets(20, 70, 30, 5);
 		gbc_AñoVehiculo.gridx = 0;
 		gbc_AñoVehiculo.gridy = 4;
 		PanelMedioInferior.add(AñoVehiculo, gbc_AñoVehiculo);
@@ -362,7 +362,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		textField_6.setColumns(10);
 		textField_6.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
-		gbc_textField_6.insets = new Insets(20, 10, 5, 5);
+		gbc_textField_6.insets = new Insets(20, 10, 30, 5);
 		gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_6.gridx = 1;
 		gbc_textField_6.gridy = 4;
@@ -374,7 +374,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		GridBagConstraints gbc_SumaAs = new GridBagConstraints();
 		gbc_SumaAs.anchor = GridBagConstraints.WEST;
 		gbc_SumaAs.fill = GridBagConstraints.VERTICAL;
-		gbc_SumaAs.insets = new Insets(20, 20, 30, 5);
+		gbc_SumaAs.insets = new Insets(20, 20, 5, 5);
 		gbc_SumaAs.gridx = 2;
 		gbc_SumaAs.gridy = 3;
 		PanelMedioInferior.add(SumaAs, gbc_SumaAs);
@@ -386,7 +386,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		textField.setColumns(10);
 		textField.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(20, 10, 30, 70);
+		gbc_textField.insets = new Insets(20, 10, 5, 70);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 3;
 		gbc_textField.gridy = 3;
