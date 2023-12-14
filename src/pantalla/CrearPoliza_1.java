@@ -45,7 +45,6 @@ public class CrearPoliza_1 extends JFrame {
 	private GestorPoliza gestorPoliza;
 	private GestorCliente gestorCliente;
 	private NombresDTO nombresDTO;
-	//private Empleado empleado;
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

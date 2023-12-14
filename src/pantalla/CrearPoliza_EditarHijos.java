@@ -212,6 +212,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 				h.setFechaNacimiento(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				h.setSexo((long) TipoSexo.getSelectedIndex());
 				hList.set(i, h);
+				JOptionPane.showMessageDialog(null, "Hijo editado con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 				try {
 				CrearPoliza_ListadoHijos Panterior = new CrearPoliza_ListadoHijos(hList,gestorPoliza, gestorCliente, nombresDTO, datosPolizaDTO,
 						CrearPoliza_EditarHijos.this.sexoDTO,CrearPoliza_EditarHijos.this.estadoCivilDTO,conHijos, poliza1, numeroClienteS);

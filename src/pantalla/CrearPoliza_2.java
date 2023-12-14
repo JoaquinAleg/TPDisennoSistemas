@@ -386,16 +386,25 @@ public class CrearPoliza_2 extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) < 6570 | 
-						ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) > 10950) {
-					JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
-				}else {
-				HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), ((ListadoDTO)estadoCivil.getSelectedItem()).getId(), ((ListadoDTO)sexo.getSelectedItem()).getId());
-				JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
-				hijos.add(hijo);
-				Boton_Continuar_1.setEnabled(true);
-				CrearPoliza_2.this.contentPane.repaint();
-				CrearPoliza_2.this.contentPane.revalidate();
+				
+				if(((ListadoDTO)sexo.getSelectedItem()).getNombre().equals(" ")) {
+					JOptionPane.showMessageDialog(null, "Por favor seleccione el sexo del Hijo","Error",JOptionPane.WARNING_MESSAGE);
+				}
+				else if(((ListadoDTO)estadoCivil.getSelectedItem()).getNombre().equals(" ")) {
+					JOptionPane.showMessageDialog(null, "Por favor seleccione el estado civil del Hijo","Error",JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					if(ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) < 6570 | 
+							ChronoUnit.DAYS.between(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) > 10950) {
+						JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
+					}else {
+					HijosDTO hijo = new HijosDTO(nacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), ((ListadoDTO)estadoCivil.getSelectedItem()).getId(), ((ListadoDTO)sexo.getSelectedItem()).getId());
+					JOptionPane.showMessageDialog(null, "Hijo añadido con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
+					hijos.add(hijo);
+					Boton_Continuar_1.setEnabled(true);
+					CrearPoliza_2.this.contentPane.repaint();
+					CrearPoliza_2.this.contentPane.revalidate();
+					}
 				}
 			}
 			

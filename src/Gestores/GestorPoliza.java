@@ -1,7 +1,6 @@
 package Gestores;
 
 import CustomException.VerificationException;
-import POJOS.Empleado;
 import POJOS.Poliza;
 import POJOS.Provincia;
 import POJOS.Localidad;
@@ -23,7 +22,6 @@ import POJOS.AjusteKilometro;
 import POJOS.AjusteSiniestro;
 import POJOS.AjusteDescuento;
 import POJOS.AjusteEmision;
-import DTOS.ClienteDTO;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
@@ -40,7 +38,6 @@ import DAOS.DAOtipoSexo;
 import DAOS.DAOmedidaSeguridad;
 import DAOS.DAOcobertura;
 import DAOS.DAOpoliza;
-import DAOS.DAOcuota;
 import DAOS.DAOajusteHijo;
 import DAOS.DAOajusteSiniestro;
 import DAOS.DAOajusteKilometro;
@@ -48,16 +45,13 @@ import DAOS.DAOajusteDescuento;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
-import javax.swing.JTextField;
 
 import DAOS.DAOajusteEmision;
 
 public class GestorPoliza {
 	
-	//private Empleado empleado;
 	private DAOlocalidad daoLocalidad;
 	private DAOProvincia daoProvincia;
 	private DAOmodelo daoModelo;
@@ -71,7 +65,6 @@ public class GestorPoliza {
 	private DAOmedidaSeguridad daoMedidaSeguridad;
 	private DAOcobertura daoCobertura;
 	private DAOpoliza daoPoliza;
-	private DAOcuota daoCuota;
 	private DAOajusteHijo daoAjusteHijo;
 	private DAOajusteSiniestro daoAjusteSiniestro;
 	private DAOajusteKilometro daoAjusteKilometro;
@@ -83,7 +76,6 @@ public class GestorPoliza {
 
     
     private GestorPoliza() {
-        //this.empleado = empleado;
     	this.daoLocalidad = new DAOlocalidad();
     	this.daoProvincia = new DAOProvincia();
     	this.daoModelo = new DAOmodelo();
@@ -97,7 +89,6 @@ public class GestorPoliza {
     	this.daoMedidaSeguridad = new DAOmedidaSeguridad();
     	this.daoCobertura = new DAOcobertura();
     	this.daoPoliza = new DAOpoliza();
-    	this.daoCuota = new DAOcuota();
     	this.daoAjusteHijo = new DAOajusteHijo();
     	this.daoAjusteSiniestro = new DAOajusteSiniestro();
     	this.daoAjusteKilometro = new DAOajusteKilometro();
@@ -118,37 +109,48 @@ public class GestorPoliza {
 		
         Poliza poliza = new Poliza();
         Localidad localidad = daoLocalidad.getLocalidad(datosPolizaDTO.getIdLocalidadRiesgo());
-		
         poliza.setLocalidad(localidad);
+        
         Modelo modelo = daoModelo.getModelo(datosPolizaDTO.getIdModeloVehiculo());
         poliza.setModelo(modelo);
+        
         AnioFabricacion anio = daoAnioFabricacion.getAnioFabricacion(datosPolizaDTO.getIdAnioVehiculo());
         poliza.setAnioFabricacion(anio);
+        
         poliza.setDatosVehiculo(datosPolizaDTO.getChasis(), datosPolizaDTO.getMotor(), datosPolizaDTO.getPatente(), datosPolizaDTO.getSumaAsegurada());
+        
         Cliente cliente = daoCliente.getCliente(datosPolizaDTO.getNumeroCliente());
         poliza.setCliente(cliente);
+        
         List<Poliza> polizas = cliente.getPolizas();
     	polizas.add(poliza);
         cliente.setPolizas(polizas);
         
         TipoDocumento tipoDNI = daoTipoDocumento.getTipoDocumento(datosPolizaDTO.getTipoDNI());
         poliza.setDatosCliente(datosPolizaDTO.getNombre(), datosPolizaDTO.getApellido(), tipoDNI, datosPolizaDTO.getDni().toString());
+        //FALTA SETEAR EL NUMERO DE CLIENTE ARRIBA
+        
         TipoFormaPago tipoFormaPago = daoTipoFormaPago.getTipoFormaPago(datosPolizaDTO.getIdFormaPago());
         poliza.setFormaPago(tipoFormaPago);
-        poliza.setDatosPoliza(datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago());
-        poliza.setMontoTotalAbonar(datosPolizaDTO.getPremio()*(1 - datosPolizaDTO.getDescuento()));
-        poliza.setPrima(datosPolizaDTO.getPrima());
-        poliza.setPremio(datosPolizaDTO.getPremio());
-        poliza.setKilometrosRealizadosAnio(datosPolizaDTO.getKilometrosPorAnio());
-        poliza.setFechaDeFin(datosPolizaDTO.getFinVigencia());
+        
+        
+        Float montoTotalAbonar = this.calcularMontoTotalAbonar(datosPolizaDTO.getPremio(), datosPolizaDTO.getDescuento());
+        
+        poliza.setDatosPoliza(datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), datosPolizaDTO.getPremio(),
+        		datosPolizaDTO.getPrima(), datosPolizaDTO.getDescuento(), montoTotalAbonar, datosPolizaDTO.getKilometrosPorAnio(),
+        		datosPolizaDTO.getFinVigencia());
+        
         List<HijosDTO> hijosDTO = datosPolizaDTO.getHijos();
         if(hijosDTO != null) {
-        	for(HijosDTO e : datosPolizaDTO.getHijos()) {
+        	for(HijosDTO e : hijosDTO) {
         	Hijo hijo = new Hijo();
+        	
         	TipoEstadoCivil tipoEstadoCivil = daoTipoEstadoCivil.getTipoEstadoCivil(e.getEstadoCivil());
         	hijo.setEstadoCivil(tipoEstadoCivil);
+        	
         	TipoSexo tipoSexo = daoTipoSexo.getTipoSexo(e.getSexo());
         	hijo.setSexo(tipoSexo);
+        	
         	poliza.setHijo(hijo);
         	}
         }
@@ -166,6 +168,7 @@ public class GestorPoliza {
         }
         
         poliza.setEstadoPoliza("GENERADO");
+        
         Cobertura cobertura = daoCobertura.getCobertura(datosPolizaDTO.getIdCobertura());
         poliza.setCobertura(cobertura);
         
@@ -181,26 +184,27 @@ public class GestorPoliza {
         }
         
         List<Cuota> cuotasImpagas = cliente.getCuotasImpagas();
+        
+        TipoEstadoCliente tipoEstadoCliente = cliente.getTipoEstadoCliente();
+        
         if(cuotasImpagas != null || datosPolizaDTO.getSiniestrosUltimoA() > 0) {
         	cliente.setCondicionNormal();
         }
         else {
-        	TipoEstadoCliente tipoEstadoCliente = cliente.getTipoEstadoCliente();
         	if(tipoEstadoCliente.getDescripcion() == "ACTIVO") {
         		cliente.setCondicionNormal();
         	}
         }
         
-        Float pago = datosPolizaDTO.getPrima();
         if(tipoFormaPago.getDescripcion() == "SEMESTRAL") {
         	
-        	Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), 1, pago);
+        	Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), 1, montoTotalAbonar);
         	poliza.setCuota(cuota);
         }
         if(tipoFormaPago.getDescripcion() == "MENSUAL") {
         	
         	for(int a=0; a < 6; a++) {
-        		Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), a, pago/6);
+        		Cuota cuota = new Cuota(poliza, datosPolizaDTO.getComienzoVigencia(), datosPolizaDTO.getUltimoDiaPago(), a, montoTotalAbonar/6);
             	poliza.setCuota(cuota);
         	}
         }
@@ -212,7 +216,6 @@ public class GestorPoliza {
         else {
         	poliza.setAjusteHijo(daoAjusteHijo.buscarAjusteHijo(0));
         }
-        
         
         AjusteKilometro ajusteKilometro = daoAjusteKilometro.buscarAjusteKilometro(datosPolizaDTO.getKilometrosPorAnio());
         poliza.setAjusteKilometro(ajusteKilometro);
@@ -316,6 +319,10 @@ public class GestorPoliza {
     
     private List<Poliza> filtrarVigentes(List<Poliza> polizas) {
     	return polizas.stream().filter(a -> a.getEstadoPoliza().equals("VIJENTE")).toList();
+    }
+    
+    public Float calcularMontoTotalAbonar(Float premio, Float descuento) {
+    	return premio*(1 - descuento);
     }
 
 

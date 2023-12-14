@@ -484,17 +484,20 @@ public class Poliza {
 		
 	}
 
-
-	public void setDatosPoliza(LocalDate comienzoVigencia, LocalDate ultimoDiaPago) {
+	
+	public void setDatosPoliza(LocalDate comienzoVigencia, LocalDate ultimoDiaPago, Float premio, Float prima, Float descuento,
+			Float montoTotalAbonar, Integer kilometrosPorAnio, LocalDate finVigencia) {
 		LocalDate fechaActual = LocalDate.now();
 		this.fechaCreacion = fechaActual;
-		//this.fechaCreacion = LocalDate.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		this.fechaDeInicio = comienzoVigencia;
 		this.ultimoDiaPago = ultimoDiaPago;
+		this.premio = premio;
+		this.prima = prima;
+		this.descuentos = descuento;
+		this.montoTotalAbonar = montoTotalAbonar;
+		this.kilometrosRealizadosAnio = kilometrosPorAnio;
+		this.fechaDeFin = finVigencia;
 	}
-
-
-
 
 
 	public void setDatosCliente(String nombre, String apellido, TipoDocumento tipoDNI,
