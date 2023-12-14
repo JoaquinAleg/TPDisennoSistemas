@@ -203,6 +203,13 @@ public class CrearPoliza_EditarHijos extends JFrame {
 		JButton btnNewButton_1_2 = new JButton("Confirmar");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(((ListadoDTO)TipoSexo.getSelectedItem()).getNombre().equals(" ")) {
+					JOptionPane.showMessageDialog(null, "Por favor seleccione el sexo del Hijo","Error",JOptionPane.WARNING_MESSAGE);
+				}
+				else if(((ListadoDTO)estadoCivil.getSelectedItem()).getNombre().equals(" ")) {
+					JOptionPane.showMessageDialog(null, "Por favor seleccione el estado civil del Hijo","Error",JOptionPane.WARNING_MESSAGE);
+				}
+				else {
 				if(ChronoUnit.DAYS.between(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) >= 6570 && 
 						ChronoUnit.DAYS.between(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) <= 10950) {
 				Integer i = hList.lastIndexOf(h);
@@ -231,6 +238,7 @@ public class CrearPoliza_EditarHijos extends JFrame {
 				}else {
 					JOptionPane.showMessageDialog(null, "La edad del hijo no se encuentra entre 18 y 30 años","Error",JOptionPane.WARNING_MESSAGE);
 				}
+			}
 			}
 		});
 		
