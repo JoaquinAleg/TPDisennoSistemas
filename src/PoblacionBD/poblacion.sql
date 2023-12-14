@@ -395,49 +395,174 @@ INSERT INTO public.tipodocumento (idtipodocumento, descripcion) VALUES
   (2, 'DNI Ejemplar B'),
   (3, 'DNI Ejemplar C'),
   (4, 'DNI Ejemplar D');
-
+  
+INSERT INTO public.tipocondicioncliente(idtipocondicioncliente, descripcion) VALUES
+	(1, 'Normal'),
+	(2, 'Plata');
+  
 INSERT INTO public.domicilio (iddomicilio, calle, dpto, nrocalle, piso, idlocalidad) VALUES
   (1, 'Lavaisse', '-', 610, 0, 20),
   (2, 'Patricio Cullen', '-', 6161, 0, 20),
   (3, 'Antonia Godoy', '-', 6145, 0, 20),
-  (4, 'Angel Cassanello', '-', 654, 0, 20);
+  (4, 'Angel Cassanello', '-', 654, 0, 20),
+  (5, 'Avenida de Mayo', '2A', 1234, 3, 10),
+  (6, 'Calle San Martín', '6B', 5678, 5, 25),
+  (7, 'Avenida 9 de Julio', '1C', 9876, 8, 42),
+  (8, 'Calle Florida', '3D', 4321, 2, 15),
+  (9, 'Avenida Corrientes', '4E', 2468, 7, 31),
+  (10, 'Calle Belgrano', '5F', 1357, 4, 50),
+  (11, 'Avenida Rivadavia', '2G', 8642, 6, 12),
+	(12, 'Calle Sarmiento', '7H', 9753, 9, 21),
+	(13, 'Avenida Pueyrredón', '1I', 1235, 1, 7),
+	(14, 'Calle Reconquista', '8J', 5679, 5, 18),
+	(15, 'Avenida Callao', '3K', 9877, 3, 35),
+	(16, 'Calle Lavalle', '4L', 4322, 7, 58),
+	(17, 'Avenida Santa Fe', '5M', 2469, 2, 63),
+	(18, 'Calle Cerrito', '6N', 1358, 4, 27),
+	(19, 'Avenida Entre Ríos', '7O', 8643, 8, 8),
+	(20, 'Calle Tucumán', '2P', 9754, 6, 46),
+	(21, 'Avenida Scalabrini Ortiz', '1Q', 1236, 5, 55),
+	(22, 'Calle Paraguay', '8R', 5680, 3, 19),
+	(23, 'Avenida Leandro N. Alem', '3S', 9878, 1, 13),
+	(24, 'Calle Uruguay', '4T', 4323, 9, 29),
+	(25, 'Avenida Córdoba', '5U', 8644, 4, 14),
+	(26, 'Calle Balcarce', '6V', 9755, 6, 23),
+	(27, 'Avenida Mendoza', '2W', 1237, 2, 37),
+	(28, 'Calle Maipú', '7X', 5681, 8, 52),
+	(29, 'Avenida San Juan', '1Y', 9879, 3, 6),
+	(30, 'Calle Pasco', '8Z', 4324, 1, 44),
+	(31, 'Avenida Jujuy', '3AA', 24610, 5, 61),
+	(32, 'Calle Pellegrini', '4BB', 1359, 7, 28),
+	(33, 'Avenida 25 de Mayo', '5CC', 8645, 4, 11),
+	(34, 'Calle Viamonte', '6DD', 9756, 2, 20),
+	(35, 'Avenida Independencia', '7EE', 1238, 9, 34),
+	(36, 'Calle Azopardo', '2FF', 5682, 6, 49),
+	(37, 'Avenida Huergo', '1GG', 9880, 3, 17),
+	(38, 'Calle Pacheco de Melo', '8HH', 4325, 5, 26),
+	(39, 'Avenida Almafuerte', '3II', 24611, 1, 9),
+	(40, 'Calle Moreno', '4JJ', 1360, 8, 16),
+	(41, 'Avenida Scalabrini Ortiz', '5KK', 8646, 7, 32),
+	(42, 'Calle Sáenz Peña', '6LL', 9757, 2, 22),
+	(43, 'Avenida Belgrano', '7MM', 1239, 4, 38),
+	(44, 'Calle Pueyrredón', '2NN', 5683, 6, 53);
 
 INSERT INTO public.persona (cuit, apellido, nombre, cuil, documento, fechanacimiento, iddomicilio, idtipodocumento, idtipoestadocivil, idtiposexo) VALUES
-  (1, 'Oggier', 'Ivan Matias', 11, '11111111', '2001-01-01 12:00:00', 1, 1, 1, 1),
-  (2, 'Franzen', 'Fernando Jose', 22, '22222222', '2000-10-19 7:00:00', 2, 1, 1, 1),
-  (3, 'Bracalenti', 'Jose', 33, '33333333', '2001-01-01 13:00:00', 3, 1, 1, 1),
-  (4, 'Alegre', 'Joaquin', 44, '44444444', '2001-01-01 18:00:00', 4, 1, 1, 1);
-
-INSERT INTO public.cliente (idcliente, fecharegistro, profesion, idtipocondicioniva, idtipoestadocliente, cuit) VALUES
-  (0001100000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 1),
-  (0001200000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 2),
-  (0001300000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 3),
-  (0001400000001, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 4);
+  (1, 'Oggier', 'Ivan Matias', 11111111, '11111111', '2001-01-01 12:00:00', 1, 1, 1, 1),
+	(2, 'Franzen', 'Fernando Jose', 22222222, '22222222', '2000-10-19 7:00:00', 2, 1, 1, 1),
+	(3, 'Bracalenti', 'Jose', 33333333, '33333333', '2001-01-01 13:00:00', 3, 1, 1, 1),
+	(4, 'Alegre', 'Joaquin', 44444444, '44444444', '2001-01-01 18:00:00', 4, 1, 1, 1),
+	(5, 'Gonzalez', 'Juan', 20345678, '34567890', '1990-03-15', 5, 1, 2, 1),
+	(6, 'Lopez', 'Maria', 30567890, '45678901', '1985-07-22', 6, 2, 3, 2),
+	(7, 'Martinez', 'Carlos', 40789012, '56789012', '1982-12-10', 7, 3, 1, 1),
+	(8, 'Fernandez', 'Laura', 50890123, '67890123', '1998-05-05', 8, 4, 4, 2),
+	(9, 'Rodriguez', 'Ana', 60901234, '78901234', '1976-09-30', 9, 1, 2, 1),
+	(10, 'Gomez', 'Pablo', 70123456, '89012345', '1995-11-18', 10, 2, 3, 2),
+	(11, 'Lopez', 'Silvia', 80234567, '90123456', '1988-04-03', 11, 3, 1, 1),
+	(12, 'Diaz', 'Hector', 90345678, '12345678', '1980-08-27', 12, 4, 4, 2),
+	(13, 'Perez', 'Lucia', 10056789, '23456789', '1992-02-14', 13, 1, 2, 1),
+	(14, 'Gutierrez', 'Jorge', 11067890, '34567890', '1979-06-20', 14, 2, 3, 2),
+	(15, 'Fernandez', 'Ana', 12078901, '45678901', '1997-10-07', 15, 3, 1, 1),
+	(16, 'Sanchez', 'Miguel', 13089012, '56789012', '1984-01-25', 16, 4, 4, 2),
+	(17, 'Gonzalez', 'Maria', 14100123, '67890123', '1987-04-12', 17, 1, 2, 1),
+	(18, 'Lopez', 'David', 15111234, '78901234', '1996-08-08', 18, 2, 3, 2),
+	(19, 'Martinez', 'Laura', 16122345, '89012345', '1981-12-03', 19, 3, 1, 1),
+	(20, 'Fernandez', 'Roberto', 17133456, '90123456', '1994-03-28', 20, 4, 4, 2),
+	(21, 'Rodriguez', 'Elena', 18144567, '12345678', '1978-05-15', 21, 1, 2, 1),
+	(22, 'Gomez', 'Sergio', 19155678, '23456789', '1989-09-09', 22, 2, 3, 2),
+	(23, 'Lopez', 'Carmen', 20166789, '34567890', '1999-01-04', 23, 3, 1, 1),
+	(24, 'Diaz', 'Pedro', 21177890, '45678901', '1983-11-22', 24, 4, 4, 2),
+	(25, 'Perez', 'Isabel', 22189012, '56789012', '1991-06-17', 25, 1, 2, 1),
+	(26, 'Gutierrez', 'Monica', 23200123, '67890123', '1986-10-10', 26, 2, 3, 2),
+	(27, 'Fernandez', 'Luis', 24211234, '78901234', '1977-02-05', 27, 3, 1, 1),
+	(28, 'Sanchez', 'Adriana', 25222345, '89012345', '1993-04-30', 28, 4, 4, 2),
+	(29, 'Gonzalez', 'Ricardo', 26233456, '90123456', '1980-07-26', 29, 1, 2, 1),
+	(30, 'Lopez', 'Patricia', 27244567, '12345678', '1995-11-18', 30, 2, 3, 2),
+	(31, 'Martinez', 'Oscar', 28255678, '23456789', '1982-04-13', 31, 3, 1, 1),
+	(32, 'Fernandez', 'Marta', 29266789, '34567890', '1979-08-07', 32, 4, 4, 2),
+	(33, 'Rodriguez', 'Julio', 30277890, '45678901', '1998-01-02', 33, 1, 2, 1),
+	(34, 'Gomez', 'Gabriela', 31289012, '56789012', '1987-06-27', 34, 2, 3, 2),
+	(35, 'Lopez', 'Hernan', 32300123, '67890123', '1996-10-22', 35, 3, 1, 1),
+	(36, 'Diaz', 'Cecilia', 33311234, '78901234', '1984-03-17', 36, 4, 4, 2),
+	(37, 'Perez', 'Raul', 34322345, '89012345', '1990-05-11', 37, 1, 2, 1),
+	(38, 'Gutierrez', 'Florencia', 35333456, '90123456', '1978-09-05', 38, 2, 3, 2),
+	(39, 'Fernandez', 'Ramon', 36344567, '12345678', '1985-01-01', 39, 3, 1, 1),
+	(40, 'Sanchez', 'Sofia', 37355678, '23456789', '1999-03-28', 40, 4, 4, 2),
+	(41, 'Gomez', 'Alejandro', 38366789, '34567890', '1982-05-18', 41, 1, 2, 1),
+	(42, 'Lopez', 'Catalina', 39377890, '45678901', '1997-09-12', 42, 2, 3, 2),
+	(43, 'Martinez', 'Fernando', 40389012, '56789012', '1989-02-07', 43, 3, 1, 1),
+	(44, 'Fernandez', 'Carolina', 41400123, '67890123', '1994-06-02', 44, 4, 4, 2);
+  
+INSERT INTO public.cliente (idcliente, fecharegistro, profesion, idtipocondicioniva, idtipoestadocliente, idtipocondicioncliente, cuit)
+VALUES
+	(1, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 1, 1),
+	(2, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 1, 2),
+	(3, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 1, 3),
+	(4, '2023-11-21 12:00:00', 'Ingeniero En Sistemas', 1, 1, 1, 4),
+	(5, '1990-01-01', 'Ingeniero', 1, 1, 1, 5),
+	(6, '1985-02-15', 'Médico', 2, 2, 1, 6),
+	(7, '1983-04-20', 'Abogado', 3, 3, 1, 7),
+	(8, '1982-06-25', 'Arquitecto', 4, 1, 1, 8),
+	(9, '1981-08-30', 'Contador', 5, 2, 1, 9),
+	(10, '1980-10-05', 'Profesor', 6, 3, 1, 10),
+	(11, '1995-11-10', 'Diseñador', 7, 1, 1, 11),
+	(12, '1992-01-15', 'Psicólogo', 8, 2, 1, 12),
+	(13, '1987-03-20', 'Empresario', 9, 3, 1, 13),
+	(14, '1986-05-25', 'Policía', 10, 1, 1, 14),
+	(15, '1984-07-30', 'Enfermero', 11, 2, 1, 15),
+	(16, '1983-09-04', 'Chef', 12, 3, 1, 16),
+	(17, '1982-11-09', 'Artista', 13, 1, 1, 17),
+	(18, '1981-01-14', 'Electricista', 14, 2, 1, 18),
+	(19, '1990-02-19', 'Periodista', 1, 3, 1, 19),
+	(20, '1985-04-25', 'Científico', 2, 1, 1, 20),
+	(21, '1983-06-30', 'Programador', 3, 2, 1, 21),
+	(22, '1982-08-05', 'Ingeniero Civil', 4, 3, 1, 22),
+	(23, '1981-10-10', 'Piloto', 5, 1, 1, 23),
+	(24, '1980-11-15', 'Astrónomo', 6, 2, 1, 24),
+	(25, '1995-01-20', 'Matemático', 7, 3, 1, 25),
+	(26, '1992-03-25', 'Economista', 8, 1, 1, 26),
+	(27, '1987-05-30', 'Geólogo', 9, 2, 1, 27),
+	(28, '1986-07-05', 'Fotógrafo', 10, 3, 1, 28),
+	(29, '1984-09-10', 'Actor', 11, 1, 1, 29),
+	(30, '1983-11-15', 'Bombero', 12, 2, 1, 30),
+	(31, '1982-01-20', 'Veterinario', 13, 3, 1, 31),
+	(32, '1981-03-25', 'Dentista', 14, 1, 1, 32),
+	(33, '1990-05-30', 'Sociólogo', 1, 2, 1, 33),
+	(34, '1985-07-05', 'Nutricionista', 2, 3, 1, 34),
+	(35, '1983-08-10', 'Escritor', 3, 1, 1, 35),
+	(36, '1982-10-15', 'Fisioterapeuta', 4, 2, 1, 36),
+	(37, '1981-11-20', 'Psiquiatra', 5, 3, 1, 37),
+	(38, '1980-01-25', 'Electricista', 6, 1, 1, 38),
+	(39, '1995-03-01', 'Juez', 7, 2, 1, 39),
+	(40, '1992-04-06', 'Estilista', 8, 3, 1, 40),
+	(41, '1987-06-11', 'Terapeuta', 9, 1, 1, 41),
+	(42, '1986-08-16', 'Traductor', 10, 2, 1, 42),
+	(43, '1984-10-21', 'Músico', 11, 3, 1, 43),
+	(44, '1983-12-26', 'Carpintero', 12, 1, 1, 44);
   
 INSERT INTO public.cobertura( idcobertura, descripcion) VALUES
- (1, 'Responsabilidad Civil'),
- (2, 'Respo. Civil + Robo o incendio total'),
- (3, 'Todo Total'),
- (4, 'Terceros Completos'),
- (5, 'Todo riesgo con Franquicia');
+	(1, 'Responsabilidad Civil'),
+	(2, 'Respo. Civil + Robo o incendio total'),
+	(3, 'Todo Total'),
+	(4, 'Terceros Completos'),
+	(5, 'Todo riesgo con Franquicia');
 INSERT INTO public.tipoformapago(idformapago, descripcion) VALUES
-(1, 'Mensual'),
-(2, 'Semestral');
+	(1, 'Mensual'),
+	(2, 'Semestral');
 INSERT INTO public.medidaseguridad (idmedida, tipomedidaseguridad) VALUES
-(1, 'Garage'),
-(2, 'Alarma'),
-(3, 'Tuercas'),
-(4, 'Rastreo Vehicular');
+	(1, 'Garage'),
+	(2, 'Alarma'),
+	(3, 'Tuercas'),
+	(4, 'Rastreo Vehicular');
  
 INSERT INTO public.ajustepordescuentounidadad (idajustedescuento, ajustedescuento)
 VALUES
-    (1, 0.0),
-    (2, 5.0),
-    (3, 20.0),
-    (4, 15.0),
-    (5, 20.0),
-    (6, 22.0),
-    (7, 30.0);
+  (1, 0.0),
+  (2, 5.0),
+  (3, 20.0),
+  (4, 15.0),
+  (5, 20.0),
+  (6, 22.0),
+  (7, 30.0);
 INSERT INTO public.ajusteporemision (idajusteemision, ajusteemision)
 VALUES
     (1, 5);
@@ -445,34 +570,30 @@ VALUES
 INSERT INTO public.ajusteporkilometro (idajustekilometro, escalakm)
 VALUES
 	(1,0.0),
-    (2, 10000.0),
-    (3, 20000.0),
-    (4, 30000.0);
+	(2, 10000.0),
+	(3, 20000.0),
+	(4, 30000.0);
  
 INSERT INTO public.ajustehijo (idajustehijo, canthijos)
 VALUES
 	(0, 0),
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5),
-    (6, 6),
-    (7, 7),
-    (8, 8),
-    (9, 9),
-    (10, 10),
-    (11, 11),
-    (12, 12),
-    (13, 13),
-    (14, 14),
-    (15, 15),
-    (16, 16),
-    (17, 17),
-    (18, 18),
-    (19, 19),
-    (20, 20);
-	
-INSERT INTO public.tipocondicioncliente(idtipocondicioncliente, descripcion) VALUES
-(1, 'Normal'),
-(2, 'Plata');
+	(1, 1),
+	(2, 2),
+	(3, 3),
+	(4, 4),
+	(5, 5),
+	(6, 6),
+	(7, 7),
+	(8, 8),
+	(9, 9),
+	(10, 10),
+	(11, 11),
+	(12, 12),
+	(13, 13),
+	(14, 14),
+	(15, 15),
+	(16, 16),
+	(17, 17),
+	(18, 18),
+	(19, 19),
+	(20, 20);

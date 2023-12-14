@@ -19,14 +19,14 @@ public class DatosPolizaDTO {
 	private String patente;
 	private Integer kilometrosPorAnio;
 	private Float sumaAsegurada;
-	private Long siniestrosUltimoA;
+	private Long idSiniestrosUltimoA;
 	private List<Long> listaMedidaSeguridad;
 	private List<HijosDTO> hijos;
 	private LocalDate comienzoVigencia;
 	private LocalDate finVigencia;
 	private LocalDate ultimoDiaPago;
 	private Long idFormaPago;
-	private Float prima, descuento, premio, montoTotal;
+	private Float prima, descuento, premio;
 	private Long idCobertura;
 	
     private static DatosPolizaDTO instancia = null;
@@ -48,8 +48,7 @@ public class DatosPolizaDTO {
 			Long idLocalidadRiesgo, Long idModeloVehiculo, Long idAnioVehiculo, String motor, String chasis,
 			String patente, Integer kilometrosPorAnio, Float sumaAsegurada, Long siniestrosUltimoA,
 			List<Long> listaMedidaSeguridad, List<HijosDTO> hijos, LocalDate comienzoVigencia, LocalDate finVigencia,
-			LocalDate ultimoDiaPago, Long idFormaPago, Float prima, Float descuento, Float premio, Float montoTotal,
-			Long idCobertura) {
+			LocalDate ultimoDiaPago, Long idFormaPago, Float prima, Float descuento, Float premio, Long idCobertura) {
 		super();
 		this.numeroCliente = numeroCliente;
 		this.nombre = nombre;
@@ -64,7 +63,7 @@ public class DatosPolizaDTO {
 		this.patente = patente;
 		this.kilometrosPorAnio = kilometrosPorAnio;
 		this.sumaAsegurada = sumaAsegurada;
-		this.siniestrosUltimoA = siniestrosUltimoA;
+		this.idSiniestrosUltimoA = siniestrosUltimoA;
 		this.listaMedidaSeguridad = listaMedidaSeguridad;
 		this.hijos = hijos;
 		this.comienzoVigencia = comienzoVigencia;
@@ -74,7 +73,6 @@ public class DatosPolizaDTO {
 		this.prima = prima;
 		this.descuento = descuento;
 		this.premio = premio;
-		this.montoTotal = montoTotal;
 		this.idCobertura = idCobertura;
 	}
 
@@ -85,14 +83,6 @@ public class DatosPolizaDTO {
 
 	public void setFinVigencia(LocalDate finVigencia) {
 		this.finVigencia = finVigencia;
-	}
-
-	public Float getMontoTotal() {
-		return montoTotal;
-	}
-
-	public void setMontoTotal(Float montoTotal) {
-		this.montoTotal = montoTotal;
 	}
 
 	public Float getPrima() {
@@ -192,38 +182,11 @@ public class DatosPolizaDTO {
 		this.sumaAsegurada = sumaAsegurada;
 	}
 	public Long getSiniestrosUltimoA() {
-		return siniestrosUltimoA;
+		return idSiniestrosUltimoA;
 	}
 	public void setSiniestrosUltimoA(Long siniestrosUltimoA) {
-		this.siniestrosUltimoA = siniestrosUltimoA;
+		this.idSiniestrosUltimoA = siniestrosUltimoA;
 	}
-	/*
-	public Boolean isGuardadoEnGarage() {
-		return guardadoEnGarage;
-	}
-	public void setGuardadoEnGarage(Boolean guardadoEnGarage) {
-		this.guardadoEnGarage = guardadoEnGarage;
-	}
-	public Boolean isTuercasAntiRobos() {
-		return tuercasAntiRobos;
-	}
-	public void setTuercasAntiRobos(Boolean tuercasAntiRobos) {
-		this.tuercasAntiRobos = tuercasAntiRobos;
-	}
-	public Boolean isDispositivoRastreo() {
-		return dispositivoRastreo;
-	}
-	public void setDispositivoRastreo(Boolean dispositivoRastreo) {
-		this.dispositivoRastreo = dispositivoRastreo;
-	}
-	public Boolean isAlarma() {
-		return alarma;
-	}
-	public void setAlarma(Boolean alarma) {
-		this.alarma = alarma;
-	}
-	*/
-	//ESTOS COMENTADOS EQUIVALEN A ESTO AHORA:
 	public List<Long> getListaMedidaSeguridad() {
 		return this.listaMedidaSeguridad;
 	}

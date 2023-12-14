@@ -315,7 +315,7 @@ public class CrearPoliza_Semestral extends JFrame {
 		PanelMedioInferior.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		textField_3 = new JTextField();
-		textField_3.setText(datosPolizaDTO.getComienzoVigencia().plusDays(30).toString());
+		textField_3.setText(datosPolizaDTO.getComienzoVigencia().plusMonths(6).toString());
 		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_3.setEditable(false);
 		textField_3.setColumns(10);
@@ -338,7 +338,7 @@ public class CrearPoliza_Semestral extends JFrame {
 		PanelMedioInferior.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
 		textField_5 = new JTextField();
-		textField_5.setText(datosPolizaDTO.getDescuento().toString());
+		textField_5.setText(((Float)(datosPolizaDTO.getPremio()*datosPolizaDTO.getDescuento())).toString());
 		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_5.setEditable(false);
 		textField_5.setColumns(10);
@@ -361,7 +361,7 @@ public class CrearPoliza_Semestral extends JFrame {
 		PanelMedioInferior.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
 		textField_2 = new JTextField();
-		textField_2.setText(datosPolizaDTO.getUltimoDiaPago().toString());
+		textField_2.setText(datosPolizaDTO.getUltimoDiaPago().plusDays(30).toString());
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_2.setEditable(false);
 		textField_2.setColumns(10);
@@ -431,7 +431,7 @@ public class CrearPoliza_Semestral extends JFrame {
 		PanelMedioInferior.add(Chasis, gbc_Chasis);
 		
 		textField_1 = new JTextField();
-		textField_1.setText(String.valueOf(datosPolizaDTO.getPrima()-datosPolizaDTO.getDescuento()));
+		textField_1.setText(String.valueOf(datosPolizaDTO.getPremio()*(1-datosPolizaDTO.getDescuento())));
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_1.setEditable(false);
 		textField_1.setColumns(10);

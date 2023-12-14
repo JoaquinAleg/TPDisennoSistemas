@@ -164,9 +164,9 @@ public class Poliza {
 		this.dniCliente = dniCliente;
 		this.fechaCreacion = fechaCreacion;
 		this.cuotas = cuotas;
-		FormaPago = formaPago;
-		Cobertura = cobertura;
-		Medidas = medida;
+		this.FormaPago = formaPago;
+		this.Cobertura = cobertura;
+		this.Medidas = medida;
 		this.modificaciones = modificaciones;
 		this.hijos = hijos;
 	}

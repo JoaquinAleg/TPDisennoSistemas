@@ -20,6 +20,8 @@ import DTOS.ClienteDTO;
 import DTOS.DatosPolizaDTO;
 import DTOS.ListadoDTO;
 import DTOS.NombresDTO;
+import DTOS.InfoVehicularDTO;
+import Gestores.GestorAPI;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 import POJOS.Empleado;
@@ -44,6 +46,7 @@ public class CrearPoliza_1 extends JFrame {
 	
 	private GestorPoliza gestorPoliza;
 	private GestorCliente gestorCliente;
+	private GestorAPI gestorAPI;
 	private NombresDTO nombresDTO;
 	
 	private static final long serialVersionUID = 1L;
@@ -53,6 +56,7 @@ public class CrearPoliza_1 extends JFrame {
 	private JTextField text_Patente;
 	private JTextField text_Chasis;
 	private JTextField text_Kilometros;
+	private Float valorSumaAsegurada;
 	private JComboBox<ListadoDTO> text_Siniestros;
 	private ListadoDTO ProvinciaSeleccionada;
 	private Long[] idProvincia;
@@ -99,6 +103,7 @@ public class CrearPoliza_1 extends JFrame {
 		this.gestorPoliza = gestorP;
 		this.gestorCliente = gestorC;
 		this.clienteDTO = clienteDTO;
+		this.gestorAPI = GestorAPI.getInstance();
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -321,6 +326,15 @@ public class CrearPoliza_1 extends JFrame {
 		
 		//ANIO--FABRICACION///////////////////////////////////////////////////////////////////////////
 		MarcaVehiculo_1.setRenderer(new ListadoDTORenderer());
+		MarcaVehiculo_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				valorSumaAsegurada = gestorAPI.getValorUnidadAsegurada(new InfoVehicularDTO(marcaParaPantalla.getNombre(), modeloParaPantalla.getNombre(),
+						((ListadoDTO)MarcaVehiculo_1.getSelectedItem()).getNombre()));
+				text_Asegurado.setText(valorSumaAsegurada.toString());
+				
+			}
+		});
 		MarcaVehiculo_1.setBackground(SystemColor.inactiveCaptionBorder);
 		MarcaVehiculo_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_MarcaVehiculo_1 = new GridBagConstraints();
@@ -330,19 +344,20 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_MarcaVehiculo_1.gridy = 2;
 		panel_1.add(MarcaVehiculo_1, gbc_MarcaVehiculo_1);
 		
-		JLabel SumaAs = new JLabel("Suma asegurada :        $");
-		SumaAs.setHorizontalAlignment(SwingConstants.LEFT);
-		SumaAs.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		JLabel SumaAsegurada = new JLabel("Suma asegurada :        $");
+		SumaAsegurada.setHorizontalAlignment(SwingConstants.LEFT);
+		SumaAsegurada.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_SumaAs = new GridBagConstraints();
 		gbc_SumaAs.fill = GridBagConstraints.BOTH;
 		gbc_SumaAs.insets = new Insets(20, 20, 5, 5);
 		gbc_SumaAs.gridx = 2;
 		gbc_SumaAs.gridy = 2;
-		panel_1.add(SumaAs, gbc_SumaAs);
+		panel_1.add(SumaAsegurada, gbc_SumaAs);
 		
 		text_Asegurado = new JTextField();
 		text_Asegurado.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Asegurado.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		text_Asegurado.setEditable(false);
 		GridBagConstraints gbc_text_Asegurado = new GridBagConstraints();
 		gbc_text_Asegurado.insets = new Insets(20, 0, 5, 70);
 		gbc_text_Asegurado.fill = GridBagConstraints.HORIZONTAL;
@@ -543,7 +558,7 @@ public class CrearPoliza_1 extends JFrame {
 							datosPolizaDTO.setIdLocalidadRiesgo(((ListadoDTO)LocalidadRiesgo.getSelectedItem()).getId());
 							datosPolizaDTO.setIdModeloVehiculo(((ListadoDTO)modeloVehiculo.getSelectedItem()).getId());
 							datosPolizaDTO.setIdAnioVehiculo(((ListadoDTO)MarcaVehiculo_1.getSelectedItem()).getId());
-							datosPolizaDTO.setSumaAsegurada(Float.parseFloat(text_Asegurado.getText()));
+							datosPolizaDTO.setSumaAsegurada(valorSumaAsegurada);
 							datosPolizaDTO.setMotor(text_Motor.getText());
 							datosPolizaDTO.setChasis(text_Chasis.getText());
 							datosPolizaDTO.setPatente(text_Patente.getText());
