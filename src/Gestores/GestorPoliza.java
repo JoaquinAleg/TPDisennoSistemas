@@ -170,7 +170,7 @@ public class GestorPoliza {
         
         }
         
-        poliza.setEstadoPoliza("GENERADO");
+        poliza.setEstadoPolizaGenerado();
         
         Cobertura cobertura = daoCobertura.getCobertura(datosPolizaDTO.getIdCobertura());
         poliza.setCobertura(cobertura);

@@ -3,9 +3,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import DAOS.DAOmedidasPoliza;
-
-import java.time.ZoneId;
+import ENUMs.EstadoPolizaEnum;
 
 import jakarta.persistence.*;
 @Entity
@@ -79,8 +77,8 @@ public class Poliza {
 	private String chasis;
 	@Column
 	private String patente;
-	@Column
-	private String estadoPoliza;
+	@Enumerated(EnumType.STRING)
+	private EstadoPolizaEnum estadoPoliza;
 	@Column
 	private String motor;
 	@Column
@@ -121,7 +119,7 @@ public class Poliza {
 			AjusteEmision ajusteEmision, Localidad localidad, TipoDocumento tipoDocumento,
 			Cliente cliente, float sumaAsegurada, int kilometrosRealizadosAnio, int cantSiniestrosUA,
 			LocalDate fechaDeInicio, LocalDate fechaDeFin, float premio, float prima, float descuentos,
-			LocalDate ultimoDiaPago, float montoTotalAbonar, String chasis, String patente, String estadoPoliza,
+			LocalDate ultimoDiaPago, float montoTotalAbonar, String chasis, String patente, EstadoPolizaEnum estadoPoliza,
 			String motor, String nombreCliente, String dniCliente, LocalDate fechaCreacion, List<Cuota> cuotas,
 			TipoFormaPago formaPago, POJOS.Cobertura cobertura, List<MedidasPoliza> medida,
 			List<Modificacion> modificaciones, List<Hijo> hijos) {
@@ -381,12 +379,24 @@ public class Poliza {
 		this.patente = patente;
 	}
 
-	public String getEstadoPoliza() {
-		return estadoPoliza;
+	public EstadoPolizaEnum getEstadoPoliza() {
+		return this.estadoPoliza;
 	}
 
-	public void setEstadoPoliza(String estadoPoliza) {
-		this.estadoPoliza = estadoPoliza;
+	public void setEstadoPolizaGenerado() {
+		this.estadoPoliza = EstadoPolizaEnum.GENERADO;
+	}
+	
+	public void setEstadoPolizaNoVigente() {
+		this.estadoPoliza = EstadoPolizaEnum.NO_VIGENTE;
+	}
+	
+	public void setEstadoPolizaSuspendida() {
+		this.estadoPoliza = EstadoPolizaEnum.SUSPENDIDA;
+	}
+	
+	public void setEstadoPolizaVigente() {
+		this.estadoPoliza = EstadoPolizaEnum.VIGENTE;
 	}
 
 	public String getMotor() {
