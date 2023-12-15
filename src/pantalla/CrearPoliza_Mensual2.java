@@ -78,7 +78,7 @@ public class CrearPoliza_Mensual2 extends JFrame {
 		this.gestorCliente = gestorCliente;
 		this.gestorPoliza = gestorPoliza;
 		
-		Float pago = datosPolizaDTO.getPremio()-datosPolizaDTO.getDescuento();
+		Float pago = datosPolizaDTO.getPremio()*(1-datosPolizaDTO.getDescuento());
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -82,8 +82,8 @@ public class DAOcliente implements clienteDAO{
 	}
 	
 	
-	public List<Cliente> getClientes(Long numeroCliente, String apellido, String nombre, Long tipoDocumento, String numeroDocumento){
-		return this.getAll().stream().filter(a -> (numeroCliente == null || a.getIdCliente() == (long)numeroCliente))
+	public List<Cliente> getClientes(String numeroCliente, String apellido, String nombre, Long tipoDocumento, String numeroDocumento){
+		return this.getAll().stream().filter(a -> (numeroCliente == null || a.getNumeroCliente().equals(numeroCliente)))
 									 .filter(a -> (apellido == null || apellido.equals("") || a.getPersona().getApellido().toLowerCase().contains(apellido.toLowerCase())))
 									 .filter(a -> (nombre == null || nombre.equals("") || a.getPersona().getNombre().toLowerCase().contains(nombre.toLowerCase())))
 									 .filter(a -> (tipoDocumento == null || a.getPersona().getIdTipoDocumento().getIdTipoDocumento() == (long)tipoDocumento))

@@ -52,7 +52,7 @@ public class GestorCliente {
 		return new ClienteDTO(cliente.getIdCliente(), cliente.getPersona().getNombre(), cliente.getPersona().getApellido(), cliente.getNumeroCliente(), cliente.getDocumento(), cliente.getTipoDocumento());
 	}
 	
-	public List<ClienteDTO> buscarClientes(Long numeroCliente, String Apellido, String nombre, Long tipoDocumento, String numeroDocumento){
+	public List<ClienteDTO> buscarClientes(String numeroCliente, String Apellido, String nombre, Long tipoDocumento, String numeroDocumento){
 		List<Cliente> clientes = daoCliente.getClientes(numeroCliente, Apellido, nombre, tipoDocumento, numeroDocumento);
 		List<ClienteDTO> clientesDTO = new ArrayList<>();
 		if(clientes.size() >= 1) {

@@ -453,9 +453,9 @@ public class BuscarCliente extends JFrame {
 				String filtroNDoc = NDocumento.getText();
 				ListadoDTO filtroTipoDocumento = (ListadoDTO)TipoDocumento.getSelectedItem();
 				Long idFiltroTipoDocumento = filtroTipoDocumento.getId();
-				Long filtroNumeroCliente = null;
+				String filtroNumeroCliente = null;
 				if(!numeroCliente.getText().equals("")) {
-					filtroNumeroCliente = Long.parseLong(numeroCliente.getText());
+					filtroNumeroCliente = numeroCliente.getText();
 				}
 				
 				clientesDTO = gestorCliente.buscarClientes(filtroNumeroCliente, filtroApellido, filtroNombre, idFiltroTipoDocumento, filtroNDoc);
