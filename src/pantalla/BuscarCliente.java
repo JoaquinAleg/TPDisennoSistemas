@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.ListSelectionModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -30,12 +32,15 @@ import java.awt.Dimension;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JComboBox;
 
 
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
@@ -53,6 +58,7 @@ import CustomRenderers.ListadoDTORenderer;
 
 import javax.swing.JTable;
 import javax.swing.text.AbstractDocument;
+import javax.swing.text.BadLocationException;
 
 
 public class BuscarCliente extends JFrame {
@@ -151,6 +157,28 @@ public class BuscarCliente extends JFrame {
 		numeroCliente = new JTextField();
 		AbstractDocument documentNroCliente = (AbstractDocument) numeroCliente.getDocument();
 		documentNroCliente.setDocumentFilter(new DocumentLengthFilter(11));
+		//Detecto el guión
+		numeroCliente.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c) || c == '-') || (c == '-' && numeroCliente.getText().contains("-"))) {
+                    e.consume();  // Ignora el carácter no válido
+                } else if (Character.isDigit(c) && numeroCliente.getText().length() == 2) {
+                    numeroCliente.setText(numeroCliente.getText() + "-");
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // No se utiliza
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // No se utiliza
+            }
+        });
 		numeroCliente.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_numeroCliente = new GridBagConstraints();
 		gbc_numeroCliente.insets = new Insets(50, 0, 0, 70);
