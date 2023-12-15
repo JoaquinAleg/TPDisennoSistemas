@@ -48,10 +48,11 @@ import DTOS.ClienteDTO;
 import DTOS.ListadoDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
+import CustomRenderers.DocumentLengthFilter;
 import CustomRenderers.ListadoDTORenderer;
 
 import javax.swing.JTable;
-
+import javax.swing.text.AbstractDocument;
 
 
 public class BuscarCliente extends JFrame {
@@ -148,6 +149,8 @@ public class BuscarCliente extends JFrame {
 		panelIngresos.add(lblNmeroCliente, gbc_lblNmeroCliente);
 		
 		numeroCliente = new JTextField();
+		AbstractDocument documentNroCliente = (AbstractDocument) numeroCliente.getDocument();
+		documentNroCliente.setDocumentFilter(new DocumentLengthFilter(11));
 		numeroCliente.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_numeroCliente = new GridBagConstraints();
 		gbc_numeroCliente.insets = new Insets(50, 0, 0, 70);
@@ -185,6 +188,8 @@ public class BuscarCliente extends JFrame {
 		panel_1.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JTextField  apellido = new JTextField();
+		AbstractDocument documentApellido = (AbstractDocument) apellido.getDocument();
+		documentApellido.setDocumentFilter(new DocumentLengthFilter(50));
 		apellido.setBackground(SystemColor.inactiveCaptionBorder);
 		apellido.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_apellido = new GridBagConstraints();
@@ -205,6 +210,8 @@ public class BuscarCliente extends JFrame {
 		panel_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
  
 		JTextField nombre = new JTextField();
+		AbstractDocument documentNombre = (AbstractDocument) nombre.getDocument();
+		documentNombre.setDocumentFilter(new DocumentLengthFilter(50));
 		nombre.setBackground(SystemColor.inactiveCaptionBorder);
 		nombre.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_nombre = new GridBagConstraints();
@@ -248,6 +255,8 @@ public class BuscarCliente extends JFrame {
 		
 
 		JTextField NDocumento = new JTextField();
+		AbstractDocument documentDocumento = (AbstractDocument) NDocumento.getDocument();
+		documentDocumento.setDocumentFilter(new DocumentLengthFilter(50));
 		NDocumento.setBackground(SystemColor.inactiveCaptionBorder);
 		NDocumento.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_Documento = new GridBagConstraints();

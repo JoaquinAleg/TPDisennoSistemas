@@ -14,7 +14,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.LineBorder;
+import javax.swing.text.AbstractDocument;
 
+import CustomRenderers.DocumentLengthFilter;
 import CustomRenderers.ListadoDTORenderer;
 import DTOS.ClienteDTO;
 import DTOS.DatosPolizaDTO;
@@ -333,6 +335,8 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(SumaAsegurada, gbc_SumaAs);
 		
 		text_Asegurado = new JTextField();
+		AbstractDocument documentText_Asegurado = (AbstractDocument) text_Asegurado.getDocument();
+		documentText_Asegurado.setDocumentFilter(new DocumentLengthFilter(50));
 		text_Asegurado.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Asegurado.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		text_Asegurado.setEditable(false);
@@ -355,6 +359,8 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(Motor, gbc_Motor);
 		
 		text_Motor = new JTextField();
+		AbstractDocument documentText_Motor = (AbstractDocument) text_Motor.getDocument();
+		documentText_Motor.setDocumentFilter(new DocumentLengthFilter(50));
 		text_Motor.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Motor.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		text_Motor.setColumns(10);
@@ -376,6 +382,8 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(Chasis, gbc_Chasis);
 		
 		text_Chasis = new JTextField();
+		AbstractDocument documentText_Chasis = (AbstractDocument) text_Chasis.getDocument();
+		documentText_Chasis.setDocumentFilter(new DocumentLengthFilter(50));
 		text_Chasis.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Chasis.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		text_Chasis.setColumns(10);
@@ -397,6 +405,8 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(Patente, gbc_Patente);
 		
 		text_Patente = new JTextField();
+		AbstractDocument documentText_Patente = (AbstractDocument) text_Patente.getDocument();
+		documentText_Patente.setDocumentFilter(new DocumentLengthFilter(50));
 		text_Patente.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Patente.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		text_Patente.setColumns(10);
@@ -418,6 +428,8 @@ public class CrearPoliza_1 extends JFrame {
 		panel_1.add(Kilometros, gbc_Kilometros);
 		
 		text_Kilometros = new JTextField();
+		AbstractDocument documentText_Kilometros = (AbstractDocument) text_Kilometros.getDocument();
+		documentText_Kilometros.setDocumentFilter(new DocumentLengthFilter(9));
 		text_Kilometros.setBackground(SystemColor.inactiveCaptionBorder);
 		text_Kilometros.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		text_Kilometros.setColumns(10);
