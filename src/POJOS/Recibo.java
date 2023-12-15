@@ -12,7 +12,19 @@ public class Recibo {
 	@Column
 	private String descripcion;
 	@Column
-	private LocalDate fechaRecibo;
+	private LocalDate fechaHoraRecibo;
+	@Column
+	private Float importe;
+	@Column
+	private Float premio;
+	@Column
+	private Float recargoPorMora;
+	@Column
+	private Float bonificacionPagoAdelantado;
+	
+	//FALTA RELACION CON CUOTAS
+	
+	//FALTA RELACION CON COBRADOR
 	
 	public Recibo() {}
 
@@ -20,7 +32,7 @@ public class Recibo {
 		super();
 		this.idNroRecibo = idNroRecibo;
 		this.descripcion = descripcion;
-		this.fechaRecibo = fechaRecibo;
+		this.fechaHoraRecibo = fechaRecibo;
 	}
 
 	public long getIdNroRecibo() {
@@ -41,11 +53,11 @@ public class Recibo {
 	}
 
 	public LocalDate getFechaRecibo() {
-		return fechaRecibo;
+		return fechaHoraRecibo;
 	}
 
 	public void setFechaRecibo(LocalDate fechaRecibo) {
-		this.fechaRecibo = fechaRecibo;
+		this.fechaHoraRecibo = fechaRecibo;
 	}
 	
 }

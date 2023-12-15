@@ -18,6 +18,9 @@ public class ProductorDeSeguro {
 	@Column
 	private LocalDate fechaFin;
 	
+	
+	//FALTA RELACION CON VALOR PORCENTUAL
+	
 	public ProductorDeSeguro() {}
 
 	public ProductorDeSeguro(long idProductorDeSeguro, POJOS.Empleado empleado, LocalDate fechaInicio, LocalDate fechaFin) {

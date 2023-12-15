@@ -24,6 +24,8 @@ public class Cobrador {
 	private LocalDate fechaInicio;
 	@Column
 	private LocalDate fechaFin;
+	
+	//FALTA RELACION CON RECIBO
 
 	public Cobrador() {}
 

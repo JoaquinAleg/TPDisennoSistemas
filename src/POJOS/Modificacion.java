@@ -35,6 +35,8 @@ public class Modificacion {
 	@Column
 	private long idMedida;
 	
+	//FALTA LA RELACION CON HIJO ACA
+	
 	public Modificacion() {}
 
 	public Modificacion(long idModificacion, long idModelo, int kilometrosRealizadosAnio, int cantSiniestrosUA,
