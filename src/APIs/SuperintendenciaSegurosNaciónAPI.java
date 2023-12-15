@@ -1,5 +1,7 @@
 package APIs;
 
+import java.util.Random;
+
 import DTOS.InfoVehicularDTO;
 
 public class SuperintendenciaSegurosNaciónAPI {
@@ -16,6 +18,10 @@ public class SuperintendenciaSegurosNaciónAPI {
     }
 	
 	public Float getValorUnidadAsegurada(InfoVehicularDTO infoVehicularDTO) {
-		return 200000F;
+		Random random = new Random();
+        Float rangoInicioValorAsegurado = 2000000.0F;
+        Float rangoFinValorAsegurado = 100000.0F;
+        Float ValorAsegurado = rangoInicioValorAsegurado + random.nextFloat() * (rangoFinValorAsegurado - rangoInicioValorAsegurado);
+		return ValorAsegurado;
 	}
 }

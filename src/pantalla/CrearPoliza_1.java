@@ -77,28 +77,6 @@ public class CrearPoliza_1 extends JFrame {
 	private ListadoDTO modeloParaPantalla;
 	private ClienteDTO clienteDTO;
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {/*
-					GestorPoliza gestorPoliza = GestorPoliza.getInstance();
-					GestorCliente gestorCliente = GestorCliente.getInstance();
-					CrearPoliza_1 frame = new CrearPoliza_1(gestorPoliza, gestorCliente, null);
-					frame.setVisible(true);
-				*/} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public CrearPoliza_1(GestorPoliza gestorP, GestorCliente gestorC, JFrame anterior, ClienteDTO clienteDTO) {
 		this.gestorPoliza = gestorP;
 		this.gestorCliente = gestorC;
@@ -571,9 +549,10 @@ public class CrearPoliza_1 extends JFrame {
 							datosPolizaDTO.setNumeroCliente(clienteDTO.getNumeroCliente());
 							datosPolizaDTO.setDni(clienteDTO.getNumeroDocumento());
 							datosPolizaDTO.setTipoDNI(clienteDTO.getIdTipoDocumento());
-							datosPolizaDTO.setDescuento((float)0.05);
-							datosPolizaDTO.setPrima((float)0.03);
-							datosPolizaDTO.setPremio(datosPolizaDTO.getSumaAsegurada()*datosPolizaDTO.getPrima());
+							gestorPoliza.calcularPremioDeEmisionDescuentos(datosPolizaDTO);
+							//datosPolizaDTO.setDescuento((float)0.05);
+							//datosPolizaDTO.setPrima((float)0.03);
+							//datosPolizaDTO.setPremio(datosPolizaDTO.getSumaAsegurada()*datosPolizaDTO.getPrima());
 							
 							/*
 							System.out.println(datosPolizaDTO.getApellido());

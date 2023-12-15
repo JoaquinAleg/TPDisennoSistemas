@@ -32,24 +32,6 @@ public class MostrarCliente extends JFrame{
 	private static GestorPoliza gestorPoliza;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() { 
-				 try {/*
-				
-					MostrarCliente frame = new MostrarCliente(cliDTO,gestorPoliza);
-					frame.setVisible(true);
-				*/
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 * @param buscarCliente 
 	 * @param gestorCliente 

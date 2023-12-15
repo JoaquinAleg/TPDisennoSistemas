@@ -53,26 +53,7 @@ public class CrearPoliza_Mensual2 extends JFrame {
 	private GestorPoliza gestorPoliza;
 	private GestorCliente gestorCliente;
 	private DatosPolizaDTO datosPolizaDTO;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		HibernateUtil.createEMF();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//CrearPoliza_Mensual2 frame = new CrearPoliza_Mensual2();
-					//frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public CrearPoliza_Mensual2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente,NombresDTO nombresDTO, String numeroClienteS) {
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorCliente = gestorCliente;

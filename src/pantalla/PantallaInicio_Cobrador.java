@@ -81,6 +81,7 @@ public class PantallaInicio_Cobrador extends JFrame {
 		txtpnElAsegurado.setBackground(SystemColor.inactiveCaptionBorder);
 		txtpnElAsegurado.setFont(new Font("Tahoma", Font.PLAIN, 70));
 		txtpnElAsegurado.setText("Menú Principal");
+		txtpnElAsegurado.setEditable(false);
 		GridBagConstraints gbc_txtpnElAsegurado = new GridBagConstraints();
 		gbc_txtpnElAsegurado.gridwidth = 2;
 		gbc_txtpnElAsegurado.insets = new Insets(15, 15, 5, 5);

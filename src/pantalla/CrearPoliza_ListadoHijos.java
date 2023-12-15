@@ -66,13 +66,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	private String[] sexos;
 	private String[] estadosCivil;
 	private ArrayList <HijosDTO> hijos;
-	/**
-	 * Launch the application.
-	 */
 
-	/**
-	 * Create the frame.
-	 */
 	public CrearPoliza_ListadoHijos(ArrayList <HijosDTO> hijos,	GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO,
 			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1, String numeroClienteS) {
 		int cantidadHijos = hijos.size();

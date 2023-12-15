@@ -45,10 +45,9 @@ import DAOS.DAOajusteDescuento;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Random;
 
 
 import DAOS.DAOajusteEmision;
@@ -484,12 +483,26 @@ public class GestorPoliza {
 		return tipoDocumentosDTO;
 	}
 
-
 	public boolean checkPatente(String Patente) {
 		boolean ret = false;
 		List<Poliza> polizas = daoPoliza.getAll().stream().filter(a -> a.getPatente().equals(Patente)&& a.getFechaDeFin().isAfter(LocalDate.now())).toList();
 		if(polizas.size()!= 0) ret = true;
 		return ret;
+	}
+	
+	public void calcularPremioDeEmisionDescuentos(DatosPolizaDTO datosPolizaDTO) {
+		//Random random = new Random();
+        //Float rangoInicioPrima = 0.001f;
+        //Float rangoFinPrima = 0.05f;
+        //Float prima = rangoInicioPrima + random.nextFloat() * (rangoFinPrima - rangoInicioPrima);
+        Float prima = 0.02F;
+        datosPolizaDTO.setPrima(prima);
+        //Float rangoInicioDescuento = 0.001F;
+        //Float rangoFinDescuento = 0.02F;
+        //Float descuento = rangoInicio + random.nextFloat() * (rangoFin - rangoInicio);
+        Float descuento = 0.001F;
+        datosPolizaDTO.setDescuento(descuento);
+        datosPolizaDTO.setPremio(datosPolizaDTO.getSumaAsegurada()*prima);
 	}
 	
 }

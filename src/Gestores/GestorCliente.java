@@ -57,8 +57,10 @@ public class GestorCliente {
 		List<ClienteDTO> clientesDTO = new ArrayList<>();
 		if(clientes.size() >= 1) {
 			for(Cliente e : clientes) {
-				ClienteDTO clienteDTO = new ClienteDTO(e.getIdCliente(), e.getPersona().getNombre(), e.getPersona().getApellido(), e.getNumeroCliente(), e.getDocumento(), e.getTipoDocumento());
-				clientesDTO.add(clienteDTO);
+				if(e.getTipoEstadoCliente().getDescripcion().equals("ACTIVO")) {
+					ClienteDTO clienteDTO = new ClienteDTO(e.getIdCliente(), e.getPersona().getNombre(), e.getPersona().getApellido(), e.getNumeroCliente(), e.getDocumento(), e.getTipoDocumento());
+					clientesDTO.add(clienteDTO);
+				}
 			}
 			return clientesDTO;
 		}

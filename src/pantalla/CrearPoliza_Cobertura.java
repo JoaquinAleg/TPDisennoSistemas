@@ -26,6 +26,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -67,25 +68,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 	List<ListadoDTO> modeloTipoFormaPagoDTO;
 	private ArrayList<HijosDTO> cantidadHijos;
 	String[] modelosTipoFormaPago;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//CrearPoliza_Cobertura frame = new CrearPoliza_Cobertura();
-					//frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public CrearPoliza_Cobertura(ArrayList<HijosDTO> hijos, GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,
 			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame anterior, String numeroClienteS) {
 		this.cantidadHijos = hijos;
@@ -304,9 +287,15 @@ public class CrearPoliza_Cobertura extends JFrame {
 		JButton Boton_Continuar = new JButton("Continuar\r\n");
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				LocalDate fechaActual = LocalDate.now();
 				if( ((((ListadoDTO) formasPago.getSelectedItem()).getNombre()).equals(" ")) || table.getSelectionModel().isSelectionEmpty()  ) {
 					JOptionPane.showMessageDialog(null, "Los datos ingresados no son validos","Error",JOptionPane.WARNING_MESSAGE);
-				}else {
+				}
+				else if(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isBefore(fechaActual) ||
+						dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isAfter(fechaActual.plusMonths(1))) {
+					JOptionPane.showMessageDialog(null, "Fecha de inicio fuera de intervalo, por favor seleccione una fecha a partir de hoy hasta dentro de un mes","Error",JOptionPane.WARNING_MESSAGE);
+				}
+				else {
 					datosPolizaDTO.setComienzoVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 					datosPolizaDTO.setUltimoDiaPago(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().minusDays(1));
 					datosPolizaDTO.setFinVigencia(dateChooser_1_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().plusMonths(6));

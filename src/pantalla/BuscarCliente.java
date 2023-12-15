@@ -68,31 +68,6 @@ public class BuscarCliente extends JFrame {
 	private ListSelectionModel modeloSeleccion;
 	private Map<Integer, Long> rowIndexToClientId = new HashMap<>();
 
-	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					/*
-					GestorCliente gestorCliente = GestorCliente.getInstance();
-					GestorPoliza gestorPoliza = GestorPoliza.getInstance();
-					BuscarCliente frame = new BuscarCliente(gestorCliente, gestorPoliza, int enteroAnterior);
-					frame.setVisible(true);
-					*/
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public BuscarCliente(GestorCliente gestorC, GestorPoliza gestorP, boolean panelAnterior) {
 		this.gestorCliente = gestorC;
 		this.gestorPoliza = gestorP;
@@ -297,7 +272,7 @@ public class BuscarCliente extends JFrame {
 		//DEFINO MODEL Y TABLE
 		String[] columnas = {"Cliente", "Apellido", "Nombre", "Tipo Documento", "Numero Documento"};
 		this.model = new DefaultTableModel(null, columnas);
-		this.clientesDTO = this.gestorCliente.getClientes();
+		this.clientesDTO = gestorCliente.buscarClientes(null, null, null, null, null);
 		cargarClientes(clientesDTO, filtroTipoDocumentoDTO);
 		
 		table = new JTable(model) {
@@ -496,23 +471,5 @@ public class BuscarCliente extends JFrame {
 	        rowIndexToClientId.put(rowIndex, c.getIdCliente());
 	    }
 	}
-	/*
-	private void cargarClientes(List<ClienteDTO> clienteDTO, List<ListadoDTO> filtroTipoDocumentoDTO) {
-		this.model.setRowCount(0);
-		for(ClienteDTO c : clienteDTO) {
-			String[] auxiliar = { 
-					c.getIdCliente().toString(),
-					c.getNumeroCliente(),
-					c.getApellido(),
-					c.getNombre(),
-					filtroTipoDocumentoDTO.stream().filter(a -> a.getId() == c.getIdTipoDocumento()).map(a -> a.getNombre()).toList().get(0),
-					c.getNumeroDocumento().toString()
-			};
-			
-			this.model.addRow(auxiliar);
-	}
-	}
-	*/
     
-
 }

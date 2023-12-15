@@ -54,26 +54,6 @@ public class CrearPoliza_Semestral extends JFrame {
 	private DatosPolizaDTO datosPolizaDTO;
 	private NombresDTO nombresDTO;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		HibernateUtil.createEMF();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//CrearPoliza_Semestral frame = new CrearPoliza_Semestral(gestorPoliza);
-					//frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public CrearPoliza_Semestral(DatosPolizaDTO datosPolizaDTO, NombresDTO nombresDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente, String numeroClienteS) {
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorCliente = gestorCliente;

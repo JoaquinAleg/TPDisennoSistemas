@@ -51,25 +51,6 @@ public class CrearPoliza_Mensual1 extends JFrame {
 	private DatosPolizaDTO datosPolizaDTO;
 	private NombresDTO nombresDTO;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//CrearPoliza_Mensual1 frame = new CrearPoliza_Mensual1();
-					//frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public CrearPoliza_Mensual1(DatosPolizaDTO datosPolizaDTO, NombresDTO nombresDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente, String numeroClienteS) {
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorCliente = gestorCliente;
@@ -333,7 +314,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		PanelMedioInferior.add(lblMarcaDelVehculo, gbc_lblMarcaDelVehculo);
 		
 		textField_5 = new JTextField();
-		textField_5.setText(datosPolizaDTO.getDescuento().toString());
+		textField_5.setText(((Float)(datosPolizaDTO.getPremio()*datosPolizaDTO.getDescuento())).toString());
 		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_5.setEditable(false);
 		textField_5.setColumns(10);
