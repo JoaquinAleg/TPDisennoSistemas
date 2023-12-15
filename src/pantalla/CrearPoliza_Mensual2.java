@@ -153,7 +153,7 @@ public class CrearPoliza_Mensual2 extends JFrame {
 		panel_1_1.add(lblFechaDeNacimiento, gbc_lblFechaDeNacimiento);
 		
 		textField_8 = new JTextField();
-		textField_8.setText(datosPolizaDTO.getComienzoVigencia().plusDays(30).toString());
+		textField_8.setText(datosPolizaDTO.getUltimoDiaPago().toString());
 		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_8.setEditable(false);
 		textField_8.setColumns(10);
@@ -199,7 +199,7 @@ public class CrearPoliza_Mensual2 extends JFrame {
 		panel_1_1.add(lblEstadoCivil, gbc_lblEstadoCivil);
 		
 		textField_7 = new JTextField();
-		textField_7.setText(datosPolizaDTO.getComienzoVigencia().plusDays(60).toString());
+		textField_7.setText(datosPolizaDTO.getUltimoDiaPago().plusDays(30).toString());
 		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_7.setEditable(false);
 		textField_7.setColumns(10);
@@ -245,7 +245,7 @@ public class CrearPoliza_Mensual2 extends JFrame {
 		panel_1_1.add(lblEstadoCivil_1_1, gbc_lblEstadoCivil_1_1);
 		
 		textField_1 = new JTextField();
-		textField_1.setText(datosPolizaDTO.getComienzoVigencia().plusDays(90).toString());
+		textField_1.setText(datosPolizaDTO.getUltimoDiaPago().plusDays(60).toString());
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_1.setEditable(false);
 		textField_1.setColumns(10);
@@ -291,7 +291,7 @@ public class CrearPoliza_Mensual2 extends JFrame {
 		panel_1_1.add(lblEstadoCivil_1, gbc_lblEstadoCivil_1);
 		
 		textField = new JTextField();
-		textField.setText(datosPolizaDTO.getComienzoVigencia().plusDays(120).toString());
+		textField.setText(datosPolizaDTO.getUltimoDiaPago().plusDays(90).toString());
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField.setEditable(false);
 		textField.setColumns(10);
@@ -337,7 +337,7 @@ public class CrearPoliza_Mensual2 extends JFrame {
 		panel_1_1.add(lblEstadoCivil_2, gbc_lblEstadoCivil_2);
 		
 		textField_4 = new JTextField();
-		textField_4.setText(datosPolizaDTO.getComienzoVigencia().plusDays(150).toString());
+		textField_4.setText(datosPolizaDTO.getUltimoDiaPago().plusDays(120).toString());
 		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_4.setEditable(false);
 		textField_4.setColumns(10);
@@ -383,7 +383,7 @@ public class CrearPoliza_Mensual2 extends JFrame {
 		panel_1_1.add(lblEstadoCivil_3, gbc_lblEstadoCivil_3);
 		
 		textField_3 = new JTextField();
-		textField_3.setText(datosPolizaDTO.getComienzoVigencia().plusDays(180).toString());
+		textField_3.setText(datosPolizaDTO.getUltimoDiaPago().plusDays(150).toString());
 		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_3.setEditable(false);
 		textField_3.setColumns(10);

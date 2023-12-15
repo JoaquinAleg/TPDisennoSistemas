@@ -259,7 +259,7 @@ public class CrearPoliza_Semestral extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(30, 70, 5, 5);
+		gbc_lblNewLabel.insets = new Insets(50, 70, 5, 5);
 		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 2;
@@ -283,7 +283,7 @@ public class CrearPoliza_Semestral extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.insets = new Insets(30, 20, 5, 5);
+		gbc_lblNewLabel_1.insets = new Insets(50, 20, 5, 5);
 		gbc_lblNewLabel_1.gridx = 2;
 		gbc_lblNewLabel_1.gridy = 2;
 		PanelMedioInferior.add(lblNewLabel_1, gbc_lblNewLabel_1);
@@ -335,7 +335,7 @@ public class CrearPoliza_Semestral extends JFrame {
 		PanelMedioInferior.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
 		textField_2 = new JTextField();
-		textField_2.setText(datosPolizaDTO.getUltimoDiaPago().plusDays(30).toString());
+		textField_2.setText(datosPolizaDTO.getUltimoDiaPago().toString());
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textField_2.setEditable(false);
 		textField_2.setColumns(10);
