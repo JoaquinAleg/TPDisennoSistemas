@@ -1,5 +1,6 @@
 package POJOS;
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -21,10 +22,15 @@ public class Recibo {
 	private Float recargoPorMora;
 	@Column
 	private Float bonificacionPagoAdelantado;
-	
-	//FALTA RELACION CON CUOTAS
-	
-	//FALTA RELACION CON COBRADOR
+	@ManyToOne
+	@JoinColumn(name = "idCobrador", nullable = false, referencedColumnName = "idCobrador", 
+	foreignKey=@ForeignKey(name = "fk_Cobrador", value = ConstraintMode.CONSTRAINT))
+	private Cobrador cobrador;
+	@OneToMany
+	@JoinColumn(name = "idNroRecibo", nullable = true, referencedColumnName = "idNroRecibo", 
+	foreignKey=@ForeignKey(name = "fk_Cuotas", value = ConstraintMode.CONSTRAINT))
+	private List<Cuota> cuotas;
+
 	
 	public Recibo() {}
 

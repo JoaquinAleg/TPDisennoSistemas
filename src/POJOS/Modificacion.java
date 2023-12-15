@@ -1,6 +1,8 @@
 package POJOS;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Modificacion", schema = "public")
@@ -8,8 +10,10 @@ public class Modificacion {
 	@Id
 	@Column
 	private long idModificacion;
-	@Column
-	private long idModelo;
+	@ManyToOne
+	@JoinColumn(name = "idModelo", nullable = false, referencedColumnName = "idModelo", 
+	foreignKey=@ForeignKey(name = "fk_ModeloModificacion", value = ConstraintMode.CONSTRAINT))
+	private Modelo Modelo;
 	@Column
 	private int kilometrosRealizadosAnio;
 	@Column
@@ -26,25 +30,33 @@ public class Modificacion {
 	private Float valorAsegurado;
 	@Column
 	private LocalDate fechaModificacion;
-	@Column
-	private long idCliente;
-	@Column
-	private long idFormaPago;
-	@Column
-	private long idCobertura;
-	@Column
-	private long idMedida;
+	@ManyToOne
+	@JoinColumn(name = "idCliente", nullable = false, referencedColumnName = "idCliente", 
+	foreignKey=@ForeignKey(name = "fk_ClienteModicacion", value = ConstraintMode.CONSTRAINT))
+	private Cliente Cliente;
+	@ManyToOne
+	@JoinColumn(name = "idFormaPago", nullable = false, referencedColumnName = "idFormaPago", 
+	foreignKey=@ForeignKey(name = "fk_FormaPagoModicacion", value = ConstraintMode.CONSTRAINT))
+	private TipoFormaPago TipoFormaPagoFormaPago;
+	@ManyToOne
+	@JoinColumn(name = "idCobertura", nullable = false, referencedColumnName = "idCobertura", 
+	foreignKey=@ForeignKey(name = "fk_CoberturaModificacion", value = ConstraintMode.CONSTRAINT))
+	private Cobertura Cobertura;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idModificacion", nullable = true, referencedColumnName = "idModificacion", 
+	foreignKey=@ForeignKey(name = "fk_MedidasPoliza", value = ConstraintMode.CONSTRAINT))
+	private List<MedidaSeguridad> modificaciones= new ArrayList<MedidaSeguridad>();
 	
-	//FALTA LA RELACION CON HIJO ACA
 	
 	public Modificacion() {}
 
-	public Modificacion(long idModificacion, long idModelo, int kilometrosRealizadosAnio, int cantSiniestrosUA,
+	public Modificacion(long idModificacion, POJOS.Modelo modelo, int kilometrosRealizadosAnio, int cantSiniestrosUA,
 			String chasis, String patente, String motor, LocalDate fehcaFabricacion, Float valorAsegurado,
-			LocalDate fechaModificacion, long idCliente, long idFormaPago, long idCobertura, long idMedida) {
+			LocalDate fechaModificacion, POJOS.Cliente cliente, TipoFormaPago tipoFormaPagoFormaPago,
+			POJOS.Cobertura cobertura, List<MedidaSeguridad> modificaciones) {
 		super();
 		this.idModificacion = idModificacion;
-		this.idModelo = idModelo;
+		Modelo = modelo;
 		this.kilometrosRealizadosAnio = kilometrosRealizadosAnio;
 		this.cantSiniestrosUA = cantSiniestrosUA;
 		this.chasis = chasis;
@@ -53,10 +65,10 @@ public class Modificacion {
 		this.fehcaFabricacion = fehcaFabricacion;
 		this.valorAsegurado = valorAsegurado;
 		this.fechaModificacion = fechaModificacion;
-		this.idCliente = idCliente;
-		this.idFormaPago = idFormaPago;
-		this.idCobertura = idCobertura;
-		this.idMedida = idMedida;
+		Cliente = cliente;
+		TipoFormaPagoFormaPago = tipoFormaPagoFormaPago;
+		Cobertura = cobertura;
+		this.modificaciones = modificaciones;
 	}
 
 	public long getIdModificacion() {
@@ -67,12 +79,12 @@ public class Modificacion {
 		this.idModificacion = idModificacion;
 	}
 
-	public long getIdModelo() {
-		return idModelo;
+	public Modelo getModelo() {
+		return Modelo;
 	}
 
-	public void setIdModelo(long idModelo) {
-		this.idModelo = idModelo;
+	public void setModelo(Modelo modelo) {
+		Modelo = modelo;
 	}
 
 	public int getKilometrosRealizadosAnio() {
@@ -139,36 +151,37 @@ public class Modificacion {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public long getIdCliente() {
-		return idCliente;
+	public Cliente getCliente() {
+		return Cliente;
 	}
 
-	public void setIdCliente(long idCliente) {
-		this.idCliente = idCliente;
+	public void setCliente(Cliente cliente) {
+		Cliente = cliente;
 	}
 
-	public long getIdFormaPago() {
-		return idFormaPago;
+	public TipoFormaPago getTipoFormaPagoFormaPago() {
+		return TipoFormaPagoFormaPago;
 	}
 
-	public void setIdFormaPago(long idFormaPago) {
-		this.idFormaPago = idFormaPago;
+	public void setTipoFormaPagoFormaPago(TipoFormaPago tipoFormaPagoFormaPago) {
+		TipoFormaPagoFormaPago = tipoFormaPagoFormaPago;
 	}
 
-	public long getIdCobertura() {
-		return idCobertura;
+	public Cobertura getCobertura() {
+		return Cobertura;
 	}
 
-	public void setIdCobertura(long idCobertura) {
-		this.idCobertura = idCobertura;
+	public void setCobertura(Cobertura cobertura) {
+		Cobertura = cobertura;
 	}
 
-	public long getIdMedida() {
-		return idMedida;
+	public List<MedidaSeguridad> getModificaciones() {
+		return modificaciones;
 	}
 
-	public void setIdMedida(long idMedida) {
-		this.idMedida = idMedida;
+	public void setModificaciones(List<MedidaSeguridad> modificaciones) {
+		this.modificaciones = modificaciones;
 	}
+
 	
 }
