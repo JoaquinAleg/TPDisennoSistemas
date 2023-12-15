@@ -11,8 +11,6 @@ import POJOS.Cliente;
 
 public class GestorCliente {
 	
-	//private List<Cliente> clientes;
-	
 	private DAOcliente daoCliente;
 	
     private static GestorCliente instancia = null;
@@ -61,6 +59,22 @@ public class GestorCliente {
 					ClienteDTO clienteDTO = new ClienteDTO(e.getIdCliente(), e.getPersona().getNombre(), e.getPersona().getApellido(), e.getNumeroCliente(), e.getDocumento(), e.getTipoDocumento());
 					clientesDTO.add(clienteDTO);
 				}
+			}
+			return clientesDTO;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "No se encontraron Clientes que cumplan los requisitos ingresados","Error",JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+	}
+	
+	public List<ClienteDTO> consultarClientesCU05(String numeroCliente, String Apellido, String nombre, Long tipoDocumento, String numeroDocumento){
+		List<Cliente> clientes = daoCliente.getClientes(numeroCliente, Apellido, nombre, tipoDocumento, numeroDocumento);
+		List<ClienteDTO> clientesDTO = new ArrayList<>();
+		if(clientes.size() >= 1) {
+			for(Cliente e : clientes) {
+				ClienteDTO clienteDTO = new ClienteDTO(e.getIdCliente(), e.getPersona().getNombre(), e.getPersona().getApellido(), e.getNumeroCliente(), e.getDocumento(), e.getTipoDocumento());
+				clientesDTO.add(clienteDTO);
 			}
 			return clientesDTO;
 		}

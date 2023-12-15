@@ -1,9 +1,5 @@
 package pantalla;
 
-
-
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,11 +13,7 @@ import java.awt.Insets;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.toedter.calendar.JDateChooser;
-
 import javax.swing.ListSelectionModel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -32,7 +24,6 @@ import java.awt.Dimension;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.JComboBox;
 
 
@@ -41,8 +32,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +47,6 @@ import CustomRenderers.ListadoDTORenderer;
 
 import javax.swing.JTable;
 import javax.swing.text.AbstractDocument;
-import javax.swing.text.BadLocationException;
 
 
 public class BuscarCliente extends JFrame {
@@ -295,8 +283,7 @@ public class BuscarCliente extends JFrame {
 		panel_1.add(NDocumento, gbc_Documento);
 	
 
-		//DEFINO SCROLLPANE 
-		
+		//DEFINO SCROLLPANE
 		JPanel contenedorDeScrollpane = new JPanel();
 		contenedorDeScrollpane.setBackground(SystemColor.inactiveCaptionBorder);
 		GridBagConstraints gbc_panel_1_1 = new GridBagConstraints();
@@ -309,7 +296,13 @@ public class BuscarCliente extends JFrame {
 		//DEFINO MODEL Y TABLE
 		String[] columnas = {"Cliente", "Apellido", "Nombre", "Tipo Documento", "Numero Documento"};
 		this.model = new DefaultTableModel(null, columnas);
-		this.clientesDTO = gestorCliente.buscarClientes(null, null, null, null, null);
+		if(panelAnterior){
+			this.clientesDTO = gestorCliente.buscarClientes(null, null, null, null, null);
+		}
+		else {
+			this.clientesDTO = gestorCliente.consultarClientesCU05(null, null, null, null, null);
+		}
+		
 		cargarClientes(clientesDTO, filtroTipoDocumentoDTO);
 		
 		table = new JTable(model) {
@@ -469,8 +462,12 @@ public class BuscarCliente extends JFrame {
 				if(!numeroCliente.getText().equals("")) {
 					filtroNumeroCliente = numeroCliente.getText();
 				}
-				
-				clientesDTO = gestorCliente.buscarClientes(filtroNumeroCliente, filtroApellido, filtroNombre, idFiltroTipoDocumento, filtroNDoc);
+				if(panelAnterior) {
+					clientesDTO = gestorCliente.buscarClientes(filtroNumeroCliente, filtroApellido, filtroNombre, idFiltroTipoDocumento, filtroNDoc);
+				}
+				else {
+					clientesDTO = gestorCliente.consultarClientesCU05(filtroNumeroCliente, filtroApellido, filtroNombre, idFiltroTipoDocumento, filtroNDoc);
+				}
 				if(clientesDTO != null) {
 					cargarClientes(clientesDTO, filtroTipoDocumentoDTO);
 				}

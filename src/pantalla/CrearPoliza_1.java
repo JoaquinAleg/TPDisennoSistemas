@@ -1,8 +1,6 @@
 package pantalla;
 
 
-import java.awt.EventQueue;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,8 +24,6 @@ import DTOS.InfoVehicularDTO;
 import Gestores.GestorAPI;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
-import POJOS.Empleado;
-import POJOS.Provincia;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -61,20 +57,15 @@ public class CrearPoliza_1 extends JFrame {
 	private Float valorSumaAsegurada;
 	private JComboBox<ListadoDTO> text_Siniestros;
 	private ListadoDTO ProvinciaSeleccionada;
-	private Long[] idProvincia;
 	private ListadoDTO[] localidades;
 	private JComboBox<ListadoDTO> LocalidadRiesgo = new JComboBox<>();
 	private List<ListadoDTO> localidadDTO;
-	private String ModeloSeleccionado;
-	private Long[] idMarcaVehiculo;
 	private ListadoDTO[] modelos;
 	private List<ListadoDTO> modelosDTO;
 	private JComboBox<ListadoDTO> modeloVehiculo = new JComboBox<>();
 	private ListadoDTO[] anios;
-	private Long[] idModeloVehiculo;
 	private List<ListadoDTO> anioDTO;
 	private JComboBox<ListadoDTO> MarcaVehiculo_1 = new JComboBox<>();
-	private Long numeroCliente;
 	private ListadoDTO marcaParaPantalla;
 	private ListadoDTO modeloParaPantalla;
 	private ClienteDTO clienteDTO;
@@ -117,17 +108,7 @@ public class CrearPoliza_1 extends JFrame {
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 
-		String numeroClienteS = clienteDTO.getNumeroCliente().toString();
-		this.numeroCliente = clienteDTO.getIdCliente();
-		//CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE////CLIENTE//
-		//List<ClienteDTO> clientesDTO = this.gestorCliente.getClientes();
-		//System.out.println(String.valueOf(clientesDTO.get(0).getNumeroCliente()));
-		//System.out.println(clientesDTO.get(0).getNombre());
-		//Long[] idCliente = clientesDTO.stream().filter(a -> a.getNumeroCliente().equals(numeroCliente)).map(b -> b.getNumeroCliente()).toArray(Long[]::new);
-		
-		//ClienteDTO clienteDTO = gestorCliente.getClienteDTO(idCliente[0]);
-		
-		
+		String numeroCliente = clienteDTO.getNumeroCliente();
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -143,7 +124,7 @@ public class CrearPoliza_1 extends JFrame {
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblNewLabel_5_1.setBorder(null);
 		panel_3.add(lblNewLabel_5_1);
-		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroClienteS);
+		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroCliente);
 		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();
@@ -180,22 +161,14 @@ public class CrearPoliza_1 extends JFrame {
 		
 		//PROVINCIA--RIESGO/////////////////////////////////////////////////////////////////
 		List<ListadoDTO> provinciaDTO = this.gestorPoliza.getProvincias();
-		//ANTERIOR
-		//String[] provincias = provinciaDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);	
-		//JComboBox<String> ProvinciaRiesgo = new JComboBox<>(provincias);
-		//NUEVO
 		ListadoDTO[] provincias = this.gestorPoliza.getProvincias().toArray(new ListadoDTO[provinciaDTO.size()]);
 		JComboBox<ListadoDTO> ProvinciaRiesgo = new JComboBox<>(provincias);
 		ProvinciaRiesgo.setRenderer(new ListadoDTORenderer());
 		ProvinciaRiesgo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ProvinciaSeleccionada = (String)ProvinciaRiesgo.getSelectedItem();
 				ProvinciaSeleccionada = (ListadoDTO)ProvinciaRiesgo.getSelectedItem();
-				//idProvincia = provinciaDTO.stream().filter(a -> a.getNombre().equals(ProvinciaSeleccionada)).map(b -> b.getId()).toArray(Long[]::new);
-				//localidadDTO = gestorPoliza.getLocalidades(idProvincia[0]);
 				localidadDTO = gestorPoliza.getLocalidades(ProvinciaSeleccionada.getId());
 				localidades = localidadDTO.toArray(new ListadoDTO[localidadDTO.size()]);
-				//localidades = localidadDTO.stream().map(p -> p.getNombre()).toArray(String[]::new);
 				DefaultComboBoxModel<ListadoDTO> nuevoModelo = new DefaultComboBoxModel<>(localidades);
 				LocalidadRiesgo.setModel(nuevoModelo);
 			}
@@ -515,7 +488,6 @@ public class CrearPoliza_1 extends JFrame {
 		Boton_Continuar.setBackground(SystemColor.controlHighlight);
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			// acá tendrían que poner un if(cantidadhijos) a ver si se tira CrearPoliza_2 [caso sin hijos] o CrearPoliza_HijosExistentes.
 						
 						Boolean A = !((ListadoDTO)ProvinciaRiesgo.getSelectedItem()).getNombre().equals(" ");
 						Boolean B = false;
@@ -562,25 +534,8 @@ public class CrearPoliza_1 extends JFrame {
 							datosPolizaDTO.setDni(clienteDTO.getNumeroDocumento());
 							datosPolizaDTO.setTipoDNI(clienteDTO.getIdTipoDocumento());
 							gestorPoliza.calcularPremioDeEmisionDescuentos(datosPolizaDTO);
-							//datosPolizaDTO.setDescuento((float)0.05);
-							//datosPolizaDTO.setPrima((float)0.03);
-							//datosPolizaDTO.setPremio(datosPolizaDTO.getSumaAsegurada()*datosPolizaDTO.getPrima());
 							
-							/*
-							System.out.println(datosPolizaDTO.getApellido());
-							System.out.println(datosPolizaDTO.getNombre());
-							System.out.println(datosPolizaDTO.getChasis());
-							System.out.println(datosPolizaDTO.getMotor());
-							System.out.println(datosPolizaDTO.getPatente());
-							System.out.println(datosPolizaDTO.getIdAnioVehiculo());
-							System.out.println(datosPolizaDTO.getIdLocalidadRiesgo());
-							System.out.println(datosPolizaDTO.getSumaAsegurada());
-							System.out.println(datosPolizaDTO.getKilometrosPorAnio());
-							System.out.println(datosPolizaDTO.getIdModeloVehiculo());
-							*/
-							
-							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO, CrearPoliza_1.this, numeroClienteS);
-						System.out.println("Se creó una instancia");
+							CrearPoliza_2 CPoliza = new CrearPoliza_2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO, CrearPoliza_1.this);
 							try {
 								CPoliza.setVisible(true);
 							} catch(Exception er) {
@@ -624,9 +579,6 @@ public class CrearPoliza_1 extends JFrame {
 		gbc_Boton_Cancelar_1.gridx = 1;
 		gbc_Boton_Cancelar_1.gridy = 0;
 		panelInferior.add(Boton_Cancelar_1, gbc_Boton_Cancelar_1);
-
-
-
 
 	}
 	

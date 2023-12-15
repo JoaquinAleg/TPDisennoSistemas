@@ -1,8 +1,6 @@
 package pantalla;
 
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,16 +15,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
-import com.toedter.calendar.JDateChooser;
 
-import DAOS.HibernateUtil;
 import DTOS.DatosPolizaDTO;
 import DTOS.NombresDTO;
 import Gestores.GestorCliente;
@@ -54,7 +48,7 @@ public class CrearPoliza_Semestral extends JFrame {
 	private DatosPolizaDTO datosPolizaDTO;
 	private NombresDTO nombresDTO;
 
-	public CrearPoliza_Semestral(DatosPolizaDTO datosPolizaDTO, NombresDTO nombresDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente, String numeroClienteS) {
+	public CrearPoliza_Semestral(DatosPolizaDTO datosPolizaDTO, NombresDTO nombresDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorCliente = gestorCliente;
 		this.gestorPoliza = gestorPoliza;
@@ -91,8 +85,8 @@ public class CrearPoliza_Semestral extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		String numeroCliente = String.valueOf(datosPolizaDTO.getNumeroCliente());
-		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Titular del seguro: " + numeroClienteS);
+		String numeroCliente = datosPolizaDTO.getNumeroCliente();
+		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Titular del seguro: " + numeroCliente);
 		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();

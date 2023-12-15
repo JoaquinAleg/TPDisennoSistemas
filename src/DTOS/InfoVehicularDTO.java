@@ -30,5 +30,4 @@ public class InfoVehicularDTO {
 		this.anio = anio;
 	}
 	
-	
 }

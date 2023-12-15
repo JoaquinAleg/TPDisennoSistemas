@@ -1,8 +1,6 @@
 package pantalla;
 
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,15 +15,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
-import com.toedter.calendar.JDateChooser;
 
-import DAOS.HibernateUtil;
 import DTOS.DatosPolizaDTO;
 import DTOS.NombresDTO;
 import Gestores.GestorCliente;
@@ -54,7 +49,7 @@ public class CrearPoliza_Mensual2 extends JFrame {
 	private GestorCliente gestorCliente;
 	private DatosPolizaDTO datosPolizaDTO;
 
-	public CrearPoliza_Mensual2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente,NombresDTO nombresDTO, String numeroClienteS) {
+	public CrearPoliza_Mensual2(DatosPolizaDTO datosPolizaDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente,NombresDTO nombresDTO) {
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorCliente = gestorCliente;
 		this.gestorPoliza = gestorPoliza;
@@ -92,7 +87,8 @@ public class CrearPoliza_Mensual2 extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Titular del seguro: " + numeroClienteS);
+		String numeroCliente = datosPolizaDTO.getNumeroCliente();
+		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Titular del seguro: " + numeroCliente);
 		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();
@@ -237,8 +233,6 @@ public class CrearPoliza_Mensual2 extends JFrame {
 		gbc_lblNewLabel_1_2_1.gridx = 3;
 		gbc_lblNewLabel_1_2_1.gridy = 2;
 		panel_1_1.add(lblNewLabel_1_2_1, gbc_lblNewLabel_1_2_1);
-		
-	
 		
 		JLabel lblEstadoCivil_1_1 = new JLabel("Tercer fecha:");
 		lblEstadoCivil_1_1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -539,9 +533,6 @@ public class CrearPoliza_Mensual2 extends JFrame {
 		gbc_Boton_Continuar.gridx = 2;
 		gbc_Boton_Continuar.gridy = 0;
 		panelInferior.add(Boton_Continuar, gbc_Boton_Continuar);
-
-
-
 
 	}
 

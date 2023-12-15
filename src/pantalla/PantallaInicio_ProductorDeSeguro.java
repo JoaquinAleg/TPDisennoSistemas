@@ -231,7 +231,7 @@ public class PantallaInicio_ProductorDeSeguro extends JFrame {
 		btnDarDeAlta_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnDarDeAlta_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BuscarCliente FuturaPantalla = new BuscarCliente(gestorCliente, gestorPoliza,true);
+				BuscarCliente FuturaPantalla = new BuscarCliente(gestorCliente, gestorPoliza, true);
 				try {
 					FuturaPantalla.setVisible(true);
 				} catch(Exception er) {

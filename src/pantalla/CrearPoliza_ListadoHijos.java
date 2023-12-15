@@ -1,9 +1,5 @@
 package pantalla;
 
-
-
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -20,9 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import java.awt.SystemColor;
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import CustomRenderers.ListadoDTORenderer;
@@ -35,13 +29,7 @@ import Gestores.GestorPoliza;
 
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
-import javax.swing.JScrollBar;
-import javax.swing.JSplitPane;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Point;
-import java.awt.Component;
-import java.awt.Container;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
 import java.time.ZoneId;
@@ -49,8 +37,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.awt.event.ActionEvent;
-;
-
 
 
 public class CrearPoliza_ListadoHijos extends JFrame {
@@ -59,16 +45,12 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 	private JPanel contentPane;
 	private GestorPoliza gestorPoliza;
 	private List<ListadoDTO> modeloDTO;
-	private String[] modelos; 
-	private NombresDTO nombresDTO;
 	private List<ListadoDTO> sexDTO;
 	private List<ListadoDTO> estCivilDTO;
-	private String[] sexos;
-	private String[] estadosCivil;
 	private ArrayList <HijosDTO> hijos;
 
 	public CrearPoliza_ListadoHijos(ArrayList <HijosDTO> hijos,	GestorPoliza gestorPoliza, GestorCliente gestorCliente, NombresDTO nombresDTO,
-			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1, String numeroClienteS) {
+			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1) {
 		int cantidadHijos = hijos.size();
 		this.hijos=hijos;
 		this.gestorPoliza = gestorPoliza;
@@ -192,7 +174,6 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				JComboBox<ListadoDTO> TipoEstadoCivil = new JComboBox<>(estadoCivilDTO.toArray(new ListadoDTO[estadoCivilDTO.size()]));
 				TipoEstadoCivil.setRenderer(new ListadoDTORenderer());
 				TipoEstadoCivil.setEnabled(false);
-//				String[] nombreEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getId() != null && a.getId().equals(h.getEstadoCivil())).map(b -> b.getNombre()).toArray(String[]::new);
 				TipoEstadoCivil.setSelectedIndex(Integer.parseInt(h.getEstadoCivil().toString()));
 				TipoEstadoCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				TipoEstadoCivil.setBackground(SystemColor.inactiveCaptionBorder);
@@ -217,7 +198,6 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				JComboBox<ListadoDTO> TipoSexo = new JComboBox<>(sexoDTO.toArray(new ListadoDTO[this.sexDTO.size()]));
 				TipoSexo.setRenderer(new ListadoDTORenderer());
 				TipoSexo.setEnabled(false);
-//				String[] nombreSexo = sexoDTO.stream().filter(a -> a.getId() != null && a.getId().equals(h.getSexo())).map(b -> b.getNombre()).toArray(String[]::new);
 				TipoSexo.setSelectedIndex(Integer.parseInt(h.getSexo().toString()));
 				TipoSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 				TipoSexo.setBackground(SystemColor.inactiveCaptionBorder);
@@ -232,7 +212,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 				btnNewButton_1_1_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						CrearPoliza_EditarHijos FuturaPantalla = new CrearPoliza_EditarHijos(gestorPoliza, gestorCliente, hijos ,h, nombresDTO,datosPolizaDTO, CrearPoliza_ListadoHijos.this,
-								sexoDTO,estadoCivilDTO, conHijos, poliza1, numeroClienteS);
+								sexoDTO,estadoCivilDTO, conHijos, poliza1);
 						
 						try {
 							FuturaPantalla.setVisible(true);
@@ -268,7 +248,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 						hijos.remove(h);
 						
 						if(hijos.isEmpty()) {
-							CrearPoliza_2 FuturaPantalla = new CrearPoliza_2(datosPolizaDTO,gestorPoliza,gestorCliente, nombresDTO,poliza1, numeroClienteS);
+							CrearPoliza_2 FuturaPantalla = new CrearPoliza_2(datosPolizaDTO,gestorPoliza,gestorCliente, nombresDTO,poliza1);
 							
 							try {
 								FuturaPantalla.setVisible(true);
@@ -279,7 +259,7 @@ public class CrearPoliza_ListadoHijos extends JFrame {
 							CrearPoliza_ListadoHijos.this.dispose();
 							}else {
 						
-						CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos( hijos,gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO, sexDTO, estCivilDTO, conHijos,poliza1,numeroClienteS);
+						CrearPoliza_ListadoHijos actualizada = new CrearPoliza_ListadoHijos( hijos,gestorPoliza, gestorCliente, nombresDTO,datosPolizaDTO, sexDTO, estCivilDTO, conHijos,poliza1);
 						try {
 							actualizada.setVisible(true);
 						} catch(Exception er) {

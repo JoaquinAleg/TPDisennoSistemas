@@ -1,9 +1,5 @@
 package pantalla;
 
-
-
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,12 +11,9 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import java.awt.SystemColor;
@@ -32,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import CustomRenderers.ListadoDTOJTableRenderer;
@@ -43,17 +35,10 @@ import DTOS.ListadoDTO;
 import DTOS.NombresDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
-import POJOS.Cobertura;
 
-import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.JScrollPane;
-import javax.swing.table.TableModel;
-;
 
 
 
@@ -70,7 +55,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 	String[] modelosTipoFormaPago;
 
 	public CrearPoliza_Cobertura(ArrayList<HijosDTO> hijos, GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO,
-			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame anterior, String numeroClienteS) {
+			DatosPolizaDTO datosPolizaDTO, List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame anterior) {
 		this.cantidadHijos = hijos;
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorPoliza = gestorPoliza;
@@ -127,7 +112,8 @@ public class CrearPoliza_Cobertura extends JFrame {
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblNewLabel_5_1.setBorder(null);
 		panel_3.add(lblNewLabel_5_1);
-		JLabel lblDatosDeLa_1 = new JLabel("Selección de cobertura - Cliente nro: "+ numeroClienteS);
+		String numeroCliente = datosPolizaDTO.getNumeroCliente();
+		JLabel lblDatosDeLa_1 = new JLabel("Selección de cobertura - Cliente nro: "+ numeroCliente);
 		lblDatosDeLa_1.setBackground(SystemColor.inactiveCaptionBorder);
 		lblDatosDeLa_1.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -302,7 +288,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 					datosPolizaDTO.setIdFormaPago(((ListadoDTO)formasPago.getSelectedItem()).getId());
 					datosPolizaDTO.setIdCobertura(((ListadoDTO)modelo.getValueAt(table.getSelectedRow(), 0)).getId());
 					if((((ListadoDTO) formasPago.getSelectedItem()).getNombre()).equals("Mensual")) {
-						CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente, numeroClienteS);
+						CrearPoliza_Mensual1 CPoliza = new CrearPoliza_Mensual1(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
 						
 						try {
 							CPoliza.setVisible(true);
@@ -312,7 +298,7 @@ public class CrearPoliza_Cobertura extends JFrame {
 						CrearPoliza_Cobertura.this.setVisible(false);
 						CrearPoliza_Cobertura.this.dispose();
 					} else {
-						CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente, numeroClienteS);
+						CrearPoliza_Semestral CPoliza = new CrearPoliza_Semestral(datosPolizaDTO, nombresDTO, gestorPoliza, gestorCliente);
 						
 						try {
 							CPoliza.setVisible(true);

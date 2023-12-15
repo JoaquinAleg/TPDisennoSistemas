@@ -1,6 +1,5 @@
 package POJOS;
 import java.time.LocalDate;
-import java.util.List;
 
 import jakarta.persistence.*;
 

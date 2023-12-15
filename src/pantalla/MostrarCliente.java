@@ -1,7 +1,6 @@
 package pantalla;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,13 +10,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import DTOS.ClienteDTO;
@@ -28,8 +25,6 @@ import java.awt.event.ActionEvent;
 public class MostrarCliente extends JFrame{
 	private JPanel contentPane;
 	private static final long serialVersionUID = 1L;
-	private static ClienteDTO cliDTO;
-	private static GestorPoliza gestorPoliza;
 
 	/**
 	 * Create the frame.
@@ -258,12 +253,6 @@ public class MostrarCliente extends JFrame{
 				}
 			}
 		});
-		
-
-
-
-		
-
 	}
 
 }

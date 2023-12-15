@@ -11,5 +11,4 @@ public interface localidadDAO {
 	public void deleteLocalidad(Localidad localidad);
 	public void updateLocalidad(Localidad localidad);
 	public List<Localidad> getAll();
-	//public List<Localidad> getLocalidadPorProvincia(long provincia);
 }

@@ -1,9 +1,5 @@
 package pantalla;
 
-
-
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,13 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import java.awt.SystemColor;
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import CustomRenderers.ListadoDTORenderer;
-import DTOS.ClienteDTO;
 import DTOS.DatosPolizaDTO;
 import DTOS.HijosDTO;
 import DTOS.ListadoDTO;
@@ -32,7 +25,6 @@ import DTOS.NombresDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 
-import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -42,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.awt.event.ActionEvent;
-;
 
 
 
@@ -61,7 +52,7 @@ public class CrearPoliza_2 extends JFrame {
 	private JComboBox<String> tuercas;
 	private JComboBox<String> rastreoVehicular;
 
-	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO,GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO, JFrame anterior, String numeroClienteS) {
+	public CrearPoliza_2(DatosPolizaDTO datosPolizaDTO,GestorPoliza gestorPoliza, GestorCliente gestorCliente,  NombresDTO nombresDTO, JFrame anterior) {
 		this.gestorPoliza = gestorPoliza;
 		this.hijos = new ArrayList<>();
 		
@@ -100,7 +91,6 @@ public class CrearPoliza_2 extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		String numeroCliente = new String("numeroCliente");
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(SystemColor.inactiveCaptionBorder);
@@ -118,7 +108,8 @@ public class CrearPoliza_2 extends JFrame {
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblNewLabel_5_1.setBorder(null);
 		panel_3.add(lblNewLabel_5_1);
-		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroClienteS);
+		String numeroCliente = datosPolizaDTO.getNumeroCliente();
+		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Cliente nro: " + numeroCliente);
 		lblDatosDeLa_1.setBackground(SystemColor.inactiveCaptionBorder);
 		lblDatosDeLa_1.setBorder(new MatteBorder(0, 0, 4, 0, (Color) new Color(0, 0, 0)));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -264,7 +255,7 @@ public class CrearPoliza_2 extends JFrame {
 		JButton Boton_Continuar_1 = new JButton("Ver Hijos");
 		Boton_Continuar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this,anterior,numeroClienteS);
+				CrearPoliza_ListadoHijos FuturaPantalla = new CrearPoliza_ListadoHijos(hijos,gestorPoliza,gestorCliente, nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this,anterior);
 				
 				try {
 					FuturaPantalla.setVisible(true);
@@ -481,7 +472,7 @@ public class CrearPoliza_2 extends JFrame {
 						medidas.add(idRastreoVehicular[0]);
 					}
 					datosPolizaDTO.setListaMedidaSeguridad(medidas);
-					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(hijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this, numeroClienteS);
+					CrearPoliza_Cobertura CPoliza = new CrearPoliza_Cobertura(hijos, gestorPoliza,gestorCliente,  nombresDTO,datosPolizaDTO, sexoDTO, estadoCivilDTO, CrearPoliza_2.this);
 					
 					try {
 						CPoliza.setVisible(true);

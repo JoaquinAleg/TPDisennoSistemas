@@ -1,8 +1,6 @@
 package pantalla;
 
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,13 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
-import com.toedter.calendar.JDateChooser;
 
 import DTOS.DatosPolizaDTO;
 import DTOS.NombresDTO;
@@ -34,9 +30,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField_1;
 	private JTextField textField;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
@@ -51,7 +45,7 @@ public class CrearPoliza_Mensual1 extends JFrame {
 	private DatosPolizaDTO datosPolizaDTO;
 	private NombresDTO nombresDTO;
 
-	public CrearPoliza_Mensual1(DatosPolizaDTO datosPolizaDTO, NombresDTO nombresDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente, String numeroClienteS) {
+	public CrearPoliza_Mensual1(DatosPolizaDTO datosPolizaDTO, NombresDTO nombresDTO, GestorPoliza gestorPoliza, GestorCliente gestorCliente) {
 		this.datosPolizaDTO = datosPolizaDTO;
 		this.gestorCliente = gestorCliente;
 		this.gestorPoliza = gestorPoliza;
@@ -88,7 +82,8 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Titular del seguro: " + numeroClienteS);
+		String numeroCliente = datosPolizaDTO.getNumeroCliente();
+		JLabel lblDatosDeLa_1 = new JLabel("Datos de la póliza - Titular del seguro: " + numeroCliente);
 		lblDatosDeLa_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblDatosDeLa_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblDatosDeLa_1 = new GridBagConstraints();
@@ -416,9 +411,8 @@ public class CrearPoliza_Mensual1 extends JFrame {
 		Boton_Continuar.setBackground(SystemColor.controlHighlight);
 		Boton_Continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			// acá tendrían que poner un if(cantidadhijos) a ver si se tira CrearPoliza_2 [caso sin hijos] o CrearPoliza_HijosExistentes.
 						
-						CrearPoliza_Mensual2 CPoliza = new CrearPoliza_Mensual2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO, numeroClienteS);
+						CrearPoliza_Mensual2 CPoliza = new CrearPoliza_Mensual2(datosPolizaDTO, gestorPoliza, gestorCliente, nombresDTO);
 						
 						try {
 							CPoliza.setVisible(true);

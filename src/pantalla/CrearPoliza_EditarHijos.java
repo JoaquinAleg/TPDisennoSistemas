@@ -1,9 +1,5 @@
 package pantalla;
 
-
-
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,9 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import java.awt.SystemColor;
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import CustomRenderers.ListadoDTORenderer;
@@ -31,16 +25,7 @@ import DTOS.NombresDTO;
 import Gestores.GestorCliente;
 import Gestores.GestorPoliza;
 
-import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
-import javax.swing.JScrollBar;
-import javax.swing.JSplitPane;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Point;
-import java.awt.Component;
-import java.awt.Container;
-import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -49,8 +34,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.awt.event.ActionEvent;
-;
-
 
 
 public class CrearPoliza_EditarHijos extends JFrame {
@@ -61,11 +44,9 @@ public class CrearPoliza_EditarHijos extends JFrame {
 	private ArrayList<HijosDTO> hList; 
 	private List<ListadoDTO> sexoDTO;
 	private List<ListadoDTO> estadoCivilDTO;
-	private String[] sexos;
-	private String[] estadosCivil;
 	
 	public CrearPoliza_EditarHijos( GestorPoliza gestorPoliza,GestorCliente gestorCliente,	ArrayList<HijosDTO> listaHijos ,HijosDTO h,   NombresDTO nombresDTO, DatosPolizaDTO datosPolizaDTO, CrearPoliza_ListadoHijos anterior,
-			List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1, String numeroClienteS) {
+			List<ListadoDTO> sexoDTO, List<ListadoDTO> estadoCivilDTO, JFrame conHijos, JFrame poliza1) {
 		setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("El Asegurado");
 		this.gestorPoliza = gestorPoliza;
@@ -213,8 +194,6 @@ public class CrearPoliza_EditarHijos extends JFrame {
 				if(ChronoUnit.DAYS.between(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) >= 6570 && 
 						ChronoUnit.DAYS.between(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),LocalDate.now()) <= 10950) {
 				Integer i = hList.lastIndexOf(h);
-//				Long[] idSexo = sexoDTO.stream().filter(a -> a.getNombre().equals(TipoSexo.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
-//				Long[] idEstadoCivil = estadoCivilDTO.stream().filter(a -> a.getNombre().equals(estadoCivil.getSelectedItem())).map(b -> b.getId()).toArray(Long[]::new);
 				h.setEstadoCivil((long) estadoCivil.getSelectedIndex());
 				h.setFechaNacimiento(birth.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				h.setSexo((long) TipoSexo.getSelectedIndex());
@@ -222,11 +201,8 @@ public class CrearPoliza_EditarHijos extends JFrame {
 				JOptionPane.showMessageDialog(null, "Hijo editado con éxito","Información",JOptionPane.INFORMATION_MESSAGE);
 				try {
 				CrearPoliza_ListadoHijos Panterior = new CrearPoliza_ListadoHijos(hList,gestorPoliza, gestorCliente, nombresDTO, datosPolizaDTO,
-						CrearPoliza_EditarHijos.this.sexoDTO,CrearPoliza_EditarHijos.this.estadoCivilDTO,conHijos, poliza1, numeroClienteS);
+						CrearPoliza_EditarHijos.this.sexoDTO,CrearPoliza_EditarHijos.this.estadoCivilDTO,conHijos, poliza1);
 				Panterior.setVisible(true);
-//				anterior.validate();
-//				anterior.repaint();
-//				anterior.setVisible(true);
 				anterior.dispose();
 				
 				} catch(Exception er) {
