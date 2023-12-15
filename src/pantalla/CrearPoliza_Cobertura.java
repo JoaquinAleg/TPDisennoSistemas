@@ -176,13 +176,11 @@ public class CrearPoliza_Cobertura extends JFrame {
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("Cobertura Disponibles");
 		
-		List<ListadoDTO> coberturaDTO = this.gestorPoliza.getCoberturas();
+		List<ListadoDTO> coberturaDTO = this.gestorPoliza.getCoberturas(datosPolizaDTO.getIdAnioVehiculo());
+		
 		ListadoDTO[] coberturas = coberturaDTO.toArray(new ListadoDTO[coberturaDTO.size()]);
 		for(ListadoDTO e : coberturas) {
-			//if(cantidadanios > 10){ if(e.getNombre().equals("Responsabilidad Civil")) modelo.addRow(new Object[{e})}
-			//else{
 			modelo.addRow( new Object[]{e});
-			//}
 		}
 		table = new JTable(modelo);
 

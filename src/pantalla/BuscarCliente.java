@@ -480,7 +480,7 @@ public class BuscarCliente extends JFrame {
 	
 	private void cargarClientes(List<ClienteDTO> clienteDTO, List<ListadoDTO> filtroTipoDocumentoDTO) {
 	    this.model.setRowCount(0);
-	    rowIndexToClientId.clear(); // Limpiar el mapa antes de cargar nuevos datos
+	    rowIndexToClientId.clear();
 	    
 	    for (int rowIndex = 0; rowIndex < clienteDTO.size(); rowIndex++) {
 	        ClienteDTO c = clienteDTO.get(rowIndex);

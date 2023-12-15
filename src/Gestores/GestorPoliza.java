@@ -45,6 +45,9 @@ import DAOS.DAOajusteDescuento;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -439,15 +442,21 @@ public class GestorPoliza {
 		return estadoCivilesDTO;
 	}	
 	
-	public List<ListadoDTO> getCoberturas(){
+	public List<ListadoDTO> getCoberturas(Long idAnioFabricacion){
 		List<Cobertura> coberturas = daoCobertura.getAll();
 		List<ListadoDTO> coberturasDTO = new ArrayList<>();
 		ListadoDTO coberturaDTO;
 		for(Cobertura e : coberturas) {
 			coberturaDTO = new ListadoDTO(String.valueOf(e.getDescripcion()), e.getIdCobertura());
 			coberturasDTO.add(coberturaDTO);
-	}
-	return coberturasDTO;
+		}
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate anioFabricacion = LocalDate.parse(String.valueOf(this.daoAnioFabricacion.getAnioFabricacion(idAnioFabricacion).getAnioFabricacion())+"0101", formatter);
+		if(anioFabricacion.isBefore(fechaActual.plusYears(-10))) {
+			coberturasDTO = coberturasDTO.stream().filter(a -> a.getNombre().equals("Responsabilidad Civil")).toList();
+		}
+		return coberturasDTO;
 	}
 	
 	public List<ListadoDTO> getTipoFormaPago(){
